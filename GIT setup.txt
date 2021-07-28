@@ -1,0 +1,187 @@
+
+shilpa@LAPTOP-P8V1978C MINGW64 ~/Desktop/siva
+$ git --version
+git version 2.32.0.windows.2
+
+shilpa@LAPTOP-P8V1978C MINGW64 ~/Desktop/siva
+$ git init .
+Initialized empty Git repository in C:/Users/shilpa/Desktop/siva/.git/
+
+shilpa@LAPTOP-P8V1978C MINGW64 ~/Desktop/siva (master)
+$ git status
+On branch master
+
+No commits yet
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        Docker networking.txt
+        Linux Files/
+        linux process managemt commands.txt
+        linux.txt
+        nmcli and lvm extend.txt
+
+nothing added to commit but untracked files present (use "git add" to track)
+
+shilpa@LAPTOP-P8V1978C MINGW64 ~/Desktop/siva (master)
+$ git add .
+
+shilpa@LAPTOP-P8V1978C MINGW64 ~/Desktop/siva (master)
+$ git status
+On branch master
+
+No commits yet
+
+Changes to be committed:
+  (use "git rm --cached <file>..." to unstage)
+        new file:   Docker networking.txt
+        new file:   Linux Files/EXT3 TO EXT4 - Copy.txt
+        new file:   Linux Files/EXT3 TO EXT4.txt
+        new file:   Linux Files/P1.txt
+        new file:   Linux Files/P2.txt
+        new file:   Linux Files/ProcessManagement.txt
+        new file:   Linux Files/apache server[900].txt
+        new file:   Linux Files/aws.txt
+        new file:   Linux Files/commands.txt
+        new file:   Linux Files/dinu.txt
+        new file:   Linux Files/diskquota.txt
+        new file:   Linux Files/editing file.txt
+        new file:   Linux Files/errors - Copy.txt
+        new file:   Linux Files/errors.txt
+        new file:   Linux Files/ftp - Copy.txt
+        new file:   Linux Files/ftp.txt
+        new file:   Linux Files/git - Copy.txt
+        new file:   Linux Files/git.txt
+        new file:   Linux Files/lvm.txt
+        new file:   Linux Files/nagios.txt
+        new file:   Linux Files/new.txt
+        new file:   Linux Files/nfs server.txt
+        new file:   Linux Files/process managemet.txt
+        new file:   Linux Files/questions.txt
+        new file:   Linux Files/raids.txt
+        new file:   Linux Files/scripts.txt
+        new file:   Linux Files/sonarqube.txt
+        new file:   Linux Files/ssh.txt
+        new file:   Linux Files/users.txt
+        new file:   Linux Files/yum server.txt
+        new file:   linux process managemt commands.txt
+        new file:   linux.txt
+        new file:   nmcli and lvm extend.txt
+
+
+shilpa@LAPTOP-P8V1978C MINGW64 ~/Desktop/siva (master)
+$ git commit -m "first commit for this branch"
+Author identity unknown
+
+*** Please tell me who you are.
+
+Run
+
+  git config --global user.email "you@example.com"
+  git config --global user.name "Your Name"
+
+to set your account's default identity.
+Omit --global to set the identity only in this repository.
+
+fatal: unable to auto-detect email address (got 'shilpa@LAPTOP-P8V1978C.(none)')
+
+shilpa@LAPTOP-P8V1978C MINGW64 ~/Desktop/siva (master)
+$ git config --global user.email "reddysivak97@gmail.com"
+
+shilpa@LAPTOP-P8V1978C MINGW64 ~/Desktop/siva (master)
+$ git config --global user.name "siva"
+
+shilpa@LAPTOP-P8V1978C MINGW64 ~/Desktop/siva (master)
+$ git commit -m "first commit for this branch"
+[master (root-commit) 3bd0488] first commit for this branch
+ 33 files changed, 20307 insertions(+)
+ create mode 100644 Docker networking.txt
+ create mode 100644 Linux Files/EXT3 TO EXT4 - Copy.txt
+ create mode 100644 Linux Files/EXT3 TO EXT4.txt
+ create mode 100644 Linux Files/P1.txt
+ create mode 100644 Linux Files/P2.txt
+ create mode 100644 Linux Files/ProcessManagement.txt
+ create mode 100644 Linux Files/apache server[900].txt
+ create mode 100644 Linux Files/aws.txt
+ create mode 100644 Linux Files/commands.txt
+ create mode 100644 Linux Files/dinu.txt
+ create mode 100644 Linux Files/diskquota.txt
+ create mode 100644 Linux Files/editing file.txt
+ create mode 100644 Linux Files/errors - Copy.txt
+ create mode 100644 Linux Files/errors.txt
+ create mode 100644 Linux Files/ftp - Copy.txt
+ create mode 100644 Linux Files/ftp.txt
+ create mode 100644 Linux Files/git - Copy.txt
+ create mode 100644 Linux Files/git.txt
+ create mode 100644 Linux Files/lvm.txt
+ create mode 100644 Linux Files/nagios.txt
+ create mode 100644 Linux Files/new.txt
+ create mode 100644 Linux Files/nfs server.txt
+ create mode 100644 Linux Files/process managemet.txt
+ create mode 100644 Linux Files/questions.txt
+ create mode 100644 Linux Files/raids.txt
+ create mode 100644 Linux Files/scripts.txt
+ create mode 100644 Linux Files/sonarqube.txt
+ create mode 100644 Linux Files/ssh.txt
+ create mode 100644 Linux Files/users.txt
+ create mode 100644 Linux Files/yum server.txt
+ create mode 100644 linux process managemt commands.txt
+ create mode 100644 linux.txt
+ create mode 100644 nmcli and lvm extend.txt
+
+shilpa@LAPTOP-P8V1978C MINGW64 ~/Desktop/siva (master)
+$ git status
+On branch master
+nothing to commit, working tree clean
+
+shilpa@LAPTOP-P8V1978C MINGW64 ~/Desktop/siva (master)
+$ git push origin master
+fatal: 'origin' does not appear to be a git repository
+fatal: Could not read from remote repository.
+
+Please make sure you have the correct access rights
+and the repository exists.
+
+shilpa@LAPTOP-P8V1978C MINGW64 ~/Desktop/siva (master)
+$ git remote add origin https://github.com/kovuru-siva/code.git
+
+shilpa@LAPTOP-P8V1978C MINGW64 ~/Desktop/siva (master)
+$ git push
+
+shilpa@LAPTOP-P8V1978C MINGW64 ~/Desktop/siva (master)
+$ git push -u origin master
+
+Unhandled Exception: System.ComponentModel.Win32Exception: Invalid window handle
+   at MS.Win32.ManagedWndProcTracker.HookUpDefWindowProc(IntPtr hwnd)
+   at MS.Win32.ManagedWndProcTracker.OnAppDomainProcessExit()
+   at MS.Internal.ShutDownListener.HandleShutDown(Object sender, EventArgs e)
+Enumerating objects: 32, done.
+Counting objects: 100% (32/32), done.
+Delta compression using up to 8 threads
+Compressing objects: 100% (32/32), done.
+Writing objects: 100% (32/32), 133.46 KiB | 3.71 MiB/s, done.
+Total 32 (delta 2), reused 0 (delta 0), pack-reused 0
+remote: Resolving deltas: 100% (2/2), done.
+remote:
+remote: Create a pull request for 'master' on GitHub by visiting:
+remote:      https://github.com/kovuru-siva/code/pull/new/master
+remote:
+To https://github.com/kovuru-siva/code.git
+ * [new branch]      master -> master
+Branch 'master' set up to track remote branch 'master' from 'origin'.
+
+shilpa@LAPTOP-P8V1978C MINGW64 ~/Desktop/siva (master)
+$ git push -u origin master
+Everything up-to-date
+Branch 'master' set up to track remote branch 'master' from 'origin'.
+
+shilpa@LAPTOP-P8V1978C MINGW64 ~/Desktop/siva (master)
+$ git status
+On branch master
+Your branch is up to date with 'origin/master'.
+
+nothing to commit, working tree clean
+
+shilpa@LAPTOP-P8V1978C MINGW64 ~/Desktop/siva (master)
+$
+
