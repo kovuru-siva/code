@@ -1,0 +1,429 @@
+ yum install git
+ git clone https://github.com/dinu-hub/rangac123.git
+
+[root@nfs.client.com ~]# git clone https://github.com/dinu-hub/rangac123.git
+Cloning into 'rangac123'...
+remote: Enumerating objects: 3, done.
+remote: Counting objects: 100% (3/3), done.
+remote: Total 3 (delta 0), reused 0 (delta 0), pack-reused 0
+Unpacking objects: 100% (3/3), done.
+
+cd rangac123/
+
+
+
+[root@nfs.client.com rangac123]# touch dinu{1..10}.txt
+[root@nfs.client.com rangac123]# git add *
+[root@nfs.client.com rangac123]# git commit -m "file completed"
+
+[master 28fd966] file completed
+ Committer: root <root@nfs.client.com>
+Your name and email address were configured automatically based
+on your username and hostname. Please check that they are accurate.
+You can suppress this message by setting them explicitly:
+
+    git config --global user.name "Your Name"
+    git config --global user.email you@example.com
+
+After doing this, you may fix the identity used for this commit with:
+
+    git commit --amend --reset-author
+
+ 10 files changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 dinu1.txt
+ create mode 100644 dinu10.txt
+ create mode 100644 dinu2.txt
+ create mode 100644 dinu3.txt
+ create mode 100644 dinu4.txt
+ create mode 100644 dinu5.txt
+ create mode 100644 dinu6.txt
+ create mode 100644 dinu7.txt
+ create mode 100644 dinu8.txt
+ create mode 100644 dinu9.txt
+
+[root@nfs.client.com rangac123]#
+
+[root@nfs.client.com rangac123]# touch dinu{1..10}.txt
+[root@nfs.client.com rangac123]# git add *
+[root@nfs.client.com rangac123]# git commit -m "file completed"
+[master 28fd966] file completed
+ Committer: root <root@nfs.client.com>
+Your name and email address were configured automatically based
+on your username and hostname. Please check that they are accurate.
+You can suppress this message by setting them explicitly:
+
+    git config --global user.name "Your Name"
+    git config --global user.email you@example.com
+
+After doing this, you may fix the identity used for this commit with:
+
+    git commit --amend --reset-author
+
+ 10 files changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 dinu1.txt
+ create mode 100644 dinu10.txt
+ create mode 100644 dinu2.txt
+ create mode 100644 dinu3.txt
+ create mode 100644 dinu4.txt
+ create mode 100644 dinu5.txt
+ create mode 100644 dinu6.txt
+ create mode 100644 dinu7.txt
+ create mode 100644 dinu8.txt
+ create mode 100644 dinu9.txt
+[root@nfs.client.com rangac123]#
+[root@nfs.client.com rangac123]#
+[root@nfs.client.com rangac123]#
+[root@nfs.client.com rangac123]#
+[root@nfs.client.com rangac123]# git push -u origin master
+Username for 'https://github.com': kovvurudineshreddy@gmail.com
+Password for 'https://kovvurudineshreddy@gmail.com@github.com':
+Counting objects: 4, done.
+Compressing objects: 100% (2/2), done.
+Writing objects: 100% (3/3), 303 bytes | 0 bytes/s, done.
+Total 3 (delta 0), reused 0 (delta 0)
+
+To https://github.com/dinu-hub/rangac123.git
+   cd071ee..28fd966  master -> master
+Branch master set up to track remote branch master from origin.
+
+
+
+[root@nfs.client.com rangac123]# ls
+dinu10.txt  dinu2.txt  dinu4.txt  dinu6.txt  dinu8.txt  README.md
+dinu1.txt   dinu3.txt  dinu5.txt  dinu7.txt  dinu9.txt
+[root@nfs.client.com rangac123]# git pull
+remote: Enumerating objects: 4, done.
+remote: Counting objects: 100% (4/4), done.
+remote: Compressing objects: 100% (2/2), done.
+remote: Total 3 (delta 1), reused 0 (delta 0), pack-reused 0
+Unpacking objects: 100% (3/3), done.
+From https://github.com/dinu-hub/rangac123
+   28fd966..8b9b500  master     -> origin/master
+Updating 28fd966..8b9b500
+Fast-forward
+ family | 4 ++++
+ 1 file changed, 4 insertions(+)
+ create mode 100644 family
+[root@nfs.client.com rangac123]# ls
+dinu10.txt  dinu2.txt  dinu4.txt  dinu6.txt  dinu8.txt  family
+dinu1.txt   dinu3.txt  dinu5.txt  dinu7.txt  dinu9.txt  README.md
+[root@nfs.client.com rangac123]#
+
+
+[root@nfs.client.com rangac123]# git branch
+  branch1
+  branch2
+* master
+[root@nfs.client.com rangac123]# touch file
+[root@nfs.client.com rangac123]# git add
+Nothing specified, nothing added.
+Maybe you wanted to say 'git add .'?
+[root@nfs.client.com rangac123]# git add file
+[root@nfs.client.com rangac123]# git commit
+Aborting commit due to empty commit message.
+[root@nfs.client.com rangac123]# git commit "ggd"
+error: pathspec 'ggd' did not match any file(s) known to git.
+[root@nfs.client.com rangac123]# git commit "file"
+Aborting commit due to empty commit message.
+[root@nfs.client.com rangac123]# git commit -m  "ile"
+[master 43ce04c] ile
+ Committer: root <root@nfs.client.com>
+Your name and email address were configured automatically based
+on your username and hostname. Please check that they are accurate.
+You can suppress this message by setting them explicitly:
+
+    git config --global user.name "Your Name"
+    git config --global user.email you@example.com
+
+After doing this, you may fix the identity used for this commit with:
+
+    git commit --amend --reset-author
+
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+
+
+ create mode 100644 file
+[root@nfs.client.com rangac123]# gitpush -u branch1
+-bash: gitpush: command not found
+[root@nfs.client.com rangac123]# git push -u branch1
+warning: push.default is unset; its implicit value is changing in
+Git 2.0 from 'matching' to 'simple'. To squelch this message
+and maintain the current behavior after the default changes, use:
+
+  git config --global push.default matching
+
+To squelch this message and adopt the new behavior now, use:
+
+  git config --global push.default simple
+
+See 'git help config' and search for 'push.default' for further information.
+(the 'simple' mode was introduced in Git 1.7.11. Use the similar mode
+'current' instead of 'simple' if you sometimes use older versions of Git)
+
+fatal: 'branch1' does not appear to be a git repository
+fatal: Could not read from remote repository.
+
+Please make sure you have the correct access rights
+and the repository exists.
+[root@nfs.client.com rangac123]# git push -u origin branch1
+Username for 'https://github.com': kovvurudineshreddy@gmailo.com
+Password for 'https://kovvurudineshreddy@gmailo.com@github.com':
+remote: Invalid username or password.
+fatal: Authentication failed for 'https://github.com/dinu-hub/rangac123.git/'
+[root@nfs.client.com rangac123]# git push -u origin branch1
+Username for 'https://github.com': kovvurudineshreddy@gmail.com
+Password for 'https://kovvurudineshreddy@gmail.com@github.com':
+Total 0 (delta 0), reused 0 (delta 0)
+remote:
+remote: Create a pull request for 'branch1' on GitHub by visiting:
+remote:      https://github.com/dinu-hub/rangac123/pull/new/branch1
+remote:
+To https://github.com/dinu-hub/rangac123.git
+ * [new branch]      branch1 -> branch1
+Branch branch1 set up to track remote branch branch1 from origin.
+[root@nfs.client.com rangac123]# ls
+dinu10.txt  dinu2.txt  dinu4.txt  dinu6.txt  dinu8.txt  family  README.md
+dinu1.txt   dinu3.txt  dinu5.txt  dinu7.txt  dinu9.txt  file
+[root@nfs.client.com rangac123]# get branch1
+-bash: get: command not found
+[root@nfs.client.com rangac123]# get branch
+-bash: get: command not found
+[root@nfs.client.com rangac123]# git branch
+  branch1
+  branch2
+* master
+
+[root@nfs.client.com rangac123]# ls
+dinu10.txt  dinu2.txt  dinu4.txt  dinu6.txt  dinu8.txt  family  README.md
+dinu1.txt   dinu3.txt  dinu5.txt  dinu7.txt  dinu9.txt  file
+
+[root@nfs.client.com rangac123]# git reset --hard HEAD^
+HEAD is now at 8b9b500 Create family
+
+[root@nfs.client.com rangac123]# ls
+dinu10.txt  dinu2.txt  dinu4.txt  dinu6.txt  dinu8.txt  family
+dinu1.txt   dinu3.txt  dinu5.txt  dinu7.txt  dinu9.txt  README.md
+[root@nfs.client.com rangac123]#
+
+
+[root@nfs.client.com rangac123]# git pull
+Updating cd071ee..8b9b500
+Fast-forward
+ dinu1.txt  | 0
+ dinu10.txt | 0
+ dinu2.txt  | 0
+ dinu3.txt  | 0
+ dinu4.txt  | 0
+ dinu5.txt  | 0
+ dinu6.txt  | 0
+ dinu7.txt  | 0
+ dinu8.txt  | 0
+ dinu9.txt  | 0
+ family     | 4 ++++
+ 11 files changed, 4 insertions(+)
+ create mode 100644 dinu1.txt
+ create mode 100644 dinu10.txt
+ create mode 100644 dinu2.txt
+ create mode 100644 dinu3.txt
+ create mode 100644 dinu4.txt
+ create mode 100644 dinu5.txt
+ create mode 100644 dinu6.txt
+ create mode 100644 dinu7.txt
+ create mode 100644 dinu8.txt
+ create mode 100644 dinu9.txt
+ create mode 100644 family
+[root@nfs.client.com rangac123]# ls
+dinu10.txt  dinu2.txt  dinu4.txt  dinu6.txt  dinu8.txt  family
+dinu1.txt   dinu3.txt  dinu5.txt  dinu7.txt  dinu9.txt  README.md
+[root@nfs.client.com rangac123]# git branch
+  branch1
+  branch2
+* master
+[root@nfs.client.com rangac123]# git checkout branch2
+Switched to branch 'branch2'
+[root@nfs.client.com rangac123]# ls
+dinu10.txt  dinu2.txt  dinu4.txt  dinu6.txt  dinu8.txt  family
+dinu1.txt   dinu3.txt  dinu5.txt  dinu7.txt  dinu9.txt  README.md
+[root@nfs.client.com rangac123]# git branch
+  branch1
+* branch2
+  master
+[root@nfs.client.com rangac123]# touch 123
+[root@nfs.client.com rangac123]# ls
+123         dinu1.txt  dinu3.txt  dinu5.txt  dinu7.txt  dinu9.txt  README.md
+dinu10.txt  dinu2.txt  dinu4.txt  dinu6.txt  dinu8.txt  family
+[root@nfs.client.com rangac123]# git add
+Nothing specified, nothing added.
+Maybe you wanted to say 'git add .'?
+[root@nfs.client.com rangac123]# git add 123
+[root@nfs.client.com rangac123]# git commit -m " jhfjwhyg"
+[branch2 327ca15]  jhfjwhyg
+ Committer: root <root@nfs.client.com>
+Your name and email address were configured automatically based
+on your username and hostname. Please check that they are accurate.
+You can suppress this message by setting them explicitly:
+
+    git config --global user.name "Your Name"
+    git config --global user.email you@example.com
+
+After doing this, you may fix the identity used for this commit with:
+
+    git commit --amend --reset-author
+
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 123
+[root@nfs.client.com rangac123]# git push -u branch2
+warning: push.default is unset; its implicit value is changing in
+Git 2.0 from 'matching' to 'simple'. To squelch this message
+and maintain the current behavior after the default changes, use:
+
+  git config --global push.default matching
+
+To squelch this message and adopt the new behavior now, use:
+
+  git config --global push.default simple
+
+See 'git help config' and search for 'push.default' for further information.
+(the 'simple' mode was introduced in Git 1.7.11. Use the similar mode
+'current' instead of 'simple' if you sometimes use older versions of Git)
+
+fatal: 'branch2' does not appear to be a git repository
+fatal: Could not read from remote repository.
+
+Please make sure you have the correct access rights
+and the repository exists.
+[root@nfs.client.com rangac123]# git push -u
+warning: push.default is unset; its implicit value is changing in
+Git 2.0 from 'matching' to 'simple'. To squelch this message
+and maintain the current behavior after the default changes, use:
+
+  git config --global push.default matching
+
+To squelch this message and adopt the new behavior now, use:
+
+  git config --global push.default simple
+
+See 'git help config' and search for 'push.default' for further information.
+(the 'simple' mode was introduced in Git 1.7.11. Use the similar mode
+'current' instead of 'simple' if you sometimes use older versions of Git)
+
+^C
+[root@nfs.client.com rangac123]# git push -u origin master
+Username for 'https://github.com': ^C
+[root@nfs.client.com rangac123]# git push -u origin branc2
+Username for 'https://github.com': kovvurudineshreddy@gmail.com
+Password for 'https://kovvurudineshreddy@gmail.com@github.com':
+error: src refspec branc2 does not match any.
+error: failed to push some refs to 'https://github.com/dinu-hub/rangac123.git'
+[root@nfs.client.com rangac123]# git checkout branch1
+Switched to branch 'branch1'
+[root@nfs.client.com rangac123]# touch 12
+[root@nfs.client.com rangac123]# git add
+Nothing specified, nothing added.
+Maybe you wanted to say 'git add .'?
+[root@nfs.client.com rangac123]# git add 12
+[root@nfs.client.com rangac123]# git commit -m "jbf"
+[branch1 b9ada5e] jbf
+ Committer: root <root@nfs.client.com>
+Your name and email address were configured automatically based
+on your username and hostname. Please check that they are accurate.
+You can suppress this message by setting them explicitly:
+
+    git config --global user.name "Your Name"
+    git config --global user.email you@example.com
+
+After doing this, you may fix the identity used for this commit with:
+
+    git commit --amend --reset-author
+
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 12
+[root@nfs.client.com rangac123]# git push origin branch1
+Username for 'https://github.com': kovvurudineshreddy@gmail.com
+Password for 'https://kovvurudineshreddy@gmail.com@github.com':
+Counting objects: 3, done.
+Compressing objects: 100% (2/2), done.
+Writing objects: 100% (2/2), 225 bytes | 0 bytes/s, done.
+Total 2 (delta 1), reused 0 (delta 0)
+remote: Resolving deltas: 100% (1/1), completed with 1 local object.
+To https://github.com/dinu-hub/rangac123.git
+   8b9b500..b9ada5e  branch1 -> branch1
+[root@nfs.client.com rangac123]# l
+-bash: l: command not found
+[root@nfs.client.com rangac123]# git clone git@github.com:dinu-hub/srujana.git
+Cloning into 'srujana'...
+^C
+[root@nfs.client.com rangac123]# git clone git@github.com:dinu-hub/srujana.git
+Cloning into 'srujana'...
+The authenticity of host 'github.com (13.234.210.38)' can't be established.
+RSA key fingerprint is SHA256:nThbg6kXUpJWGl7E1IGOCspRomTxdCARLviKw6E5SY8.
+RSA key fingerprint is MD5:16:27:ac:a5:76:28:2d:36:63:1b:56:4d:eb:df:a6:48.
+Are you sure you want to continue connecting (yes/no)? yes
+Warning: Permanently added 'github.com,13.234.210.38' (RSA) to the list of known hosts.
+Permission denied (publickey).
+fatal: Could not read from remote repository.
+
+Please make sure you have the correct access rights
+and the repository exists.
+[root@nfs.client.com rangac123]# cd
+[root@nfs.client.com ~]# mkdir mkdir
+[root@nfs.client.com ~]# cd mkdir
+[root@nfs.client.com mkdir]# ssh-keygen -t rsa
+Generating public/private rsa key pair.
+Enter file in which to save the key (/root/.ssh/id_rsa):
+/root/.ssh/id_rsa already exists.
+Overwrite (y/n)?
+[root@nfs.client.com mkdir]# ssh-keygen -t rsa
+Generating public/private rsa key pair.
+Enter file in which to save the key (/root/.ssh/id_rsa):
+/root/.ssh/id_rsa already exists.
+Overwrite (y/n)? y
+Enter passphrase (empty for no passphrase):
+Enter same passphrase again:
+Your identification has been saved in /root/.ssh/id_rsa.
+Your public key has been saved in /root/.ssh/id_rsa.pub.
+The key fingerprint is:
+SHA256:dknBgf4tHgtvLvH0uZ7VGFcYrzwkqYmmEsMcxBKPohM root@nfs.client.com
+The key's randomart image is:
++---[RSA 2048]----+
+|  .o.    oo.  .  |
+|  .+.   . .. . + |
+|E ..o  .  . o o o|
+|.o o .  .o + + ..|
+|o   =   S.=.  = .|
+| .   o +o.= .  * |
+|    . .  B = .o .|
+|     .  . * oo   |
+|         +..+.   |
++----[SHA256]-----+
+[root@nfs.client.com mkdir]# ls
+[root@nfs.client.com mkdir]# cd
+[root@nfs.client.com ~]# ls -l
+total 12
+-rw-------. 1 root root 1278 Aug 28 21:36 anaconda-ks.cfg
+-rw-r--r--. 1 root root    0 Aug 29 15:17 d
+-rw-r--r--. 1 root root   11 Aug 29 15:33 df
+drwxr-xr-x. 2 root root    6 Aug 29 15:15 dinesh
+-rw-r--r--. 1 root root   10 Aug 29 15:34 fd
+drwxr-xr-x. 2 root root    6 Sep 15 16:55 mkdir
+drwxr-xr-x. 3 root root  230 Sep 15 16:54 rangac123
+[root@nfs.client.com ~]# ls -a
+.                .bash_logout   .cache   d       fd     rangac123  .viminfo
+..               .bash_profile  .config  df      mkdir  .ssh
+anaconda-ks.cfg  .bashrc        .cshrc   dinesh  .pki   .tcshrc
+[root@nfs.client.com ~]# cd .ssh
+[root@nfs.client.com .ssh]# ls
+id_rsa  id_rsa.pub  known_hosts
+[root@nfs.client.com .ssh]# cat id_rsa.pub
+ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC4EVR8xxOgOx6NfaV9xpC038o9jw+cKrgQKtZM1NXMNckxzW/NEbmnpYMNlGxYgul4QHMd5c0PkcySfqfw4qETNcggN3KImdVzjnhgn6j/a04sRARUm1kudu2kGB5ggHUvy0Emz/7x7InWYxC44i9EwQGqLL14a3GtC3Fseg8b5tPM1BjI+rjNn6gjQiQBpaWAPFbLL+K1xwFQIS8+CVTCAw6tzJVKM6SY2OcwGChbW/Q9zG7MmdQCBo0wlIt9t6nQUrY8KNoN9Xeo1Ip/k0RDwj8INndK7ag/Rb7q6ZZjDa8d3oJxc2YZzISisuKH+Nj086TUwRhGogzKU7u3C/5X root@nfs.client.com
+[root@nfs.client.com .ssh]# ^C
+[root@nfs.client.com .ssh]# ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC4EVR8xxOgOx6NfaV9xpC038o9jw+cKrgQKtZM1NXMNckxzW/NEbmnpYMNlGxYgul4QHMd5c0PkcySfqfw4qETNcggN3KImdVzjnhgn6j/a04sRARUm1kudu2kGB5ggHUvy0Emz/7x7InWYxC44i9EwQGqLL14a3GtC3Fseg8b5tPM1BjI+rjNn6gjQiQBpaWAPFbLL+K1xwFQIS8+CVTCAw6tzJVKM6SY2OcwGChbW/Q9zG7MmdQCBo0wlIt9t6nQUrY8KNoN9Xeo1Ip/k0RDwj8INndK7ag/Rb7q6ZZjDa8d3oJxc2YZzISisuKH+Nj086TUwRhGogzKU7u3C/5X root@nfs.client.com
+
+
+
+
+
+
+
+

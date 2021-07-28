@@ -1,0 +1,287 @@
+mkinitrd -f -v /boot/initrd-$(uname -r).img $(uname -r)
+
+
+
+Q:5 What is patch command and where to use it ?
+Ans: As the name suggest patch command is used to apply changes ( or patches) to the text file. Patch command generally accept output from the diff and convert older version of files into newer versions. For example Linux kernel source code consists of number of files with millions of lines , so whenever any contributor contribute the changes , then he/she will be send the only changes instead of sending the whole source code. Then the receiver will apply the changes with patch command to its original source code.
+
+Create a diff file for use with patch,
+
+# diff -Naur old_file new_file > diff_file
+
+Where old_file and new_file are either single files or directories containing files. The r option supports recursion of a directory tree.
+
+Once the diff file has been created, we can apply it to patch the old file into the new file:
+
+# patch < diff_file
+
+
+------------------------------------------------------------------Diskquotas------------------------------------------------------------------------------
+
+[root@linuxserver1.itbs.com ~]# vgdisplay VG
+  --- Volume group ---
+  VG Name               VG
+  System ID
+  Format                lvm2
+  Metadata Areas        3
+  Metadata Sequence No  11
+  VG Access             read/write
+  VG Status             resizable
+  MAX LV                0
+  Cur LV                4
+  Open LV               2
+  Max PV                0
+  Cur PV                3
+  Act PV                3
+  VG Size               <3.99 GiB
+  PE Size               4.00 MiB
+  Total PE              1021
+  Alloc PE / Size       650 / <2.54 GiB
+  Free  PE / Size       371 / <1.45 GiB
+  VG UUID               NKT9SI-a4zw-SCcw-Sgvq-WKPH-dqbb-462ikV
+
+[root@linuxserver1.itbs.com ~]# lvcreate -L +600M -n lv5 /dev/VG
+  Logical volume "lv5" created.
+[root@linuxserver1.itbs.com ~]# lvdisplay /dev/VG/lv5
+  --- Logical volume ---
+  LV Path                /dev/VG/lv5
+  LV Name                lv5
+  VG Name                VG
+  LV UUID                C7u0Ly-XdF2-A4RR-cvl8-Lmxr-upnZ-I2Ix7R
+  LV Write Access        read/write
+  LV Creation host, time linuxserver1.itbs.com, 2019-08-10 12:40:09 +0530
+  LV Status              available
+  # open                 0
+  LV Size                600.00 MiB
+  Current LE             150
+  Segments               1
+  Allocation             inherit
+  Read ahead sectors     auto
+  - currently set to     8192
+  Block device           253:6
+
+[root@linuxserver1.itbs.com ~]# mkdir /LVM5
+[root@linuxserver1.itbs.com ~]# mkfs.ext4 /dev/VG/lv5
+mke2fs 1.42.9 (28-Dec-2013)
+Filesystem label=
+OS type: Linux
+Block size=4096 (log=2)
+Fragment size=4096 (log=2)
+Stride=0 blocks, Stripe width=0 blocks
+38400 inodes, 153600 blocks
+7680 blocks (5.00%) reserved for the super user
+First data block=0
+Maximum filesystem blocks=157286400
+5 block groups
+32768 blocks per group, 32768 fragments per group
+7680 inodes per group
+Superblock backups stored on blocks:
+        32768, 98304
+
+Allocating group tables: done
+Writing inode tables: done
+Creating journal (4096 blocks): done
+Writing superblocks and filesystem accounting information: done
+
+
+
+
+[root@linuxserver1.itbs.com ~]# vim /etc/fstab
+[root@linuxserver1.itbs.com ~]# mount -a
+[root@linuxserver1.itbs.com ~]# df -h
+Filesystem               Size  Used Avail Use% Mounted on
+/dev/mapper/centos-root  8.0G  1.6G  6.5G  20% /
+devtmpfs                 486M     0  486M   0% /dev
+tmpfs                    497M     0  497M   0% /dev/shm
+tmpfs                    497M  6.8M  490M   2% /run
+tmpfs                    497M     0  497M   0% /sys/fs/cgroup
+/dev/sdb7                477M  2.3M  449M   1% /lp7
+/dev/sdb5                477M  2.3M  449M   1% /lp5
+/dev/sdb6                976M  502M  423M  55% /lp6
+/dev/md0                 990M  2.6M  921M   1% /RAID0
+/dev/md1                 991M  503M  422M  55% /RAID1
+/dev/md5                 990M  2.6M  921M   1% /RAID5
+/dev/mapper/VG-lv1       481M  387M   68M  86% /LVM1
+/dev/sda1               1014M  127M  888M  13% /boot
+tmpfs                    100M     0  100M   0% /run/user/0
+/dev/mapper/VG-lv4       559M  503M   15M  98% /LVM4
+/dev/mapper/VG-lv5       575M  912K  532M   1% /LVM5
+
+
+[root@linuxserver1.itbs.com ~]# df -h /LVM5/
+Filesystem          Size  Used Avail Use% Mounted on
+/dev/mapper/VG-lv5  575M  912K  532M   1% /LVM5
+
+
+[root@linuxserver1.itbs.com ~]# vim /etc/fstab
+[root@linuxserver1.itbs.com ~]# cat /etc/fstab
+
+
+# /etc/fstab
+# Created by anaconda on Sat Jul 13 18:36:42 2019
+#
+# Accessible filesystems, by reference, are maintained under '/dev/disk'
+# See man pages fstab(5), findfs(8), mount(8) and/or blkid(8) for more info
+#
+/dev/mapper/centos-root /                       xfs     defaults        0 0
+UUID=cffc314c-746c-46e8-b2d3-94159e644ce5 /boot                   xfs     defaults        0 0
+/dev/mapper/centos-swap swap                    swap    defaults        0 0
+/dev/sdb5               /lp5                    ext3    defaults        0 0
+/dev/sdb6               /lp6                    ext3    defaults        0 0
+/dev/sdb7               /lp7                    ext3    defaults        0 0
+/dev/sdb1               swap                    swap    defaults        0 0
+/dev/md0                /RAID0                  ext4    defaults        0 0
+/dev/md1                /RAID1                  ext4    defaults        0 0
+/dev/md5                /RAID5                  ext4    defaults        0 0
+/dev/VG/lv1             /LVM1                   ext4    defaults        0 0
+/dev/VG/lv4             /LVM4                   ext4    defaults        0 0
+/dev/VG/lv5             /LVM5                   ext4    defaults,usrquota,grpquota      0 0
+
+
+[root@linuxserver1.itbs.com ~]# mount -o remount /dev/VG/lv5
+
+[root@linuxserver1.itbs.com ~]# mount
+/dev/sdb7 on /lp7 type ext3 (rw,relatime,seclabel,data=ordered)
+/dev/sdb5 on /lp5 type ext3 (rw,relatime,seclabel,data=ordered)
+/dev/sdb6 on /lp6 type ext3 (rw,relatime,seclabel,data=ordered)
+/dev/md0 on /RAID0 type ext4 (rw,relatime,seclabel,stripe=256,data=ordered)
+/dev/md1 on /RAID1 type ext4 (rw,relatime,seclabel,data=ordered)
+/dev/md5 on /RAID5 type ext4 (rw,relatime,seclabel,stripe=256,data=ordered)
+/dev/mapper/VG-lv1 on /LVM1 type ext4 (rw,relatime,seclabel,data=ordered)
+/dev/sda1 on /boot type xfs (rw,relatime,seclabel,attr2,inode64,noquota)
+tmpfs on /run/user/0 type tmpfs (rw,nosuid,nodev,relatime,seclabel,size=101624k,mode=700)
+/dev/mapper/VG-lv4 on /LVM4 type ext4 (rw,relatime,seclabel,data=ordered)
+/dev/mapper/VG-lv5 on /LVM5 type ext4 (rw,relatime,seclabel,quota,usrquota,grpquota,data=ordered)
+
+
+
+[root@linuxserver1.itbs.com ~]# quotacheck -cugf /dev/VG/lv5
+[root@linuxserver1.itbs.com ~]# cd /LVM5
+[root@linuxserver1.itbs.com LVM5]# ls -a
+.  ..  aquota.group  aquota.user  lost+found
+
+[root@linuxserver1.itbs.com LVM5]#
+[root@linuxserver1.itbs.com LVM5]# quotaon /dev/VG/lv5
+[root@linuxserver1.itbs.com LVM5]# id ranga
+uid=1000(ranga) gid=1000(ranga) groups=1000(ranga),1003(class)
+[root@linuxserver1.itbs.com LVM5]# edquota -u ranga
+Disk quotas for user ranga (uid 1000):
+  Filesystem                   blocks       soft       hard     inodes     soft     hard
+  /dev/mapper/VG-lv5                0          0          0          0        7        10
+~
+~
+
+Login to ranga user and test it.
+
+login as: ranga
+ranga@192.168.2.215's password:
+Access denied
+ranga@192.168.2.215's password:
+Last login: Tue Aug 13 21:31:05 2019 from 192.168.2.16
+
+
+[ranga@linuxserver1.itbs.com ~]$ cd /LVM5/
+[ranga@linuxserver1.itbs.com LVM5]$ ls
+aquota.group  aquota.user  lost+found
+
+[ranga@linuxserver1.itbs.com LVM5]$ touch f1
+[ranga@linuxserver1.itbs.com LVM5]$ touch f2
+[ranga@linuxserver1.itbs.com LVM5]$ touch f3
+[ranga@linuxserver1.itbs.com LVM5]$ touch f4
+[ranga@linuxserver1.itbs.com LVM5]$ touch f5
+[ranga@linuxserver1.itbs.com LVM5]$ touch f6
+[ranga@linuxserver1.itbs.com LVM5]$ touch f7
+[ranga@linuxserver1.itbs.com LVM5]$ touch f8
+dm-6: warning, user file quota exceeded.
+
+
+[ranga@linuxserver1.itbs.com LVM5]$ ls
+aquota.group  aquota.user  f1  f2  f3  f4  f5  f6  f7  f8  lost+found
+[ranga@linuxserver1.itbs.com LVM5]$ touch f9
+[ranga@linuxserver1.itbs.com LVM5]$ touch f10
+[ranga@linuxserver1.itbs.com LVM5]$ touch f11
+dm-6: write failed, user file limit reached.
+touch: cannot touch ‘f11’: Disk quota exceeded
+
+
+[root@linuxserver1.itbs.com LVM5]# f/dev/VG/lv5
+*** Report for user quotas on device /dev/mapper/VG-lv5
+
+Block grace time: 7days; Inode grace time: 7days
+                        Block limits                File limits
+User            used    soft    hard  grace    used  soft  hard  grace
+----------------------------------------------------------------------
+root      --      20       0       0              2     0     0
+ranga     -+       0       0       0             10     7    10  6days
+
+
+
+
+GracePeriod :
+
+[root@linuxserver1.itbs.com LVM5]# edquota -t
+Grace period before enforcing soft limits for users:
+Time units may be: days, hours, minutes, or seconds
+  Filesystem             Block grace period     Inode grace period
+  /dev/mapper/VG-lv5                  7days                  20days
+~
+
+[root@linuxserver1.itbs.com ~]# quotaoff /dev/VG/lv5
+
+
+
+================================================================================================================================================
+
+ ACLs : access control limits 
+
+
+[root@linuxserver1.itbs.com ~]# ls -ld /LVM5
+drwxr-xrwx. 3 root root 4096 Aug 10 12:58 /LVM5
+
+[root@linuxserver1.itbs.com ~]# id sirisha
+uid=1001(sirisha) gid=1001(sirisha) groups=1001(sirisha),1003(class)
+
+[root@linuxserver1.itbs.com ~]# passwd sirisha
+Changing password for user sirisha.
+New password:
+BAD PASSWORD: The password is shorter than 8 characters
+Retype new password:
+passwd: all authentication tokens updated successfully.
+
+[root@linuxserver1.itbs.com ~]# chmod o-w /LVM5
+[root@linuxserver1.itbs.com ~]# ls -ld /LVM5
+drwxr-xr-x. 3 root root 4096 Aug 10 13:07 /LVM5
+
+[root@linuxserver1.itbs.com ~]# getfacl /LVM5
+getfacl: Removing leading '/' from absolute path names
+# file: LVM5
+# owner: root
+# group: root
+user::rwx
+group::r-x
+other::r-x
+
+[root@linuxserver1.itbs.com ~]# setfacl -m u:ranga:rwx /LVM5
+[root@linuxserver1.itbs.com ~]# getfacl /LVM5
+getfacl: Removing leading '/' from absolute path names
+# file: LVM5
+# owner: root
+# group: root
+user::rwx
+user:ranga:rwx
+group::r-x
+mask::rwx
+other::r-x
+
+=-------------------------------------------------------------------------------------------Remove ACLs for a directory /LVM5
+
+[root@linuxserver1.itbs.com ~]# setfacl -x u:ranga: /LVM5
+[root@linuxserver1.itbs.com ~]# getfacl /LVM5
+getfacl: Removing leading '/' from absolute path names
+# file: LVM5
+# owner: root
+# group: root
+user::rwx
+group::r-x
+mask::r-x
+other::r-x

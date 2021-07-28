@@ -1,0 +1,460 @@
+Date : 19/08/2019
+Package Management & Yum Server Setup
+
+
+1. Static IP address Setup
+2. Hostname Setup
+3. TimeZone (IST)
+4. Bash Prompt Setup
+5. Make sure that server pings google.com (Internet Connectivity)
+
+
+Package Management : 
+
+RPM = > Redhat Package Manager 
+
+To get the List of Installed  pkgs.
+
+[root@yumserver.itbs.com ~]# rpm -qa ========= it is used to show the installed pakages when your are installing your machine.
+curl-7.29.0-42.el7.x86_64
+setup-2.8.71-7.el7.noarch
+satyr-0.13-14.el7.x86_64
+bind-license-9.9.4-50.el7.noarch
+
+
+Number of installed pkgs in your server
+
+================================================================================================================
+
+[root@yumserver.itbs.com ~]# rpm -qa | wc -l -------------------- it is used to count the no of pakages are there.
+482
+=======================================================================================================================
+
+
+\\\if you want install any packages from rpmfind.net:
+
+			if any pakage is not avalable in your vartiual machine you go to internet and installed it.
+
+URL : http://www.rpmfind.net
+
+[root@yumserver.itbs.com ~]# wget http://www.rpmfind.net/linux/centos/7.6.1810/os/x86_64/Packages/finger-0.17-52.el7.x86_64.rpm
+--2019-08-19 19:46:38--  http://www.rpmfind.net/linux/centos/7.6.1810/os/x86_64/Packages/finger-0.17-52.el7.x86_64.rpm
+Resolving www.rpmfind.net (www.rpmfind.net)... 195.220.108.108
+Connecting to www.rpmfind.net (www.rpmfind.net)|195.220.108.108|:80... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 26100 (25K) [application/x-rpm]
+Saving to: ‘finger-0.17-52.el7.x86_64.rpm’
+
+100%[============================================>] 26,100       124KB/s   in 0.2s
+
+2019-08-19 19:46:39 (124 KB/s) - ‘finger-0.17-52.el7.x86_64.rpm’ saved [26100/26100]
+
+```````````````` by using above command we are downloaded the package and we are not installed the that.
+
+
+How do we install downloaded package ?
+
+[root@yumserver.itbs.com ~]# rpm -ivh finger-0.17-52.el7.x86_64.rpm
+				
+					-- by using rpm command we have to download it.
+						i = install
+						v = verbose
+						h = hasky
+						r = remove
+
+
+warning: finger-0.17-52.el7.x86_64.rpm: Header V3 RSA/SHA256 Signature, key ID f4a80eb5: NOKEY
+Preparing...                          ################################# [100%]
+Updating / installing...
+   1:finger-0.17-52.el7               ################################# [100%]
+[root@yumserver.itbs.com ~]# finger
+Login     Name       Tty      Idle  Login Time   Office     Office Phone   Host
+root      root       tty1        9  Aug 19 17:50
+root      root       pts/0          Aug 19 19:39                           (192.168.2.4)
+
+
+
+[root@yumserver.itbs.com ~]#=========================================================================== rpm -qa | wc -l ====== q = quirey
+						    a = all
+483
+
+[root@yumserver.itbs.com ~]#=================== rpm -qi finger ////////// it is used to check the information about a command.
+
+					
+Name        : finger
+Version     : 0.17
+Release     : 52.el7
+Architecture: x86_64
+Install Date: Mon 19 Aug 2019 07:48:28 PM IST
+Group       : Applications/Internet
+Size        : 32929
+License     : BSD
+Signature   : RSA/SHA256, Fri 29 Aug 2014 03:27:31 PM IST, Key ID 24c6a8a7f4a80eb5
+Source RPM  : finger-0.17-52.el7.src.rpm
+Build Date  : Fri 29 Aug 2014 03:19:47 PM IST
+Build Host  : worker1.bsys.centos.org
+Relocations : (not relocatable)
+Packager    : CentOS BuildSystem <http://bugs.centos.org>
+Vendor      : CentOS
+Summary     : The finger client
+Description :
+Finger is a utility which allows users to see information about system
+users (login name, home directory, name, how long they've been logged
+in to the system, etc.).  The finger package includes a standard
+finger client.
+
+You should install finger if you'd like to retrieve finger information
+from other systems.
+[root@yumserver.itbs.com ~]# finger
+Login     Name       Tty      Idle  Login Time   Office     Office Phone   Host
+root      root       tty1       13  Aug 19 17:50
+root      root       pts/0          Aug 19 19:39                           (192.168.2.4)
+
+
+														   rpm -qi finger
+[root@yumserver.itbs.com ~]# ====================================================================================  rpm -ql finger
+														   rpm -qf <path>
+														   rpm -e  <command> -e = remove																				   
+
+/usr/bin/finger
+/usr/share/doc/finger-0.17
+/usr/share/doc/finger-0.17/COPYING
+/usr/share/man/man1/finger.1.gz
+[root@yumserver.itbs.com ~]# which finger
+/usr/bin/finger
+
+[root@yumserver.itbs.com ~]# -----------------------  rpm -qf /usr/sbin/ifconfig 
+										 it is used to check the command where it is from.
+net-tools-2.0-0.22.20131004git.el7.x86_64
+
+[root@yumserver.itbs.com ~]# rpm -ql finger
+/usr/bin/finger
+/usr/share/doc/finger-0.17
+/usr/share/doc/finger-0.17/COPYING
+/usr/share/man/man1/finger.1.gz
+
+
+[root@yumserver.itbs.com ~]# rpm -e finger  => To Remove the Package. 
+
+[root@yumserver.itbs.com ~]# rpm -ql finger ::::::::::::: it is used to check the package is installed are not
+package finger is not installed
+
+
+[root@yumserver.itbs.com ~]# ls -l /usr/bin/finger
+ls: cannot access /usr/bin/finger: No such file or directory
+[root@yumserver.itbs.com ~]# ls -l /usr/share/doc/finger-0.17
+ls: cannot access /usr/share/doc/finger-0.17: No such file or directory
+[root@yumserver.itbs.com ~]# finger
+-bash: /usr/bin/finger: No such file or directory
+
+
+[root@yumserver.itbs.com ~]# ++++++++++++ rpm -Uvh finger-0.17-52.el7.x86_64.rpm
+
+							            IT IS USED TO INSTALL ARE UPDATE THE COMMAND 
+														-U = updating 
+									
+
+warning: finger-0.17-52.el7.x86_64.rpm: Header V3 RSA/SHA256 Signature, key ID f4a80eb5: NOKEY
+Preparing...                          ################################# [100%]
+Updating / installing...
+   1:finger-0.17-52.el7               ################################# [100%]
+
+[root@yumserver.itbs.com ~]# ------------------------------------------------------------------rpm -ql finger
+/usr/bin/finger
+/usr/share/doc/finger-0.17
+/usr/share/doc/finger-0.17/COPYING
+/usr/share/man/man1/finger.1.gz
+[root@yumserver.itbs.com ~]# finger
+Login     Name       Tty      Idle  Login Time   Office     Office Phone   Host
+root      root       tty1       23  Aug 19 17:50
+root      root       pts/0          Aug 19 19:39                           (192.168.2.4)
+====================================================================================================================================================
+
+
+
+
+======================================================================================================================================================
+
+Installing pkgs withought dependencies....
+
+[root@yumserver.itbs.com ~]# rpm -ivh finger-0.17-52.el7.x86_64.rpm --nodeps
+==================================================================================================================================================
+
+
+How do we get the packages from CD/DVD/ISO : FIRSTLY WE HAVE TO ATTACH THE DISK,ISO IMAGE TO THIS MACHINE
+
+
+[root@yumserver.itbs.com ~]# lsblk
+NAME            MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT
+sda               8:0    0   20G  0 disk
++-sda1            8:1    0    1G  0 part /boot
++-sda2            8:2    0   19G  0 part
+  +-centos-root 253:0    0   17G  0 lvm  /
+  +-centos-swap 253:1    0    2G  0 lvm  [SWAP]
+sr0              11:0    1  4.2G  0 rom
+
+[root@yumserver.itbs.com ~]# ls -ld /dev/sr0
+brw-rw----. 1 root cdrom 11, 0 Aug 19 20:05 /dev/sr0
+[root@yumserver.itbs.com ~]# ls -ld /dev/cdrom
+lrwxrwxrwx. 1 root root 3 Aug 19 20:05 /dev/cdrom -> sr0
+
+========================================================================================= CREATE A ONE DIRECTORY AND MOUNT TO THE DISK. 
+STEPS:
+# mkdir /pkgs
+# mount /dev/cdrom /pkgs/
+# cd /pkgs/
+
+# ls | head
+389-ds-base-1.3.6.1-16.el7.x86_64.rpm
+389-ds-base-libs-1.3.6.1-16.el7.x86_64.rpm
+abattis-cantarell-fonts-0.0.25-1.el7.noarch.rpm
+abrt-2.1.11-48.el7.centos.x86_64.rpm
+abrt-addon-ccpp-2.1.11-48.el7.centos.x86_64.rpm
+abrt-addon-kerneloops-2.1.11-48.el7.centos.x86_64.rpm
+abrt-addon-pstoreoops-2.1.11-48.el7.centos.x86_64.rpm
+abrt-addon-python-2.1.11-48.el7.centos.x86_64.rpm
+abrt-addon-vmcore-2.1.11-48.el7.centos.x86_64.rpm
+abrt-addon-xorg-2.1.11-48.el7.centos.x86_64.rpm
+
+------ 
+	IN THE PACKAGES THERE ARE LOT OF PACKAGES AROUND 3892 ARE THERE FROM THERE WE HAVE TO INSTALL THE COMMAND TREE
+
+[root@yumserver.itbs.com Packages]# rpm -ivh tree-1.6.0-10.el7.x86_64.rpm
+
+[root@yumserver.itbs.com ~]# wget http://www.rpmfind.net/linux/fedora/linux/releases/29/Everything/x86_64/os/Packages/t/tree-1.7.0-15.fc29.x86_64.rpm
+--2019-08-19 20:15:06--  http://www.rpmfind.net/linux/fedora/linux/releases/29/Everything/x86_64/os/Packages/t/tree-1.7.0-15.fc29.x86_64.rpm
+Resolving www.rpmfind.net (www.rpmfind.net)... 195.220.108.108
+Connecting to www.rpmfind.net (www.rpmfind.net)|195.220.108.108|:80... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 53304 (52K) [application/x-rpm]
+Saving to: ‘tree-1.7.0-15.fc29.x86_64.rpm’
+
+100%[============================================>] 53,304       122KB/s   in 0.4s
+
+2019-08-19 20:15:07 (122 KB/s) - ‘tree-1.7.0-15.fc29.x86_64.rpm’ saved [53304/53304]
+
+[root@yumserver.itbs.com ~]# ls
+anaconda-ks.cfg  finger-0.17-52.el7.x86_64.rpm  tree-1.7.0-15.fc29.x86_64.rpm
+
+
+[root@yumserver.itbs.com ~]# rpm -qa | grep tree
+tree-1.6.0-10.el7.x86_64
+[root@yumserver.itbs.com ~]# rpm -Uvh tree-1.7.0-15.fc29.x86_64.rpm
+
+warning: tree-1.7.0-15.fc29.x86_64.rpm: Header V3 RSA/SHA256 Signature, key ID 429476b4: NOKEY
+Preparing...                          ################################# [100%]
+Updating / installing...
+   1:tree-1.7.0-15.fc29               ################################# [ 50%]
+Cleaning up / removing...
+  2:tree-1.6.0-10.el7                ################################# [100%]
+
+[root@yumserver.itbs.com ~]# rpm -qa | grep tree
+tree-1.7.0-15.fc29.x86_64
+------------------------------------------------------------------------------------------------------------------------------------------
+THIS IS THE PROCESS OF HOW TO INSTALL A PACKAGE FROM A DISK
+
+--------------------------------------------------------------------------------------------------------------------------------------
+
+Yum Server Setup & Configuration :
+=> Mount your ISO image/CD/DVD
+# df -h 
+#mkdir /pkgrepo
+
+[root@yumserver.itbs.com Packages]# cp -avf * /pkgrepo/.
+
+[root@yumserver.itbs.com ~]# umount /pkgs/
+[root@yumserver.itbs.com ~]# df -h
+Filesystem               Size  Used Avail Use% Mounted on
+/dev/mapper/centos-root   17G  4.9G   13G  29% /
+devtmpfs                 486M     0  486M   0% /dev
+tmpfs                    497M     0  497M   0% /dev/shm
+tmpfs                    497M  6.6M  490M   2% /run
+tmpfs                    497M     0  497M   0% /sys/fs/cgroup
+/dev/sda1               1014M  127M  888M  13% /boot
+tmpfs                    100M     0  100M   0% /run/user/0
+[root@yumserver.itbs.com ~]# rmdir /pkgs/
+
+[root@yumserver.itbs.com ~]# createrepo
+-bash: createrepo: command not found
+[root@yumserver.itbs.com ~]# cd /pkgrepo/
+[root@yumserver.itbs.com pkgrepo]# ls createrepo-0.9.9-28.el7.noarch.rpm
+createrepo-0.9.9-28.el7.noarch.rpm
+[root@yumserver.itbs.com pkgrepo]# rpm -ivh createrepo-0.9.9-28.el7.noarch.rpm
+warning: createrepo-0.9.9-28.el7.noarch.rpm: Header V3 RSA/SHA256 Signature, key ID f4a80eb5: NOKEY
+error: Failed dependencies:
+        deltarpm is needed by createrepo-0.9.9-28.el7.noarch
+        python-deltarpm is needed by createrepo-0.9.9-28.el7.noarch
+[root@yumserver.itbs.com pkgrepo]#
+
+[root@yumserver.itbs.com pkgrepo]# rpm -ivh deltarpm-3.6-3.el7.x86_64.rpm
+warning: deltarpm-3.6-3.el7.x86_64.rpm: Header V3 RSA/SHA256 Signature, key ID f4a80eb5: NOKEY
+Preparing...                          ################################# [100%]
+Updating / installing...
+   1:deltarpm-3.6-3.el7               ################################# [100%]
+[root@yumserver.itbs.com pkgrepo]# rpm -ivh python-deltarpm-3.6-3.el7.x86_64.rpm
+warning: python-deltarpm-3.6-3.el7.x86_64.rpm: Header V3 RSA/SHA256 Signature, key ID f4a80eb5: NOKEY
+Preparing...                          ################################# [100%]
+Updating / installing...
+   1:python-deltarpm-3.6-3.el7        ################################# [100%]
+[root@yumserver.itbs.com pkgrepo]# rpm -ivh createrepo-0.9.9-28.el7.noarch.rpm
+warning: createrepo-0.9.9-28.el7.noarch.rpm: Header V3 RSA/SHA256 Signature, key ID f4a80eb5: NOKEY
+Preparing...                          ################################# [100%]
+Updating / installing...
+   1:createrepo-0.9.9-28.el7          ################################# [100%]
+[root@yumserver.itbs.com pkgrepo]#
+
+[root@yumserver.itbs.com ~]# createrepo -v /pkgrepo/
+
+Worker 0: reading yum-utils-1.1.31-42.el7.noarch.rpm
+Worker 0: reading zenity-3.22.0-1.el7.x86_64.rpm
+Worker 0: reading zip-3.0-11.el7.x86_64.rpm
+Worker 0: reading zlib-1.2.7-17.el7.x86_64.rpm
+Worker 0: reading zlib-devel-1.2.7-17.el7.x86_64.rpm
+Worker 0: reading zsh-5.0.2-28.el7.x86_64.rpm
+Worker 0: reading zziplib-0.13.62-5.el7.x86_64.rpm
+Workers Finished
+Saving Primary metadata
+Saving file lists metadata
+Saving other metadata
+Generating sqlite DBs
+Starting other db creation: Mon Aug 19 20:39:39 2019
+Ending other db creation: Mon Aug 19 20:39:42 2019
+Starting filelists db creation: Mon Aug 19 20:39:42 2019
+Ending filelists db creation: Mon Aug 19 20:39:51 2019
+Starting primary db creation: Mon Aug 19 20:39:52 2019
+Ending primary db creation: Mon Aug 19 20:39:59 2019
+Sqlite DBs complete
+
+[root@yumserver.itbs.com ~]# yum repolist
+Loaded plugins: fastestmirror, langpacks
+base                                                           | 3.6 kB  00:00:00
+extras                                                         | 3.4 kB  00:00:00
+updates                                                        | 3.4 kB  00:00:00
+(1/4): base/7/x86_64/group_gz                                  | 166 kB  00:00:00
+(2/4): extras/7/x86_64/primary_db                              | 215 kB  00:00:01
+(3/4): base/7/x86_64/primary_db                                | 6.0 MB  00:00:02
+(4/4): updates/7/x86_64/primary_db                             | 7.4 MB  00:00:03
+Determining fastest mirrors
+ * base: centos.excellmedia.net
+ * extras: centos.excellmedia.net
+ * updates: centos.excellmedia.net
+repo id                                repo name                                status
+base/7/x86_64                          CentOS-7 - Base                          10,019
+extras/7/x86_64                        CentOS-7 - Extras                           435
+updates/7/x86_64                       CentOS-7 - Updates                        2,500
+repolist: 12,954
+
+
+[root@yumserver.itbs.com ~]# ls -ld /etc/yum.repos.d/
+drwxr-xr-x. 2 root root 187 Aug  6  2017 /etc/yum.repos.d/
+
+configuration File : /etc/yum.conf
+
+[root@yumserver.itbs.com ~]# cd /etc/yum.repos.d/
+[root@yumserver.itbs.com yum.repos.d]# ls
+CentOS-Base.repo  CentOS-Debuginfo.repo  CentOS-Media.repo    CentOS-Vault.repo
+CentOS-CR.repo    CentOS-fasttrack.repo  CentOS-Sources.repo
+
+[root@yumserver.itbs.com yum.repos.d]# vim itbspkgs.repo
+[root@yumserver.itbs.com yum.repos.d]# cat itbspkgs.repo
+[itblabs_repo]
+name = itblabs local repository
+baseurl=file:///pkgrepo
+gpgcheck=1
+enabled=1
+[root@yumserver.itbs.com yum.repos.d]#
+
+[root@yumserver.itbs.com yum.repos.d]# yum clean all
+Loaded plugins: fastestmirror, langpacks
+Cleaning repos: base extras itblabs_repo updates
+Cleaning up everything
+Maybe you want: rm -rf /var/cache/yum, to also free up space taken by orphaned data from disabled or removed repos
+
+
+[root@yumserver.itbs.com yum.repos.d]# yum list all
+
+[root@yumserver.itbs.com ~]# yum repolist
+Loaded plugins: fastestmirror, langpacks
+Loading mirror speeds from cached hostfile
+ * base: centos.excellmedia.net
+ * extras: centos.excellmedia.net
+ * updates: centos.excellmedia.net
+repo id                             repo name                                   status
+base/7/x86_64                       CentOS-7 - Base                             10,019
+extras/7/x86_64                     CentOS-7 - Extras                              435
+itblabs_repo                        itblabs local repository                     3,894
+updates/7/x86_64                    CentOS-7 - Updates                           2,500
+repolist: 16,848
+n
+
+[root@yumserver.itbs.com ~]# yum install texlive
+						this command is used to install the no of dependiences with main file at a time.this is the reasion for we 							use the yum server
+
+
+
+Yum commands :
+
+yum install <pkgname> -------------------------------rpm -ivh pkgnAME
+yum remove <pkgname> --------------------------------- rpm -e pkgname
+yum update <pkgname> ---------------------------------- rpm -Uvh pkgname
+yum list all => To list all installed packages --------rpm -qa
+yum info <pkgname>----------------------------------rpm -qi <pkgname>
+yum list <pkgname>----------------------------------rpm -ql <pkg name>
+
+[root@yumserver.itbs.com ~]# yum list texlive
+Loaded plugins: fastestmirror, langpacks
+Loading mirror speeds from cached hostfile
+ * base: centos.excellmedia.net
+ * extras: centos.excellmedia.net
+ * updates: centos.excellmedia.net
+Installed Packages
+texlive.x86_64                   2:2012-43.20130427_r30134.el7                   @base
+[root@yumserver.itbs.com ~]# yum list zziplib
+Loaded plugins: fastestmirror, langpacks
+Loading mirror speeds from cached hostfile
+ * base: centos.excellmedia.net
+ * extras: centos.excellmedia.net
+ * updates: centos.excellmedia.net
+Installed Packages
+zziplib.x86_64                           0.13.62-9.el7                           @base
+Available Packages
+zziplib.i686                             0.13.62-9.el7                           base
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

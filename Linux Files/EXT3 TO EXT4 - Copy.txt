@@ -1,0 +1,45 @@
+# tune2fs -O extents,uninit_bg,dir_index /dev/dev-name
+
+CONVERTION OF EXT3 TO EXT4 FILE SYSTEM :
+--------------------------------------------------------------------------------------------------
+For example convert /dev/sdb1 to ext4, enter:
+# cd /; umount /dev/sdb1
+# tune2fs -O extents,uninit_bg,dir_index /dev/sdb1
+
+Next run fsck, enter:
+# fsck -pf /dev/sdb1
+
+How do I mount ext4 partition?
+mount -t ext4 /dev/sdb1 /path
+mount -t ext4 /dev/sdb1 /share
+mount -t ext4 /dev/disk/by-uuid/YOUR-PARTITION-UUID /share
+
+------------------------------------------------------------------------------------------------------
+
+Use blkid to get UUID.
+
+How do I boot from ext4 (/boot)?
+If you have converted /boot file system (or / used for /boot), update /boot/grub.conf (/boot/grub/menu.lst). Open file and find out current kernel config file and append the following:
+rootfstype=ext4
+
+Here is sample config (note I’ve custom kernel names):
+
+title		Ubuntu 8.10, kernel 2.6.28.1-vmware-guest-server
+root		(hd0,1)
+kernel	/boot/vmlinuz-2.6.28.1-vmware-guest-server root=UUID=8c2da865-13f4-47a2-9c92-2f31738469e8 ro quiet splash rootfstype=ext4
+initrd		/boot/initrd.img-2.6.28.1-vmware-guest-server
+quiet
+Save and close the file. And run update-grub:
+$ sudo update-grub
+
+Next, update your /etc/fstab file so that it can be mounted as ext4 file system:
+
+UUID=41c22818-fbad-4da6-8196-c816df0b7aa8 	/share	ext4	defaults,errors=remount-ro,relatime 0       1
+Finally, reboot the system:
+$ sudo reboot
+
+
+
+
+
+There is also a downgrade path from ext4 to ext3, with a method to convert the extent files back to indirect mapping files. In the case that users prefer to go back to ext3, they can mount the ext4 file system with the "noextents? mount option, copy the extent-based ext4 files to new files, rename these over the old extents, use tunefs to clear the INCOMPAT_EXTENTS flag, and then remount as an ext3 file system.

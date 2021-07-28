@@ -1,0 +1,850 @@
+
+****************************************************************************************
+
+
+Logical Volume Manager :
+
+
+
+[root@linuxserver1.itbs.com ~]# lsblk -----check the list of drives.
+
+
+[root@linuxserver1.itbs.com ~]# >>>>>>>>>>>>>>>>>>>>>>>>>>>>fdisk /dev/sdd
+Welcome to fdisk (util-linux 2.23.2).
+
+Changes will remain in memory only, until you decide to write them.
+Be careful before using the write command.
+
+Device does not contain a recognized partition table
+Building a new DOS disklabel with disk identifier 0xb2c9efc7.
+
+Command (m for help): n
+Partition type:
+   p   primary (0 primary, 0 extended, 4 free)
+   e   extended
+Select (default p): e
+Partition number (1-4, default 1):
+First sector (2048-20971519, default 2048):
+Using default value 2048
+Last sector, +sectors or +size{K,M,G} (2048-20971519, default 20971519):
+Using default vfalue 20971519
+
+Partition 1 of type Extended and of size 10 GiB is set .....................{take a over size as a one single extended partation and these extended 
+
+partations are converted in to no of logical partation}
+
+Command (m for help): p
+
+Disk /dev/sdd: 10.7 GB, 10737418240 bytes, 20971520 sectors
+Units = sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+Disk label type: dos
+Disk identifier: 0xb2c9efc7
+
+   Device Boot      Start         End      Blocks   Id  System
+/dev/sdd1            2048    20971519    10484736    5  Extended
+
+Command (m for help): n
+Partition type:
+   p   primary (0 primary, 1 extended, 3 free)
+   l   logical (numbered from 5)
+Select (default p): l
+Adding logical partition 5
+First sector (4096-20971519, default 4096):
+Using default value 4096
+Last sector, +sectors or +size{K,M,G} (4096-20971519, default 20971519): +2G
+Partition 5 of type Linux and of size 2 GiB is set
+
+Command (m for help): n
+Partition type:
+   p   primary (0 primary, 1 extended, 3 free)
+   l   logical (numbered from 5)
+Select (default p): l
+Adding logical partition 6
+First sector (4200448-20971519, default 4200448):
+Using default value 4200448
+Last sector, +sectors or +size{K,M,G} (4200448-20971519, default 20971519): +1G
+Partition 6 of type Linux and of size 1 GiB is set
+
+Command (m for help): n
+Partition type:
+   p   primary (0 primary, 1 extended, 3 free)
+   l   logical (numbered from 5)
+Select (default p): l
+Adding logical partition 7
+First sector (6299648-20971519, default 6299648):
+Using default value 6299648
+Last sector, +sectors or +size{K,M,G} (6299648-20971519, default 20971519): +1G
+Partition 7 of type Linux and of size 1 GiB is set
+
+Command (m for help): p
+
+Disk /dev/sdd: 10.7 GB, 10737418240 bytes, 20971520 sectors
+Units = sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+Disk label type: dos
+Disk identifier: 0xb2c9efc7
+
+   Device Boot      Start         End      Blocks   Id  System
+/dev/sdd1            2048    20971519    10484736    5  Extended
+/dev/sdd5            4096     4198399     2097152   83  Linux--------
+/dev/sdd6         4200448     6297599     1048576   83  Linux---------- these three are logical parttions
+/dev/sdd7         6299648     8396799     1048576   83  Linux--------
+
+Command (m for help): m
+Command action
+   a   toggle a bootable flag
+   b   edit bsd disklabel
+   c   toggle the dos compatibility flag
+   d   delete a partition
+   g   create a new empty GPT partition table
+   G   create an IRIX (SGI) partition table
+   l   list known partition types
+   m   print this menu
+   n   add a new partition
+   o   create a new empty DOS partition table
+   p   print the partition table
+   q   quit without saving changes
+   s   create a new empty Sun disklabel
+   t   change a partition's system id
+   u   change display/entry units
+   v   verify the partition table
+   w   write table to disk and exit
+   x   extra functionality (experts only)
+
+Command (m for help): t
+Partition number (1,5-7, default 7): 5
+
+Hex code (type L to list all codes): L
+
+Hex code (type L to list all codes): 8e
+Changed type of partition 'Linux' to 'Linux LVM'
+
+Command (m for help): p
+
+Disk /dev/sdd: 10.7 GB, 10737418240 bytes, 20971520 sectors
+Units = sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+Disk label type: dos
+Disk identifier: 0xb2c9efc7
+
+   Device Boot      Start         End      Blocks   Id  System
+/dev/sdd1            2048    20971519    10484736    5  Extended
+/dev/sdd5            4096     4198399     2097152   8e  Linux LVM
+/dev/sdd6         4200448     6297599     1048576   83  Linux
+/dev/sdd7         6299648     8396799     1048576   83  Linux
+
+Command (m for help): t
+Partition number (1,5-7, default 7): 6
+Hex code (type L to list all codes): 9e
+Changed type of partition 'Linux' to 'unknown'
+
+Command (m for help): t
+Partition number (1,5-7, default 7): 6
+Hex code (type L to list all codes): 8e
+Changed type of partition 'unknown' to 'Linux LVM'
+
+Command (m for help): p
+
+Disk /dev/sdd: 10.7 GB, 10737418240 bytes, 20971520 sectors
+Units = sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+Disk label type: dos
+Disk identifier: 0xb2c9efc7
+
+   Device Boot      Start         End      Blocks   Id  System
+/dev/sdd1            2048    20971519    10484736    5  Extended
+/dev/sdd5            4096     4198399     2097152   8e  Linux LVM
+/dev/sdd6         4200448     6297599     1048576   8e  Linux LVM
+/dev/sdd7         6299648     8396799     1048576   83  Linux
+
+Command (m for help): t
+Partition number (1,5-7, default 7): 7
+Hex code (type L to list all codes): 8e
+Changed type of partition 'Linux' to 'Linux LVM'
+
+Command (m for help): p
+
+Disk /dev/sdd: 10.7 GB, 10737418240 bytes, 20971520 sectors
+Units = sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+Disk label type: dos
+Disk identifier: 0xb2c9efc7
+
+   Device Boot      Start         End      Blocks   Id  System
+/dev/sdd1            2048    20971519    10484736    5  Extended
+/dev/sdd5            4096     4198399     2097152   8e  Linux LVM
+/dev/sdd6         4200448     6297599     1048576   8e  Linux LVM
+/dev/sdd7         6299648     8396799     1048576   8e  Linux LVM
+
+Command (m for help): wq!
+The partition table has been altered!
+
+Calling ioctl() to re-read partition table.
+Syncing disks.
+[root@linuxserver1.itbs.com ~]# partprobe /dev/sdd
+
+
+
+[root@linuxserver1.itbs.com ~]# blkid /dev/sdd7
+[root@linuxserver1.itbs.com ~]# blkid /dev/sdb7
+
+/dev/sdb7: UUID="52ba2e14-77b6-4ee6-8d91-fbc1501b1cba" TYPE="ext3"
+[root@linuxserver1.itbs.com ~]#
+
+
+[root@linuxserver1.itbs.com ~]# ------------------------------------------------------------------------pvdisplay
+  --- Physical volume ---
+  PV Name               /dev/sda2
+  VG Name               centos
+  PV Size               <9.00 GiB / not usable 3.00 MiB
+  Allocatable           yes (but full)
+  PE Size               4.00 MiB
+  Total PE              2303
+  Free PE               0
+  Allocated PE          2303
+  PV UUID               jnta03-BLAW-55bM-UXMP-lHIp-bBsH-pcOR5a
+
+[root@linuxserver1.itbs.com ~]# --------------------------------------------------------------------------pvcreate /dev/sdd5
+  Physical volume "/dev/sdd5" successfully created.
+[root@linuxserver1.itbs.com ~]# --------------------------------------------------------------------------pvcreate /dev/sdd6
+  Physical volume "/dev/sdd6" successfully created.
+[root@linuxserver1.itbs.com ~]# ------------------------------------------------------------------------------pvdisplay
+
+
+  --- Physical volume ---
+
+  PV Name               /dev/sda2
+  VG Name               centos
+  PV Size               <9.00 GiB / not usable 3.00 MiB
+  Allocatable           yes (but full)
+  PE Size               4.00 MiB
+  Total PE              2303
+  Free PE               0
+  Allocated PE          2303
+  PV UUID               jnta03-BLAW-55bM-UXMP-lHIp-bBsH-pcOR5a
+
+  "/dev/sdd6" is a new physical volume of "1.00 GiB"
+  --- NEW Physical volume ---
+  PV Name               /dev/sdd6
+  VG Name
+  PV Size               1.00 GiB
+  Allocatable           NO
+  PE Size               0
+  Total PE              0
+  Free PE               0
+  Allocated PE          0
+  PV UUID               GgbU0P-Poar-HxtJ-D0BE-aaH6-9PiO-nwJ5aj
+
+  "/dev/sdd5" is a new physical volume of "2.00 GiB"
+  --- NEW Physical volume ---
+  PV Name               /dev/sdd5
+  VG Name
+  PV Size               2.00 GiB
+  Allocatable           NO
+  PE Size               0
+  Total PE              0
+  Free PE               0
+  Allocated PE          0
+  PV UUID               NOBE2z-KtTU-E4c2-G5Yp-KSBH-W3SF-9hMe1x
+
+
+
+
+[root@linuxserver1.itbs.com ~]# ----------------------------------------------------------pvdisplay /dev/sdd5
+  "/dev/sdd5" is a new physical volume of "2.00 GiB"
+  --- NEW Physical volume ---
+  PV Name               /dev/sdd5
+  VG Name
+  PV Size               2.00 GiB
+  Allocatable           NO
+  PE Size               0
+  Total PE              0
+  Free PE               0
+  Allocated PE          0
+  PV UUID               NOBE2z-KtTU-E4c2-G5Yp-KSBH-W3SF-9hMe1x
+
+
+
+[root@linuxserver1.itbs.com ~]# --------------------------------------------------------------pvcreate /dev/sdd7
+  Physical volume "/dev/sdd7" successfully created.
+
+[root@linuxserver1.itbs.com ~]# ---------------------------------------------------------vgcreate VG /dev/sdd5 /dev/sdd7
+  Volume group "VG" successfully created
+[root@linuxserver1.itbs.com ~]# -----------------------------------------------------------------vgdisplay VG
+  --- Volume group ---
+  VG Name               VG
+  System ID
+  Format                lvm2
+  Metadata Areas        2
+  Metadata Sequence No  1
+  VG Access             read/write
+  VG Status             resizable
+  MAX LV                0
+  Cur LV                0
+  Open LV               0
+  Max PV                0
+  Cur PV                2
+  Act PV                2
+  VG Size               2.99 GiB
+  PE Size               4.00 MiB
+  Total PE              766
+  Alloc PE / Size       0 / 0
+  Free  PE / Size       766 / 2.99 GiB
+  VG UUID               NKT9SI-a4zw-SCcw-Sgvq-WKPH-dqbb-462ikV
+
+[root@linuxserver1.itbs.com ~]# --------------------------------------------------------lvcreate -L +200M -n lv1 /dev/VG
+  Logical volume "lv1" created.
+[root@linuxserver1.itbs.com ~]# ---------------------------------------------------------------lvdisplay lv1
+  Volume group "lv1" not found
+  Cannot process volume group lv1
+[root@linuxserver1.itbs.com ~]# ------------------------------------------------------------lvdisplay /dev/VG/lv1
+
+
+  --- Logical volume ---
+  LV Path                /dev/VG/lv1
+  LV Name                lv1
+  VG Name                VG
+  LV UUID                OVoaPU-s3aq-PntU-w31C-JBHM-RKNQ-pzedDz
+  LV Write Access        read/write
+  LV Creation host, time linuxserver1.itbs.com, 2019-08-09 20:01:31 +0530
+  LV Status              available
+  # open                 0
+  LV Size                200.00 MiB
+  Current LE             50
+  Segments               1
+  Allocation             inherit
+  Read ahead sectors     auto
+  - currently set to     8192
+  Block device           253:2
+
+[root@linuxserver1.itbs.com ~]# ------------------------------------------------------------------vgdisplay VG
+  --- Volume group ---
+  VG Name               VG
+  System ID
+  Format                lvm2
+  Metadata Areas        2
+  Metadata Sequence No  2
+  VG Access             read/write
+  VG Status             resizable
+  MAX LV                0
+  Cur LV                1
+  Open LV               0
+  Max PV                0
+  Cur PV                2
+  Act PV                2
+  VG Size               2.99 GiB
+  PE Size               4.00 MiB
+  Total PE              766
+  Alloc PE / Size       50 / 200.00 MiB
+  Free  PE / Size       716 / <2.80 GiB
+  VG UUID               NKT9SI-a4zw-SCcw-Sgvq-WKPH-dqbb-462ikV
+
+
+
+
+
+
+[root@linuxserver1.itbs.com ~]# -----------------------------------------------------------lvcreate -L +500M -n lv2 /dev/VG
+  Logical volume "lv2" created.
+[root@linuxserver1.itbs.com ~]# ----------------------------------------------------------------lvdisplay /dev/VG/lv2
+
+
+  --- Logical volume ---
+
+  LV Path                /dev/VG/lv2
+  LV Name                lv2
+  VG Name                VG
+  LV UUID                8Wdob6-ZWBD-6jCJ-mPb4-ra1B-eewl-okVJra
+  LV Write Access        read/write
+  LV Creation host, time linuxserver1.itbs.com, 2019-08-09 20:04:31 +0530
+  LV Status              available
+  # open                 0
+  LV Size                500.00 MiB
+  Current LE             125
+  Segments               1
+  Allocation             inherit
+  Read ahead sectors     auto
+  - currently set to     8192
+  Block device           253:3
+
+f
+[root@linuxserver1.itbs.com ~]#------------------------------------------------- lvcreate -L +1000M -n lv3 /dev/VG
+  Logical volume "lv3" created.
+[root@linuxserver1.itbs.com ~]# ------------------------------------------------------lvdisplay /dev/VG/lv3
+  --- Logical volume ---
+  LV Path                /dev/VG/lv3
+  LV Name                lv3
+  VG Name                VG
+  LV UUID                1gSLnL-adfN-W85i-PYk2-2fG2-ifpZ-X01Wb1
+  LV Write Access        read/write
+  LV Creation host, time linuxserver1.itbs.com, 2019-08-09 20:05:58 +0530
+  LV Status              available
+  # open                 0
+  LV Size                1000.00 MiB
+  Current LE             250
+  Segments               1
+  Allocation             inherit
+  Read ahead sectors     auto
+  - currently set to     8192
+  Block device           253:4
+
+[root@linuxserver1.itbs.com ~]#------------------------------------------------------------------------ vgdisplay VG
+  --- Volume group ---
+  VG Name               VG
+  System ID
+  Format                lvm2
+  Metadata Areas        2
+  Metadata Sequence No  4
+  VG Access             read/write
+  VG Status             resizable
+  MAX LV                0
+  Cur LV                3
+  Open LV               0
+  Max PV                0
+  Cur PV                2
+  Act PV                2
+  VG Size               2.99 GiB
+  PE Size               4.00 MiB
+  Total PE              766
+  Alloc PE / Size       425 / 1.66 GiB
+  Free  PE / Size       341 / 1.33 GiB
+  VG UUID               NKT9SI-a4zw-SCcw-Sgvq-WKPH-dqbb-462ikV
+
+[root@linuxserver1.itbs.com ~]#-------------------------------------------------------------------------- lvcreate -L +1.33G -n lv4 /dev/VG
+  Rounding up size to full physical extent 1.33 GiB
+  Logical volume "lv4" created.
+[root@linuxserver1.itbs.com ~]# --------------------------------------------------------------------------------vgdisplay VG
+  --- Volume group ---
+  VG Name               VG
+  System ID
+  Format                lvm2
+  Metadata Areas        2
+  Metadata Sequence No  5
+  VG Access             read/write
+  VG Status             resizable
+  MAX LV                0
+  Cur LV                4
+  Open LV               0
+  Max PV                0
+  Cur PV                2
+  Act PV                2
+  VG Size               2.99 GiB
+  PE Size               4.00 MiB
+  Total PE              766
+  Alloc PE / Size       766 / 2.99 GiB
+  Free  PE / Size       0 / 0
+  VG UUID               NKT9SI-a4zw-SCcw-Sgvq-WKPH-dqbb-462ikV
+
+[root@linuxserver1.itbs.com ~]# lsblk
+NAME            MAJ:MIN RM  SIZE RO TYPE  MOUNTPOINT
+sda               8:0    0   10G  0 disk
++-sda1            8:1    0    1G  0 part  /boot
++-sda2            8:2    0    9G  0 part
+  +-centos-root 253:0    0    8G  0 lvm   /
+  +-centos-swap 253:1    0    1G  0 lvm   [SWAP]
+sdb               8:16   0    4G  0 disk
++-sdb1            8:17   0  700M  0 part  [SWAP]
++-sdb2            8:18   0    1K  0 part
++-sdb5            8:21   0  500M  0 part  /lp5
++-sdb6            8:22   0    1G  0 part  /lp6
++-sdb7            8:23   0  500M  0 part  /lp7
+sdc               8:32   0   10G  0 disk
++-sdc1            8:33   0    1K  0 part
++-sdc5            8:37   0  512M  0 part
+¦ +-md0           9:0    0 1022M  0 raid0 /RAID0
++-sdc6            8:38   0  512M  0 part
+¦ +-md0           9:0    0 1022M  0 raid0 /RAID0
++-sdc7            8:39   0    1G  0 part
+¦ +-md1           9:1    0 1023M  0 raid1 /RAID1
++-sdc8            8:40   0    1G  0 part
++-sdc9            8:41   0    1G  0 part
+¦ +-md1           9:1    0 1023M  0 raid1 /RAID1
++-sdc10           8:42   0  512M  0 part
+¦ +-md5           9:5    0 1022M  0 raid5 /RAID5
++-sdc11           8:43   0  512M  0 part
++-sdc12           8:44   0  512M  0 part
+¦ +-md5           9:5    0 1022M  0 raid5 /RAID5
++-sdc13           8:45   0  512M  0 part
+  +-md5           9:5    0 1022M  0 raid5 /RAID5
+sdd               8:48   0   10G  0 disk
++-sdd1            8:49   0    1K  0 part
++-sdd5            8:53   0    2G  0 part
+¦ +-VG-lv1      253:2    0  200M  0 lvm
+¦ +-VG-lv2      253:3    0  500M  0 lvm
+¦ +-VG-lv3      253:4    0 1000M  0 lvm
+¦ +-VG-lv4      253:5    0  1.3G  0 lvm
++-sdd6            8:54   0    1G  0 part
++-sdd7            8:55   0    1G  0 part
+  +-VG-lv4      253:5    0  1.3G  0 lvm
+sr0              11:0    1 1024M  0 rom
+[root@linuxserver1.itbs.com ~]#
+
+
+
+
+[root@linuxserver1.itbs.com ~]# ------------------------------------------------------------------mkdir /LVM1
+[root@linuxserver1.itbs.com ~]# -------------------------------------------------------------mkfs.ext4 /dev/VG/lv1
+
+mke2fs 1.42.9 (28-Dec-2013)
+Filesystem label=
+OS type: Linux
+Block size=1024 (log=0)
+Fragment size=1024 (log=0)
+Stride=0 blocks, Stripe width=0 blocks
+51200 inodes, 204800 blocks
+10240 blocks (5.00%) reserved for the super user
+First data block=1
+Maximum filesystem blocks=33816576
+25 block groups
+8192 blocks per group, 8192 fragments per group
+2048 inodes per group
+Superblock backups stored on blocks:
+        8193, 24577, 40961, 57345, 73729
+
+Allocating group tables: done
+Writing inode tables: done
+Creating journal (4096 blocks): done
+Writing superblocks and filesystem accounting information: done
+
+[root@linuxserver1.itbs.com ~]#--------------------------------------------------------- mount /dev/VG/lv1 /LVM1
+[root@linuxserver1.itbs.com ~]# -------------------------------------------------------------------df -h
+Filesystem               Size  Used Avail Use% Mounted on
+/dev/mapper/centos-root  8.0G  1.6G  6.5G  20% /
+devtmpfs                 486M     0  486M   0% /dev
+tmpfs                    497M     0  497M   0% /dev/shm
+tmpfs                    497M  6.8M  490M   2% /run
+tmpfs                    497M     0  497M   0% /sys/fs/cgroup
+/dev/sdb5                477M  2.3M  449M   1% /lp5
+/dev/sdb6                976M  502M  423M  55% /lp6
+/dev/sdb7                477M  2.3M  449M   1% /lp7
+/dev/md0                 990M  2.6M  921M   1% /RAID0
+/dev/md1                 991M  503M  422M  55% /RAID1
+/dev/md5                 990M  2.6M  921M   1% /RAID5
+/dev/sda1               1014M  127M  888M  13% /boot
+tmpfs                    100M     0  100M   0% /run/user/0
+/dev/mapper/VG-lv1       190M  1.6M  175M   1% /LVM1
+[root@linuxserver1.itbs.com ~]#---------------------------------------------------------------------- vim /etc/fstab
+[root@linuxserver1.itbs.com ~]#-------------------------------------------------------------------------- mount -a
+[root@linuxserver1.itbs.com ~]# mount
+sysfs on /sys type sysfs (rw,nosuid,nodev,noexec,relatime,seclabel)
+proc on /proc type proc (rw,nosuid,nodev,noexec,relatime)
+devtmpfs on /dev type devtmpfs (rw,nosuid,seclabel,size=497236k,nr_inodes=124309,mode=755)
+securityfs on /sys/kernel/security type securityfs (rw,nosuid,nodev,noexec,relatime)
+tmpfs on /dev/shm type tmpfs (rw,nosuid,nodev,seclabel)
+devpts on /dev/pts type devpts (rw,nosuid,noexec,relatime,seclabel,gid=5,mode=620,ptmxmode=000)
+tmpfs on /run type tmpfs (rw,nosuid,nodev,seclabel,mode=755)
+tmpfs on /sys/fs/cgroup type tmpfs (ro,nosuid,nodev,noexec,seclabel,mode=755)
+cgroup on /sys/fs/cgroup/systemd type cgroup (rw,nosuid,nodev,noexec,relatime,xattr,release_agent=/usr/lib/systemd/systemd-cgroups-agent,name=systemd)
+pstore on /sys/fs/pstore type pstore (rw,nosuid,nodev,noexec,relatime)
+cgroup on /sys/fs/cgroup/pids type cgroup (rw,nosuid,nodev,noexec,relatime,pids)
+cgroup on /sys/fs/cgroup/net_cls,net_prio type cgroup (rw,nosuid,nodev,noexec,relatime,net_prio,net_cls)
+cgroup on /sys/fs/cgroup/perf_event type cgroup (rw,nosuid,nodev,noexec,relatime,perf_event)
+cgroup on /sys/fs/cgroup/cpuset type cgroup (rw,nosuid,nodev,noexec,relatime,cpuset)
+cgroup on /sys/fs/cgroup/devices type cgroup (rw,nosuid,nodev,noexec,relatime,devices)
+cgroup on /sys/fs/cgroup/hugetlb type cgroup (rw,nosuid,nodev,noexec,relatime,hugetlb)
+cgroup on /sys/fs/cgroup/cpu,cpuacct type cgroup (rw,nosuid,nodev,noexec,relatime,cpuacct,cpu)
+cgroup on /sys/fs/cgroup/blkio type cgroup (rw,nosuid,nodev,noexec,relatime,blkio)
+cgroup on /sys/fs/cgroup/freezer type cgroup (rw,nosuid,nodev,noexec,relatime,freezer)
+cgroup on /sys/fs/cgroup/memory type cgroup (rw,nosuid,nodev,noexec,relatime,memory)
+configfs on /sys/kernel/config type configfs (rw,relatime)
+/dev/mapper/centos-root on / type xfs (rw,relatime,seclabel,attr2,inode64,noquota)
+selinuxfs on /sys/fs/selinux type selinuxfs (rw,relatime)
+hugetlbfs on /dev/hugepages type hugetlbfs (rw,relatime,seclabel)
+mqueue on /dev/mqueue type mqueue (rw,relatime,seclabel)
+systemd-1 on /proc/sys/fs/binfmt_misc type autofs (rw,relatime,fd=32,pgrp=1,timeout=0,minproto=5,maxproto=5,direct,pipe_ino=11745)
+debugfs on /sys/kernel/debug type debugfs (rw,relatime)
+/dev/sdb5 on /lp5 type ext3 (rw,relatime,seclabel,data=ordered)
+/dev/sdb6 on /lp6 type ext3 (rw,relatime,seclabel,data=ordered)
+/dev/sdb7 on /lp7 type ext3 (rw,relatime,seclabel,data=ordered)
+/dev/md0 on /RAID0 type ext4 (rw,relatime,seclabel,stripe=256,data=ordered)
+/dev/md1 on /RAID1 type ext4 (rw,relatime,seclabel,data=ordered)
+/dev/md5 on /RAID5 type ext4 (rw,relatime,seclabel,stripe=256,data=ordered)
+/dev/sda1 on /boot type xfs (rw,relatime,seclabel,attr2,inode64,noquota)
+tmpfs on /run/user/0 type tmpfs (rw,nosuid,nodev,relatime,seclabel,size=101624k,mode=700)
+/dev/mapper/VG-lv1 on /LVM1 type ext4 (rw,relatime,seclabel,data=ordered)
+
+
+
+[root@linuxserver1.itbs.com ~]# ------------------------------------------------cd /LVM1
+[root@linuxserver1.itbs.com LVM1]#------------------------------- dd if=/dev/zero of=lv1file1 bs=1024K count=150
+150+0 records in
+150+0 records out
+157286400 bytes (157 MB) copied, 0.468664 s, 336 MB/s
+[root@linuxserver1.itbs.com LVM1]# ls
+lost+found  lv1file1
+[root@linuxserver1.itbs.com LVM1]#---------------------------------------------du -sh lv1file1
+151M    lv1file1
+[root@linuxserver1.itbs.com LVM1]# cd
+[root@linuxserver1.itbs.com ~]#-------------------------------------------------- df -h /LVM1
+Filesystem          Size  Used Avail Use% Mounted on
+/dev/mapper/VG-lv1  190M  152M   25M  87% /LVM1
+
+
+[root@linuxserver1.itbs.com LVM1]#--------------------------------------- dd if=/dev/zero of=lv1file1 bs=1024K count=150
+150+0 records in
+150+0 records out
+157286400 bytes (157 MB) copied, 0.424363 s, 371 MB/s
+
+
+[root@linuxserver1.itbs.com LVM1]# ----------------------------------------dd if=/dev/zero of=lv1file2 bs=1024K count=100
+dd: error writing ‘lv1file2’: No space left on device
+35+0 records in
+34+0 records out
+35823616 bytes (36 MB) copied, 0.128263 s, 279 MB/s
+
+
+[root@linuxserver1.itbs.com LVM1]# -------------------------------------------------------ls
+lost+found  lv1file1  lv1file2
+[root@linuxserver1.itbs.com LVM1]# ----------------------------------------------------df -h /LVM1
+Filesystem          Size  Used Avail Use% Mounted on
+/dev/mapper/VG-lv1  190M  186M     0 100% /LVM1
+
+[root@linuxserver1.itbs.com LVM1]# ----------------------------------------------------------cd
+[root@linuxserver1.itbs.com ~]# ---------------------------------------------------------vgdisplay VG
+  --- Volume group ---
+  VG Name               VG
+  System ID
+  Format                lvm2
+  Metadata Areas        2
+  Metadata Sequence No  5
+  VG Access             read/write
+  VG Status             resizable
+  MAX LV                0
+  Cur LV                4
+  Open LV               1
+  Max PV                0
+  Cur PV                2
+  Act PV                2
+  VG Size               2.99 GiB
+  PE Size               4.00 MiB
+  Total PE              766
+  Alloc PE / Size       766 / 2.99 GiB
+  Free  PE / Size       0 / 0
+  VG UUID               NKT9SI-a4zw-SCcw-Sgvq-WKPH-dqbb-462ikV
+
+[root@linuxserver1.itbs.com ~]# pvdisplay
+  --- Physical volume ---
+  PV Name               /dev/sda2
+  VG Name               centos
+  PV Size               <9.00 GiB / not usable 3.00 MiB
+  Allocatable           yes (but full)
+  PE Size               4.00 MiB
+  Total PE              2303
+  Free PE               0
+  Allocated PE          2303
+  PV UUID               jnta03-BLAW-55bM-UXMP-lHIp-bBsH-pcOR5a
+
+  --- Physical volume ---
+  PV Name               /dev/sdd5
+  VG Name               VG
+  PV Size               2.00 GiB / not usable 4.00 MiB
+  Allocatable           yes (but full)
+  PE Size               4.00 MiB
+  Total PE              511
+  Free PE               0
+  Allocated PE          511
+  PV UUID               NOBE2z-KtTU-E4c2-G5Yp-KSBH-W3SF-9hMe1x
+
+  --- Physical volume ---
+  PV Name               /dev/sdd7
+  VG Name               VG
+  PV Size               1.00 GiB / not usable 4.00 MiB
+  Allocatable           yes (but full)
+  PE Size               4.00 MiB
+  Total PE              255
+  Free PE               0
+  Allocated PE          255
+  PV UUID               KRnPu5-ZLwH-pWBJ-qo9M-KBEO-7cEI-NN2ve8
+
+  "/dev/sdd6" is a new physical volume of "1.00 GiB"
+  --- NEW Physical volume ---
+  PV Name               /dev/sdd6
+  VG Name
+  PV Size               1.00 GiB
+  Allocatable           NO
+  PE Size               0
+  Total PE              0
+  Free PE               0
+  Allocated PE          0
+  PV UUID               GgbU0P-Poar-HxtJ-D0BE-aaH6-9PiO-nwJ5aj
+
+[root@linuxserver1.itbs.com ~]#----------------------------------------------------------------------- vgextend VG /dev/sdd6
+  Volume group "VG" successfully extended
+
+[root@linuxserver1.itbs.com ~]#---------------------------------------------------------------------------- vgdisplay VG
+  --- Volume group ---
+  VG Name               VG
+  System ID
+  Format                lvm2
+  Metadata Areas        3
+  Metadata Sequence No  6
+  VG Access             read/write
+  VG Status             resizable
+  MAX LV                0
+  Cur LV                4
+  Open LV               1
+  Max PV                0
+  Cur PV                3
+  Act PV                3
+  VG Size               <3.99 GiB
+  PE Size               4.00 MiB
+  Total PE              1021
+  Alloc PE / Size       766 / 2.99 GiB
+  Free  PE / Size       255 / 1020.00 MiB
+  VG UUID               NKT9SI-a4zw-SCcw-Sgvq-WKPH-dqbb-462ikV
+
+[root@linuxserver1.itbs.com ~]# -----------------------------------------------------pvdisplay
+p  --- Physical volume ---
+  PV Name               /dev/sda2
+  VG Name               centos
+  PV Size               <9.00 GiB / not usable 3.00 MiB
+  Allocatable           yes (but full)
+  PE Size               4.00 MiB
+  Total PE              2303
+  Free PE               0
+  Allocated PE          2303
+  PV UUID               jnta03-BLAW-55bM-UXMP-lHIp-bBsH-pcOR5a
+
+  --- Physical volume ---
+  PV Name               /dev/sdd5
+  VG Name               VG
+  PV Size               2.00 GiB / not usable 4.00 MiB
+  Allocatable           yes (but full)
+  PE Size               4.00 MiB
+  Total PE              511
+  Free PE               0
+  Allocated PE          511
+  PV UUID               NOBE2z-KtTU-E4c2-G5Yp-KSBH-W3SF-9hMe1x
+
+  --- Physical volume ---
+  PV Name               /dev/sdd7
+  VG Name               VG
+  PV Size               1.00 GiB / not usable 4.00 MiB
+  Allocatable           yes (but full)
+  PE Size               4.00 MiB
+  Total PE              255
+  Free PE               0
+  Allocated PE          255
+  PV UUID               KRnPu5-ZLwH-pWBJ-qo9M-KBEO-7cEI-NN2ve8
+
+  --- Physical volume ---
+  PV Name               /dev/sdd6
+  VG Name               VG
+  PV Size               1.00 GiB / not usable 4.00 MiB
+  Allocatable           yes
+  PE Size               4.00 MiB
+  Total PE              255
+  Free PE               255
+  Allocated PE          0
+  PV UUID               GgbU0P-Poar-HxtJ-D0BE-aaH6-9PiO-nwJ5aj
+
+[root@linuxserver1.itbs.com ~]#--------------------------------------------------- -----------------lvextend -L +300M /dev/VG/lv1
+  Size of logical volume VG/lv1 changed from 200.00 MiB (50 extents) to 500.00 MiB (125 extents).
+  Logical volume VG/lv1 successfully resized.
+
+[root@linuxserver1.itbs.com ~]# ----------------------------------------------------------------------lvdisplay /dev/VG/lv1
+  --- Logical volume ---
+  LV Path                /dev/VG/lv1
+  LV Name                lv1
+  VG Name                VG
+  LV UUID                OVoaPU-s3aq-PntU-w31C-JBHM-RKNQ-pzedDz
+  LV Write Access        read/write
+  LV Creation host, time linuxserver1.itbs.com, 2019-08-09 20:01:31 +0530
+  LV Status              available
+  # open                 1
+  LV Size                500.00 MiB
+  Current LE             125
+  Segments               2
+  Allocation             inherit
+  Read ahead sectors     auto
+  - currently set to     8192
+  Block device           253:2
+
+[root@linuxserver1.itbs.com ~]#----------------------------------------------------------------------------- df -h /LVM1
+Filesystem          Size  Used Avail Use% Mounted on
+/dev/mapper/VG-lv1  190M  186M     0 100% /LVM1
+
+
+[root@linuxserver1.itbs.com ~]#----------------------------------------------------------------------- resize2fs -f /dev/VG/lv1
+resize2fs 1.42.9 (28-Dec-2013)
+Filesystem at /dev/VG/lv1 is mounted on /LVM1; on-line resizing required
+old_desc_blocks = 2, new_desc_blocks = 4
+The filesystem on /dev/VG/lv1 is now 512000 blocks long.
+
+[root@linuxserver1.itbs.com ~]# ----------------------------------------------------------------------------df -h /LVM1
+Filesystem          Size  Used Avail Use% Mounted on
+/dev/mapper/VG-lv1  481M  187M  268M  42% /LVM1
+[root@linuxserver1.itbs.com ~]# ------------------------------------------------------------------------------cd /LVM1/
+[root@linuxserver1.itbs.com LVM1]# -------------------------------------------------------------dd if=/dev/zero of=lv1file3 bs=1024K count=200
+200+0 records in
+200+0 records out
+209715200 bytes (210 MB) copied, 0.73145 s, 287 MB/s
+
+[root@linuxserver1.itbs.com LVM1]# df -h /LVM1
+Filesystem          Size  Used Avail Use% Mounted on
+/dev/mapper/VG-lv1  481M  387M   68M  86% /LVM1
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

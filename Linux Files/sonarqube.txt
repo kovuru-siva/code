@@ -1,0 +1,86 @@
+***********sonarqube****************
+
+overview of testing
+
+software testing clasification
+
+Testing Types
+
+Manual testing
+Automation Testing 
+
+Testing Methods
+
+static testing 
+   Is done before the execution of the code
+   
+   Tools used
+   Sonarqube
+   coverty
+   pycharm  
+   
+Dynamic
+   Is done after the execution of the code by the developer
+    
+    Tools used
+    
+    selenium
+
+Testing Approaches
+
+Black box
+White box
+Gray box
+
+Testing levels
+
+unit testing
+integration testing
+system testing
+acceptance testing
+
+
+
+   sonarqube
+
+ Detect bugs
+ code smells
+ security vulnerability
+ Activate rules needed (quality profile)
+ Execution path
+ Ensure Better CI/CD
+ Analyze the branches
+ Discover memory leaks
+ Enforcres a quality gate
+
+Sonarqube Installation using the docker EE free trail
+
+Prerequisites
+
+minimum 2gb ram
+Docker should Installed 
+
+Pull the sonarqube image
+
+docker run -itd --name sonar -p 9000:9000 sonarqube:latest
+
+
+practicals
+
+Install the git and clone the sample project
+Insatll the maven and java
+create the sonar-project.properties file where we provide the metadata like
+
+sonar.projectkey
+sonar.projectname
+sonar.projectversion
+sonar.sources
+sonar.language
+sonar.sourceencoding
+
+Deafult username and password is admin
+
+create the new project ,token and select the language you are going to use in you project in sonarqube
+
+ 
+

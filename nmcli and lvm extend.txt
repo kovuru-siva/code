@@ -1,0 +1,360 @@
+[root@192 ~]# lsblk
+NAME            MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT
+sda               8:0    0    8G  0 disk
+├─sda1            8:1    0    1G  0 part /boot
+└─sda2            8:2    0    7G  0 part
+  ├─centos-root 253:0    0  6.2G  0 lvm  /
+  └─centos-swap 253:1    0  820M  0 lvm  [SWAP]
+sdb               8:16   0   32G  0 disk
+sr0              11:0    1 1024M  0 rom
+[root@192 ~]# pvcreate /dev/sdb
+  Physical volume "/dev/sdb" successfully created.
+[root@192 ~]# vgs
+  VG     #PV #LV #SN Attr   VSize  VFree
+  centos   1   2   0 wz--n- <7.00g    0
+[root@192 ~]# vgextend centos /dev/sdb
+  Volume group "centos" successfully extended
+[root@192 ~]# vgs
+  VG     #PV #LV #SN Attr   VSize  VFree
+  centos   2   2   0 wz--n- 38.99g <32.00g
+[root@192 ~]# vgdisplay
+  --- Volume group ---
+  VG Name               centos
+  System ID
+  Format                lvm2
+  Metadata Areas        2
+  Metadata Sequence No  4
+  VG Access             read/write
+  VG Status             resizable
+  MAX LV                0
+  Cur LV                2
+  Open LV               2
+  Max PV                0
+  Cur PV                2
+  Act PV                2
+  VG Size               38.99 GiB
+  PE Size               4.00 MiB
+  Total PE              9982
+  Alloc PE / Size       1791 / <7.00 GiB
+  Free  PE / Size       8191 / <32.00 GiB
+  VG UUID               3wyED5-AWTK-p8d2-2lkG-u6BP-gN33-IuwuEu
+
+[root@192 ~]# lvs
+  LV   VG     Attr       LSize   Pool Origin Data%  Meta%  Move Log Cpy%Sync Convert
+  root centos -wi-ao----  <6.20g
+  swap centos -wi-ao---- 820.00m
+[root@192 ~]# lvextend -l +100%FREE /dev/centos/root
+  Size of logical volume centos/root changed from <6.20 GiB (1586 extents) to 38.19 GiB (9777 extents).
+  Logical volume centos/root successfully resized.
+[root@192 ~]# df -h
+Filesystem               Size  Used Avail Use% Mounted on
+devtmpfs                 233M     0  233M   0% /dev
+tmpfs                    244M     0  244M   0% /dev/shm
+tmpfs                    244M  4.6M  240M   2% /run
+tmpfs                    244M     0  244M   0% /sys/fs/cgroup
+/dev/mapper/centos-root  6.2G  5.7G  595M  91% /
+/dev/sda1               1014M  159M  856M  16% /boot
+tmpfs                     49M     0   49M   0% /run/user/0
+[root@192 ~]# xfs_growfs /dev/centos/root
+meta-data=/dev/mapper/centos-root isize=512    agcount=4, agsize=406016 blks
+         =                       sectsz=512   attr=2, projid32bit=1
+         =                       crc=1        finobt=0 spinodes=0
+data     =                       bsize=4096   blocks=1624064, imaxpct=25
+         =                       sunit=0      swidth=0 blks
+naming   =version 2              bsize=4096   ascii-ci=0 ftype=1
+log      =internal               bsize=4096   blocks=2560, version=2
+         =                       sectsz=512   sunit=0 blks, lazy-count=1
+realtime =none                   extsz=4096   blocks=0, rtextents=0
+data blocks changed from 1624064 to 10011648
+[root@192 ~]# df -hT
+Filesystem              Type      Size  Used Avail Use% Mounted on
+devtmpfs                devtmpfs  233M     0  233M   0% /dev
+tmpfs                   tmpfs     244M     0  244M   0% /dev/shm
+tmpfs                   tmpfs     244M  4.6M  240M   2% /run
+tmpfs                   tmpfs     244M     0  244M   0% /sys/fs/cgroup
+/dev/mapper/centos-root xfs        39G  5.7G   33G  15% /
+/dev/sda1               xfs      1014M  159M  856M  16% /boot
+tmpfs                   tmpfs      49M     0   49M   0% /run/user/0
+
+
+
+
+==========================================================================
+
+
+NMCLI COMMAND:-
+
+login as: root
+root@192.168.1.14's password:
+Last login: Thu Jul 29 01:29:06 2021
+[root@localhost ~]# nmcli general status
+STATE      CONNECTIVITY  WIFI-HW  WIFI     WWAN-HW  WWAN
+connected  full          enabled  enabled  enabled  enabled
+[root@localhost ~]# nmcli connection show
+NAME    UUID                                  TYPE      DEVICE
+enp0s3  8c91bb8a-20e2-4a2e-adbc-8940fd36b94f  ethernet  enp0s3
+[root@localhost ~]#  nmcli
+anaconda-ks.cfg  .bash_history    .bash_logout     .bash_profile    .bashrc          .cshrc           .tcshrc
+[root@localhost ~]#  nmcli  conection add type ethernet ifname siva
+Error: argument 'conection' not understood. Try passing --help instead.
+[root@localhost ~]#  nmcli  connection add type ethernet ifname siva
+Connection 'ethernet-siva' (d93afee6-5aef-45f7-a335-b5e04d5f96ab) successfully added.
+[root@localhost ~]# nmcli con show
+NAME           UUID                                  TYPE      DEVICE
+enp0s3         8c91bb8a-20e2-4a2e-adbc-8940fd36b94f  ethernet  enp0s3
+ethernet-siva  d93afee6-5aef-45f7-a335-b5e04d5f96ab  ethernet  --
+[root@localhost ~]#  nmcli con up siva
+Error: unknown connection 'siva'.
+[root@localhost ~]#  nmcli con up ethernet-siva
+Error: Connection activation failed: No suitable device found for this connection.
+[root@localhost ~]# nmcli connection up ethernet-siva
+Error: Connection activation failed: No suitable device found for this connection.
+[root@localhost ~]# nmcli con show
+NAME           UUID                                  TYPE      DEVICE
+enp0s3         8c91bb8a-20e2-4a2e-adbc-8940fd36b94f  ethernet  enp0s3
+ethernet-siva  d93afee6-5aef-45f7-a335-b5e04d5f96ab  ethernet  --
+[root@localhost ~]# nmcli  con add type ethernet ifname enp0s8
+Connection 'ethernet-enp0s8' (3776ef37-7443-4c5b-ac3d-a7272549142b) successfully added.
+[root@localhost ~]# nmcli con show
+NAME             UUID                                  TYPE      DEVICE
+enp0s3           8c91bb8a-20e2-4a2e-adbc-8940fd36b94f  ethernet  enp0s3
+ethernet-enp0s8  3776ef37-7443-4c5b-ac3d-a7272549142b  ethernet  --
+ethernet-siva    d93afee6-5aef-45f7-a335-b5e04d5f96ab  ethernet  --
+[root@localhost ~]# nmcli connection up ethernet-enp0s8
+Error: Connection activation failed: No suitable device found for this connection.
+[root@localhost ~]# nmcli connection del ethernet-enp0s8
+Connection 'ethernet-enp0s8' (3776ef37-7443-4c5b-ac3d-a7272549142b) successfully deleted.
+[root@localhost ~]# nmcli connection del ethernet-siva
+Connection 'ethernet-siva' (d93afee6-5aef-45f7-a335-b5e04d5f96ab) successfully deleted.
+[root@localhost ~]#
+[root@localhost ~]# nmcli con show
+NAME    UUID                                  TYPE      DEVICE
+enp0s3  8c91bb8a-20e2-4a2e-adbc-8940fd36b94f  ethernet  enp0s3
+[root@localhost ~]# nmcli con modify enp0s3 ipv4.address 192.168.1.14/24
+[root@localhost ~]# nmcli con modify enp0s3 ipv4.method manual
+[root@localhost ~]# nmcli device status
+DEVICE  TYPE      STATE      CONNECTION
+enp0s3  ethernet  connected  enp0s3
+lo      loopback  unmanaged  --
+[root@localhost ~]# nmcli device show enp0s3
+GENERAL.DEVICE:                         enp0s3
+GENERAL.TYPE:                           ethernet
+GENERAL.HWADDR:                         08:00:27:D5:C1:A4
+GENERAL.MTU:                            1500
+GENERAL.STATE:                          100 (connected)
+GENERAL.CONNECTION:                     enp0s3
+GENERAL.CON-PATH:                       /org/freedesktop/NetworkManager/ActiveConnection/2
+WIRED-PROPERTIES.CARRIER:               on
+IP4.ADDRESS[1]:                         192.168.1.14/24
+IP4.GATEWAY:                            --
+IP4.ROUTE[1]:                           dst = 192.168.1.0/24, nh = 0.0.0.0, mt = 100
+IP6.ADDRESS[1]:                         fe80::2a3:c260:634e:f610/64
+IP6.GATEWAY:                            fe80::1
+IP6.ROUTE[1]:                           dst = ::/0, nh = fe80::1, mt = 100
+IP6.ROUTE[2]:                           dst = ::/0, nh = fe80::a2ab:1bff:fe0d:cee2, mt = 100
+IP6.ROUTE[3]:                           dst = ff00::/8, nh = ::, mt = 256, table=255
+IP6.ROUTE[4]:                           dst = fe80::/64, nh = ::, mt = 256
+IP6.ROUTE[5]:                           dst = fe80::/64, nh = ::, mt = 100
+IP6.DNS[1]:                             fe80::1
+[root@localhost ~]# nmcli device show enp0s3| grep -i "ip4.address"
+IP4.ADDRESS[1]:                         192.168.1.14/24
+[root@localhost ~]# nmcli device show enp0s3| grep -i "ip4.address" | awk '{print $2}'
+192.168.1.14/24
+[root@localhost ~]# nmcli device show enp0s3| grep -i "ip4.address" | awk '{print $2}' | cut -d "/" -f 1
+192.168.1.14
+[root@localhost ~]# nmcli device show enp0s3
+GENERAL.DEVICE:                         enp0s3
+GENERAL.TYPE:                           ethernet
+GENERAL.HWADDR:                         08:00:27:D5:C1:A4
+GENERAL.MTU:                            1500
+GENERAL.STATE:                          100 (connected)
+GENERAL.CONNECTION:                     enp0s3
+GENERAL.CON-PATH:                       /org/freedesktop/NetworkManager/ActiveConnection/2
+WIRED-PROPERTIES.CARRIER:               on
+IP4.ADDRESS[1]:                         192.168.1.14/24
+IP4.GATEWAY:                            --
+IP4.ROUTE[1]:                           dst = 192.168.1.0/24, nh = 0.0.0.0, mt = 100
+IP6.ADDRESS[1]:                         fe80::2a3:c260:634e:f610/64
+IP6.GATEWAY:                            fe80::1
+IP6.ROUTE[1]:                           dst = ::/0, nh = fe80::1, mt = 100
+IP6.ROUTE[2]:                           dst = ::/0, nh = fe80::a2ab:1bff:fe0d:cee2, mt = 100
+IP6.ROUTE[3]:                           dst = ff00::/8, nh = ::, mt = 256, table=255
+IP6.ROUTE[4]:                           dst = fe80::/64, nh = ::, mt = 256
+IP6.ROUTE[5]:                           dst = fe80::/64, nh = ::, mt = 100
+IP6.DNS[1]:                             fe80::1
+[root@localhost ~]# netstat -r
+Kernel IP routing table
+Destination     Gateway         Genmask         Flags   MSS Window  irtt Iface
+192.168.1.0     0.0.0.0         255.255.255.0   U         0 0          0 enp0s3
+[root@localhost ~]# nmcli connection edit enp0s3
+
+===| nmcli interactive connection editor |===
+
+Editing existing '802-3-ethernet' connection: 'enp0s3'
+
+Type 'help' or '?' for available commands.
+Type 'describe [<setting>.<prop>]' for detailed property description.
+
+You may edit the following settings: connection, 802-3-ethernet (ethernet), 802-1x, dcb, ipv4, ipv6, tc, proxy
+nmcli>
+nmcli> ?
+------------------------------------------------------------------------------
+---[ Main menu ]---
+goto     [<setting> | <prop>]        :: go to a setting or property
+remove   <setting>[.<prop>] | <prop> :: remove setting or reset property value
+set      [<setting>.<prop> <value>]  :: set property value
+describe [<setting>.<prop>]          :: describe property
+print    [all | <setting>[.<prop>]]  :: print the connection
+verify   [all | fix]                 :: verify the connection
+save     [persistent|temporary]      :: save the connection
+activate [<ifname>] [/<ap>|<nsp>]    :: activate the connection
+back                                 :: go one level up (back)
+help/?   [<command>]                 :: print this help
+nmcli    <conf-option> <value>       :: nmcli configuration
+quit                                 :: exit nmcli
+------------------------------------------------------------------------------
+nmcli> print
+===============================================================================
+                      Connection profile details (enp0s3)
+===============================================================================
+connection.id:                          enp0s3
+connection.uuid:                        8c91bb8a-20e2-4a2e-adbc-8940fd36b94f
+connection.stable-id:                   --
+connection.type:                        802-3-ethernet
+connection.interface-name:              enp0s3
+connection.autoconnect:                 yes
+connection.autoconnect-priority:        0
+connection.autoconnect-retries:         -1 (default)
+connection.auth-retries:                -1
+connection.timestamp:                   1627503761
+connection.read-only:                   no
+connection.permissions:                 --
+connection.zone:                        --
+connection.master:                      --
+connection.slave-type:                  --
+connection.autoconnect-slaves:          -1 (default)
+connection.secondaries:                 --
+connection.gateway-ping-timeout:        0
+connection.metered:                     unknown
+connection.lldp:                        default
+-------------------------------------------------------------------------------
+802-3-ethernet.port:                    --
+802-3-ethernet.speed:                   0
+802-3-ethernet.duplex:                  --
+802-3-ethernet.auto-negotiate:          no
+802-3-ethernet.mac-address:             --
+802-3-ethernet.cloned-mac-address:      --
+802-3-ethernet.generate-mac-address-mask:--
+802-3-ethernet.mac-address-blacklist:   --
+802-3-ethernet.mtu:                     auto
+802-3-ethernet.s390-subchannels:        --
+802-3-ethernet.s390-nettype:            --
+802-3-ethernet.s390-options:            --
+802-3-ethernet.wake-on-lan:             default
+802-3-ethernet.wake-on-lan-password:    --
+-------------------------------------------------------------------------------
+ipv4.method:                            manual
+ipv4.dns:                               --
+ipv4.dns-search:                        --
+ipv4.dns-options:                       ""
+ipv4.dns-priority:                      0
+ipv4.addresses:                         192.168.1.14/24
+ipv4.gateway:                           --
+ipv4.routes:                            --
+ipv4.route-metric:                      -1
+ipv4.route-table:                       0 (unspec)
+ipv4.ignore-auto-routes:                no
+ipv4.ignore-auto-dns:                   no
+ipv4.dhcp-client-id:                    --
+ipv4.dhcp-timeout:                      0 (default)
+ipv4.dhcp-send-hostname:                yes
+ipv4.dhcp-hostname:                     --
+ipv4.dhcp-fqdn:                         --
+ipv4.never-default:                     no
+ipv4.may-fail:                          yes
+ipv4.dad-timeout:                       -1 (default)
+-------------------------------------------------------------------------------
+ipv6.method:                            auto
+ipv6.dns:                               --
+ipv6.dns-search:                        --
+ipv6.dns-options:                       ""
+ipv6.dns-priority:                      0
+ipv6.addresses:                         --
+ipv6.gateway:                           --
+ipv6.routes:                            --
+ipv6.route-metric:                      -1
+ipv6.route-table:                       0 (unspec)
+ipv6.ignore-auto-routes:                no
+ipv6.ignore-auto-dns:                   no
+ipv6.never-default:                     no
+ipv6.may-fail:                          yes
+ipv6.ip6-privacy:                       -1 (unknown)
+ipv6.addr-gen-mode:                     stable-privacy
+ipv6.dhcp-send-hostname:                yes
+ipv6.dhcp-hostname:                     --
+ipv6.token:                             --
+-------------------------------------------------------------------------------
+proxy.method:                           none
+proxy.browser-only:                     no
+proxy.pac-url:                          --
+proxy.pac-script:                       --
+-------------------------------------------------------------------------------
+nmcli> goto ipv4
+You may edit the following properties: method, dns, dns-search, dns-options, dns-priority, addresses, gateway, routes, route-metric, route-table, ignore-auto-routes, ignore-auto-dns, dhcp-hostname, dhcp-send-hostname, never-default, may-fail, dad-timeout, dhcp-timeout, dhcp-client-id, dhcp-fqdn
+nmcli ipv4> set mode auto
+Error: invalid property: 'mode' not among [method, dns, dns-search, dns-options, dns-priority, addresses, gateway, routes, route-metric, route-table, ignore-auto-routes, ignore-auto-dns, dhcp-hostname, dhcp-send-hostname, never-default, may-fail, dad-timeout, dhcp-timeout, dhcp-client-id, dhcp-fqdn]
+nmcli ipv4> set method auto
+Do you also want to clear 'ipv4.addresses'? [yes]: no
+nmcli ipv4> print
+['ipv4' setting values]
+ipv4.method:                            auto
+ipv4.dns:                               --
+ipv4.dns-search:                        --
+ipv4.dns-options:                       ""
+ipv4.dns-priority:                      0
+ipv4.addresses:                         192.168.1.14/24
+ipv4.gateway:                           --
+ipv4.routes:                            --
+ipv4.route-metric:                      -1
+ipv4.route-table:                       0 (unspec)
+ipv4.ignore-auto-routes:                no
+ipv4.ignore-auto-dns:                   no
+ipv4.dhcp-client-id:                    --
+ipv4.dhcp-timeout:                      0 (default)
+ipv4.dhcp-send-hostname:                yes
+ipv4.dhcp-hostname:                     --
+ipv4.dhcp-fqdn:                         --
+ipv4.never-default:                     no
+ipv4.may-fail:                          yes
+ipv4.dad-timeout:                       -1 (default)
+nmcli ipv4> set method manual
+nmcli ipv4> print
+['ipv4' setting values]
+ipv4.method:                            manual
+ipv4.dns:                               --
+ipv4.dns-search:                        --
+ipv4.dns-options:                       ""
+ipv4.dns-priority:                      0
+ipv4.addresses:                         192.168.1.14/24
+ipv4.gateway:                           --
+ipv4.routes:                            --
+ipv4.route-metric:                      -1
+ipv4.route-table:                       0 (unspec)
+ipv4.ignore-auto-routes:                no
+ipv4.ignore-auto-dns:                   no
+ipv4.dhcp-client-id:                    --
+ipv4.dhcp-timeout:                      0 (default)
+ipv4.dhcp-send-hostname:                yes
+ipv4.dhcp-hostname:                     --
+ipv4.dhcp-fqdn:                         --
+ipv4.never-default:                     no
+ipv4.may-fail:                          yes
+ipv4.dad-timeout:                       -1 (default)
+nmcli ipv4> save
+Connection 'enp0s3' (8c91bb8a-20e2-4a2e-adbc-8940fd36b94f) successfully updated.
+nmcli ipv4> quit
+[root@localhost ~]#
+
+
+
+

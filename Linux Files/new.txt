@@ -1,0 +1,23 @@
+DNS server:
+
+package : bind
+port number :53
+deman : named
+cfg : /etc/named.conf 
+
+zones creation :
+
+forward lookup zone --- name to ip
+reverse lookup zone ---- ip to name
+==========================================
+to add the another interface :
+
+nmcli con add type ethernet con-name dinu ifname enp0s3 ip4 192.168.0.111/24 gw4 192.168.0.1 ipv4.dns "8.8.8.8"
+
+
+to check the interface :
+
+--- nmclli co show
+
+
+==========================================================================================================================

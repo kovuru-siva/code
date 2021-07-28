@@ -1,0 +1,699 @@
+q============Process Management : it means as a system administrator definetly manage and control the all runniong procces
+
+Date : 13/08/2019
+
+[root@linuxserver1.itbs.com ~]# ps ---- this command is used to see the process status.
+
+  PID TTY          TIME CMD
+ 1330 pts/0    00:00:00 bash --------------- this process is run by default when the users is login time
+ 1369 pts/0    00:00:00 ps
+
+[root@linuxserver1.itbs.com ~]# cat hello &  === & == this symbol is used to run thre process in baground.
+[1] 1370
+[root@linuxserver1.itbs.com ~]# ps
+  PID TTY          TIME CMD
+ 1330 pts/0    00:00:00 bash
+ 1371 pts/0    00:00:00 ps
+[1]+  Done                    cat hello
+
+[root@linuxserver1.itbs.com ~]# vim hello &
+[1] 1373
+[root@linuxserver1.itbs.com ~]# ps
+  PID TTY          TIME CMD
+ 1330 pts/0    00:00:00 bash
+ 1373 pts/0    00:00:00 vim
+ 1380 pts/0    00:00:00 ps
+
+[1]+  Stopped                 vim hello
+[root@linuxserver1.itbs.com ~]#
+
+
+login as: ranga
+ranga@192.168.2.215's password:
+Last login: Sat Aug 10 12:52:45 2019 from 192.168.2.3
+
+[ranga@linuxserver1.itbs.com ~]$ ps
+  PID TTY          TIME CMD
+ 1386 pts/1    00:00:00 bash
+ 1428 pts/1    00:00:00 ps
+
+[root@linuxserver1.itbs.com ~]# ps -a ---- it shows the all process
+  PID TTY          TIME CMD
+ 1373 pts/0    00:00:00 vim
+ 1429 pts/0    00:00:00 ps
+
+[root@linuxserver1.itbs.com ~]# ps -au ------------ as per the user 
+
+USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+root      1281  0.0  0.2 116052  2668 tty1     Ss+  19:24   0:00 -bash
+root      1330  0.0  0.2 116056  2688 pts/0    Ss   19:26   0:00 -bash
+root      1373  0.0  0.4 148820  4520 pts/0    T    19:29   0:00 vim hello
+ranga     1386  0.0  0.2 115924  2588 pts/1    Ss+  19:31   0:00 -bash
+root      1430  0.0  0.1 151064  1808 pts/0    R+   19:33   0:00 ps -au
+[root@linuxserver1.itbs.com ~]# tty
+/dev/pts/0
+[root@linuxserver1.itbs.com ~]# ps -aux ---- x ---- it shows the all running process of a specific user when the time of login and wht is the process are 											running
+
+USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+root         1  0.2  0.6 128164  6816 ?        Ss   19:23   0:01 /usr/lib/systemd/systemd --switche
+root         2  0.0  0.0      0     0 ?        S    19:23   0:00 [kthreadd]
+root         3  0.0  0.0      0     0 ?        S    19:23   0:00 [ksoftirqd/0]
+root         5  0.0  0.0      0     0 ?        S<   19:23   0:00 [kworker/0:0H]
+root         6  0.0  0.0      0     0 ?        S    19:23   0:00 [kworker/u2:0]
+root         7  0.0  0.0      0     0 ?        S    19:23   0:00 [migration/0]
+root         8  0.0  0.0      0     0 ?        S    19:23   0:00 [rcu_bh]
+root         9  0.0  0.0      0     0 ?        R    19:23   0:00 [rcu_sched]
+root        10  0.0  0.0      0     0 ?        S    19:23   0:00 [watchdog/0]	    VSZ: IN A MEMORY WE HAVE A PAGES .ANY TWO PROCESS ARE 												SHARING THIER MEMORY 
+root        12  0.0  0.0      0     0 ?        S    19:23   0:00 [kdevtmpfs]
+root        13  0.0  0.0      0     0 ?        S<   19:23   0:00 [netns]
+root        14  0.0  0.0      0     0 ?        S    19:23   0:00 [khungtaskd]
+root        15  0.0  0.0      0     0 ?        S<   19:23   0:00 [writeback]
+root        16  0.0  0.0      0     0 ?        S<   19:23   0:00 [kintegrityd]
+root        17  0.0  0.0      0     0 ?        S<   19:23   0:00 [bioset]
+root        18  0.0  0.0      0     0 ?        S<   19:23   0:00 [kblockd]
+root        19  0.0  0.0      0     0 ?        S<   19:23   0:00 [md]
+root        25  0.0  0.0      0     0 ?        S    19:23   0:00 [kswapd0]
+root        26  0.0  0.0      0     0 ?        SN   19:23   0:00 [ksmd]
+root        27  0.0  0.0      0     0 ?        SN   19:23   0:00 [khugepaged]
+root        28  0.0  0.0      0     0 ?        S<   19:23   0:00 [crypto]
+root        36  0.0  0.0      0     0 ?        S<   19:23   0:00 [kthrotld]
+root        38  0.0  0.0      0     0 ?        S<   19:23   0:00 [kmpath_rdacd]
+root        39  0.0  0.0      0     0 ?        S<   19:23   0:00 [kpsmoused]
+root        40  0.0  0.0      0     0 ?        S<   19:23   0:00 [ipv6_addrconf]
+root        60  0.0  0.0      0     0 ?        S<   19:23   0:00 [deferwq]
+root        92  0.0  0.0      0     0 ?        S    19:23   0:00 [kauditd]
+root        93  0.0  0.0      0     0 ?        S    19:23   0:00 [kworker/0:3]
+root       270  0.0  0.0      0     0 ?        S<   19:23   0:00 [ata_sff]
+root       280  0.0  0.0      0     0 ?        S    19:23   0:00 [scsi_eh_0]
+root       282  0.0  0.0      0     0 ?        S<   19:23   0:00 [scsi_tmf_0]
+root       283  0.0  0.0      0     0 ?        S    19:23   0:00 [scsi_eh_1]
+root       284  0.0  0.0      0     0 ?        S<   19:23   0:00 [scsi_tmf_1]
+root       285  0.0  0.0      0     0 ?        S    19:23   0:00 [kworker/u2:2]
+root       286  0.0  0.0      0     0 ?        S    19:23   0:00 [scsi_eh_2]
+root       287  0.0  0.0      0     0 ?        S<   19:23   0:00 [scsi_tmf_2]
+root       304  0.0  0.0      0     0 ?        S<   19:23   0:00 [kworker/0:1H]
+root       429  0.0  0.0      0     0 ?        S<   19:23   0:00 [kdmflush]
+root       430  0.0  0.0      0     0 ?        S<   19:23   0:00 [bioset]
+root       440  0.0  0.0      0     0 ?        S<   19:23   0:00 [kdmflush]
+root       441  0.0  0.0      0     0 ?        S<   19:23   0:00 [bioset]
+root       454  0.0  0.0      0     0 ?        S<   19:23   0:00 [bioset]
+root       455  0.0  0.0      0     0 ?        S<   19:23   0:00 [xfsalloc]
+root       456  0.0  0.0      0     0 ?        S<   19:23   0:00 [xfs_mru_cache]
+root       457  0.0  0.0      0     0 ?        S<   19:23   0:00 [xfs-buf/dm-0]
+root       458  0.0  0.0      0     0 ?        S<   19:23   0:00 [xfs-data/dm-0]
+root       459  0.0  0.0      0     0 ?        S<   19:23   0:00 [xfs-conv/dm-0]
+root       460  0.0  0.0      0     0 ?        S<   19:23   0:00 [xfs-cil/dm-0]
+root       461  0.0  0.0      0     0 ?        S<   19:23   0:00 [xfs-reclaim/dm-]
+root       462  0.0  0.0      0     0 ?        S<   19:23   0:00 [xfs-log/dm-0]
+root       463  0.0  0.0      0     0 ?        S<   19:23   0:00 [xfs-eofblocks/d]
+root       464  0.0  0.0      0     0 ?        S    19:23   0:00 [xfsaild/dm-0]
+root       532  0.0  0.2  34988  2472 ?        Ss   19:23   0:00 /usr/lib/systemd/systemd-journald
+root       552  0.0  0.4  46904  4912 ?        Ss   19:23   0:00 /usr/lib/systemd/systemd-udevd
+root       553  0.0  0.5 342552  5968 ?        Ss   19:23   0:00 /usr/sbin/lvmetad -f
+root       612  0.0  0.0      0     0 ?        S<   19:23   0:00 [bioset]
+root       618  0.0  0.0      0     0 ?        S<   19:23   0:00 [bioset]
+root       621  0.0  0.0      0     0 ?        S    19:23   0:00 [md1_raid1]
+root       627  0.0  0.0      0     0 ?        S<   19:23   0:00 [xfs-buf/sda1]
+root       630  0.0  0.0      0     0 ?        S<   19:23   0:00 [xfs-data/sda1]
+root       633  0.0  0.0      0     0 ?        S<   19:23   0:00 [xfs-conv/sda1]
+root       636  0.0  0.0      0     0 ?        S<   19:23   0:00 [xfs-cil/sda1]
+root       638  0.0  0.0      0     0 ?        S<   19:23   0:00 [xfs-reclaim/sda]
+root       640  0.0  0.0      0     0 ?        S<   19:23   0:00 [xfs-log/sda1]
+root       641  0.0  0.0      0     0 ?        S<   19:23   0:00 [xfs-eofblocks/s]
+root       644  0.0  0.0      0     0 ?        S    19:23   0:00 [xfsaild/sda1]
+root       655  0.0  0.0      0     0 ?        S<   19:23   0:00 [raid5wq]
+root       656  0.0  0.0      0     0 ?        S<   19:23   0:00 [bioset]
+root       658  0.0  0.0      0     0 ?        S    19:23   0:00 [md5_raid5]
+root       672  0.0  0.0      0     0 ?        S<   19:23   0:00 [kdmflush]
+root       673  0.0  0.0      0     0 ?        S<   19:23   0:00 [bioset]
+root       675  0.0  0.0      0     0 ?        S<   19:23   0:00 [kdmflush]
+root       676  0.0  0.0      0     0 ?        S<   19:23   0:00 [bioset]
+root       677  0.0  0.0      0     0 ?        S<   19:23   0:00 [kdmflush]
+root       678  0.0  0.0      0     0 ?        S<   19:23   0:00 [bioset]
+root       679  0.0  0.0      0     0 ?        S<   19:23   0:00 [kdmflush]
+root       680  0.0  0.0      0     0 ?        S<   19:23   0:00 [bioset]
+root       681  0.0  0.0      0     0 ?        S<   19:23   0:00 [kdmflush]
+root       682  0.0  0.0      0     0 ?        S<   19:23   0:00 [bioset]
+root       683  0.0  0.0      0     0 ?        S    19:23   0:00 [jbd2/sdb7-8]
+root       685  0.0  0.0      0     0 ?        S    19:23   0:00 [jbd2/sdb5-8]
+root       686  0.0  0.0      0     0 ?        S    19:23   0:00 [jbd2/sdb6-8]
+root       690  0.0  0.0      0     0 ?        S<   19:23   0:00 [ext4-rsv-conver]
+root       691  0.0  0.0      0     0 ?        S<   19:23   0:00 [ext4-rsv-conver]
+root       693  0.0  0.0      0     0 ?        S<   19:23   0:00 [ext4-rsv-conver]
+root       714  0.0  0.0      0     0 ?        S    19:23   0:00 [jbd2/md1-8]
+root       717  0.0  0.0      0     0 ?        S<   19:23   0:00 [ext4-rsv-conver]
+root       722  0.0  0.0      0     0 ?        S    19:23   0:00 [jbd2/md0-8]
+root       724  0.0  0.0      0     0 ?        S<   19:23   0:00 [ext4-rsv-conver]
+root       745  0.0  0.0      0     0 ?        S    19:23   0:00 [jbd2/dm-5-8]
+root       746  0.0  0.0      0     0 ?        S<   19:23   0:00 [ext4-rsv-conver]
+root       747  0.0  0.0      0     0 ?        S    19:23   0:00 [jbd2/md5-8]
+root       748  0.0  0.0      0     0 ?        S<   19:23   0:00 [ext4-rsv-conver]
+root       750  0.0  0.0      0     0 ?        S    19:23   0:00 [jbd2/dm-2-8]
+root       751  0.0  0.0      0     0 ?        S    19:23   0:00 [jbd2/dm-6-8]
+root       753  0.0  0.0      0     0 ?        S<   19:23   0:00 [ext4-rsv-conver]
+root       754  0.0  0.0      0     0 ?        S<   19:23   0:00 [ext4-rsv-conver]
+root       790  0.0  0.0  55452   888 ?        S<sl 19:23   0:00 /sbin/auditd
+dbus       814  0.0  0.2  34864  2060 ?        Ssl  19:23   0:00 /bin/dbus-daemon --system --addres
+root       818  0.0  0.1  24280  1736 ?        Ss   19:23   0:00 /usr/lib/systemd/systemd-logind
+root       819  0.0  0.0   6472   648 ?        Ss   19:23   0:00 /sbin/rngd -f
+root       820  0.0  0.2  24384  2368 ?        Ss   19:23   0:00 /usr/sbin/smartd -n -q never
+root       821  0.0  0.5 219236  5484 ?        Ss   19:23   0:00 /usr/sbin/abrtd -d -s
+libstor+   824  0.0  0.0   8532   796 ?        Ss   19:23   0:00 /usr/bin/lsmd -d
+root       828  0.0  0.5 210280  5884 ?        Ssl  19:23   0:00 /usr/sbin/rsyslogd -n
+polkitd    829  0.0  1.4 536976 14880 ?        Ssl  19:23   0:00 /usr/lib/polkit-1/polkitd --no-deb
+root       831  0.0  0.4 216908  4696 ?        Ss   19:23   0:00 /usr/bin/abrt-watch-log -F BUG: WA
+root       838  0.0  0.0  25856   916 ?        Ss   19:23   0:00 /usr/sbin/atd -f
+root       840  0.0  0.1 126232  1656 ?        Ss   19:23   0:00 /usr/sbin/crond -n
+root       848  0.0  0.3 123164  3832 ?        Ss   19:23   0:00 login -- root
+root       857  0.1  2.8 334012 28692 ?        Ssl  19:23   0:00 /usr/bin/python -Es /usr/sbin/fire
+root       865  0.0  0.8 471808  8828 ?        Ssl  19:23   0:00 /usr/sbin/NetworkManager --no-daem
+root      1166  0.0  1.6 562412 16576 ?        Ssl  19:23   0:00 /usr/bin/python -Es /usr/sbin/tune
+root      1167  0.0  0.4 105996  4072 ?        Ss   19:23   0:00 /usr/sbin/sshd -D
+root      1268  0.0  0.2  91628  2124 ?        Ss   19:23   0:00 /usr/libexec/postfix/master -w
+postfix   1269  0.0  0.3  91732  4004 ?        S    19:23   0:00 pickup -l -t unix -u
+postfix   1270  0.0  0.3  91800  4028 ?        S    19:23   0:00 qmgr -l -t unix -u
+root      1281  0.0  0.2 116052  2672 tty1     Ss+  19:24   0:00 -bash
+root      1326  0.0  0.5 147784  5352 ?        Ss   19:26   0:00 sshd: root@pts/0
+root      1330  0.0  0.2 116056  2688 pts/0    Ss   19:26   0:00 -bash
+root      1372  0.0  0.0      0     0 ?        R    19:29   0:00 [kworker/0:0]
+root      1373  0.0  0.4 148820  4520 pts/0    T    19:29   0:00 vim hello
+root      1381  0.1  0.5 147784  5280 ?        Ss   19:31   0:00 sshd: ranga [priv]
+ranga     1385  0.0  0.2 147784  2300 ?        S    19:31   0:00 sshd: ranga@pts/1
+ranga     1386  0.0  0.2 115924  2588 pts/1    Ss+  19:31   0:00 -bash
+root      1432  0.0  0.0      0     0 ?        S    19:34   0:00 [kworker/0:1]
+root      1434  0.0  0.1 153148  1848 pts/0    R+   19:35   0:00 ps -aux
+
+
+[root@linuxserver1.itbs.com ~]# ps -ef  
+
+UID        PID  PPID  C STIME TTY          TIME CMD
+root         1     0  0 19:23 ?        00:00:01 /usr/lib/systemd/systemd --switched-root --system -
+root         2     0  0 19:23 ?        00:00:00 [kthreadd]
+root         3     2  0 19:23 ?        00:00:00 [ksoftirqd/0]
+root         5     2  0 19:23 ?        00:00:00 [kworker/0:0H]
+root         6     2  0 19:23 ?        00:00:00 [kworker/u2:0]
+root         7     2  0 19:23 ?        00:00:00 [migration/0]
+root         8     2  0 19:23 ?        00:00:00 [rcu_bh]
+root         9     2  0 19:23 ?        00:00:00 [rcu_sched]
+root        10     2  0 19:23 ?        00:00:00 [watchdog/0]
+root        12     2  0 19:23 ?        00:00:00 [kdevtmpfs]
+root        13     2  0 19:23 ?        00:00:00 [netns]
+root        14     2  0 19:23 ?        00:00:00 [khungtaskd]
+root        15     2  0 19:23 ?        00:00:00 [writeback]
+root        16     2  0 19:23 ?        00:00:00 [kintegrityd]
+root        17     2  0 19:23 ?        00:00:00 [bioset]
+root        18     2  0 19:23 ?        00:00:00 [kblockd]
+root        19     2  0 19:23 ?        00:00:00 [md]
+root        25     2  0 19:23 ?        00:00:00 [kswapd0]
+root        26     2  0 19:23 ?        00:00:00 [ksmd]
+root        27     2  0 19:23 ?        00:00:00 [khugepaged]
+root        28     2  0 19:23 ?        00:00:00 [crypto]
+root        36     2  0 19:23 ?        00:00:00 [kthrotld]
+root        38     2  0 19:23 ?        00:00:00 [kmpath_rdacd]
+root        39     2  0 19:23 ?        00:00:00 [kpsmoused]
+root        40     2  0 19:23 ?        00:00:00 [ipv6_addrconf]
+root        60     2  0 19:23 ?        00:00:00 [deferwq]
+root        92     2  0 19:23 ?        00:00:00 [kauditd]
+root        93     2  0 19:23 ?        00:00:00 [kworker/0:3]
+root       270     2  0 19:23 ?        00:00:00 [ata_sff]
+root       280     2  0 19:23 ?        00:00:00 [scsi_eh_0]
+root       282     2  0 19:23 ?        00:00:00 [scsi_tmf_0]
+root       283     2  0 19:23 ?        00:00:00 [scsi_eh_1]
+root       284     2  0 19:23 ?        00:00:00 [scsi_tmf_1]
+root       285     2  0 19:23 ?        00:00:00 [kworker/u2:2]
+root       286     2  0 19:23 ?        00:00:00 [scsi_eh_2]
+root       287     2  0 19:23 ?        00:00:00 [scsi_tmf_2]
+root       304     2  0 19:23 ?        00:00:00 [kworker/0:1H]
+root       429     2  0 19:23 ?        00:00:00 [kdmflush]
+root       430     2  0 19:23 ?        00:00:00 [bioset]
+root       440     2  0 19:23 ?        00:00:00 [kdmflush]
+root       441     2  0 19:23 ?        00:00:00 [bioset]
+root       454     2  0 19:23 ?        00:00:00 [bioset]
+root       455     2  0 19:23 ?        00:00:00 [xfsalloc]
+root       456     2  0 19:23 ?        00:00:00 [xfs_mru_cache]
+root       457     2  0 19:23 ?        00:00:00 [xfs-buf/dm-0]
+root       458     2  0 19:23 ?        00:00:00 [xfs-data/dm-0]
+root       459     2  0 19:23 ?        00:00:00 [xfs-conv/dm-0]
+root       460     2  0 19:23 ?        00:00:00 [xfs-cil/dm-0]
+root       461     2  0 19:23 ?        00:00:00 [xfs-reclaim/dm-]
+root       462     2  0 19:23 ?        00:00:00 [xfs-log/dm-0]
+root       463     2  0 19:23 ?        00:00:00 [xfs-eofblocks/d]
+root       464     2  0 19:23 ?        00:00:00 [xfsaild/dm-0]
+root       532     1  0 19:23 ?        00:00:00 /usr/lib/systemd/systemd-journald
+root       552     1  0 19:23 ?        00:00:00 /usr/lib/systemd/systemd-udevd
+root       553     1  0 19:23 ?        00:00:00 /usr/sbin/lvmetad -f
+root       612     2  0 19:23 ?        00:00:00 [bioset]
+root       618     2  0 19:23 ?        00:00:00 [bioset]
+root       621     2  0 19:23 ?        00:00:00 [md1_raid1]
+root       627     2  0 19:23 ?        00:00:00 [xfs-buf/sda1]
+root       630     2  0 19:23 ?        00:00:00 [xfs-data/sda1]
+root       633     2  0 19:23 ?        00:00:00 [xfs-conv/sda1]
+root       636     2  0 19:23 ?        00:00:00 [xfs-cil/sda1]
+root       638     2  0 19:23 ?        00:00:00 [xfs-reclaim/sda]
+root       640     2  0 19:23 ?        00:00:00 [xfs-log/sda1]
+root       641     2  0 19:23 ?        00:00:00 [xfs-eofblocks/s]
+root       644     2  0 19:23 ?        00:00:00 [xfsaild/sda1]
+root       655     2  0 19:23 ?        00:00:00 [raid5wq]
+root       656     2  0 19:23 ?        00:00:00 [bioset]
+root       658     2  0 19:23 ?        00:00:00 [md5_raid5]
+root       672     2  0 19:23 ?        00:00:00 [kdmflush]
+root       673     2  0 19:23 ?        00:00:00 [bioset]
+root       675     2  0 19:23 ?        00:00:00 [kdmflush]
+root       676     2  0 19:23 ?        00:00:00 [bioset]
+root       677     2  0 19:23 ?        00:00:00 [kdmflush]
+root       678     2  0 19:23 ?        00:00:00 [bioset]
+root       679     2  0 19:23 ?        00:00:00 [kdmflush]
+root       680     2  0 19:23 ?        00:00:00 [bioset]
+root       681     2  0 19:23 ?        00:00:00 [kdmflush]
+root       682     2  0 19:23 ?        00:00:00 [bioset]
+root       683     2  0 19:23 ?        00:00:00 [jbd2/sdb7-8]
+root       685     2  0 19:23 ?        00:00:00 [jbd2/sdb5-8]
+root       686     2  0 19:23 ?        00:00:00 [jbd2/sdb6-8]
+root       690     2  0 19:23 ?        00:00:00 [ext4-rsv-conver]
+root       691     2  0 19:23 ?        00:00:00 [ext4-rsv-conver]
+root       693     2  0 19:23 ?        00:00:00 [ext4-rsv-conver]
+root       714     2  0 19:23 ?        00:00:00 [jbd2/md1-8]
+root       717     2  0 19:23 ?        00:00:00 [ext4-rsv-conver]
+root       722     2  0 19:23 ?        00:00:00 [jbd2/md0-8]
+root       724     2  0 19:23 ?        00:00:00 [ext4-rsv-conver]
+root       745     2  0 19:23 ?        00:00:00 [jbd2/dm-5-8]
+root       746     2  0 19:23 ?        00:00:00 [ext4-rsv-conver]
+root       747     2  0 19:23 ?        00:00:00 [jbd2/md5-8]
+root       748     2  0 19:23 ?        00:00:00 [ext4-rsv-conver]
+root       750     2  0 19:23 ?        00:00:00 [jbd2/dm-2-8]
+root       751     2  0 19:23 ?        00:00:00 [jbd2/dm-6-8]
+root       753     2  0 19:23 ?        00:00:00 [ext4-rsv-conver]
+root       754     2  0 19:23 ?        00:00:00 [ext4-rsv-conver]
+root       790     1  0 19:23 ?        00:00:00 /sbin/auditd
+dbus       814     1  0 19:23 ?        00:00:00 /bin/dbus-daemon --system --address=systemd: --nofo
+root       818     1  0 19:23 ?        00:00:00 /usr/lib/systemd/systemd-logind
+root       819     1  0 19:23 ?        00:00:00 /sbin/rngd -f
+root       820     1  0 19:23 ?        00:00:00 /usr/sbin/smartd -n -q never
+root       821     1  0 19:23 ?        00:00:00 /usr/sbin/abrtd -d -s
+libstor+   824     1  0 19:23 ?        00:00:00 /usr/bin/lsmd -d
+root       828     1  0 19:23 ?        00:00:00 /usr/sbin/rsyslogd -n
+polkitd    829     1  0 19:23 ?        00:00:00 /usr/lib/polkit-1/polkitd --no-debug
+root       831     1  0 19:23 ?        00:00:00 /usr/bin/abrt-watch-log -F BUG: WARNING: at WARNING
+root       838     1  0 19:23 ?        00:00:00 /usr/sbin/atd -f
+root       840     1  0 19:23 ?        00:00:00 /usr/sbin/crond -n
+root       848     1  0 19:23 ?        00:00:00 login -- root
+root       857     1  0 19:23 ?        00:00:00 /usr/bin/python -Es /usr/sbin/firewalld --nofork --
+root       865     1  0 19:23 ?        00:00:00 /usr/sbin/NetworkManager --no-daemon
+root      1166     1  0 19:23 ?        00:00:00 /usr/bin/python -Es /usr/sbin/tuned -l -P
+root      1167     1  0 19:23 ?        00:00:00 /usr/sbin/sshd -D
+root      1268     1  0 19:23 ?        00:00:00 /usr/libexec/postfix/master -w
+postfix   1269  1268  0 19:23 ?        00:00:00 pickup -l -t unix -u
+postfix   1270  1268  0 19:23 ?        00:00:00 qmgr -l -t unix -u
+root      1281   848  0 19:24 tty1     00:00:00 -bash
+root      1326  1167  0 19:26 ?        00:00:00 sshd: root@pts/0
+root      1330  1326  0 19:26 pts/0    00:00:00 -bash
+root      1372     2  0 19:29 ?        00:00:00 [kworker/0:0]
+root      1373  1330  0 19:29 pts/0    00:00:00 vim hello
+root      1381  1167  0 19:31 ?        00:00:00 sshd: ranga [priv]
+ranga     1385  1381  0 19:31 ?        00:00:00 sshd: ranga@pts/1
+ranga     1386  1385  0 19:31 pts/1    00:00:00 -bash
+root      1432     2  0 19:34 ?        00:00:00 [kworker/0:1]
+root      1436  1330  0 19:37 pts/0    00:00:00 ps -ef
+
+
+[root@linuxserver1.itbs.com ~]# ps -eLF
+
+UID        PID  PPID   LWP  C NLWP    SZ   RSS PSR STIME TTY          TIME CMD
+root         1     0     1  0    1 32041  6816   0 19:23 ?        00:00:01 /usr/lib/systemd/systemd
+root         2     0     2  0    1     0     0   0 19:23 ?        00:00:00 [kthreadd]
+root         3     2     3  0    1     0     0   0 19:23 ?        00:00:00 [ksoftirqd/0]
+root         5     2     5  0    1     0     0   0 19:23 ?        00:00:00 [kworker/0:0H]p
+root         6     2     6  0    1     0     0   0 19:23 ?        00:00:00 [kworker/u2:0]
+root         7     2     7  0    1     0     0   0 19:23 ?        00:00:00 [migration/0]
+root         8     2     8  0    1     0     0   0 19:23 ?        00:00:00 [rcu_bh]
+root         9     2     9  0    1     0     0   0 19:23 ?        00:00:00 [rcu_sched]
+root        10     2    10  0    1     0     0   0 19:23 ?        00:00:00 [watchdog/0]
+root        12     2    12  0    1     0     0   0 19:23 ?        00:00:00 [kdevtmpfs]
+root        13     2    13  0    1     0     0   0 19:23 ?        00:00:00 [netns]
+root        14     2    14  0    1     0     0   0 19:23 ?        00:00:00 [khungtaskd]
+root        15     2    15  0    1     0     0   0 19:23 ?        00:00:00 [writeback]
+root        16     2    16  0    1     0     0   0 19:23 ?        00:00:00 [kintegrityd]
+root        17     2    17  0    1     0     0   0 19:23 ?        00:00:00 [bioset]
+root        18     2    18  0    1     0     0   0 19:23 ?        00:00:00 [kblockd]
+root        19     2    19  0    1     0     0   0 19:23 ?        00:00:00 [md]
+root        25     2    25  0    1     0     0   0 19:23 ?        00:00:00 [kswapd0]
+root        26     2    26  0    1     0     0   0 19:23 ?        00:00:00 [ksmd]
+root        27     2    27  0    1     0     0   0 19:23 ?        00:00:00 [khugepaged]
+root        28     2    28  0    1     0     0   0 19:23 ?        00:00:00 [crypto]
+root        36     2    36  0    1     0     0   0 19:23 ?        00:00:00 [kthrotld]
+root        38     2    38  0    1     0     0   0 19:23 ?        00:00:00 [kmpath_rdacd]
+root        39     2    39  0    1     0     0   0 19:23 ?        00:00:00 [kpsmoused]
+root        40     2    40  0    1     0     0   0 19:23 ?        00:00:00 [ipv6_addrconf]
+root        60     2    60  0    1     0     0   0 19:23 ?        00:00:00 [deferwq]
+root        92     2    92  0    1     0     0   0 19:23 ?        00:00:00 [kauditd]
+root       270     2   270  0    1     0     0   0 19:23 ?        00:00:00 [ata_sff]
+root       280     2   280  0    1     0     0   0 19:23 ?        00:00:00 [scsi_eh_0]
+root       282     2   282  0    1     0     0   0 19:23 ?        00:00:00 [scsi_tmf_0]
+root       283     2   283  0    1     0     0   0 19:23 ?        00:00:00 [scsi_eh_1]
+root       284     2   284  0    1     0     0   0 19:23 ?        00:00:00 [scsi_tmf_1]
+root       285     2   285  0    1     0     0   0 19:23 ?        00:00:00 [kworker/u2:2]
+root       286     2   286  0    1     0     0   0 19:23 ?        00:00:00 [scsi_eh_2]
+root       287     2   287  0    1     0     0   0 19:23 ?        00:00:00 [scsi_tmf_2]
+root       304     2   304  0    1     0     0   0 19:23 ?        00:00:00 [kworker/0:1H]
+root       429     2   429  0    1     0     0   0 19:23 ?        00:00:00 [kdmflush]
+root       430     2   430  0    1     0     0   0 19:23 ?        00:00:00 [bioset]
+root       440     2   440  0    1     0     0   0 19:23 ?        00:00:00 [kdmflush]
+root       441     2   441  0    1     0     0   0 19:23 ?        00:00:00 [bioset]
+root       454     2   454  0    1     0     0   0 19:23 ?        00:00:00 [bioset]
+root       455     2   455  0    1     0     0   0 19:23 ?        00:00:00 [xfsalloc]
+root       456     2   456  0    1     0     0   0 19:23 ?        00:00:00 [xfs_mru_cache]
+root       457     2   457  0    1     0     0   0 19:23 ?        00:00:00 [xfs-buf/dm-0]
+root       458     2   458  0    1     0     0   0 19:23 ?        00:00:00 [xfs-data/dm-0]
+root       459     2   459  0    1     0     0   0 19:23 ?        00:00:00 [xfs-conv/dm-0]
+root       460     2   460  0    1     0     0   0 19:23 ?        00:00:00 [xfs-cil/dm-0]
+root       461     2   461  0    1     0     0   0 19:23 ?        00:00:00 [xfs-reclaim/dm-]
+root       462     2   462  0    1     0     0   0 19:23 ?        00:00:00 [xfs-log/dm-0]
+root       463     2   463  0    1     0     0   0 19:23 ?        00:00:00 [xfs-eofblocks/d]
+root       464     2   464  0    1     0     0   0 19:23 ?        00:00:00 [xfsaild/dm-0]
+root       532     1   532  0    1  8747  2472   0 19:23 ?        00:00:00 /usr/lib/systemd/systemd
+root       552     1   552  0    1 11726  4912   0 19:23 ?        00:00:00 /usr/lib/systemd/systemd
+root       553     1   553  0    1 85638  5968   0 19:23 ?        00:00:00 /usr/sbin/lvmetad -f
+root       612     2   612  0    1     0     0   0 19:23 ?        00:00:00 [bioset]
+root       618     2   618  0    1     0     0   0 19:23 ?        00:00:00 [bioset]
+root       621     2   621  0    1     0     0   0 19:23 ?        00:00:00 [md1_raid1]
+root       627     2   627  0    1     0     0   0 19:23 ?        00:00:00 [xfs-buf/sda1]
+root       630     2   630  0    1     0     0   0 19:23 ?        00:00:00 [xfs-data/sda1]
+root       633     2   633  0    1     0     0   0 19:23 ?        00:00:00 [xfs-conv/sda1]
+root       636     2   636  0    1     0     0   0 19:23 ?        00:00:00 [xfs-cil/sda1]
+root       638     2   638  0    1     0     0   0 19:23 ?        00:00:00 [xfs-reclaim/sda]
+root       640     2   640  0    1     0     0   0 19:23 ?        00:00:00 [xfs-log/sda1]
+root       641     2   641  0    1     0     0   0 19:23 ?        00:00:00 [xfs-eofblocks/s]
+root       644     2   644  0    1     0     0   0 19:23 ?        00:00:00 [xfsaild/sda1]
+root       655     2   655  0    1     0     0   0 19:23 ?        00:00:00 [raid5wq]
+root       656     2   656  0    1     0     0   0 19:23 ?        00:00:00 [bioset]
+root       658     2   658  0    1     0     0   0 19:23 ?        00:00:00 [md5_raid5]
+root       672     2   672  0    1     0     0   0 19:23 ?        00:00:00 [kdmflush]
+root       673     2   673  0    1     0     0   0 19:23 ?        00:00:00 [bioset]
+root       675     2   675  0    1     0     0   0 19:23 ?        00:00:00 [kdmflush]
+root       676     2   676  0    1     0     0   0 19:23 ?        00:00:00 [bioset]
+root       677     2   677  0    1     0     0   0 19:23 ?        00:00:00 [kdmflush]
+root       678     2   678  0    1     0     0   0 19:23 ?        00:00:00 [bioset]
+root       679     2   679  0    1     0     0   0 19:23 ?        00:00:00 [kdmflush]
+root       680     2   680  0    1     0     0   0 19:23 ?        00:00:00 [bioset]
+root       681     2   681  0    1     0     0   0 19:23 ?        00:00:00 [kdmflush]
+root       682     2   682  0    1     0     0   0 19:23 ?        00:00:00 [bioset]
+root       683     2   683  0    1     0     0   0 19:23 ?        00:00:00 [jbd2/sdb7-8]
+root       685     2   685  0    1     0     0   0 19:23 ?        00:00:00 [jbd2/sdb5-8]
+root       686     2   686  0    1     0     0   0 19:23 ?        00:00:00 [jbd2/sdb6-8]
+root       690     2   690  0    1     0     0   0 19:23 ?        00:00:00 [ext4-rsv-conver]
+root       691     2   691  0    1     0     0   0 19:23 ?        00:00:00 [ext4-rsv-conver]
+root       693     2   693  0    1     0     0   0 19:23 ?        00:00:00 [ext4-rsv-conver]
+root       714     2   714  0    1     0     0   0 19:23 ?        00:00:00 [jbd2/md1-8]
+root       717     2   717  0    1     0     0   0 19:23 ?        00:00:00 [ext4-rsv-conver]
+root       722     2   722  0    1     0     0   0 19:23 ?        00:00:00 [jbd2/md0-8]
+root       724     2   724  0    1     0     0   0 19:23 ?        00:00:00 [ext4-rsv-conver]
+root       745     2   745  0    1     0     0   0 19:23 ?        00:00:00 [jbd2/dm-5-8]
+root       746     2   746  0    1     0     0   0 19:23 ?        00:00:00 [ext4-rsv-conver]
+root       747     2   747  0    1     0     0   0 19:23 ?        00:00:00 [jbd2/md5-8]
+root       748     2   748  0    1     0     0   0 19:23 ?        00:00:00 [ext4-rsv-conver]
+root       750     2   750  0    1     0     0   0 19:23 ?        00:00:00 [jbd2/dm-2-8]
+root       751     2   751  0    1     0     0   0 19:23 ?        00:00:00 [jbd2/dm-6-8]
+root       753     2   753  0    1     0     0   0 19:23 ?        00:00:00 [ext4-rsv-conver]
+root       754     2   754  0    1     0     0   0 19:23 ?        00:00:00 [ext4-rsv-conver]
+root       790     1   790  0    2 13863   888   0 19:23 ?        00:00:00 /sbin/auditd
+root       790     1   791  0    2 13863   888   0 19:23 ?        00:00:00 /sbin/auditd
+dbus       814     1   814  0    2  8716  2060   0 19:23 ?        00:00:00 /bin/dbus-daemon --syste
+dbus       814     1   816  0    2  8716  2060   0 19:23 ?        00:00:00 /bin/dbus-daemon --syste
+root       818     1   818  0    1  6070  1736   0 19:23 ?        00:00:00 /usr/lib/systemd/systemd
+root       819     1   819  0    1  1618   648   0 19:23 ?        00:00:00 /sbin/rngd -f
+root       820     1   820  0    1  6096  2368   0 19:23 ?        00:00:00 /usr/sbin/smartd -n -q n
+root       821     1   821  0    1 54809  5484   0 19:23 ?        00:00:00 /usr/sbin/abrtd -d -s
+libstor+   824     1   824  0    1  2133   796   0 19:23 ?        00:00:00 /usr/bin/lsmd -d
+root       828     1   828  0    3 52570  5884   0 19:23 ?        00:00:00 /usr/sbin/rsyslogd -n
+root       828     1   843  0    3 52570  5884   0 19:23 ?        00:00:00 /usr/sbin/rsyslogd -n
+root       828     1   845  0    3 52570  5884   0 19:23 ?        00:00:00 /usr/sbin/rsyslogd -n
+polkitd    829     1   829  0    6 134244 14880  0 19:23 ?        00:00:00 /usr/lib/polkit-1/polkit
+polkitd    829     1   849  0    6 134244 14880  0 19:23 ?        00:00:00 /usr/lib/polkit-1/polkit
+polkitd    829     1   850  0    6 134244 14880  0 19:23 ?        00:00:00 /usr/lib/polkit-1/polkit
+polkitd    829     1   851  0    6 134244 14880  0 19:23 ?        00:00:00 /usr/lib/polkit-1/polkit
+polkitd    829     1   852  0    6 134244 14880  0 19:23 ?        00:00:00 /usr/lib/polkit-1/polkit
+polkitd    829     1   853  0    6 134244 14880  0 19:23 ?        00:00:00 /usr/lib/polkit-1/polkit
+root       831     1   831  0    1 54227  4696   0 19:23 ?        00:00:00 /usr/bin/abrt-watch-log
+root       838     1   838  0    1  6464   916   0 19:23 ?        00:00:00 /usr/sbin/atd -f
+root       840     1   840  0    1 31558  1656   0 19:23 ?        00:00:00 /usr/sbin/crond -n
+root       848     1   848  0    1 30791  3832   0 19:23 ?        00:00:00 login -- root
+root       857     1   857  0    2 83503 28692   0 19:23 ?        00:00:00 /usr/bin/python -Es /usr
+root       857     1   984  0    2 83503 28692   0 19:23 ?        00:00:00 /usr/bin/python -Es /usr
+root       865     1   865  0    3 117952 8828   0 19:23 ?        00:00:00 /usr/sbin/NetworkManager
+root       865     1   874  0    3 117952 8828   0 19:23 ?        00:00:00 /usr/sbin/NetworkManager
+root       865     1   876  0    3 117952 8828   0 19:23 ?        00:00:00 /usr/sbin/NetworkManager
+root      1166     1  1166  0    5 140603 16576  0 19:23 ?        00:00:00 /usr/bin/python -Es /usr
+root      1166     1  1210  0    5 140603 16576  0 19:23 ?        00:00:00 /usr/bin/python -Es /usr
+root      1166     1  1211  0    5 140603 16576  0 19:23 ?        00:00:00 /usr/bin/python -Es /usr
+root      1166     1  1212  0    5 140603 16576  0 19:23 ?        00:00:00 /usr/bin/python -Es /usr
+root      1166     1  1215  0    5 140603 16576  0 19:23 ?        00:00:00 /usr/bin/python -Es /usr
+root      1167     1  1167  0    1 26499  4072   0 19:23 ?        00:00:00 /usr/sbin/sshd -D
+root      1268     1  1268  0    1 22907  2124   0 19:23 ?        00:00:00 /usr/libexec/postfix/mas
+postfix   1269  1268  1269  0    1 22933  4004   0 19:23 ?        00:00:00 pickup -l -t unix -u
+postfix   1270  1268  1270  0    1 22950  4028   0 19:23 ?        00:00:00 qmgr -l -t unix -u
+root      1281   848  1281  0    1 29013  2672   0 19:24 tty1     00:00:00 -bash
+root      1326  1167  1326  0    1 36946  5352   0 19:26 ?        00:00:00 sshd: root@pts/0
+root      1330  1326  1330  0    1 29014  2688   0 19:26 pts/0    00:00:00 -bash
+root      1372     2  1372  0    1     0     0   0 19:29 ?        00:00:00 [kworker/0:0]
+root      1373  1330  1373  0    1 37205  4520   0 19:29 pts/0    00:00:00 vim hello
+root      1381  1167  1381  0    1 36946  5280   0 19:31 ?        00:00:00 sshd: ranga [priv]
+ranga     1385  1381  1385  0    1 36946  2300   0 19:31 ?        00:00:00 sshd: ranga@pts/1
+ranga     1386  1385  1386  0    1 28981  2588   0 19:31 pts/1    00:00:00 -bash
+root      1432     2  1432  0    1     0     0   0 19:34 ?        00:00:00 [kworker/0:1]
+root      1439     2  1439  0    1     0     0   0 19:39 ?        00:00:00 [kworker/0:2]
+root      1440  1330  1440  0    1 37766  1808   0 19:39 pts/0    00:00:00 ps -eLF
+
+
+[root@linuxserver1.itbs.com ~]# ps -eo pid,ppid,%cpu,comm --------------- it is used to see specific information
+
+  PID  PPID %CPU COMMAND
+    1     0  0.1 systemd
+    2     0  0.0 kthreadd
+    3     2  0.0 ksoftirqd/0
+    5     2  0.0 kworker/0:0H
+    6     2  0.0 kworker/u2:0
+    7     2  0.0 migration/0
+    8     2  0.0 rcu_bh
+    9     2  0.0 rcu_sched
+   10     2  0.0 watchdog/0
+   12     2  0.0 kdevtmpfs
+   13     2  0.0 netns
+   14     2  0.0 khungtaskd
+
+TOP COMMAND: TAKE THE SCREEN SHOOT OF CURRENT RUNNING PROCESS.
+
+top - 19:54:59 up 31 min,  3 users,  load average: 0.00, 0.01, 0.05
+Tasks: 127 total,   2 running, 124 sleeping,   1 stopped,   0 zombie
+%Cpu(s):  0.3 us,  0.0 sy,  0.0 ni, 99.7 id,  0.0 wa,  0.0 hi,  0.0 si,  0.0 st
+KiB Mem :  1016232 total,   758928 free,   113404 used,   143900 buff/cache
+KiB Swap:  1765368 total,  1765368 free,        0 used.   743488 avail Mem
+
+  PID USER      PR  NI    VIRT    RES    SHR S %CPU %MEM     TIME+ COMMAND
+ 1491 root      20   0  157704   2148   1496 R  0.7  0.2   0:00.02 top
+    1 root      20   0  128164   6816   4048 S  0.0  0.7   0:01.57 systemd
+    2 root      20   0       0      0      0 S  0.0  0.0   0:00.00 kthreadd
+    3 root      20   0       0      0      0 S  0.0  0.0   0:00.06 ksoftirqd/0
+    5 root       0 -20       0      0      0 S  0.0  0.0   0:00.00 kworker/0:0H
+    6 root      20   0       0      0      0 S  0.0  0.0   0:00.03 kworker/u2:0
+    7 root      rt   0       0      0      0 S  0.0  0.0   0:00.00 migration/0
+    8 root      20   0       0      0      0 S  0.0  0.0   0:00.00 rcu_bh
+    9 root      20   0       0      0      0 S  0.0  0.0   0:00.51 rcu_sched
+   10 root      rt   0       0      0      0 S  0.0  0.0   0:00.01 watchdog/0
+   12 root      20   0       0      0      0 S  0.0  0.0   0:00.00 kdevtmpfs
+   13 root       0 -20       0      0      0 S  0.0  0.0   0:00.00 netns
+   14 root      20   0       0      0      0 S  0.0  0.0   0:00.00 khungtaskd
+   15 root       0 -20       0      0      0 S  0.0  0.0   0:00.00 writeback
+   16 root       0 -20       0      0      0 S  0.0  0.0   0:00.00 kintegrityd
+
+
+
+
+#top -b1 => To list you processes in batch.
+
+[root@linuxserver1.itbs.com ~]# pidof vim --- IT IS USED TO SHOW THE SPECIFIC process PID NO.
+1373
+
+[root@linuxserver1.itbs.com ~]# pgrep vim   ---- IT IS ALSO USED TO SHOW THE SPECIFIC PID NO
+1373
+
+[root@linuxserver1.itbs.com ~]# pidof vim
+1373
+
+
+[root@linuxserver1.itbs.com ~]# ps aux  |grep 1373
+root      1373  0.0  0.4 148820  4520 pts/0    T    19:29   0:00 vim hello
+root      1524  0.0  0.0 112660   972 pts/0    S+   19:59   0:00 grep --color=auto 1373
+
+
+
+
+[root@linuxserver1.itbs.com ~]# kill 1373 -------- BY USING THIS THE PROCESS IS NOT PERMANENETLY KILLED.
+
+[root@linuxserver1.itbs.com ~]# ps aux  |grep 1373
+root      1373  0.0  0.4 148820  4520 pts/0    T    19:29   0:00 vim hello
+root      1532  0.0  0.0 112660   972 pts/0    R+   20:00   0:00 grep --color=auto 1373
+[root@linuxserver1.itbs.com ~]# kill -9 1373
+[root@linuxserver1.itbs.com ~]# ps aux  |grep 1373
+root      1534  0.0  0.0 112660   972 pts/0    S+   20:00   0:00 grep --color=auto 1373
+[1]+  Killed                  vim hello
+
+[root@linuxserver1.itbs.com ~]# kill -l  ---  IT IS USED TO SEND S SIGNSLS TO THE SPECIFIC PROCESS
+
+ 1) SIGHUP       2) SIGINT       3) SIGQUIT      4) SIGILL      5) SIGTRAP
+ 6) SIGABRT      7) SIGBUS       8) SIGFPE       9) SIGKILL     10) SIGUSR1
+11) SIGSEGV     12) SIGUSR2     13) SIGPIPE     14) SIGALRM     15) SIGTERM
+16) SIGSTKFLT   17) SIGCHLD     18) SIGCONT     19) SIGSTOP     20) SIGTSTP
+21) SIGTTIN     22) SIGTTOU     23) SIGURG      24) SIGXCPU     25) SIGXFSZ
+26) SIGVTALRM   27) SIGPROF     28) SIGWINCH    29) SIGIO       30) SIGPWR
+31) SIGSYS      34) SIGRTMIN    35) SIGRTMIN+1  36) SIGRTMIN+2  37) SIGRTMIN+3
+38) SIGRTMIN+4  39) SIGRTMIN+5  40) SIGRTMIN+6  41) SIGRTMIN+7  42) SIGRTMIN+8
+43) SIGRTMIN+9  44) SIGRTMIN+10 45) SIGRTMIN+11 46) SIGRTMIN+12 47) SIGRTMIN+13
+48) SIGRTMIN+14 49) SIGRTMIN+15 50) SIGRTMAX-14 51) SIGRTMAX-13 52) SIGRTMAX-12
+53) SIGRTMAX-11 54) SIGRTMAX-10 55) SIGRTMAX-9  56) SIGRTMAX-8  57) SIGRTMAX-7
+58) SIGRTMAX-6  59) SIGRTMAX-5  60) SIGRTMAX-4  61) SIGRTMAX-3  62) SIGRTMAX-2
+63) SIGRTMAX-1  64) SIGRTMAX
+[root@linuxserver1.itbs.com ~]#
+
+[root@linuxserver1.itbs.com ~]# kill -19 1560 => For stopping process
+
+iam ranga
+iam ranga
+iam ranga
+iam ranga
+[1]+  Stopped                 yes iam ranga
+
+[root@linuxserver1.itbs.com ~]# kill -18 1560 => To continue the process
+
+
+$jobs => It will show you all background running and stopped process.
+
+$fg %1 => To run the process in the foreground
+$bg %1 => To run the process in the background 
+	
+
+[ranga@linuxserver1.itbs.com ~]$ yes iam ranga > /dev/null &
+[1] 1565
+[ranga@linuxserver1.itbs.com ~]$ jobs
+[1]+  Running                 yes iam ranga > /dev/null &
+[ranga@linuxserver1.itbs.com ~]$ vim hello
+
+[2]+  Stopped                 vim hello
+[ranga@linuxserver1.itbs.com ~]$ jobs
+[1]-  Running                 yes iam ranga > /dev/null &
+[2]+  Stopped                 vim hello
+
+[ranga@linuxserver1.itbs.com ~]$ fg %1
+yes iam ranga > /dev/null
+^C
+[ranga@linuxserver1.itbs.com ~]$ jobs
+[2]+  Stopped                 vim hello
+[ranga@linuxserver1.itbs.com ~]$ bg %2
+[2]+ vim hello &
+[ranga@linuxserver1.itbs.com ~]$
+
+
+Job Scheduling :
+
+[root@linuxserver1.itbs.com ~]# at 20:30
+at> yes happy independece day > /dev/null &
+at> <EOT>
+job 1 at Tue Aug 13 20:30:00 2019
+
+[root@linuxserver1.itbs.com ~]# atq      => To see the queue
+1       Tue Aug 13 20:30:00 2019 a root
+
+
+[root@linuxserver1.itbs.com ~]# at now + 2 minutes
+at> yes hello > /dev/null &
+at> <EOT>
+job 2 at Tue Aug 13 20:37:00 2019 
+
+[root@linuxserver1.itbs.com ~]# atq --- this is the commnad to see the what are the process are in quee.
+2       Tue Aug 13 20:37:00 2019 a root
+
+[root@linuxserver1.itbs.com ~]# date
+Tue Aug 13 20:35:43 IST 2019
+
+[root@linuxserver1.itbs.com ~]# atrm 2  => To remove the Jobs
+[root@linuxserver1.itbs.com ~]# atq
+
+
+Crontab : 
+
+crontab -e => To schedule
+crontab -l => To list
+crontab -r => To remove
+
+crontab -u <user> -e => Schedule cronjobs for user
+crontab -u <user> -l => List user's cron jobs
+crontab -u <user> -r => Remove user's cron jobs
+
+To deny the user : Add user into below file
+/etc/cron.deny
+
+To allow the user to edit cron : Add user into below file
+
+/etc/cron.allow
+
+[root@linuxserver1.itbs.com ~]# crontab -e
+no crontab for root - using an empty one
+crontab: installing new crontab
+[root@linuxserver1.itbs.com ~]# date
+Tue Aug 13 21:01:03 IST 2019
+[root@linuxserver1.itbs.com ~]# crontab -e
+crontab: installing new crontab
+[root@linuxserver1.itbs.com ~]# cront -l
+-bash: cront: command not found
+
+[root@linuxserver1.itbs.com ~]# crontab -l
+#* * * * * <cmd/script/program>
+# Min Hour Date Mon Week <cmd/script/program>
+# (0-59) (0-23) (1-31) (1-12) (0-7) <cmd>
+
+# * => Every
+# */2 => every two counts
+# */5 => every five counts
+
+#00 1 * * 7 script.sh   => Sun 1AM scheduled
+
+#00 00 * 2,5 7 backup.sh => Scheduled at Every Sunday Midnight in the month of Feb and May.
+
+03 21 * * * yes Welcome to CronWorld > /dev/null &
+
+[root@linuxserver1.itbs.com ~]# date
+Tue Aug 13 21:02:06 IST 2019
+[root@linuxserver1.itbs.com ~]# kill -9 1754
+
+
+===============================================
+timedatectl set-timezone America/Chicago
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+

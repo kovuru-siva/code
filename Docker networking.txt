@@ -1,0 +1,3789 @@
+https://certbot.eff.org/lets-encrypt/windows-apache
+https://letsencrypt.org/docs/certificates-for-localhost/
+https://ssl-config.mozilla.org/#server=apache&version=2.4.41&config=intermediate&openssl=1.1.1d&guideline=5.6
+https://wiki.mozilla.org/Security/Server_Side_TLS
+https://raymii.org/s/tutorials/Strong_SSL_Security_On_Apache2.html
+https://www.linuxtrainingacademy.com/install-ssl-certificate-centos-rhel-apache/
+
+
+
+(4/5): fipscheck-1.4.1-6.el7.x86_64.rpm                    |  21 kB   00:04
+(5/5): openssh-7.4p1-21.el7.x86_64.rpm                     | 510 kB   00:06
+--------------------------------------------------------------------------------
+Total                                              170 kB/s | 1.0 MB  00:06
+Running transaction check
+Running transaction test
+Transaction test succeeded
+Running transaction
+  Installing : fipscheck-1.4.1-6.el7.x86_64                                 1/5
+  Installing : fipscheck-lib-1.4.1-6.el7.x86_64                             2/5
+  Installing : openssh-7.4p1-21.el7.x86_64                                  3/5
+  Installing : tcp_wrappers-libs-7.6-77.el7.x86_64                          4/5
+  Installing : openssh-server-7.4p1-21.el7.x86_64                           5/5
+  Verifying  : fipscheck-lib-1.4.1-6.el7.x86_64                             1/5
+  Verifying  : tcp_wrappers-libs-7.6-77.el7.x86_64                          2/5
+  Verifying  : fipscheck-1.4.1-6.el7.x86_64                                 3/5
+  Verifying  : openssh-7.4p1-21.el7.x86_64                                  4/5
+  Verifying  : openssh-server-7.4p1-21.el7.x86_64                           5/5
+
+Installed:
+  openssh-server.x86_64 0:7.4p1-21.el7
+
+Dependency Installed:
+  fipscheck.x86_64 0:1.4.1-6.el7      fipscheck-lib.x86_64 0:1.4.1-6.el7
+  openssh.x86_64 0:7.4p1-21.el7       tcp_wrappers-libs.x86_64 0:7.6-77.el7
+
+Complete!
+[root@765fb45244ef /]# ssh root@c1
+bash: ssh: command not found
+[root@765fb45244ef /]# ssh-keygen
+Generating public/private rsa key pair.
+Enter file in which to save the key (/root/.ssh/id_rsa):
+Created directory '/root/.ssh'.
+Enter passphrase (empty for no passphrase):
+Enter same passphrase again:
+Your identification has been saved in /root/.ssh/id_rsa.
+Your public key has been saved in /root/.ssh/id_rsa.pub.
+The key fingerprint is:
+SHA256:bdMy2h/kWqvyjR0eiXrbn5574hhfenvu6RwclIYBy7s root@765fb45244ef
+The key's randomart image is:
++---[RSA 2048]----+
+|           ...   |
+|          . . o .|
+|           o . + |
+|         . .. o  |
+|        S *.o  . |
+|         + B... .|
+|        . oEO  o.|
+|        ...X Oo=*|
+|        .+*oO+@%=|
++----[SHA256]-----+
+[root@765fb45244ef /]# ssh root@c2
+bash: ssh: command not found
+[root@765fb45244ef /]# ssh root@172.19.0.2
+bash: ssh: command not found
+[root@765fb45244ef /]# yum install which
+Loaded plugins: fastestmirror, ovl
+Loading mirror speeds from cached hostfile
+ * base: mirror.xeonbd.com
+ * epel: download.nus.edu.sg
+ * extras: mirrors.inet.vn
+ * updates: mirrors.cloudfly.vn
+Resolving Dependencies
+--> Running transaction check
+---> Package which.x86_64 0:2.20-7.el7 will be installed
+--> Finished Dependency Resolution
+
+Dependencies Resolved
+
+================================================================================
+ Package          Arch              Version               Repository       Size
+================================================================================
+Installing:
+ which            x86_64            2.20-7.el7            base             41 k
+
+Transaction Summary
+================================================================================
+Install  1 Package
+
+Total download size: 41 k
+Installed size: 75 k
+Is this ok [y/d/N]: y
+Downloading packages:
+which-2.20-7.el7.x86_64.rpm                                |  41 kB   00:00
+Running transaction check
+Running transaction test
+Transaction test succeeded
+Running transaction
+  Installing : which-2.20-7.el7.x86_64                                      1/1
+install-info: No such file or directory for /usr/share/info/which.info.gz
+  Verifying  : which-2.20-7.el7.x86_64                                      1/1
+
+Installed:
+  which.x86_64 0:2.20-7.el7
+
+Complete!
+[root@765fb45244ef /]# whcih ssh
+bash: whcih: command not found
+[root@765fb45244ef /]# which ssh
+which: no ssh in (/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin)
+[root@765fb45244ef /]#
+[root@765fb45244ef /]# read escape sequence
+[root@192 ~]#
+[root@192 ~]# docker ps
+CONTAINER ID   IMAGE      COMMAND       CREATED          STATUS          PORTS     NAMES
+765fb45244ef   centos:7   "/bin/bash"   7 minutes ago    Up 7 minutes              c2
+3150772a8b02   centos:7   "/bin/bash"   11 minutes ago   Up 11 minutes             c1
+e352556f127a   centos:7   "/bin/bash"   22 minutes ago   Up 22 minutes             festive_carver
+[root@192 ~]# docker rm -f $(docker ps -a -q)
+765fb45244ef
+3150772a8b02
+e352556f127a
+0ee29f7d10c8
+5af8018223bd
+1cbec8cdf3d9
+777b5d5aa27f
+778cfd232fbe
+2b492207f6db
+[root@192 ~]#
+[root@192 ~]# docker run -it --name web centos:7
+[root@f6b83b730e02 /]# yum install net-tools -y
+Loaded plugins: fastestmirror, ovl
+Determining fastest mirrors
+ * base: centos.mirrors.estointernet.in
+ * extras: mirrors.inet.vn
+ * updates: centos.mirrors.estointernet.in
+base                                                     | 3.6 kB     00:00
+extras                                                   | 2.9 kB     00:00
+updates                                                  | 2.9 kB     00:00
+(1/4): base/7/x86_64/group_gz                              | 153 kB   00:00
+(2/4): extras/7/x86_64/primary_db                          | 242 kB   00:01
+(3/4): base/7/x86_64/primary_db                            | 6.1 MB   00:01
+(4/4): updates/7/x86_64/primary_db                         | 9.5 MB   00:03
+Resolving Dependencies
+--> Running transaction check
+---> Package net-tools.x86_64 0:2.0-0.25.20131004git.el7 will be installed
+--> Finished Dependency Resolution
+
+Dependencies Resolved
+
+================================================================================
+ Package         Arch         Version                          Repository  Size
+================================================================================
+Installing:
+ net-tools       x86_64       2.0-0.25.20131004git.el7         base       306 k
+
+Transaction Summary
+================================================================================
+Install  1 Package
+
+Total download size: 306 k
+Installed size: 917 k
+Downloading packages:
+warning: /var/cache/yum/x86_64/7/base/packages/net-tools-2.0-0.25.20131004git.el7.x86_64.rpm: Header V3 RSA/SHA256 Signature, key ID f4a80eb5: NOKEY
+Public key for net-tools-2.0-0.25.20131004git.el7.x86_64.rpm is not installed
+net-tools-2.0-0.25.20131004git.el7.x86_64.rpm              | 306 kB   00:01
+Retrieving key from file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-7
+Importing GPG key 0xF4A80EB5:
+ Userid     : "CentOS-7 Key (CentOS 7 Official Signing Key) <security@centos.org>"
+ Fingerprint: 6341 ab27 53d7 8a78 a7c2 7bb1 24c6 a8a7 f4a8 0eb5
+ Package    : centos-release-7-9.2009.0.el7.centos.x86_64 (@CentOS)
+ From       : /etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-7
+Running transaction check
+Running transaction test
+Transaction test succeeded
+Running transaction
+  Installing : net-tools-2.0-0.25.20131004git.el7.x86_64                    1/1
+  Verifying  : net-tools-2.0-0.25.20131004git.el7.x86_64                    1/1
+
+Installed:
+  net-tools.x86_64 0:2.0-0.25.20131004git.el7
+
+Complete!
+[root@f6b83b730e02 /]#
+[root@f6b83b730e02 /]# ifconfig
+eth0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 172.17.0.2  netmask 255.255.0.0  broadcast 172.17.255.255
+        ether 02:42:ac:11:00:02  txqueuelen 0  (Ethernet)
+        RX packets 2966  bytes 17293034 (16.4 MiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 1675  bytes 115526 (112.8 KiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
+        inet 127.0.0.1  netmask 255.0.0.0
+        loop  txqueuelen 1000  (Local Loopback)
+        RX packets 0  bytes 0 (0.0 B)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 0  bytes 0 (0.0 B)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+[root@f6b83b730e02 /]#
+[root@f6b83b730e02 /]# yum install httpd -y
+Loaded plugins: fastestmirror, ovl
+Loading mirror speeds from cached hostfile
+ * base: centos.mirrors.estointernet.in
+ * extras: mirrors.inet.vn
+ * updates: centos.mirrors.estointernet.in
+Resolving Dependencies
+--> Running transaction check
+---> Package httpd.x86_64 0:2.4.6-97.el7.centos will be installed
+--> Processing Dependency: httpd-tools = 2.4.6-97.el7.centos for package: httpd-2.4.6-97.el7.centos.x86_64
+--> Processing Dependency: system-logos >= 7.92.1-1 for package: httpd-2.4.6-97.el7.centos.x86_64
+--> Processing Dependency: /etc/mime.types for package: httpd-2.4.6-97.el7.centos.x86_64
+--> Processing Dependency: libaprutil-1.so.0()(64bit) for package: httpd-2.4.6-97.el7.centos.x86_64
+--> Processing Dependency: libapr-1.so.0()(64bit) for package: httpd-2.4.6-97.el7.centos.x86_64
+--> Running transaction check
+---> Package apr.x86_64 0:1.4.8-7.el7 will be installed
+---> Package apr-util.x86_64 0:1.5.2-6.el7 will be installed
+---> Package centos-logos.noarch 0:70.0.6-3.el7.centos will be installed
+---> Package httpd-tools.x86_64 0:2.4.6-97.el7.centos will be installed
+---> Package mailcap.noarch 0:2.1.41-2.el7 will be installed
+--> Finished Dependency Resolution
+
+Dependencies Resolved
+
+================================================================================
+ Package            Arch         Version                    Repository     Size
+================================================================================
+Installing:
+ httpd              x86_64       2.4.6-97.el7.centos        updates       2.7 M
+Installing for dependencies:
+ apr                x86_64       1.4.8-7.el7                base          104 k
+ apr-util           x86_64       1.5.2-6.el7                base           92 k
+ centos-logos       noarch       70.0.6-3.el7.centos        base           21 M
+ httpd-tools        x86_64       2.4.6-97.el7.centos        updates        93 k
+ mailcap            noarch       2.1.41-2.el7               base           31 k
+
+Transaction Summary
+================================================================================
+Install  1 Package (+5 Dependent packages)
+
+Total download size: 24 M
+Installed size: 32 M
+Downloading packages:
+(1/6): apr-util-1.5.2-6.el7.x86_64.rpm                     |  92 kB   00:00
+(2/6): apr-1.4.8-7.el7.x86_64.rpm                          | 104 kB   00:01
+(3/6): mailcap-2.1.41-2.el7.noarch.rpm                     |  31 kB   00:00
+(4/6): httpd-tools-2.4.6-97.el7.centos.x86_64.rpm          |  93 kB   00:01
+(5/6): httpd-2.4.6-97.el7.centos.x86_64.rpm                | 2.7 MB   00:09
+(6/6): centos-logos-70.0.6-3.el7.centos.noarch.rpm         |  21 MB   00:17
+--------------------------------------------------------------------------------
+Total                                              1.4 MB/s |  24 MB  00:17
+Running transaction check
+Running transaction test
+Transaction test succeeded
+Running transaction
+  Installing : apr-1.4.8-7.el7.x86_64                                       1/6
+  Installing : apr-util-1.5.2-6.el7.x86_64                                  2/6
+  Installing : httpd-tools-2.4.6-97.el7.centos.x86_64                       3/6
+  Installing : centos-logos-70.0.6-3.el7.centos.noarch                      4/6
+  Installing : mailcap-2.1.41-2.el7.noarch                                  5/6
+  Installing : httpd-2.4.6-97.el7.centos.x86_64                             6/6
+  Verifying  : mailcap-2.1.41-2.el7.noarch                                  1/6
+  Verifying  : apr-1.4.8-7.el7.x86_64                                       2/6
+  Verifying  : apr-util-1.5.2-6.el7.x86_64                                  3/6
+  Verifying  : httpd-2.4.6-97.el7.centos.x86_64                             4/6
+  Verifying  : httpd-tools-2.4.6-97.el7.centos.x86_64                       5/6
+  Verifying  : centos-logos-70.0.6-3.el7.centos.noarch                      6/6
+
+Installed:
+  httpd.x86_64 0:2.4.6-97.el7.centos
+
+Dependency Installed:
+  apr.x86_64 0:1.4.8-7.el7
+  apr-util.x86_64 0:1.5.2-6.el7
+  centos-logos.noarch 0:70.0.6-3.el7.centos
+  httpd-tools.x86_64 0:2.4.6-97.el7.centos
+  mailcap.noarch 0:2.1.41-2.el7
+
+Complete!
+[root@f6b83b730e02 /]#
+[root@f6b83b730e02 /]# yum install vim -y
+Loaded plugins: fastestmirror, ovl
+Loading mirror speeds from cached hostfile
+ * base: centos.mirrors.estointernet.in
+ * extras: mirrors.inet.vn
+ * updates: centos.mirrors.estointernet.in
+Resolving Dependencies
+--> Running transaction check
+---> Package vim-enhanced.x86_64 2:7.4.629-8.el7_9 will be installed
+--> Processing Dependency: vim-common = 2:7.4.629-8.el7_9 for package: 2:vim-enhanced-7.4.629-8.el7_9.x86_64
+--> Processing Dependency: which for package: 2:vim-enhanced-7.4.629-8.el7_9.x86_64
+--> Processing Dependency: perl(:MODULE_COMPAT_5.16.3) for package: 2:vim-enhanced-7.4.629-8.el7_9.x86_64
+--> Processing Dependency: libperl.so()(64bit) for package: 2:vim-enhanced-7.4.629-8.el7_9.x86_64
+--> Processing Dependency: libgpm.so.2()(64bit) for package: 2:vim-enhanced-7.4.629-8.el7_9.x86_64
+--> Running transaction check
+---> Package gpm-libs.x86_64 0:1.20.7-6.el7 will be installed
+---> Package perl.x86_64 4:5.16.3-299.el7_9 will be installed
+--> Processing Dependency: perl(Socket) >= 1.3 for package: 4:perl-5.16.3-299.el7_9.x86_64
+--> Processing Dependency: perl(Scalar::Util) >= 1.10 for package: 4:perl-5.16.3-299.el7_9.x86_64
+--> Processing Dependency: perl-macros for package: 4:perl-5.16.3-299.el7_9.x86_64
+--> Processing Dependency: perl(threads::shared) for package: 4:perl-5.16.3-299.el7_9.x86_64
+--> Processing Dependency: perl(threads) for package: 4:perl-5.16.3-299.el7_9.x86_64
+--> Processing Dependency: perl(constant) for package: 4:perl-5.16.3-299.el7_9.x86_64
+--> Processing Dependency: perl(Time::Local) for package: 4:perl-5.16.3-299.el7_9.x86_64
+--> Processing Dependency: perl(Time::HiRes) for package: 4:perl-5.16.3-299.el7_9.x86_64
+--> Processing Dependency: perl(Storable) for package: 4:perl-5.16.3-299.el7_9.x86_64
+--> Processing Dependency: perl(Socket) for package: 4:perl-5.16.3-299.el7_9.x86_64
+--> Processing Dependency: perl(Scalar::Util) for package: 4:perl-5.16.3-299.el7_9.x86_64
+--> Processing Dependency: perl(Pod::Simple::XHTML) for package: 4:perl-5.16.3-299.el7_9.x86_64
+--> Processing Dependency: perl(Pod::Simple::Search) for package: 4:perl-5.16.3-299.el7_9.x86_64
+--> Processing Dependency: perl(Getopt::Long) for package: 4:perl-5.16.3-299.el7_9.x86_64
+--> Processing Dependency: perl(Filter::Util::Call) for package: 4:perl-5.16.3-299.el7_9.x86_64
+--> Processing Dependency: perl(File::Temp) for package: 4:perl-5.16.3-299.el7_9.x86_64
+--> Processing Dependency: perl(File::Spec::Unix) for package: 4:perl-5.16.3-299.el7_9.x86_64
+--> Processing Dependency: perl(File::Spec::Functions) for package: 4:perl-5.16.3-299.el7_9.x86_64
+--> Processing Dependency: perl(File::Spec) for package: 4:perl-5.16.3-299.el7_9.x86_64
+--> Processing Dependency: perl(File::Path) for package: 4:perl-5.16.3-299.el7_9.x86_64
+--> Processing Dependency: perl(Exporter) for package: 4:perl-5.16.3-299.el7_9.x86_64
+--> Processing Dependency: perl(Cwd) for package: 4:perl-5.16.3-299.el7_9.x86_64
+--> Processing Dependency: perl(Carp) for package: 4:perl-5.16.3-299.el7_9.x86_64
+---> Package perl-libs.x86_64 4:5.16.3-299.el7_9 will be installed
+---> Package vim-common.x86_64 2:7.4.629-8.el7_9 will be installed
+--> Processing Dependency: vim-filesystem for package: 2:vim-common-7.4.629-8.el7_9.x86_64
+---> Package which.x86_64 0:2.20-7.el7 will be installed
+--> Running transaction check
+---> Package perl-Carp.noarch 0:1.26-244.el7 will be installed
+---> Package perl-Exporter.noarch 0:5.68-3.el7 will be installed
+---> Package perl-File-Path.noarch 0:2.09-2.el7 will be installed
+---> Package perl-File-Temp.noarch 0:0.23.01-3.el7 will be installed
+---> Package perl-Filter.x86_64 0:1.49-3.el7 will be installed
+---> Package perl-Getopt-Long.noarch 0:2.40-3.el7 will be installed
+--> Processing Dependency: perl(Pod::Usage) >= 1.14 for package: perl-Getopt-Long-2.40-3.el7.noarch
+--> Processing Dependency: perl(Text::ParseWords) for package: perl-Getopt-Long-2.40-3.el7.noarch
+---> Package perl-PathTools.x86_64 0:3.40-5.el7 will be installed
+---> Package perl-Pod-Simple.noarch 1:3.28-4.el7 will be installed
+--> Processing Dependency: perl(Pod::Escapes) >= 1.04 for package: 1:perl-Pod-Simple-3.28-4.el7.noarch
+--> Processing Dependency: perl(Encode) for package: 1:perl-Pod-Simple-3.28-4.el7.noarch
+---> Package perl-Scalar-List-Utils.x86_64 0:1.27-248.el7 will be installed
+---> Package perl-Socket.x86_64 0:2.010-5.el7 will be installed
+---> Package perl-Storable.x86_64 0:2.45-3.el7 will be installed
+---> Package perl-Time-HiRes.x86_64 4:1.9725-3.el7 will be installed
+---> Package perl-Time-Local.noarch 0:1.2300-2.el7 will be installed
+---> Package perl-constant.noarch 0:1.27-2.el7 will be installed
+---> Package perl-macros.x86_64 4:5.16.3-299.el7_9 will be installed
+---> Package perl-threads.x86_64 0:1.87-4.el7 will be installed
+---> Package perl-threads-shared.x86_64 0:1.43-6.el7 will be installed
+---> Package vim-filesystem.x86_64 2:7.4.629-8.el7_9 will be installed
+--> Running transaction check
+---> Package perl-Encode.x86_64 0:2.51-7.el7 will be installed
+---> Package perl-Pod-Escapes.noarch 1:1.04-299.el7_9 will be installed
+---> Package perl-Pod-Usage.noarch 0:1.63-3.el7 will be installed
+--> Processing Dependency: perl(Pod::Text) >= 3.15 for package: perl-Pod-Usage-1.63-3.el7.noarch
+--> Processing Dependency: perl-Pod-Perldoc for package: perl-Pod-Usage-1.63-3.el7.noarch
+---> Package perl-Text-ParseWords.noarch 0:3.29-4.el7 will be installed
+--> Running transaction check
+---> Package perl-Pod-Perldoc.noarch 0:3.20-4.el7 will be installed
+--> Processing Dependency: perl(parent) for package: perl-Pod-Perldoc-3.20-4.el7.noarch
+--> Processing Dependency: perl(HTTP::Tiny) for package: perl-Pod-Perldoc-3.20-4.el7.noarch
+--> Processing Dependency: groff-base for package: perl-Pod-Perldoc-3.20-4.el7.noarch
+---> Package perl-podlators.noarch 0:2.5.1-3.el7 will be installed
+--> Running transaction check
+---> Package groff-base.x86_64 0:1.22.2-8.el7 will be installed
+---> Package perl-HTTP-Tiny.noarch 0:0.033-3.el7 will be installed
+---> Package perl-parent.noarch 1:0.225-244.el7 will be installed
+--> Finished Dependency Resolution
+
+Dependencies Resolved
+
+================================================================================
+ Package                    Arch       Version                Repository   Size
+================================================================================
+Installing:
+ vim-enhanced               x86_64     2:7.4.629-8.el7_9      updates     1.1 M
+Installing for dependencies:
+ gpm-libs                   x86_64     1.20.7-6.el7           base         32 k
+ groff-base                 x86_64     1.22.2-8.el7           base        942 k
+ perl                       x86_64     4:5.16.3-299.el7_9     updates     8.0 M
+ perl-Carp                  noarch     1.26-244.el7           base         19 k
+ perl-Encode                x86_64     2.51-7.el7             base        1.5 M
+ perl-Exporter              noarch     5.68-3.el7             base         28 k
+ perl-File-Path             noarch     2.09-2.el7             base         26 k
+ perl-File-Temp             noarch     0.23.01-3.el7          base         56 k
+ perl-Filter                x86_64     1.49-3.el7             base         76 k
+ perl-Getopt-Long           noarch     2.40-3.el7             base         56 k
+ perl-HTTP-Tiny             noarch     0.033-3.el7            base         38 k
+ perl-PathTools             x86_64     3.40-5.el7             base         82 k
+ perl-Pod-Escapes           noarch     1:1.04-299.el7_9       updates      52 k
+ perl-Pod-Perldoc           noarch     3.20-4.el7             base         87 k
+ perl-Pod-Simple            noarch     1:3.28-4.el7           base        216 k
+ perl-Pod-Usage             noarch     1.63-3.el7             base         27 k
+ perl-Scalar-List-Utils     x86_64     1.27-248.el7           base         36 k
+ perl-Socket                x86_64     2.010-5.el7            base         49 k
+ perl-Storable              x86_64     2.45-3.el7             base         77 k
+ perl-Text-ParseWords       noarch     3.29-4.el7             base         14 k
+ perl-Time-HiRes            x86_64     4:1.9725-3.el7         base         45 k
+ perl-Time-Local            noarch     1.2300-2.el7           base         24 k
+ perl-constant              noarch     1.27-2.el7             base         19 k
+ perl-libs                  x86_64     4:5.16.3-299.el7_9     updates     690 k
+ perl-macros                x86_64     4:5.16.3-299.el7_9     updates      44 k
+ perl-parent                noarch     1:0.225-244.el7        base         12 k
+ perl-podlators             noarch     2.5.1-3.el7            base        112 k
+ perl-threads               x86_64     1.87-4.el7             base         49 k
+ perl-threads-shared        x86_64     1.43-6.el7             base         39 k
+ vim-common                 x86_64     2:7.4.629-8.el7_9      updates     5.9 M
+ vim-filesystem             x86_64     2:7.4.629-8.el7_9      updates      11 k
+ which                      x86_64     2.20-7.el7             base         41 k
+
+Transaction Summary
+================================================================================
+Install  1 Package (+32 Dependent packages)
+
+Total download size: 19 M
+Installed size: 63 M
+Downloading packages:
+(1/33): perl-Carp-1.26-244.el7.noarch.rpm                  |  19 kB   00:01
+(2/33): gpm-libs-1.20.7-6.el7.x86_64.rpm                   |  32 kB   00:01
+(3/33): perl-Exporter-5.68-3.el7.noarch.rpm                |  28 kB   00:00
+(4/33): perl-File-Path-2.09-2.el7.noarch.rpm               |  26 kB   00:00
+(5/33): perl-File-Temp-0.23.01-3.el7.noarch.rpm            |  56 kB   00:01
+(6/33): perl-Filter-1.49-3.el7.x86_64.rpm                  |  76 kB   00:00
+(7/33): perl-Getopt-Long-2.40-3.el7.noarch.rpm             |  56 kB   00:00
+(8/33): perl-HTTP-Tiny-0.033-3.el7.noarch.rpm              |  38 kB   00:00
+(9/33): perl-PathTools-3.40-5.el7.x86_64.rpm               |  82 kB   00:00
+(10/33): perl-Pod-Escapes-1.04-299.el7_9.noarch.rpm        |  52 kB   00:00
+(11/33): perl-Pod-Perldoc-3.20-4.el7.noarch.rpm            |  87 kB   00:00
+(12/33): perl-Pod-Simple-3.28-4.el7.noarch.rpm             | 216 kB   00:00
+(13/33): perl-Scalar-List-Utils-1.27-248.el7.x86_64.rpm    |  36 kB   00:00
+(14/33): perl-Pod-Usage-1.63-3.el7.noarch.rpm              |  27 kB   00:00
+(15/33): groff-base-1.22.2-8.el7.x86_64.rpm                | 942 kB   00:05
+(16/33): perl-Socket-2.010-5.el7.x86_64.rpm                |  49 kB   00:00
+(17/33): perl-Storable-2.45-3.el7.x86_64.rpm               |  77 kB   00:00
+(18/33): perl-Encode-2.51-7.el7.x86_64.rpm                 | 1.5 MB   00:05
+(19/33): perl-Text-ParseWords-3.29-4.el7.noarch.rpm        |  14 kB   00:00
+(20/33): perl-Time-HiRes-1.9725-3.el7.x86_64.rpm           |  45 kB   00:00
+(21/33): perl-macros-5.16.3-299.el7_9.x86_64.rpm           |  44 kB   00:00
+(22/33): perl-constant-1.27-2.el7.noarch.rpm               |  19 kB   00:00
+(23/33): perl-parent-0.225-244.el7.noarch.rpm              |  12 kB   00:00
+(24/33): perl-podlators-2.5.1-3.el7.noarch.rpm             | 112 kB   00:00
+(25/33): perl-5.16.3-299.el7_9.x86_64.rpm                  | 8.0 MB   00:07
+(26/33): perl-threads-1.87-4.el7.x86_64.rpm                |  49 kB   00:00
+(27/33): perl-threads-shared-1.43-6.el7.x86_64.rpm         |  39 kB   00:00
+(28/33): perl-libs-5.16.3-299.el7_9.x86_64.rpm             | 690 kB   00:01
+(29/33): perl-Time-Local-1.2300-2.el7.noarch.rpm           |  24 kB   00:01
+(30/33): which-2.20-7.el7.x86_64.rpm                       |  41 kB   00:00
+(31/33): vim-filesystem-7.4.629-8.el7_9.x86_64.rpm         |  11 kB   00:00
+(32/33): vim-enhanced-7.4.629-8.el7_9.x86_64.rpm           | 1.1 MB   00:01
+(33/33): vim-common-7.4.629-8.el7_9.x86_64.rpm             | 5.9 MB   00:01
+--------------------------------------------------------------------------------
+Total                                              2.0 MB/s |  19 MB  00:09
+Running transaction check
+Running transaction test
+Transaction test succeeded
+Running transaction
+  Installing : gpm-libs-1.20.7-6.el7.x86_64                                1/33
+  Installing : 2:vim-filesystem-7.4.629-8.el7_9.x86_64                     2/33
+  Installing : 2:vim-common-7.4.629-8.el7_9.x86_64                         3/33
+  Installing : which-2.20-7.el7.x86_64                                     4/33
+install-info: No such file or directory for /usr/share/info/which.info.gz
+  Installing : groff-base-1.22.2-8.el7.x86_64                              5/33
+  Installing : 1:perl-parent-0.225-244.el7.noarch                          6/33
+  Installing : perl-HTTP-Tiny-0.033-3.el7.noarch                           7/33
+  Installing : perl-podlators-2.5.1-3.el7.noarch                           8/33
+  Installing : perl-Pod-Perldoc-3.20-4.el7.noarch                          9/33
+  Installing : 1:perl-Pod-Escapes-1.04-299.el7_9.noarch                   10/33
+  Installing : perl-Encode-2.51-7.el7.x86_64                              11/33
+  Installing : perl-Text-ParseWords-3.29-4.el7.noarch                     12/33
+  Installing : perl-Pod-Usage-1.63-3.el7.noarch                           13/33
+  Installing : 4:perl-macros-5.16.3-299.el7_9.x86_64                      14/33
+  Installing : perl-Storable-2.45-3.el7.x86_64                            15/33
+  Installing : perl-Exporter-5.68-3.el7.noarch                            16/33
+  Installing : perl-constant-1.27-2.el7.noarch                            17/33
+  Installing : perl-Socket-2.010-5.el7.x86_64                             18/33
+  Installing : perl-Time-Local-1.2300-2.el7.noarch                        19/33
+  Installing : perl-Carp-1.26-244.el7.noarch                              20/33
+  Installing : perl-PathTools-3.40-5.el7.x86_64                           21/33
+  Installing : perl-Scalar-List-Utils-1.27-248.el7.x86_64                 22/33
+  Installing : 1:perl-Pod-Simple-3.28-4.el7.noarch                        23/33
+  Installing : perl-File-Temp-0.23.01-3.el7.noarch                        24/33
+  Installing : perl-File-Path-2.09-2.el7.noarch                           25/33
+  Installing : perl-threads-shared-1.43-6.el7.x86_64                      26/33
+  Installing : perl-threads-1.87-4.el7.x86_64                             27/33
+  Installing : 4:perl-Time-HiRes-1.9725-3.el7.x86_64                      28/33
+  Installing : perl-Filter-1.49-3.el7.x86_64                              29/33
+  Installing : 4:perl-libs-5.16.3-299.el7_9.x86_64                        30/33
+  Installing : perl-Getopt-Long-2.40-3.el7.noarch                         31/33
+  Installing : 4:perl-5.16.3-299.el7_9.x86_64                             32/33
+  Installing : 2:vim-enhanced-7.4.629-8.el7_9.x86_64                      33/33
+  Verifying  : perl-HTTP-Tiny-0.033-3.el7.noarch                           1/33
+  Verifying  : perl-threads-shared-1.43-6.el7.x86_64                       2/33
+  Verifying  : perl-Storable-2.45-3.el7.x86_64                             3/33
+  Verifying  : groff-base-1.22.2-8.el7.x86_64                              4/33
+  Verifying  : perl-Exporter-5.68-3.el7.noarch                             5/33
+  Verifying  : perl-constant-1.27-2.el7.noarch                             6/33
+  Verifying  : perl-PathTools-3.40-5.el7.x86_64                            7/33
+  Verifying  : 4:perl-macros-5.16.3-299.el7_9.x86_64                       8/33
+  Verifying  : 2:vim-enhanced-7.4.629-8.el7_9.x86_64                       9/33
+  Verifying  : 1:perl-parent-0.225-244.el7.noarch                         10/33
+  Verifying  : perl-Socket-2.010-5.el7.x86_64                             11/33
+  Verifying  : which-2.20-7.el7.x86_64                                    12/33
+  Verifying  : 2:vim-filesystem-7.4.629-8.el7_9.x86_64                    13/33
+  Verifying  : perl-File-Temp-0.23.01-3.el7.noarch                        14/33
+  Verifying  : 1:perl-Pod-Simple-3.28-4.el7.noarch                        15/33
+  Verifying  : perl-Time-Local-1.2300-2.el7.noarch                        16/33
+  Verifying  : 1:perl-Pod-Escapes-1.04-299.el7_9.noarch                   17/33
+  Verifying  : perl-Carp-1.26-244.el7.noarch                              18/33
+  Verifying  : 2:vim-common-7.4.629-8.el7_9.x86_64                        19/33
+  Verifying  : perl-Scalar-List-Utils-1.27-248.el7.x86_64                 20/33
+  Verifying  : perl-Pod-Usage-1.63-3.el7.noarch                           21/33
+  Verifying  : perl-Encode-2.51-7.el7.x86_64                              22/33
+  Verifying  : perl-Pod-Perldoc-3.20-4.el7.noarch                         23/33
+  Verifying  : perl-podlators-2.5.1-3.el7.noarch                          24/33
+  Verifying  : 4:perl-5.16.3-299.el7_9.x86_64                             25/33
+  Verifying  : perl-File-Path-2.09-2.el7.noarch                           26/33
+  Verifying  : perl-threads-1.87-4.el7.x86_64                             27/33
+  Verifying  : 4:perl-Time-HiRes-1.9725-3.el7.x86_64                      28/33
+  Verifying  : gpm-libs-1.20.7-6.el7.x86_64                               29/33
+  Verifying  : perl-Filter-1.49-3.el7.x86_64                              30/33
+  Verifying  : perl-Getopt-Long-2.40-3.el7.noarch                         31/33
+  Verifying  : perl-Text-ParseWords-3.29-4.el7.noarch                     32/33
+  Verifying  : 4:perl-libs-5.16.3-299.el7_9.x86_64                        33/33
+
+Installed:
+  vim-enhanced.x86_64 2:7.4.629-8.el7_9
+
+Dependency Installed:
+  gpm-libs.x86_64 0:1.20.7-6.el7
+  groff-base.x86_64 0:1.22.2-8.el7
+  perl.x86_64 4:5.16.3-299.el7_9
+  perl-Carp.noarch 0:1.26-244.el7
+  perl-Encode.x86_64 0:2.51-7.el7
+  perl-Exporter.noarch 0:5.68-3.el7
+  perl-File-Path.noarch 0:2.09-2.el7
+  perl-File-Temp.noarch 0:0.23.01-3.el7
+  perl-Filter.x86_64 0:1.49-3.el7
+  perl-Getopt-Long.noarch 0:2.40-3.el7
+  perl-HTTP-Tiny.noarch 0:0.033-3.el7
+  perl-PathTools.x86_64 0:3.40-5.el7
+  perl-Pod-Escapes.noarch 1:1.04-299.el7_9
+  perl-Pod-Perldoc.noarch 0:3.20-4.el7
+  perl-Pod-Simple.noarch 1:3.28-4.el7
+  perl-Pod-Usage.noarch 0:1.63-3.el7
+  perl-Scalar-List-Utils.x86_64 0:1.27-248.el7
+  perl-Socket.x86_64 0:2.010-5.el7
+  perl-Storable.x86_64 0:2.45-3.el7
+  perl-Text-ParseWords.noarch 0:3.29-4.el7
+  perl-Time-HiRes.x86_64 4:1.9725-3.el7
+  perl-Time-Local.noarch 0:1.2300-2.el7
+  perl-constant.noarch 0:1.27-2.el7
+  perl-libs.x86_64 4:5.16.3-299.el7_9
+  perl-macros.x86_64 4:5.16.3-299.el7_9
+  perl-parent.noarch 1:0.225-244.el7
+  perl-podlators.noarch 0:2.5.1-3.el7
+  perl-threads.x86_64 0:1.87-4.el7
+  perl-threads-shared.x86_64 0:1.43-6.el7
+  vim-common.x86_64 2:7.4.629-8.el7_9
+  vim-filesystem.x86_64 2:7.4.629-8.el7_9
+  which.x86_64 0:2.20-7.el7
+
+Complete!
+[root@f6b83b730e02 /]# yum install php
+Loaded plugins: fastestmirror, ovl
+Loading mirror speeds from cached hostfile
+ * base: centos.mirrors.estointernet.in
+ * extras: mirrors.inet.vn
+ * updates: centos.mirrors.estointernet.in
+Resolving Dependencies
+--> Running transaction check
+---> Package php.x86_64 0:5.4.16-48.el7 will be installed
+--> Processing Dependency: php-common(x86-64) = 5.4.16-48.el7 for package: php-5.4.16-48.el7.x86_64
+--> Processing Dependency: php-cli(x86-64) = 5.4.16-48.el7 for package: php-5.4.16-48.el7.x86_64
+--> Running transaction check
+---> Package php-cli.x86_64 0:5.4.16-48.el7 will be installed
+--> Processing Dependency: libedit.so.0()(64bit) for package: php-cli-5.4.16-48.el7.x86_64
+---> Package php-common.x86_64 0:5.4.16-48.el7 will be installed
+--> Processing Dependency: libzip.so.2()(64bit) for package: php-common-5.4.16-48.el7.x86_64
+--> Running transaction check
+---> Package libedit.x86_64 0:3.0-12.20121213cvs.el7 will be installed
+---> Package libzip.x86_64 0:0.10.1-8.el7 will be installed
+--> Finished Dependency Resolution
+
+Dependencies Resolved
+
+================================================================================
+ Package          Arch         Version                         Repository  Size
+================================================================================
+Installing:
+ php              x86_64       5.4.16-48.el7                   base       1.4 M
+Installing for dependencies:
+ libedit          x86_64       3.0-12.20121213cvs.el7          base        92 k
+ libzip           x86_64       0.10.1-8.el7                    base        48 k
+ php-cli          x86_64       5.4.16-48.el7                   base       2.7 M
+ php-common       x86_64       5.4.16-48.el7                   base       565 k
+
+Transaction Summary
+================================================================================
+Install  1 Package (+4 Dependent packages)
+
+Total download size: 4.8 M
+Installed size: 17 M
+Is this ok [y/d/N]: y
+Downloading packages:
+(1/5): libzip-0.10.1-8.el7.x86_64.rpm                      |  48 kB   00:01
+(2/5): libedit-3.0-12.20121213cvs.el7.x86_64.rpm           |  92 kB   00:01
+(3/5): php-5.4.16-48.el7.x86_64.rpm                        | 1.4 MB   00:01
+(4/5): php-common-5.4.16-48.el7.x86_64.rpm                 | 565 kB   00:03
+(5/5): php-cli-5.4.16-48.el7.x86_64.rpm                    | 2.7 MB   00:03
+--------------------------------------------------------------------------------
+Total                                              1.3 MB/s | 4.8 MB  00:03
+Running transaction check
+Running transaction test
+Transaction test succeeded
+Running transaction
+  Installing : libedit-3.0-12.20121213cvs.el7.x86_64                        1/5
+  Installing : libzip-0.10.1-8.el7.x86_64                                   2/5
+  Installing : php-common-5.4.16-48.el7.x86_64                              3/5
+  Installing : php-cli-5.4.16-48.el7.x86_64                                 4/5
+  Installing : php-5.4.16-48.el7.x86_64                                     5/5
+  Verifying  : php-5.4.16-48.el7.x86_64                                     1/5
+  Verifying  : libzip-0.10.1-8.el7.x86_64                                   2/5
+  Verifying  : libedit-3.0-12.20121213cvs.el7.x86_64                        3/5
+  Verifying  : php-cli-5.4.16-48.el7.x86_64                                 4/5
+  Verifying  : php-common-5.4.16-48.el7.x86_64                              5/5
+
+Installed:
+  php.x86_64 0:5.4.16-48.el7
+
+Dependency Installed:
+  libedit.x86_64 0:3.0-12.20121213cvs.el7   libzip.x86_64 0:0.10.1-8.el7
+  php-cli.x86_64 0:5.4.16-48.el7            php-common.x86_64 0:5.4.16-48.el7
+
+Complete!
+[root@f6b83b730e02 /]# vi /var/www/html/index.php
+[root@f6b83b730e02 /]# php /var/www/html/index.php
+<?
+print("welcome to php");
+?>
+[root@f6b83b730e02 /]#
+[root@f6b83b730e02 /]# vi /var/www/html/index.php
+[root@f6b83b730e02 /]# php /var/www/html/index.php
+<?
+print("welcome to php");
+print `date`;
+?>
+[root@f6b83b730e02 /]# vi /var/www/html/index.php
+[root@f6b83b730e02 /]# php /var/www/html/index.php
+welcome to phpFri Jul 23 07:31:19 UTC 2021
+[root@f6b83b730e02 /]#
+[root@f6b83b730e02 /]# vi /var/www/html/index.php
+[root@f6b83b730e02 /]# php /var/www/html/index.php
+welcome to phpeth0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 172.17.0.2  netmask 255.255.0.0  broadcast 172.17.255.255
+        ether 02:42:ac:11:00:02  txqueuelen 0  (Ethernet)
+        RX packets 11015  bytes 68715237 (65.5 MiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 7080  bytes 488273 (476.8 KiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
+        inet 127.0.0.1  netmask 255.0.0.0
+        loop  txqueuelen 1000  (Local Loopback)
+        RX packets 0  bytes 0 (0.0 B)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 0  bytes 0 (0.0 B)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+[root@f6b83b730e02 /]# vi /var/www/html/index.php
+[root@f6b83b730e02 /]# php /var/www/html/index.php
+welcome to php
+eth0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 172.17.0.2  netmask 255.255.0.0  broadcast 172.17.255.255
+        ether 02:42:ac:11:00:02  txqueuelen 0  (Ethernet)
+        RX packets 11015  bytes 68715237 (65.5 MiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 7080  bytes 488273 (476.8 KiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
+        inet 127.0.0.1  netmask 255.0.0.0
+        loop  txqueuelen 1000  (Local Loopback)
+        RX packets 0  bytes 0 (0.0 B)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 0  bytes 0 (0.0 B)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+[root@f6b83b730e02 /]#
+[root@f6b83b730e02 /]# php /var/www/html/index.php
+welcome to php
+eth0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 172.17.0.2  netmask 255.255.0.0  broadcast 172.17.255.255
+        ether 02:42:ac:11:00:02  txqueuelen 0  (Ethernet)
+        RX packets 11015  bytes 68715237 (65.5 MiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 7080  bytes 488273 (476.8 KiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
+        inet 127.0.0.1  netmask 255.0.0.0
+        loop  txqueuelen 1000  (Local Loopback)
+        RX packets 0  bytes 0 (0.0 B)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 0  bytes 0 (0.0 B)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+[root@f6b83b730e02 /]#
+[root@f6b83b730e02 /]# /usr/sbin/httpd
+AH00558: httpd: Could not reliably determine the server's fully qualified domain name, using 172.17.0.2. Set the 'ServerName' directive globally to suppress this message
+[root@f6b83b730e02 /]# netstat -tulp
+Active Internet connections (only servers)
+Proto Recv-Q Send-Q Local Address           Foreign Address         State       PID/Program name
+tcp        0      0 0.0.0.0:http            0.0.0.0:*               LISTEN      145/httpd
+[root@f6b83b730e02 /]# ifconfig
+eth0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 172.17.0.2  netmask 255.255.0.0  broadcast 172.17.255.255
+        ether 02:42:ac:11:00:02  txqueuelen 0  (Ethernet)
+        RX packets 11015  bytes 68715237 (65.5 MiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 7080  bytes 488273 (476.8 KiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
+        inet 127.0.0.1  netmask 255.0.0.0
+        loop  txqueuelen 1000  (Local Loopback)
+        RX packets 0  bytes 0 (0.0 B)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 0  bytes 0 (0.0 B)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+[root@f6b83b730e02 /]# netstat -tulp[root@192 ~]#
+[root@192 ~]# curl http:\\172.17.0.2
+]^C
+[root@192 ~]# curl http:\\172.17.0.2
+curl: (6) Could not resolve host: http; Unknown error
+[root@192 ~]# curl http:\\172.17.0.2:80
+curl: (6) Could not resolve host: http:\172.17.0.2; Unknown error
+[root@192 ~]#
+[root@192 ~]# curl 172.17.0.2:80
+welcome to php
+eth0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 172.17.0.2  netmask 255.255.0.0  broadcast 172.17.255.255
+        ether 02:42:ac:11:00:02  txqueuelen 0  (Ethernet)
+        RX packets 11018  bytes 68715517 (65.5 MiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 7082  bytes 488413 (476.9 KiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
+        inet 127.0.0.1  netmask 255.0.0.0
+        loop  txqueuelen 1000  (Local Loopback)
+        RX packets 0  bytes 0 (0.0 B)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 0  bytes 0 (0.0 B)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+[root@192 ~]# curl 172.17.0.2
+welcome to php
+eth0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 172.17.0.2  netmask 255.255.0.0  broadcast 172.17.255.255
+        ether 02:42:ac:11:00:02  txqueuelen 0  (Ethernet)
+        RX packets 11026  bytes 68716079 (65.5 MiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 7088  bytes 489710 (478.2 KiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
+        inet 127.0.0.1  netmask 255.0.0.0
+        loop  txqueuelen 1000  (Local Loopback)
+        RX packets 0  bytes 0 (0.0 B)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 0  bytes 0 (0.0 B)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+[root@192 ~]#
+[root@192 ~]# docker ps
+CONTAINER ID   IMAGE      COMMAND       CREATED          STATUS          PORTS     NAMES
+f6b83b730e02   centos:7   "/bin/bash"   10 minutes ago   Up 10 minutes             web
+[root@192 ~]# docker exec -it web bash
+[root@f6b83b730e02 /]# vi bashrc
+[root@f6b83b730e02 /]#
+[root@f6b83b730e02 /]# vi /var/www/html/index.php
+[root@f6b83b730e02 /]# vi bashrc
+[root@f6b83b730e02 /]# vi .bashrc
+[root@f6b83b730e02 /]#
+[root@f6b83b730e02 /]# vi /root/.bashrc
+[root@f6b83b730e02 /]# read escape sequence
+[root@192 ~]#
+[root@192 ~]# curl 172.17.0.2
+<pre>
+welcome to php
+eth0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 172.17.0.2  netmask 255.255.0.0  broadcast 172.17.255.255
+        ether 02:42:ac:11:00:02  txqueuelen 0  (Ethernet)
+        RX packets 11032  bytes 68716557 (65.5 MiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 7092  bytes 490923 (479.4 KiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
+        inet 127.0.0.1  netmask 255.0.0.0
+        loop  txqueuelen 1000  (Local Loopback)
+        RX packets 0  bytes 0 (0.0 B)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 0  bytes 0 (0.0 B)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+</pre>
+[root@192 ~]#
+[root@192 ~]# docker ps
+CONTAINER ID   IMAGE      COMMAND       CREATED          STATUS          PORTS     NAMES
+f6b83b730e02   centos:7   "/bin/bash"   13 minutes ago   Up 13 minutes             web
+[root@192 ~]# docker stop web
+web
+[root@192 ~]# docker ps
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+[root@192 ~]# docker start web
+web
+[root@192 ~]# curl 172.17.0.2
+<pre>
+welcome to php
+eth0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 172.17.0.2  netmask 255.255.0.0  broadcast 172.17.255.255
+        ether 02:42:ac:11:00:02  txqueuelen 0  (Ethernet)
+        RX packets 10  bytes 830 (830.0 B)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 3  bytes 182 (182.0 B)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
+        inet 127.0.0.1  netmask 255.0.0.0
+        loop  txqueuelen 1000  (Local Loopback)
+        RX packets 0  bytes 0 (0.0 B)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 0  bytes 0 (0.0 B)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+</pre>
+[root@192 ~]# docker stop web
+web
+[root@192 ~]# curl 172.17.0.2
+^C
+[root@192 ~]#
+[root@192 ~]# docker start web
+web
+[root@192 ~]# curl 172.17.0.2
+<pre>
+welcome to php
+eth0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 172.17.0.2  netmask 255.255.0.0  broadcast 172.17.255.255
+        ether 02:42:ac:11:00:02  txqueuelen 0  (Ethernet)
+        RX packets 10  bytes 830 (830.0 B)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 3  bytes 182 (182.0 B)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
+        inet 127.0.0.1  netmask 255.0.0.0
+        loop  txqueuelen 1000  (Local Loopback)
+        RX packets 0  bytes 0 (0.0 B)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 0  bytes 0 (0.0 B)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+</pre>
+[root@192 ~]#
+[root@192 ~]# docker ps
+CONTAINER ID   IMAGE      COMMAND       CREATED          STATUS          PORTS     NAMES
+f6b83b730e02   centos:7   "/bin/bash"   15 minutes ago   Up 40 seconds             web
+[root@192 ~]# docker stop web
+web
+[root@192 ~]#
+[root@192 ~]# docker commit web phpweb:v1
+sha256:a99a70dc120a79d2620f80d695dece513f310356011789e97706459867505195
+[root@192 ~]# docker images
+REPOSITORY   TAG       IMAGE ID       CREATED         SIZE
+phpweb       v1        a99a70dc120a   4 seconds ago   438MB
+httpd        latest    bd29370f84ea   2 weeks ago     138MB
+centos       7         8652b9f0cb4c   8 months ago    204MB
+[root@192 ~]#
+[root@192 ~]# docker run -itd -p 8080:80 --name c1 phpweb:v1
+4df7ec48397b2610ff663403b79f647569c4905d0fd42bb73b632f310da67b13
+[root@192 ~]# curl 172.17.0.3
+^C
+[root@192 ~]#
+[root@192 ~]# docker inspect c1
+[
+    {
+        "Id": "4df7ec48397b2610ff663403b79f647569c4905d0fd42bb73b632f310da67b13",
+        "Created": "2021-07-23T07:42:16.740730242Z",
+        "Path": "/bin/bash",
+        "Args": [],
+        "State": {
+            "Status": "running",
+            "Running": true,
+            "Paused": false,
+            "Restarting": false,
+            "OOMKilled": false,
+            "Dead": false,
+            "Pid": 2985,
+            "ExitCode": 0,
+            "Error": "",
+            "StartedAt": "2021-07-23T07:42:18.511618851Z",
+            "FinishedAt": "0001-01-01T00:00:00Z"
+        },
+        "Image": "sha256:a99a70dc120a79d2620f80d695dece513f310356011789e97706459867505195",
+        "ResolvConfPath": "/var/lib/docker/containers/4df7ec48397b2610ff663403b79f647569c4905d0fd42bb73b632f310da67b13/resolv.conf",
+        "HostnamePath": "/var/lib/docker/containers/4df7ec48397b2610ff663403b79f647569c4905d0fd42bb73b632f310da67b13/hostname",
+        "HostsPath": "/var/lib/docker/containers/4df7ec48397b2610ff663403b79f647569c4905d0fd42bb73b632f310da67b13/hosts",
+        "LogPath": "/var/lib/docker/containers/4df7ec48397b2610ff663403b79f647569c4905d0fd42bb73b632f310da67b13/4df7ec48397b2610ff663403b79f647569c4905d0fd42bb73b632f310da67b13-json.log",
+        "Name": "/c1",
+        "RestartCount": 0,
+        "Driver": "overlay2",
+        "Platform": "linux",
+        "MountLabel": "",
+        "ProcessLabel": "",
+        "AppArmorProfile": "",
+        "ExecIDs": null,
+        "HostConfig": {
+            "Binds": null,
+            "ContainerIDFile": "",
+            "LogConfig": {
+                "Type": "json-file",
+                "Config": {}
+            },
+            "NetworkMode": "default",
+            "PortBindings": {
+                "80/tcp": [
+                    {
+                        "HostIp": "",
+                        "HostPort": "8080"
+                    }
+                ]
+            },
+            "RestartPolicy": {
+                "Name": "no",
+                "MaximumRetryCount": 0
+            },
+            "AutoRemove": false,
+            "VolumeDriver": "",
+            "VolumesFrom": null,
+            "CapAdd": null,
+            "CapDrop": null,
+            "CgroupnsMode": "host",
+            "Dns": [],
+            "DnsOptions": [],
+            "DnsSearch": [],
+            "ExtraHosts": null,
+            "GroupAdd": null,
+            "IpcMode": "private",
+            "Cgroup": "",
+            "Links": null,
+            "OomScoreAdj": 0,
+            "PidMode": "",
+            "Privileged": false,
+            "PublishAllPorts": false,
+            "ReadonlyRootfs": false,
+            "SecurityOpt": null,
+            "UTSMode": "",
+            "UsernsMode": "",
+            "ShmSize": 67108864,
+            "Runtime": "runc",
+            "ConsoleSize": [
+                0,
+                0
+            ],
+            "Isolation": "",
+            "CpuShares": 0,
+            "Memory": 0,
+            "NanoCpus": 0,
+            "CgroupParent": "",
+            "BlkioWeight": 0,
+            "BlkioWeightDevice": [],
+            "BlkioDeviceReadBps": null,
+            "BlkioDeviceWriteBps": null,
+            "BlkioDeviceReadIOps": null,
+            "BlkioDeviceWriteIOps": null,
+            "CpuPeriod": 0,
+            "CpuQuota": 0,
+            "CpuRealtimePeriod": 0,
+            "CpuRealtimeRuntime": 0,
+            "CpusetCpus": "",
+            "CpusetMems": "",
+            "Devices": [],
+            "DeviceCgroupRules": null,
+            "DeviceRequests": null,
+            "KernelMemory": 0,
+            "KernelMemoryTCP": 0,
+            "MemoryReservation": 0,
+            "MemorySwap": 0,
+            "MemorySwappiness": null,
+            "OomKillDisable": false,
+            "PidsLimit": null,
+            "Ulimits": null,
+            "CpuCount": 0,
+            "CpuPercent": 0,
+            "IOMaximumIOps": 0,
+            "IOMaximumBandwidth": 0,
+            "MaskedPaths": [
+                "/proc/asound",
+                "/proc/acpi",
+                "/proc/kcore",
+                "/proc/keys",
+                "/proc/latency_stats",
+                "/proc/timer_list",
+                "/proc/timer_stats",
+                "/proc/sched_debug",
+                "/proc/scsi",
+                "/sys/firmware"
+            ],
+            "ReadonlyPaths": [
+                "/proc/bus",
+                "/proc/fs",
+                "/proc/irq",
+                "/proc/sys",
+                "/proc/sysrq-trigger"
+            ]
+        },
+        "GraphDriver": {
+            "Data": {
+                "LowerDir": "/var/lib/docker/overlay2/d9f2569cf12de1845735746ea8a6bdd06c6d4f827153a3e68f77c77671913cbf-init/diff:/var/lib/docker/overlay2/c591b2565906dc15c1487f473d1daaace4c0f735a89418f9a4c1eae240ca0928/diff:/var/lib/docker/overlay2/770c48586a4f109319c4ec6dbea4449b395e513d34ede27a8f34a19507abd414/diff",
+                "MergedDir": "/var/lib/docker/overlay2/d9f2569cf12de1845735746ea8a6bdd06c6d4f827153a3e68f77c77671913cbf/merged",
+                "UpperDir": "/var/lib/docker/overlay2/d9f2569cf12de1845735746ea8a6bdd06c6d4f827153a3e68f77c77671913cbf/diff",
+                "WorkDir": "/var/lib/docker/overlay2/d9f2569cf12de1845735746ea8a6bdd06c6d4f827153a3e68f77c77671913cbf/work"
+            },
+            "Name": "overlay2"
+        },
+        "Mounts": [],
+        "Config": {
+            "Hostname": "4df7ec48397b",
+            "Domainname": "",
+            "User": "",
+            "AttachStdin": false,
+            "AttachStdout": false,
+            "AttachStderr": false,
+            "ExposedPorts": {
+                "80/tcp": {}
+            },
+            "Tty": true,
+            "OpenStdin": true,
+            "StdinOnce": false,
+            "Env": [
+                "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+            ],
+            "Cmd": [
+                "/bin/bash"
+            ],
+            "Image": "phpweb:v1",
+            "Volumes": null,
+            "WorkingDir": "",
+            "Entrypoint": null,
+            "OnBuild": null,
+            "Labels": {
+                "org.label-schema.build-date": "20201113",
+                "org.label-schema.license": "GPLv2",
+                "org.label-schema.name": "CentOS Base Image",
+                "org.label-schema.schema-version": "1.0",
+                "org.label-schema.vendor": "CentOS",
+                "org.opencontainers.image.created": "2020-11-13 00:00:00+00:00",
+                "org.opencontainers.image.licenses": "GPL-2.0-only",
+                "org.opencontainers.image.title": "CentOS Base Image",
+                "org.opencontainers.image.vendor": "CentOS"
+            }
+        },
+        "NetworkSettings": {
+            "Bridge": "",
+            "SandboxID": "07db3965027aca31f48905196bb27e1cf8dcc34fb9bb785afbe9bcbf638b248d",
+            "HairpinMode": false,
+            "LinkLocalIPv6Address": "",
+            "LinkLocalIPv6PrefixLen": 0,
+            "Ports": {
+                "80/tcp": [
+                    {
+                        "HostIp": "0.0.0.0",
+                        "HostPort": "8080"
+                    },
+                    {
+                        "HostIp": "::",
+                        "HostPort": "8080"
+                    }
+                ]
+            },
+            "SandboxKey": "/var/run/docker/netns/07db3965027a",
+            "SecondaryIPAddresses": null,
+            "SecondaryIPv6Addresses": null,
+            "EndpointID": "052e60abe7617b5214afef967cfef7e08b3665b5d75cf35e7a3a7345404a10e2",
+            "Gateway": "172.17.0.1",
+            "GlobalIPv6Address": "",
+            "GlobalIPv6PrefixLen": 0,
+            "IPAddress": "172.17.0.2",
+            "IPPrefixLen": 16,
+            "IPv6Gateway": "",
+            "MacAddress": "02:42:ac:11:00:02",
+            "Networks": {
+                "bridge": {
+                    "IPAMConfig": null,
+                    "Links": null,
+                    "Aliases": null,
+                    "NetworkID": "56d41686a9b59a084e37e805cd9a2602e7f0807bd4b449896419a24d5d095916",
+                    "EndpointID": "052e60abe7617b5214afef967cfef7e08b3665b5d75cf35e7a3a7345404a10e2",
+                    "Gateway": "172.17.0.1",
+                    "IPAddress": "172.17.0.2",
+                    "IPPrefixLen": 16,
+                    "IPv6Gateway": "",
+                    "GlobalIPv6Address": "",
+                    "GlobalIPv6PrefixLen": 0,
+                    "MacAddress": "02:42:ac:11:00:02",
+                    "DriverOpts": null
+                }
+            }
+        }
+    }
+]
+[root@192 ~]# curl 172.17.0.2
+<pre>
+welcome to php
+eth0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 172.17.0.2  netmask 255.255.0.0  broadcast 172.17.255.255
+        ether 02:42:ac:11:00:02  txqueuelen 0  (Ethernet)
+        RX packets 15  bytes 1096 (1.0 KiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 3  bytes 182 (182.0 B)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
+        inet 127.0.0.1  netmask 255.0.0.0
+        loop  txqueuelen 1000  (Local Loopback)
+        RX packets 0  bytes 0 (0.0 B)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 0  bytes 0 (0.0 B)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+</pre>
+[root@192 ~]#
+[root@192 ~]# curl 172.17.0.2
+<pre>
+welcome to php
+eth0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 172.17.0.2  netmask 255.255.0.0  broadcast 172.17.255.255
+        ether 02:42:ac:11:00:02  txqueuelen 0  (Ethernet)
+        RX packets 21  bytes 1574 (1.5 KiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 7  bytes 1392 (1.3 KiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
+        inet 127.0.0.1  netmask 255.0.0.0
+        loop  txqueuelen 1000  (Local Loopback)
+        RX packets 0  bytes 0 (0.0 B)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 0  bytes 0 (0.0 B)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+</pre>
+[root@192 ~]# docker run -itd -p 8081:80 --name c2  phpweb:v1
+9fc45b4d781c04b4622c16fbefd861e8b049884ffe681f501e014bd4ca6ea794
+[root@192 ~]# docker ps
+CONTAINER ID   IMAGE       COMMAND       CREATED          STATUS          PORTS                                   NAMES
+9fc45b4d781c   phpweb:v1   "/bin/bash"   49 seconds ago   Up 47 seconds   0.0.0.0:8081->80/tcp, :::8081->80/tcp   c2
+4df7ec48397b   phpweb:v1   "/bin/bash"   3 minutes ago    Up 3 minutes    0.0.0.0:8080->80/tcp, :::8080->80/tcp   c1
+[root@192 ~]# docker run -itd -p 8081:80 --name t1  phpweb:v1
+577bf9320e5ceb1d56d8423f29cd4e0c1881ff5c81dc02a495197b93b371cba9
+docker: Error response from daemon: driver failed programming external connectivity on endpoint t1 (2f12088bade2d3293d20220cf06445bb9b66ee7d442d5b1959e4d94b9608012d): Bind for 0.0.0.0:8081 failed: port is already allocated.
+[root@192 ~]# docker run -itd -p 8082:80 --name t1  phpweb:v1
+docker: Error response from daemon: Conflict. The container name "/t1" is already in use by container "577bf9320e5ceb1d56d8423f29cd4e0c1881ff5c81dc02a495197b93b371cba9". You have to remove (or rename) that container to be able to reuse that name.
+See 'docker run --help'.
+[root@192 ~]# docker run -itd -p 8082:80 --name t2  phpweb:v1
+e25ba4f87112f2cdf34a52e377a2dfded19be9ae94cce9209b998886e41ef7d6
+[root@192 ~]#
+[root@192 ~]# docker ps
+CONTAINER ID   IMAGE       COMMAND       CREATED              STATUS              PORTS                                   NAMES
+e25ba4f87112   phpweb:v1   "/bin/bash"   4 seconds ago        Up 3 seconds        0.0.0.0:8082->80/tcp, :::8082->80/tcp   t2
+9fc45b4d781c   phpweb:v1   "/bin/bash"   About a minute ago   Up About a minute   0.0.0.0:8081->80/tcp, :::8081->80/tcp   c2
+4df7ec48397b   phpweb:v1   "/bin/bash"   4 minutes ago        Up 4 minutes        0.0.0.0:8080->80/tcp, :::8080->80/tcp   c1
+[root@192 ~]# docker rm -f t2 t1
+t2
+t1
+[root@192 ~]#
+[root@192 ~]# docker ps
+CONTAINER ID   IMAGE       COMMAND       CREATED         STATUS         PORTS                                   NAMES
+9fc45b4d781c   phpweb:v1   "/bin/bash"   2 minutes ago   Up 2 minutes   0.0.0.0:8081->80/tcp, :::8081->80/tcp   c2
+4df7ec48397b   phpweb:v1   "/bin/bash"   4 minutes ago   Up 4 minutes   0.0.0.0:8080->80/tcp, :::8080->80/tcp   c1
+[root@192 ~]# docker network create --driver bridge webnet
+86b8d8a719a7f50f7027d45b0c9d0727a8f968e6c47e9eba129c3a1cee6e0530
+[root@192 ~]# docker network ls
+NETWORK ID     NAME      DRIVER    SCOPE
+56d41686a9b5   bridge    bridge    local
+e0dc0bf312e2   host      host      local
+3429bbcd300f   net1      bridge    local
+5339ef0e79b0   net2      bridge    local
+fb4e73e9fd7b   none      null      local
+86b8d8a719a7   webnet    bridge    local
+[root@192 ~]#
+[root@192 ~]# docker ps
+CONTAINER ID   IMAGE       COMMAND       CREATED         STATUS         PORTS                                   NAMES
+9fc45b4d781c   phpweb:v1   "/bin/bash"   3 minutes ago   Up 3 minutes   0.0.0.0:8081->80/tcp, :::8081->80/tcp   c2
+4df7ec48397b   phpweb:v1   "/bin/bash"   6 minutes ago   Up 6 minutes   0.0.0.0:8080->80/tcp, :::8080->80/tcp   c1
+[root@192 ~]# docker container run -it --name web1 --netowrk webnet phphweb:v1
+unknown flag: --netowrk
+See 'docker container run --help'.
+[root@192 ~]# docker container run -it --name web1 --network webnet phphweb:v1
+Unable to find image 'phphweb:v1' locally
+^C
+[root@192 ~]# docker container run -it --name web1 --network webnet phpweb:v1
+AH00558: httpd: Could not reliably determine the server's fully qualified domain name, using 172.20.0.2. Set the 'ServerName' directive globally to suppress this message
+[root@1d1b03b50103 /]#
+[root@1d1b03b50103 /]# docker ps -a
+bash: docker: command not found
+[root@1d1b03b50103 /]# docker ps
+bash: docker: command not found
+[root@1d1b03b50103 /]# docker ps
+bash: docker: command not found
+[root@1d1b03b50103 /]# docker container ps
+bash: docker: command not found
+[root@1d1b03b50103 /]#
+[root@1d1b03b50103 /]# docker ls
+bash: docker: command not found
+[root@1d1b03b50103 /]#
+[root@1d1b03b50103 /]# [root@192 ~]#
+[root@192 ~]# docker ps
+CONTAINER ID   IMAGE       COMMAND       CREATED          STATUS          PORTS                                   NAMES
+1d1b03b50103   phpweb:v1   "/bin/bash"   37 seconds ago   Up 34 seconds                                           web1
+9fc45b4d781c   phpweb:v1   "/bin/bash"   6 minutes ago    Up 6 minutes    0.0.0.0:8081->80/tcp, :::8081->80/tcp   c2
+4df7ec48397b   phpweb:v1   "/bin/bash"   8 minutes ago    Up 8 minutes    0.0.0.0:8080->80/tcp, :::8080->80/tcp   c1
+[root@192 ~]#
+[root@192 ~]# docker container run -it --name t1  --network webnet phpweb:v1
+AH00558: httpd: Could not reliably determine the server's fully qualified domain name, using 172.20.0.3. Set the 'ServerName' directive globally to suppress this message
+[root@036c9eaddb7b /]# ifconfig
+eth0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 172.20.0.3  netmask 255.255.0.0  broadcast 172.20.255.255
+        ether 02:42:ac:14:00:03  txqueuelen 0  (Ethernet)
+        RX packets 6  bytes 508 (508.0 B)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 0  bytes 0 (0.0 B)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
+        inet 127.0.0.1  netmask 255.0.0.0
+        loop  txqueuelen 1000  (Local Loopback)
+        RX packets 0  bytes 0 (0.0 B)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 0  bytes 0 (0.0 B)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+[root@036c9eaddb7b /]#
+[root@036c9eaddb7b /]# [root@192 ~]# docker container run -it --name t1  --network webnet phpweb:v1  container run -it --name t1  --network webnet phpweb:v1
+[root@192 ~]# docker container run -it --name t1  --network webnet phpweb:v^C
+[root@192 ~]#
+[root@192 ~]# docker container run -it --name t2  --network webnet phpweb:v1
+AH00558: httpd: Could not reliably determine the server's fully qualified domain name, using 172.20.0.4. Set the 'ServerName' directive globally to suppress this message
+[root@1180bef57138 /]# ifconfig
+eth0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 172.20.0.4  netmask 255.255.0.0  broadcast 172.20.255.255
+        ether 02:42:ac:14:00:04  txqueuelen 0  (Ethernet)
+        RX packets 6  bytes 508 (508.0 B)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 0  bytes 0 (0.0 B)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
+        inet 127.0.0.1  netmask 255.0.0.0
+        loop  txqueuelen 1000  (Local Loopback)
+        RX packets 0  bytes 0 (0.0 B)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 0  bytes 0 (0.0 B)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+[root@1180bef57138 /]#
+[root@1180bef57138 /]# [root@192 ~]#
+[root@192 ~]# docker container run -it --name client  --network webnet centos:7
+[root@a96161520eb0 /]# yum install net-tools -y
+Loaded plugins: fastestmirror, ovl
+Determining fastest mirrors
+Could not retrieve mirrorlist http://mirrorlist.centos.org/?release=7&arch=x86_64&repo=os&infra=container error was
+14: curl#6 - "Could not resolve host: mirrorlist.centos.org; Unknown error"
+
+
+ One of the configured repositories failed (Unknown),
+ and yum doesn't have enough cached data to continue. At this point the only
+ safe thing yum can do is fail. There are a few ways to work "fix" this:
+
+     1. Contact the upstream for the repository and get them to fix the problem.
+
+     2. Reconfigure the baseurl/etc. for the repository, to point to a working
+        upstream. This is most often useful if you are using a newer
+        distribution release than is supported by the repository (and the
+        packages for the previous distribution release still work).
+
+     3. Run the command with the repository temporarily disabled
+            yum --disablerepo=<repoid> ...
+
+     4. Disable the repository permanently, so yum won't use it by default. Yum
+        will then just ignore the repository until you permanently enable it
+        again or use --enablerepo for temporary usage:
+
+            yum-config-manager --disable <repoid>
+        or
+            subscription-manager repos --disable=<repoid>
+
+     5. Configure the failing repository to be skipped, if it is unavailable.
+        Note that yum will try to contact the repo. when it runs most commands,
+        so will have to try and fail each time (and thus. yum will be be much
+        slower). If it is a very temporary problem though, this is often a nice
+        compromise:
+
+            yum-config-manager --save --setopt=<repoid>.skip_if_unavailable=true
+
+Cannot find a valid baseurl for repo: base/7/x86_64
+[root@a96161520eb0 /]#
+[root@a96161520eb0 /]# ip addr
+bash: ip: command not found
+[root@a96161520eb0 /]#
+[root@a96161520eb0 /]# yum install net-tools
+Loaded plugins: fastestmirror, ovl
+Loading mirror speeds from cached hostfile
+ * base: mirrors.bkns.vn
+ * extras: mirror.xeonbd.com
+ * updates: mirror.vietnix.vn
+base                                                     | 3.6 kB     00:00
+extras                                                   | 2.9 kB     00:00
+updates                                                  | 2.9 kB     00:00
+(1/4): extras/7/x86_64/primary_db                          | 242 kB   00:00
+(2/4): base/7/x86_64/group_gz                              | 153 kB   00:01
+(3/4): base/7/x86_64/primary_db                            | 6.1 MB   00:04
+(4/4): updates/7/x86_64/primary_db                         | 9.5 MB   00:06
+Resolving Dependencies
+--> Running transaction check
+---> Package net-tools.x86_64 0:2.0-0.25.20131004git.el7 will be installed
+--> Finished Dependency Resolution
+
+Dependencies Resolved
+
+================================================================================
+ Package         Arch         Version                          Repository  Size
+================================================================================
+Installing:
+ net-tools       x86_64       2.0-0.25.20131004git.el7         base       306 k
+
+Transaction Summary
+================================================================================
+Install  1 Package
+
+Total download size: 306 k
+Installed size: 917 k
+Is this ok [y/d/N]: y
+Downloading packages:
+warning: /var/cache/yum/x86_64/7/base/packages/net-tools-2.0-0.25.20131004git.el7.x86_64.rpm: Header V3 RSA/SHA256 Signature, key ID f4a80eb5: NOKEY
+Public key for net-tools-2.0-0.25.20131004git.el7.x86_64.rpm is not installed
+net-tools-2.0-0.25.20131004git.el7.x86_64.rpm              | 306 kB   00:01
+Retrieving key from file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-7
+Importing GPG key 0xF4A80EB5:
+ Userid     : "CentOS-7 Key (CentOS 7 Official Signing Key) <security@centos.org>"
+ Fingerprint: 6341 ab27 53d7 8a78 a7c2 7bb1 24c6 a8a7 f4a8 0eb5
+ Package    : centos-release-7-9.2009.0.el7.centos.x86_64 (@CentOS)
+ From       : /etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-7
+Is this ok [y/N]: y
+Running transaction check
+Running transaction test
+Transaction test succeeded
+Running transaction
+  Installing : net-tools-2.0-0.25.20131004git.el7.x86_64                    1/1
+  Verifying  : net-tools-2.0-0.25.20131004git.el7.x86_64                    1/1
+
+Installed:
+  net-tools.x86_64 0:2.0-0.25.20131004git.el7
+
+Complete!
+[root@a96161520eb0 /]#
+[root@a96161520eb0 /]# yum install curl
+Loaded plugins: fastestmirror, ovl
+Loading mirror speeds from cached hostfile
+ * base: mirrors.piconets.webwerks.in
+ * extras: mirrors.inet.vn
+ * updates: mirror.vietnix.vn
+Resolving Dependencies
+--> Running transaction check
+---> Package curl.x86_64 0:7.29.0-59.el7 will be updated
+---> Package curl.x86_64 0:7.29.0-59.el7_9.1 will be an update
+--> Processing Dependency: libcurl = 7.29.0-59.el7_9.1 for package: curl-7.29.0-59.el7_9.1.x86_64
+--> Running transaction check
+---> Package libcurl.x86_64 0:7.29.0-59.el7 will be updated
+---> Package libcurl.x86_64 0:7.29.0-59.el7_9.1 will be an update
+--> Finished Dependency Resolution
+
+Dependencies Resolved
+
+================================================================================
+ Package         Arch           Version                   Repository       Size
+================================================================================
+Updating:
+ curl            x86_64         7.29.0-59.el7_9.1         updates         271 k
+Updating for dependencies:
+ libcurl         x86_64         7.29.0-59.el7_9.1         updates         223 k
+
+Transaction Summary
+================================================================================
+Upgrade  1 Package (+1 Dependent package)
+
+Total download size: 494 k
+Is this ok [y/d/N]: y
+Downloading packages:
+Delta RPMs disabled because /usr/bin/applydeltarpm not installed.
+(1/2): curl-7.29.0-59.el7_9.1.x86_64.rpm                   | 271 kB   00:07
+(2/2): libcurl-7.29.0-59.el7_9.1.x86_64.rpm                | 223 kB   00:08
+--------------------------------------------------------------------------------
+Total                                               60 kB/s | 494 kB  00:08
+Running transaction check
+Running transaction test
+Transaction test succeeded
+Running transaction
+  Updating   : libcurl-7.29.0-59.el7_9.1.x86_64                             1/4
+  Updating   : curl-7.29.0-59.el7_9.1.x86_64                                2/4
+  Cleanup    : curl-7.29.0-59.el7.x86_64                                    3/4
+  Cleanup    : libcurl-7.29.0-59.el7.x86_64                                 4/4
+  Verifying  : curl-7.29.0-59.el7_9.1.x86_64                                1/4
+  Verifying  : libcurl-7.29.0-59.el7_9.1.x86_64                             2/4
+  Verifying  : libcurl-7.29.0-59.el7.x86_64                                 3/4
+  Verifying  : curl-7.29.0-59.el7.x86_64                                    4/4
+
+Updated:
+  curl.x86_64 0:7.29.0-59.el7_9.1
+
+Dependency Updated:
+  libcurl.x86_64 0:7.29.0-59.el7_9.1
+
+Complete!
+[root@a96161520eb0 /]#
+[root@a96161520eb0 /]# curl t1
+<pre>
+welcome to php
+eth0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 172.20.0.3  netmask 255.255.0.0  broadcast 172.20.255.255
+        ether 02:42:ac:14:00:03  txqueuelen 0  (Ethernet)
+        RX packets 13  bytes 1004 (1004.0 B)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 3  bytes 182 (182.0 B)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
+        inet 127.0.0.1  netmask 255.0.0.0
+        loop  txqueuelen 1000  (Local Loopback)
+        RX packets 0  bytes 0 (0.0 B)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 0  bytes 0 (0.0 B)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+</pre>
+[root@a96161520eb0 /]# curl t2
+<pre>
+welcome to php
+eth0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 172.20.0.4  netmask 255.255.0.0  broadcast 172.20.255.255
+        ether 02:42:ac:14:00:04  txqueuelen 0  (Ethernet)
+        RX packets 14  bytes 1046 (1.0 KiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 3  bytes 182 (182.0 B)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
+        inet 127.0.0.1  netmask 255.0.0.0
+        loop  txqueuelen 1000  (Local Loopback)
+        RX packets 0  bytes 0 (0.0 B)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 0  bytes 0 (0.0 B)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+</pre>
+[root@a96161520eb0 /]# curl client
+curl: (7) Failed connect to client:80; Connection refused
+[root@a96161520eb0 /]#
+[root@a96161520eb0 /]# [root@192 ~]#
+[root@192 ~]# docker ps
+CONTAINER ID   IMAGE       COMMAND       CREATED          STATUS          PORTS                                   NAMES
+a96161520eb0   centos:7    "/bin/bash"   7 minutes ago    Up 7 minutes                                            client
+1180bef57138   phpweb:v1   "/bin/bash"   7 minutes ago    Up 7 minutes                                            t2
+036c9eaddb7b   phpweb:v1   "/bin/bash"   8 minutes ago    Up 7 minutes                                            t1
+1d1b03b50103   phpweb:v1   "/bin/bash"   9 minutes ago    Up 9 minutes                                            web1
+9fc45b4d781c   phpweb:v1   "/bin/bash"   15 minutes ago   Up 15 minutes   0.0.0.0:8081->80/tcp, :::8081->80/tcp   c2
+4df7ec48397b   phpweb:v1   "/bin/bash"   17 minutes ago   Up 17 minutes   0.0.0.0:8080->80/tcp, :::8080->80/tcp   c1
+[root@192 ~]#
+[root@192 ~]# docker ps
+CONTAINER ID   IMAGE       COMMAND       CREATED          STATUS          PORTS                                   NAMES
+a96161520eb0   centos:7    "/bin/bash"   7 minutes ago    Up 7 minutes                                            client
+1180bef57138   phpweb:v1   "/bin/bash"   7 minutes ago    Up 7 minutes                                            t2
+036c9eaddb7b   phpweb:v1   "/bin/bash"   8 minutes ago    Up 8 minutes                                            t1
+1d1b03b50103   phpweb:v1   "/bin/bash"   9 minutes ago    Up 9 minutes                                            web1
+9fc45b4d781c   phpweb:v1   "/bin/bash"   15 minutes ago   Up 15 minutes   0.0.0.0:8081->80/tcp, :::8081->80/tcp   c2
+4df7ec48397b   phpweb:v1   "/bin/bash"   17 minutes ago   Up 17 minutes   0.0.0.0:8080->80/tcp, :::8080->80/tcp   c1
+[root@192 ~]#
+[root@192 ~]# nslookup google.com
+-bash: nslookup: command not found
+[root@192 ~]# yum install nslookup
+Loaded plugins: fastestmirror
+Loading mirror speeds from cached hostfile
+ * base: mirrors.bkns.vn
+ * centos-sclo-rh: mirrors.piconets.webwerks.in
+ * centos-sclo-sclo: mirrors.bkns.vn
+ * epel: fedora.ipserverone.com
+ * extras: mirrors.piconets.webwerks.in
+ * updates: mirrors.nhanhoa.com
+No package nslookup available.
+Error: Nothing to do
+[root@192 ~]# host www.google.com
+-bash: host: command not found
+[root@192 ~]# nslookup www.google.com
+-bash: nslookup: command not found
+[root@192 ~]# yum install net-tools
+Loaded plugins: fastestmirror
+Loading mirror speeds from cached hostfile
+ * base: mirrors.bkns.vn
+ * centos-sclo-rh: mirror.vietnix.vn
+ * centos-sclo-sclo: mirrors.bkns.vn
+ * epel: download.nus.edu.sg
+ * extras: mirrors.piconets.webwerks.in
+ * updates: mirror.vietnix.vn
+Package net-tools-2.0-0.25.20131004git.el7.x86_64 already installed and latest version
+Nothing to do
+[root@192 ~]#
+[root@192 ~]# yum install host
+Loaded plugins: fastestmirror
+Loading mirror speeds from cached hostfile
+ * base: mirrors.bkns.vn
+ * centos-sclo-rh: mirrors.piconets.webwerks.in
+ * centos-sclo-sclo: mirrors.bkns.vn
+ * epel: fedora.ipserverone.com
+ * extras: mirrors.piconets.webwerks.in
+ * updates: mirrors.nhanhoa.com
+No package host available.
+Error: Nothing to do
+[root@192 ~]#
+[root@192 ~]# docker  ps
+CONTAINER ID   IMAGE       COMMAND       CREATED          STATUS          PORTS                                   NAMES
+a96161520eb0   centos:7    "/bin/bash"   9 minutes ago    Up 9 minutes                                            client
+1180bef57138   phpweb:v1   "/bin/bash"   10 minutes ago   Up 10 minutes                                           t2
+036c9eaddb7b   phpweb:v1   "/bin/bash"   10 minutes ago   Up 10 minutes                                           t1
+1d1b03b50103   phpweb:v1   "/bin/bash"   12 minutes ago   Up 12 minutes                                           web1
+9fc45b4d781c   phpweb:v1   "/bin/bash"   17 minutes ago   Up 17 minutes   0.0.0.0:8081->80/tcp, :::8081->80/tcp   c2
+4df7ec48397b   phpweb:v1   "/bin/bash"   20 minutes ago   Up 20 minutes   0.0.0.0:8080->80/tcp, :::8080->80/tcp   c1
+[root@192 ~]# docker run -itd  -P --name n1 -alias site --network webnet phpweb:v1
+invalid argument "lias" for "-a, --attach" flag: valid streams are STDIN, STDOUT and STDERR
+See 'docker run --help'.
+[root@192 ~]# docker run -itd  -P --name s1 --network-alias site --network webnet phpweb:v1
+e7b1f9c1719b48d39f753a157325ad45a327fd0e62f75ce864afa692f9dc2259
+[root@192 ~]#
+[root@192 ~]# docker run -itd  -P --name s2 --network-alias site --network webnet phpweb:v1
+321cb6e3562fd8853b56e6120429e8f538a53379d65a11127743ef3ccfbae141
+[root@192 ~]# docker run -itd  -P --name s3 --network-alias site --network webnet phpweb:v1
+a3da0bd90e756b92f37785fb7a6aa6a5546d50da667ccd6f030f5a3b2c89b6c8
+[root@192 ~]# docker ps
+CONTAINER ID   IMAGE       COMMAND       CREATED          STATUS          PORTS                                   NAMES
+a3da0bd90e75   phpweb:v1   "/bin/bash"   6 seconds ago    Up 4 seconds                                            s3
+321cb6e3562f   phpweb:v1   "/bin/bash"   12 seconds ago   Up 10 seconds                                           s2
+e7b1f9c1719b   phpweb:v1   "/bin/bash"   24 seconds ago   Up 21 seconds                                           s1
+a96161520eb0   centos:7    "/bin/bash"   12 minutes ago   Up 12 minutes                                           client
+1180bef57138   phpweb:v1   "/bin/bash"   13 minutes ago   Up 13 minutes                                           t2
+036c9eaddb7b   phpweb:v1   "/bin/bash"   13 minutes ago   Up 13 minutes                                           t1
+1d1b03b50103   phpweb:v1   "/bin/bash"   15 minutes ago   Up 15 minutes                                           web1
+9fc45b4d781c   phpweb:v1   "/bin/bash"   20 minutes ago   Up 20 minutes   0.0.0.0:8081->80/tcp, :::8081->80/tcp   c2
+4df7ec48397b   phpweb:v1   "/bin/bash"   23 minutes ago   Up 23 minutes   0.0.0.0:8080->80/tcp, :::8080->80/tcp   c1
+[root@192 ~]#
+[root@192 ~]# docker ps
+CONTAINER ID   IMAGE       COMMAND       CREATED          STATUS          PORTS
+a3da0bd90e75   phpweb:v1   "/bin/bash"   17 seconds ago   Up 14 seconds
+321cb6e3562f   phpweb:v1   "/bin/bash"   23 seconds ago   Up 21 seconds
+e7b1f9c1719b   phpweb:v1   "/bin/bash"   35 seconds ago   Up 32 seconds
+a96161520eb0   centos:7    "/bin/bash"   13 minutes ago   Up 13 minutes
+1180bef57138   phpweb:v1   "/bin/bash"   13 minutes ago   Up 13 minutes
+036c9eaddb7b   phpweb:v1   "/bin/bash"   13 minutes ago   Up 13 minutes
+1d1b03b50103   phpweb:v1   "/bin/bash"   15 minutes ago   Up 15 minutes
+9fc45b4d781c   phpweb:v1   "/bin/bash"   21 minutes ago   Up 21 minutes   0.0.0.
+4df7ec48397b   phpweb:v1   "/bin/bash"   23 minutes ago   Up 23 minutes   0.0.0.
+[root@192 ~]# docker run -itd  -p 9090:80  --name m1  --network-alias site --net
+692d38ef85483e25d3226eb49eafa0546ba816b03eae29578105e1744320b157
+[root@192 ~]# docker run -itd  -p 9091:80  --name m2  --network-alias site --net
+c217846754d431be337987a39b518743b5d1bedf8455a6225c603518994f4da9
+[root@192 ~]# docker run -itd  -p 9092:80  --name m3  --network-alias site --net
+dab988ce33ad93ada58629f58266ff71a63f1dbf31cfcbd33f037a7048324a4e
+[root@192 ~]# docker exec -it centos bash
+Error: No such container: centos
+[root@192 ~]# docker exec -it client bash
+[root@a96161520eb0 /]# curl site
+<pre>
+welcome to php
+eth0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 172.20.0.9  netmask 255.255.0.0  broadcast 172.20.255.255
+        ether 02:42:ac:14:00:09  txqueuelen 0  (Ethernet)
+        RX packets 36  bytes 3551 (3.4 KiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 22  bytes 3657 (3.5 KiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
+        inet 127.0.0.1  netmask 255.0.0.0
+        loop  txqueuelen 1000  (Local Loopback)
+        RX packets 0  bytes 0 (0.0 B)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 0  bytes 0 (0.0 B)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+</pre>
+[root@a96161520eb0 /]# curl site
+<pre>
+welcome to php
+eth0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 172.20.0.8  netmask 255.255.0.0  broadcast 172.20.255.255
+        ether 02:42:ac:14:00:08  txqueuelen 0  (Ethernet)
+        RX packets 15  bytes 1090 (1.0 KiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 3  bytes 182 (182.0 B)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
+        inet 127.0.0.1  netmask 255.0.0.0
+        loop  txqueuelen 1000  (Local Loopback)
+        RX packets 0  bytes 0 (0.0 B)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 0  bytes 0 (0.0 B)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+</pre>
+[root@a96161520eb0 /]# curl site
+<pre>
+welcome to php
+eth0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 172.20.0.11  netmask 255.255.0.0  broadcast 172.20.255.255
+        ether 02:42:ac:14:00:0b  txqueuelen 0  (Ethernet)
+        RX packets 16  bytes 1132 (1.1 KiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 3  bytes 182 (182.0 B)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
+        inet 127.0.0.1  netmask 255.0.0.0
+        loop  txqueuelen 1000  (Local Loopback)
+        RX packets 0  bytes 0 (0.0 B)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 0  bytes 0 (0.0 B)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+</pre>
+[root@a96161520eb0 /]# curl site
+<pre>
+welcome to php
+eth0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 172.20.0.7  netmask 255.255.0.0  broadcast 172.20.255.255
+        ether 02:42:ac:14:00:07  txqueuelen 0  (Ethernet)
+        RX packets 17  bytes 1174 (1.1 KiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 3  bytes 182 (182.0 B)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
+        inet 127.0.0.1  netmask 255.0.0.0
+        loop  txqueuelen 1000  (Local Loopback)
+        RX packets 0  bytes 0 (0.0 B)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 0  bytes 0 (0.0 B)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+</pre>
+[root@a96161520eb0 /]# curl site
+<pre>
+welcome to php
+eth0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 172.20.0.7  netmask 255.255.0.0  broadcast 172.20.255.255
+        ether 02:42:ac:14:00:07  txqueuelen 0  (Ethernet)
+        RX packets 23  bytes 1646 (1.6 KiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 7  bytes 1392 (1.3 KiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
+        inet 127.0.0.1  netmask 255.0.0.0
+        loop  txqueuelen 1000  (Local Loopback)
+        RX packets 0  bytes 0 (0.0 B)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 0  bytes 0 (0.0 B)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+</pre>
+[root@a96161520eb0 /]# curl site
+<pre>
+welcome to php
+eth0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 172.20.0.11  netmask 255.255.0.0  broadcast 172.20.255.255
+        ether 02:42:ac:14:00:0b  txqueuelen 0  (Ethernet)
+        RX packets 23  bytes 1646 (1.6 KiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 7  bytes 1393 (1.3 KiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
+        inet 127.0.0.1  netmask 255.0.0.0
+        loop  txqueuelen 1000  (Local Loopback)
+        RX packets 0  bytes 0 (0.0 B)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 0  bytes 0 (0.0 B)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+</pre>
+[root@a96161520eb0 /]# curl site
+<pre>
+welcome to php
+eth0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 172.20.0.8  netmask 255.255.0.0  broadcast 172.20.255.255
+        ether 02:42:ac:14:00:08  txqueuelen 0  (Ethernet)
+        RX packets 23  bytes 1646 (1.6 KiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 7  bytes 1392 (1.3 KiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
+        inet 127.0.0.1  netmask 255.0.0.0
+        loop  txqueuelen 1000  (Local Loopback)
+        RX packets 0  bytes 0 (0.0 B)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 0  bytes 0 (0.0 B)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+</pre>
+[root@a96161520eb0 /]# curl site
+<pre>
+welcome to php
+eth0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 172.20.0.6  netmask 255.255.0.0  broadcast 172.20.255.255
+        ether 02:42:ac:14:00:06  txqueuelen 0  (Ethernet)
+        RX packets 18  bytes 1216 (1.1 KiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 3  bytes 182 (182.0 B)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
+        inet 127.0.0.1  netmask 255.0.0.0
+        loop  txqueuelen 1000  (Local Loopback)
+        RX packets 0  bytes 0 (0.0 B)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 0  bytes 0 (0.0 B)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+</pre>
+[root@a96161520eb0 /]# curl site
+<pre>
+welcome to php
+eth0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 172.20.0.11  netmask 255.255.0.0  broadcast 172.20.255.255
+        ether 02:42:ac:14:00:0b  txqueuelen 0  (Ethernet)
+        RX packets 30  bytes 2160 (2.1 KiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 11  bytes 2605 (2.5 KiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
+        inet 127.0.0.1  netmask 255.0.0.0
+        loop  txqueuelen 1000  (Local Loopback)
+        RX packets 0  bytes 0 (0.0 B)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 0  bytes 0 (0.0 B)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+</pre>
+[root@a96161520eb0 /]# curl site
+<pre>
+welcome to php
+eth0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 172.20.0.10  netmask 255.255.0.0  broadcast 172.20.255.255
+        ether 02:42:ac:14:00:0a  txqueuelen 0  (Ethernet)
+        RX packets 37  bytes 3061 (2.9 KiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 19  bytes 2464 (2.4 KiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
+        inet 127.0.0.1  netmask 255.0.0.0
+        loop  txqueuelen 1000  (Local Loopback)
+        RX packets 0  bytes 0 (0.0 B)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 0  bytes 0 (0.0 B)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+</pre>
+[root@a96161520eb0 /]# curl site
+<pre>
+welcome to php
+eth0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 172.20.0.10  netmask 255.255.0.0  broadcast 172.20.255.255
+        ether 02:42:ac:14:00:0a  txqueuelen 0  (Ethernet)
+        RX packets 43  bytes 3533 (3.4 KiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 23  bytes 3677 (3.5 KiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
+        inet 127.0.0.1  netmask 255.0.0.0
+        loop  txqueuelen 1000  (Local Loopback)
+        RX packets 0  bytes 0 (0.0 B)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 0  bytes 0 (0.0 B)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+</pre>
+[root@a96161520eb0 /]# curl site
+<pre>
+welcome to php
+eth0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 172.20.0.8  netmask 255.255.0.0  broadcast 172.20.255.255
+        ether 02:42:ac:14:00:08  txqueuelen 0  (Ethernet)
+        RX packets 31  bytes 2202 (2.1 KiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 11  bytes 2603 (2.5 KiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
+        inet 127.0.0.1  netmask 255.0.0.0
+        loop  txqueuelen 1000  (Local Loopback)
+        RX packets 0  bytes 0 (0.0 B)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 0  bytes 0 (0.0 B)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+</pre>
+[root@a96161520eb0 /]# curl site
+<pre>
+welcome to php
+eth0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 172.20.0.8  netmask 255.255.0.0  broadcast 172.20.255.255
+        ether 02:42:ac:14:00:08  txqueuelen 0  (Ethernet)
+        RX packets 37  bytes 2674 (2.6 KiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 15  bytes 3815 (3.7 KiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
+        inet 127.0.0.1  netmask 255.0.0.0
+        loop  txqueuelen 1000  (Local Loopback)
+        RX packets 0  bytes 0 (0.0 B)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 0  bytes 0 (0.0 B)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+</pre>
+[root@a96161520eb0 /]# curl site
+<pre>
+welcome to php
+eth0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 172.20.0.7  netmask 255.255.0.0  broadcast 172.20.255.255
+        ether 02:42:ac:14:00:07  txqueuelen 0  (Ethernet)
+        RX packets 31  bytes 2202 (2.1 KiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 11  bytes 2603 (2.5 KiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
+        inet 127.0.0.1  netmask 255.0.0.0
+        loop  txqueuelen 1000  (Local Loopback)
+        RX packets 0  bytes 0 (0.0 B)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 0  bytes 0 (0.0 B)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+</pre>
+[root@a96161520eb0 /]# curl site
+<pre>
+welcome to php
+eth0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 172.20.0.11  netmask 255.255.0.0  broadcast 172.20.255.255
+        ether 02:42:ac:14:00:0b  txqueuelen 0  (Ethernet)
+        RX packets 37  bytes 2674 (2.6 KiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 15  bytes 3818 (3.7 KiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
+        inet 127.0.0.1  netmask 255.0.0.0
+        loop  txqueuelen 1000  (Local Loopback)
+        RX packets 0  bytes 0 (0.0 B)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 0  bytes 0 (0.0 B)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+</pre>
+[root@a96161520eb0 /]# read escape sequence
+[root@192 ~]# ls
+1    12334  3  anaconda-ks.cfg  index.html  siva
+123  2      a  b                new         yum-cron.conf
+[root@192 ~]#
+[root@localhost ~]#
+[root@localhost ~]# docker stop nginx
+nginx
+[root@localhost ~]# curl http://172.17.0.3
+^C
+[root@localhost ~]# docker start nginx
+nginx
+[root@localhost ~]# curl http://172.17.0.3
+<pre>
+welcome to php
+eth0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 172.17.0.2  netmask 255.255.0.0  broadcast 172.17.255.255
+        ether 02:42:ac:11:00:02  txqueuelen 0  (Ethernet)
+        RX packets 78  bytes 6127 (5.9 KiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 39  bytes 10043 (9.8 KiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
+        inet 127.0.0.1  netmask 255.0.0.0
+        loop  txqueuelen 1000  (Local Loopback)
+        RX packets 0  bytes 0 (0.0 B)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 0  bytes 0 (0.0 B)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+</pre>
+[root@localhost ~]#
+[root@localhost ~]# docker ps
+CONTAINER ID   IMAGE       COMMAND       CREATED          STATUS          PORTS                                   NAMES
+06fbdc3b0e82   centos:7    "/bin/bash"   23 minutes ago   Up 6 seconds                                            nginx
+e04adc6a679b   phpweb:v1   "/bin/bash"   26 minutes ago   Up 26 minutes   0.0.0.0:9090->80/tcp, :::9090->80/tcp   web1
+[root@localhost ~]# docker stop nginx
+nginx
+[root@localhost ~]# docker commit nginx mynginx:v1
+sha256:7666936f36918f521d353836e13b62aa1264b3594cf56916b0a7690e51be7b34
+[root@localhost ~]# docker images
+REPOSITORY   TAG       IMAGE ID       CREATED         SIZE
+mynginx      v1        7666936f3691   7 seconds ago   511MB
+phpweb       v1        a99a70dc120a   18 hours ago    438MB
+httpd        latest    bd29370f84ea   2 weeks ago     138MB
+centos       7         8652b9f0cb4c   8 months ago    204MB
+[root@localhost ~]#
+[root@localhost ~]# docker ps
+CONTAINER ID   IMAGE       COMMAND       CREATED          STATUS          PORTS                                   NAMES
+e04adc6a679b   phpweb:v1   "/bin/bash"   28 minutes ago   Up 28 minutes   0.0.0.0:9090->80/tcp, :::9090->80/tcp   web1
+[root@localhost ~]# docker start nginx
+nginx
+[root@localhost ~]#
+[root@localhost ~]# ls
+1  123  12334  2  3  a  anaconda-ks.cfg  b  index.html  new  siva  yum-cron.conf
+[root@localhost ~]#
+[root@localhost ~]# docker os
+docker: 'os' is not a docker command.
+See 'docker --help'
+[root@localhost ~]# docker ps
+CONTAINER ID   IMAGE       COMMAND       CREATED          STATUS          PORTS                                   NAMES
+06fbdc3b0e82   centos:7    "/bin/bash"   28 minutes ago   Up 12 seconds                                           nginx
+e04adc6a679b   phpweb:v1   "/bin/bash"   31 minutes ago   Up 31 minutes   0.0.0.0:9090->80/tcp, :::9090->80/tcp   web1
+[root@localhost ~]# docker exec -it nginx bash
+nginx: [emerg] bind() to 0.0.0.0:80 failed (98: Address already in use)
+nginx: [emerg] bind() to [::]:80 failed (98: Address already in use)
+nginx: [emerg] bind() to 0.0.0.0:80 failed (98: Address already in use)
+nginx: [emerg] bind() to [::]:80 failed (98: Address already in use)
+nginx: [emerg] bind() to 0.0.0.0:80 failed (98: Address already in use)
+nginx: [emerg] bind() to [::]:80 failed (98: Address already in use)
+nginx: [emerg] bind() to 0.0.0.0:80 failed (98: Address already in use)
+nginx: [emerg] bind() to [::]:80 failed (98: Address already in use)
+nginx: [emerg] bind() to 0.0.0.0:80 failed (98: Address already in use)
+nginx: [emerg] bind() to [::]:80 failed (98: Address already in use)
+nginx: [emerg] still could not bind()
+[root@06fbdc3b0e82 /]#
+[root@06fbdc3b0e82 /]# ls
+anaconda-post.log  boot  etc   lib    media  opt   root  sbin  sys  usr
+bin                dev   home  lib64  mnt    proc  run   srv   tmp  var
+[root@06fbdc3b0e82 /]# cat /root/.bahsr
+cat: /root/.bahsr: No such file or directory
+[root@06fbdc3b0e82 /]# cat /root/.bahsrc
+cat: /root/.bahsrc: No such file or directory
+[root@06fbdc3b0e82 /]# cd
+[root@06fbdc3b0e82 ~]# cat .bashrc
+# .bashrc
+
+# User specific aliases and functions
+
+alias rm='rm -i'
+alias cp='cp -i'
+alias mv='mv -i'
+
+# Source global definitions
+if [ -f /etc/bashrc ]; then
+        . /etc/bashrc
+fi
+
+
+/usr/sbin/nginx
+[root@06fbdc3b0e82 ~]#
+[root@06fbdc3b0e82 ~]# ls
+anaconda-ks.cfg
+[root@06fbdc3b0e82 ~]#
+[root@06fbdc3b0e82 ~]# vi /etc/nginx/nginx.conf
+[root@06fbdc3b0e82 ~]# nginx -t
+nginx: the configuration file /etc/nginx/nginx.conf syntax is ok
+nginx: configuration file /etc/nginx/nginx.conf test is successful
+[root@06fbdc3b0e82 ~]#
+[root@06fbdc3b0e82 ~]# curl http://172.17.0.3
+<pre>
+welcome to php
+eth0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 172.17.0.2  netmask 255.255.0.0  broadcast 172.17.255.255
+        ether 02:42:ac:11:00:02  txqueuelen 0  (Ethernet)
+        RX packets 86  bytes 6710 (6.5 KiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 45  bytes 11340 (11.0 KiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
+        inet 127.0.0.1  netmask 255.0.0.0
+        loop  txqueuelen 1000  (Local Loopback)
+        RX packets 0  bytes 0 (0.0 B)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 0  bytes 0 (0.0 B)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+</pre>
+[root@06fbdc3b0e82 ~]# curl http://172.17.0.3
+<pre>
+welcome to php
+eth0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 172.17.0.2  netmask 255.255.0.0  broadcast 172.17.255.255
+        ether 02:42:ac:11:00:02  txqueuelen 0  (Ethernet)
+        RX packets 92  bytes 7209 (7.0 KiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 49  bytes 12554 (12.2 KiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
+        inet 127.0.0.1  netmask 255.0.0.0
+        loop  txqueuelen 1000  (Local Loopback)
+        RX packets 0  bytes 0 (0.0 B)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 0  bytes 0 (0.0 B)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+</pre>
+[root@06fbdc3b0e82 ~]# curl http://172.17.0.2
+<pre>
+welcome to php
+eth0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 172.17.0.2  netmask 255.255.0.0  broadcast 172.17.255.255
+        ether 02:42:ac:11:00:02  txqueuelen 0  (Ethernet)
+        RX packets 98  bytes 7687 (7.5 KiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 53  bytes 13768 (13.4 KiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
+        inet 127.0.0.1  netmask 255.0.0.0
+        loop  txqueuelen 1000  (Local Loopback)
+        RX packets 0  bytes 0 (0.0 B)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 0  bytes 0 (0.0 B)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+</pre>
+[root@06fbdc3b0e82 ~]#
+[root@06fbdc3b0e82 ~]# vi /etc/nginx/nginx.conf
+[root@06fbdc3b0e82 ~]# nginx -s reload
+[root@06fbdc3b0e82 ~]# curl http://172.17.0.3
+<html>
+<head><title>403 Forbidden</title></head>
+<body>
+<center><h1>403 Forbidden</h1></center>
+<hr><center>nginx/1.20.1</center>
+</body>
+</html>
+[root@06fbdc3b0e82 ~]# ifconfig
+eth0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 172.17.0.3  netmask 255.255.0.0  broadcast 172.17.255.255
+        ether 02:42:ac:11:00:03  txqueuelen 0  (Ethernet)
+        RX packets 21  bytes 4332 (4.2 KiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 19  bytes 1518 (1.4 KiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
+        inet 127.0.0.1  netmask 255.0.0.0
+        loop  txqueuelen 1000  (Local Loopback)
+        RX packets 30  bytes 4030 (3.9 KiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 30  bytes 4030 (3.9 KiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+[root@06fbdc3b0e82 ~]#
+[root@06fbdc3b0e82 ~]# curl http://172.17.0.2
+<pre>
+welcome to php
+eth0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 172.17.0.2  netmask 255.255.0.0  broadcast 172.17.255.255
+        ether 02:42:ac:11:00:02  txqueuelen 0  (Ethernet)
+        RX packets 104  bytes 8165 (7.9 KiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 57  bytes 14982 (14.6 KiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
+        inet 127.0.0.1  netmask 255.0.0.0
+        loop  txqueuelen 1000  (Local Loopback)
+        RX packets 0  bytes 0 (0.0 B)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 0  bytes 0 (0.0 B)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+</pre>
+[root@06fbdc3b0e82 ~]#
+[root@06fbdc3b0e82 ~]# nginx -t
+nginx: the configuration file /etc/nginx/nginx.conf syntax is ok
+nginx: configuration file /etc/nginx/nginx.conf test is successful
+[root@06fbdc3b0e82 ~]#
+[root@06fbdc3b0e82 ~]# read escape sequence
+[root@localhost ~]#
+[root@localhost ~]# docker ps
+CONTAINER ID   IMAGE       COMMAND       CREATED          STATUS          PORTS                                   NAMES
+06fbdc3b0e82   centos:7    "/bin/bash"   31 minutes ago   Up 3 minutes                                            nginx
+e04adc6a679b   phpweb:v1   "/bin/bash"   34 minutes ago   Up 34 minutes   0.0.0.0:9090->80/tcp, :::9090->80/tcp   web1
+[root@localhost ~]# docker commit nginx backendnginx:v1
+sha256:52298ab56a08c6aca7bf712b9ad299b49cc443e84135bb6c9b7e4c9e3adac366
+[root@localhost ~]#
+[root@localhost ~]# docker ps
+CONTAINER ID   IMAGE       COMMAND       CREATED          STATUS          PORTS                                   NAMES
+06fbdc3b0e82   centos:7    "/bin/bash"   32 minutes ago   Up 4 minutes                                            nginx
+e04adc6a679b   phpweb:v1   "/bin/bash"   35 minutes ago   Up 35 minutes   0.0.0.0:9090->80/tcp, :::9090->80/tcp   web1
+[root@localhost ~]# docker run -itd --name w1 phpweb:v1
+90ad2ceaeb463fbe9d3ee0f3fbb0fa582e3206f10f11b842811c8a8dff389183
+[root@localhost ~]# docker run -itd --name w2 phpweb:v1
+bd674f9ebe05fe5f6e58f352ee59e66a19cded30e571e6594a347a093389cd34
+[root@localhost ~]# docker run -itd --name w3 phpweb:v1
+d76824d7b56468216dd21bc17dc3bf18567a235ce2b2b74dc52a38733f761806
+[root@localhost ~]#
+[root@localhost ~]# docker ps
+CONTAINER ID   IMAGE       COMMAND       CREATED          STATUS          PORTS                                   NAMES
+d76824d7b564   phpweb:v1   "/bin/bash"   4 seconds ago    Up 3 seconds                                            w3
+bd674f9ebe05   phpweb:v1   "/bin/bash"   8 seconds ago    Up 7 seconds                                            w2
+90ad2ceaeb46   phpweb:v1   "/bin/bash"   12 seconds ago   Up 11 seconds                                           w1
+06fbdc3b0e82   centos:7    "/bin/bash"   33 minutes ago   Up 4 minutes                                            nginx
+e04adc6a679b   phpweb:v1   "/bin/bash"   36 minutes ago   Up 36 minutes   0.0.0.0:9090->80/tcp, :::9090->80/tcp   web1
+[root@localhost ~]# docker rm -f web1
+web1
+[root@localhost ~]#
+[root@localhost ~]# docker ps
+CONTAINER ID   IMAGE       COMMAND       CREATED          STATUS          PORTS     NAMES
+d76824d7b564   phpweb:v1   "/bin/bash"   29 seconds ago   Up 28 seconds             w3
+bd674f9ebe05   phpweb:v1   "/bin/bash"   33 seconds ago   Up 31 seconds             w2
+90ad2ceaeb46   phpweb:v1   "/bin/bash"   37 seconds ago   Up 36 seconds             w1
+06fbdc3b0e82   centos:7    "/bin/bash"   33 minutes ago   Up 5 minutes              nginx
+[root@localhost ~]# docker images
+REPOSITORY     TAG       IMAGE ID       CREATED              SIZE
+backendnginx   v1        52298ab56a08   About a minute ago   511MB
+mynginx        v1        7666936f3691   9 minutes ago        511MB
+phpweb         v1        a99a70dc120a   19 hours ago         438MB
+httpd          latest    bd29370f84ea   2 weeks ago          138MB
+centos         7         8652b9f0cb4c   8 months ago         204MB
+[root@localhost ~]# docker inspect w1
+[
+    {
+        "Id": "90ad2ceaeb463fbe9d3ee0f3fbb0fa582e3206f10f11b842811c8a8dff389183",
+        "Created": "2021-07-24T02:16:13.141285399Z",
+        "Path": "/bin/bash",
+        "Args": [],
+        "State": {
+            "Status": "running",
+            "Running": true,
+            "Paused": false,
+            "Restarting": false,
+            "OOMKilled": false,
+            "Dead": false,
+            "Pid": 3018,
+            "ExitCode": 0,
+            "Error": "",
+            "StartedAt": "2021-07-24T02:16:13.864684452Z",
+            "FinishedAt": "0001-01-01T00:00:00Z"
+        },
+        "Image": "sha256:a99a70dc120a79d2620f80d695dece513f310356011789e97706459867505195",
+        "ResolvConfPath": "/var/lib/docker/containers/90ad2ceaeb463fbe9d3ee0f3fbb0fa582e3206f10f11b842811c8a8dff389183/resolv.conf",
+        "HostnamePath": "/var/lib/docker/containers/90ad2ceaeb463fbe9d3ee0f3fbb0fa582e3206f10f11b842811c8a8dff389183/hostname",
+        "HostsPath": "/var/lib/docker/containers/90ad2ceaeb463fbe9d3ee0f3fbb0fa582e3206f10f11b842811c8a8dff389183/hosts",
+        "LogPath": "/var/lib/docker/containers/90ad2ceaeb463fbe9d3ee0f3fbb0fa582e3206f10f11b842811c8a8dff389183/90ad2ceaeb463fbe9d3ee0f3fbb0fa582e3206f10f11b842811c8a8dff389183-json.log",
+        "Name": "/w1",
+        "RestartCount": 0,
+        "Driver": "overlay2",
+        "Platform": "linux",
+        "MountLabel": "",
+        "ProcessLabel": "",
+        "AppArmorProfile": "",
+        "ExecIDs": null,
+        "HostConfig": {
+            "Binds": null,
+            "ContainerIDFile": "",
+            "LogConfig": {
+                "Type": "json-file",
+                "Config": {}
+            },
+            "NetworkMode": "default",
+            "PortBindings": {},
+            "RestartPolicy": {
+                "Name": "no",
+                "MaximumRetryCount": 0
+            },
+            "AutoRemove": false,
+            "VolumeDriver": "",
+            "VolumesFrom": null,
+            "CapAdd": null,
+            "CapDrop": null,
+            "CgroupnsMode": "host",
+            "Dns": [],
+            "DnsOptions": [],
+            "DnsSearch": [],
+            "ExtraHosts": null,
+            "GroupAdd": null,
+            "IpcMode": "private",
+            "Cgroup": "",
+            "Links": null,
+            "OomScoreAdj": 0,
+            "PidMode": "",
+            "Privileged": false,
+            "PublishAllPorts": false,
+            "ReadonlyRootfs": false,
+            "SecurityOpt": null,
+            "UTSMode": "",
+            "UsernsMode": "",
+            "ShmSize": 67108864,
+            "Runtime": "runc",
+            "ConsoleSize": [
+                0,
+                0
+            ],
+            "Isolation": "",
+            "CpuShares": 0,
+            "Memory": 0,
+            "NanoCpus": 0,
+            "CgroupParent": "",
+            "BlkioWeight": 0,
+            "BlkioWeightDevice": [],
+            "BlkioDeviceReadBps": null,
+            "BlkioDeviceWriteBps": null,
+            "BlkioDeviceReadIOps": null,
+            "BlkioDeviceWriteIOps": null,
+            "CpuPeriod": 0,
+            "CpuQuota": 0,
+            "CpuRealtimePeriod": 0,
+            "CpuRealtimeRuntime": 0,
+            "CpusetCpus": "",
+            "CpusetMems": "",
+            "Devices": [],
+            "DeviceCgroupRules": null,
+            "DeviceRequests": null,
+            "KernelMemory": 0,
+            "KernelMemoryTCP": 0,
+            "MemoryReservation": 0,
+            "MemorySwap": 0,
+            "MemorySwappiness": null,
+            "OomKillDisable": false,
+            "PidsLimit": null,
+            "Ulimits": null,
+            "CpuCount": 0,
+            "CpuPercent": 0,
+            "IOMaximumIOps": 0,
+            "IOMaximumBandwidth": 0,
+            "MaskedPaths": [
+                "/proc/asound",
+                "/proc/acpi",
+                "/proc/kcore",
+                "/proc/keys",
+                "/proc/latency_stats",
+                "/proc/timer_list",
+                "/proc/timer_stats",
+                "/proc/sched_debug",
+                "/proc/scsi",
+                "/sys/firmware"
+            ],
+            "ReadonlyPaths": [
+                "/proc/bus",
+                "/proc/fs",
+                "/proc/irq",
+                "/proc/sys",
+                "/proc/sysrq-trigger"
+            ]
+        },
+        "GraphDriver": {
+            "Data": {
+                "LowerDir": "/var/lib/docker/overlay2/90ea73c80ea34792c20e57212c41863de2511157821bd7ce3e84ba790a1c639e-init/diff:/var/lib/docker/overlay2/c591b2565906dc15c1487f473d1daaace4c0f735a89418f9a4c1eae240ca0928/diff:/var/lib/docker/overlay2/770c48586a4f109319c4ec6dbea4449b395e513d34ede27a8f34a19507abd414/diff",
+                "MergedDir": "/var/lib/docker/overlay2/90ea73c80ea34792c20e57212c41863de2511157821bd7ce3e84ba790a1c639e/merged",
+                "UpperDir": "/var/lib/docker/overlay2/90ea73c80ea34792c20e57212c41863de2511157821bd7ce3e84ba790a1c639e/diff",
+                "WorkDir": "/var/lib/docker/overlay2/90ea73c80ea34792c20e57212c41863de2511157821bd7ce3e84ba790a1c639e/work"
+            },
+            "Name": "overlay2"
+        },
+        "Mounts": [],
+        "Config": {
+            "Hostname": "90ad2ceaeb46",
+            "Domainname": "",
+            "User": "",
+            "AttachStdin": false,
+            "AttachStdout": false,
+            "AttachStderr": false,
+            "Tty": true,
+            "OpenStdin": true,
+            "StdinOnce": false,
+            "Env": [
+                "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+            ],
+            "Cmd": [
+                "/bin/bash"
+            ],
+            "Image": "phpweb:v1",
+            "Volumes": null,
+            "WorkingDir": "",
+            "Entrypoint": null,
+            "OnBuild": null,
+            "Labels": {
+                "org.label-schema.build-date": "20201113",
+                "org.label-schema.license": "GPLv2",
+                "org.label-schema.name": "CentOS Base Image",
+                "org.label-schema.schema-version": "1.0",
+                "org.label-schema.vendor": "CentOS",
+                "org.opencontainers.image.created": "2020-11-13 00:00:00+00:00",
+                "org.opencontainers.image.licenses": "GPL-2.0-only",
+                "org.opencontainers.image.title": "CentOS Base Image",
+                "org.opencontainers.image.vendor": "CentOS"
+            }
+        },
+        "NetworkSettings": {
+            "Bridge": "",
+            "SandboxID": "ad6d33c5d35f727de0deba501e8baea7f3d682a9f3096b01edd26ea5a2b72d83",
+            "HairpinMode": false,
+            "LinkLocalIPv6Address": "",
+            "LinkLocalIPv6PrefixLen": 0,
+            "Ports": {},
+            "SandboxKey": "/var/run/docker/netns/ad6d33c5d35f",
+            "SecondaryIPAddresses": null,
+            "SecondaryIPv6Addresses": null,
+            "EndpointID": "91c00db6eed609de459dfcd35428f65043518dd02e300d19c065a40fd02ba9f5",
+            "Gateway": "172.17.0.1",
+            "GlobalIPv6Address": "",
+            "GlobalIPv6PrefixLen": 0,
+            "IPAddress": "172.17.0.4",
+            "IPPrefixLen": 16,
+            "IPv6Gateway": "",
+            "MacAddress": "02:42:ac:11:00:04",
+            "Networks": {
+                "bridge": {
+                    "IPAMConfig": null,
+                    "Links": null,
+                    "Aliases": null,
+                    "NetworkID": "c62af87fab0351a97f6c1514b7a5d04313bcd907d64f37a3c394623d149888a2",
+                    "EndpointID": "91c00db6eed609de459dfcd35428f65043518dd02e300d19c065a40fd02ba9f5",
+                    "Gateway": "172.17.0.1",
+                    "IPAddress": "172.17.0.4",
+                    "IPPrefixLen": 16,
+                    "IPv6Gateway": "",
+                    "GlobalIPv6Address": "",
+                    "GlobalIPv6PrefixLen": 0,
+                    "MacAddress": "02:42:ac:11:00:04",
+                    "DriverOpts": null
+                }
+            }
+        }
+    }
+]
+[root@localhost ~]# docker inspect w2
+[
+    {
+        "Id": "bd674f9ebe05fe5f6e58f352ee59e66a19cded30e571e6594a347a093389cd34",
+        "Created": "2021-07-24T02:16:17.687894805Z",
+        "Path": "/bin/bash",
+        "Args": [],
+        "State": {
+            "Status": "running",
+            "Running": true,
+            "Paused": false,
+            "Restarting": false,
+            "OOMKilled": false,
+            "Dead": false,
+            "Pid": 3102,
+            "ExitCode": 0,
+            "Error": "",
+            "StartedAt": "2021-07-24T02:16:18.14994847Z",
+            "FinishedAt": "0001-01-01T00:00:00Z"
+        },
+        "Image": "sha256:a99a70dc120a79d2620f80d695dece513f310356011789e97706459867505195",
+        "ResolvConfPath": "/var/lib/docker/containers/bd674f9ebe05fe5f6e58f352ee59e66a19cded30e571e6594a347a093389cd34/resolv.conf",
+        "HostnamePath": "/var/lib/docker/containers/bd674f9ebe05fe5f6e58f352ee59e66a19cded30e571e6594a347a093389cd34/hostname",
+        "HostsPath": "/var/lib/docker/containers/bd674f9ebe05fe5f6e58f352ee59e66a19cded30e571e6594a347a093389cd34/hosts",
+        "LogPath": "/var/lib/docker/containers/bd674f9ebe05fe5f6e58f352ee59e66a19cded30e571e6594a347a093389cd34/bd674f9ebe05fe5f6e58f352ee59e66a19cded30e571e6594a347a093389cd34-json.log",
+        "Name": "/w2",
+        "RestartCount": 0,
+        "Driver": "overlay2",
+        "Platform": "linux",
+        "MountLabel": "",
+        "ProcessLabel": "",
+        "AppArmorProfile": "",
+        "ExecIDs": null,
+        "HostConfig": {
+            "Binds": null,
+            "ContainerIDFile": "",
+            "LogConfig": {
+                "Type": "json-file",
+                "Config": {}
+            },
+            "NetworkMode": "default",
+            "PortBindings": {},
+            "RestartPolicy": {
+                "Name": "no",
+                "MaximumRetryCount": 0
+            },
+            "AutoRemove": false,
+            "VolumeDriver": "",
+            "VolumesFrom": null,
+            "CapAdd": null,
+            "CapDrop": null,
+            "CgroupnsMode": "host",
+            "Dns": [],
+            "DnsOptions": [],
+            "DnsSearch": [],
+            "ExtraHosts": null,
+            "GroupAdd": null,
+            "IpcMode": "private",
+            "Cgroup": "",
+            "Links": null,
+            "OomScoreAdj": 0,
+            "PidMode": "",
+            "Privileged": false,
+            "PublishAllPorts": false,
+            "ReadonlyRootfs": false,
+            "SecurityOpt": null,
+            "UTSMode": "",
+            "UsernsMode": "",
+            "ShmSize": 67108864,
+            "Runtime": "runc",
+            "ConsoleSize": [
+                0,
+                0
+            ],
+            "Isolation": "",
+            "CpuShares": 0,
+            "Memory": 0,
+            "NanoCpus": 0,
+            "CgroupParent": "",
+            "BlkioWeight": 0,
+            "BlkioWeightDevice": [],
+            "BlkioDeviceReadBps": null,
+            "BlkioDeviceWriteBps": null,
+            "BlkioDeviceReadIOps": null,
+            "BlkioDeviceWriteIOps": null,
+            "CpuPeriod": 0,
+            "CpuQuota": 0,
+            "CpuRealtimePeriod": 0,
+            "CpuRealtimeRuntime": 0,
+            "CpusetCpus": "",
+            "CpusetMems": "",
+            "Devices": [],
+            "DeviceCgroupRules": null,
+            "DeviceRequests": null,
+            "KernelMemory": 0,
+            "KernelMemoryTCP": 0,
+            "MemoryReservation": 0,
+            "MemorySwap": 0,
+            "MemorySwappiness": null,
+            "OomKillDisable": false,
+            "PidsLimit": null,
+            "Ulimits": null,
+            "CpuCount": 0,
+            "CpuPercent": 0,
+            "IOMaximumIOps": 0,
+            "IOMaximumBandwidth": 0,
+            "MaskedPaths": [
+                "/proc/asound",
+                "/proc/acpi",
+                "/proc/kcore",
+                "/proc/keys",
+                "/proc/latency_stats",
+                "/proc/timer_list",
+                "/proc/timer_stats",
+                "/proc/sched_debug",
+                "/proc/scsi",
+                "/sys/firmware"
+            ],
+            "ReadonlyPaths": [
+                "/proc/bus",
+                "/proc/fs",
+                "/proc/irq",
+                "/proc/sys",
+                "/proc/sysrq-trigger"
+            ]
+        },
+        "GraphDriver": {
+            "Data": {
+                "LowerDir": "/var/lib/docker/overlay2/b9f8914dfde9a050f53a295783837a4f8957e9377acebb2bc7fe92481f61d89d-init/diff:/var/lib/docker/overlay2/c591b2565906dc15c1487f473d1daaace4c0f735a89418f9a4c1eae240ca0928/diff:/var/lib/docker/overlay2/770c48586a4f109319c4ec6dbea4449b395e513d34ede27a8f34a19507abd414/diff",
+                "MergedDir": "/var/lib/docker/overlay2/b9f8914dfde9a050f53a295783837a4f8957e9377acebb2bc7fe92481f61d89d/merged",
+                "UpperDir": "/var/lib/docker/overlay2/b9f8914dfde9a050f53a295783837a4f8957e9377acebb2bc7fe92481f61d89d/diff",
+                "WorkDir": "/var/lib/docker/overlay2/b9f8914dfde9a050f53a295783837a4f8957e9377acebb2bc7fe92481f61d89d/work"
+            },
+            "Name": "overlay2"
+        },
+        "Mounts": [],
+        "Config": {
+            "Hostname": "bd674f9ebe05",
+            "Domainname": "",
+            "User": "",
+            "AttachStdin": false,
+            "AttachStdout": false,
+            "AttachStderr": false,
+            "Tty": true,
+            "OpenStdin": true,
+            "StdinOnce": false,
+            "Env": [
+                "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+            ],
+            "Cmd": [
+                "/bin/bash"
+            ],
+            "Image": "phpweb:v1",
+            "Volumes": null,
+            "WorkingDir": "",
+            "Entrypoint": null,
+            "OnBuild": null,
+            "Labels": {
+                "org.label-schema.build-date": "20201113",
+                "org.label-schema.license": "GPLv2",
+                "org.label-schema.name": "CentOS Base Image",
+                "org.label-schema.schema-version": "1.0",
+                "org.label-schema.vendor": "CentOS",
+                "org.opencontainers.image.created": "2020-11-13 00:00:00+00:00",
+                "org.opencontainers.image.licenses": "GPL-2.0-only",
+                "org.opencontainers.image.title": "CentOS Base Image",
+                "org.opencontainers.image.vendor": "CentOS"
+            }
+        },
+        "NetworkSettings": {
+            "Bridge": "",
+            "SandboxID": "20208f079b2fa1e0af6fb4397d1b33b2edf5d710aaf9b7c5032d109f56f3d5e4",
+            "HairpinMode": false,
+            "LinkLocalIPv6Address": "",
+            "LinkLocalIPv6PrefixLen": 0,
+            "Ports": {},
+            "SandboxKey": "/var/run/docker/netns/20208f079b2f",
+            "SecondaryIPAddresses": null,
+            "SecondaryIPv6Addresses": null,
+            "EndpointID": "91d01b414306b2c4ba6e8765af39aaf7ef53858f1bde4b5e4c4bb565bc51003e",
+            "Gateway": "172.17.0.1",
+            "GlobalIPv6Address": "",
+            "GlobalIPv6PrefixLen": 0,
+            "IPAddress": "172.17.0.5",
+            "IPPrefixLen": 16,
+            "IPv6Gateway": "",
+            "MacAddress": "02:42:ac:11:00:05",
+            "Networks": {
+                "bridge": {
+                    "IPAMConfig": null,
+                    "Links": null,
+                    "Aliases": null,
+                    "NetworkID": "c62af87fab0351a97f6c1514b7a5d04313bcd907d64f37a3c394623d149888a2",
+                    "EndpointID": "91d01b414306b2c4ba6e8765af39aaf7ef53858f1bde4b5e4c4bb565bc51003e",
+                    "Gateway": "172.17.0.1",
+                    "IPAddress": "172.17.0.5",
+                    "IPPrefixLen": 16,
+                    "IPv6Gateway": "",
+                    "GlobalIPv6Address": "",
+                    "GlobalIPv6PrefixLen": 0,
+                    "MacAddress": "02:42:ac:11:00:05",
+                    "DriverOpts": null
+                }
+            }
+        }
+    }
+]
+[root@localhost ~]# docker inspect w3
+[
+    {
+        "Id": "d76824d7b56468216dd21bc17dc3bf18567a235ce2b2b74dc52a38733f761806",
+        "Created": "2021-07-24T02:16:21.2950764Z",
+        "Path": "/bin/bash",
+        "Args": [],
+        "State": {
+            "Status": "running",
+            "Running": true,
+            "Paused": false,
+            "Restarting": false,
+            "OOMKilled": false,
+            "Dead": false,
+            "Pid": 3182,
+            "ExitCode": 0,
+            "Error": "",
+            "StartedAt": "2021-07-24T02:16:21.850573457Z",
+            "FinishedAt": "0001-01-01T00:00:00Z"
+        },
+        "Image": "sha256:a99a70dc120a79d2620f80d695dece513f310356011789e97706459867505195",
+        "ResolvConfPath": "/var/lib/docker/containers/d76824d7b56468216dd21bc17dc3bf18567a235ce2b2b74dc52a38733f761806/resolv.conf",
+        "HostnamePath": "/var/lib/docker/containers/d76824d7b56468216dd21bc17dc3bf18567a235ce2b2b74dc52a38733f761806/hostname",
+        "HostsPath": "/var/lib/docker/containers/d76824d7b56468216dd21bc17dc3bf18567a235ce2b2b74dc52a38733f761806/hosts",
+        "LogPath": "/var/lib/docker/containers/d76824d7b56468216dd21bc17dc3bf18567a235ce2b2b74dc52a38733f761806/d76824d7b56468216dd21bc17dc3bf18567a235ce2b2b74dc52a38733f761806-json.log",
+        "Name": "/w3",
+        "RestartCount": 0,
+        "Driver": "overlay2",
+        "Platform": "linux",
+        "MountLabel": "",
+        "ProcessLabel": "",
+        "AppArmorProfile": "",
+        "ExecIDs": null,
+        "HostConfig": {
+            "Binds": null,
+            "ContainerIDFile": "",
+            "LogConfig": {
+                "Type": "json-file",
+                "Config": {}
+            },
+            "NetworkMode": "default",
+            "PortBindings": {},
+            "RestartPolicy": {
+                "Name": "no",
+                "MaximumRetryCount": 0
+            },
+            "AutoRemove": false,
+            "VolumeDriver": "",
+            "VolumesFrom": null,
+            "CapAdd": null,
+            "CapDrop": null,
+            "CgroupnsMode": "host",
+            "Dns": [],
+            "DnsOptions": [],
+            "DnsSearch": [],
+            "ExtraHosts": null,
+            "GroupAdd": null,
+            "IpcMode": "private",
+            "Cgroup": "",
+            "Links": null,
+            "OomScoreAdj": 0,
+            "PidMode": "",
+            "Privileged": false,
+            "PublishAllPorts": false,
+            "ReadonlyRootfs": false,
+            "SecurityOpt": null,
+            "UTSMode": "",
+            "UsernsMode": "",
+            "ShmSize": 67108864,
+            "Runtime": "runc",
+            "ConsoleSize": [
+                0,
+                0
+            ],
+            "Isolation": "",
+            "CpuShares": 0,
+            "Memory": 0,
+            "NanoCpus": 0,
+            "CgroupParent": "",
+            "BlkioWeight": 0,
+            "BlkioWeightDevice": [],
+            "BlkioDeviceReadBps": null,
+            "BlkioDeviceWriteBps": null,
+            "BlkioDeviceReadIOps": null,
+            "BlkioDeviceWriteIOps": null,
+            "CpuPeriod": 0,
+            "CpuQuota": 0,
+            "CpuRealtimePeriod": 0,
+            "CpuRealtimeRuntime": 0,
+            "CpusetCpus": "",
+            "CpusetMems": "",
+            "Devices": [],
+            "DeviceCgroupRules": null,
+            "DeviceRequests": null,
+            "KernelMemory": 0,
+            "KernelMemoryTCP": 0,
+            "MemoryReservation": 0,
+            "MemorySwap": 0,
+            "MemorySwappiness": null,
+            "OomKillDisable": false,
+            "PidsLimit": null,
+            "Ulimits": null,
+            "CpuCount": 0,
+            "CpuPercent": 0,
+            "IOMaximumIOps": 0,
+            "IOMaximumBandwidth": 0,
+            "MaskedPaths": [
+                "/proc/asound",
+                "/proc/acpi",
+                "/proc/kcore",
+                "/proc/keys",
+                "/proc/latency_stats",
+                "/proc/timer_list",
+                "/proc/timer_stats",
+                "/proc/sched_debug",
+                "/proc/scsi",
+                "/sys/firmware"
+            ],
+            "ReadonlyPaths": [
+                "/proc/bus",
+                "/proc/fs",
+                "/proc/irq",
+                "/proc/sys",
+                "/proc/sysrq-trigger"
+            ]
+        },
+        "GraphDriver": {
+            "Data": {
+                "LowerDir": "/var/lib/docker/overlay2/07ded3c0dee36da21243b7d36a49f119eab9bfabc347427a4b2936c9d820f524-init/diff:/var/lib/docker/overlay2/c591b2565906dc15c1487f473d1daaace4c0f735a89418f9a4c1eae240ca0928/diff:/var/lib/docker/overlay2/770c48586a4f109319c4ec6dbea4449b395e513d34ede27a8f34a19507abd414/diff",
+                "MergedDir": "/var/lib/docker/overlay2/07ded3c0dee36da21243b7d36a49f119eab9bfabc347427a4b2936c9d820f524/merged",
+                "UpperDir": "/var/lib/docker/overlay2/07ded3c0dee36da21243b7d36a49f119eab9bfabc347427a4b2936c9d820f524/diff",
+                "WorkDir": "/var/lib/docker/overlay2/07ded3c0dee36da21243b7d36a49f119eab9bfabc347427a4b2936c9d820f524/work"
+            },
+            "Name": "overlay2"
+        },
+        "Mounts": [],
+        "Config": {
+            "Hostname": "d76824d7b564",
+            "Domainname": "",
+            "User": "",
+            "AttachStdin": false,
+            "AttachStdout": false,
+            "AttachStderr": false,
+            "Tty": true,
+            "OpenStdin": true,
+            "StdinOnce": false,
+            "Env": [
+                "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+            ],
+            "Cmd": [
+                "/bin/bash"
+            ],
+            "Image": "phpweb:v1",
+            "Volumes": null,
+            "WorkingDir": "",
+            "Entrypoint": null,
+            "OnBuild": null,
+            "Labels": {
+                "org.label-schema.build-date": "20201113",
+                "org.label-schema.license": "GPLv2",
+                "org.label-schema.name": "CentOS Base Image",
+                "org.label-schema.schema-version": "1.0",
+                "org.label-schema.vendor": "CentOS",
+                "org.opencontainers.image.created": "2020-11-13 00:00:00+00:00",
+                "org.opencontainers.image.licenses": "GPL-2.0-only",
+                "org.opencontainers.image.title": "CentOS Base Image",
+                "org.opencontainers.image.vendor": "CentOS"
+            }
+        },
+        "NetworkSettings": {
+            "Bridge": "",
+            "SandboxID": "d5b9bb25372667c39b6492c2fa5bf7fb8e4c022a6ff2615fec4a93eb5392f344",
+            "HairpinMode": false,
+            "LinkLocalIPv6Address": "",
+            "LinkLocalIPv6PrefixLen": 0,
+            "Ports": {},
+            "SandboxKey": "/var/run/docker/netns/d5b9bb253726",
+            "SecondaryIPAddresses": null,
+            "SecondaryIPv6Addresses": null,
+            "EndpointID": "f53dbf786b5b0a26a1f404bbc0d849a4d4e93eed05e709081fd4f09dc385fda8",
+            "Gateway": "172.17.0.1",
+            "GlobalIPv6Address": "",
+            "GlobalIPv6PrefixLen": 0,
+            "IPAddress": "172.17.0.6",
+            "IPPrefixLen": 16,
+            "IPv6Gateway": "",
+            "MacAddress": "02:42:ac:11:00:06",
+            "Networks": {
+                "bridge": {
+                    "IPAMConfig": null,
+                    "Links": null,
+                    "Aliases": null,
+                    "NetworkID": "c62af87fab0351a97f6c1514b7a5d04313bcd907d64f37a3c394623d149888a2",
+                    "EndpointID": "f53dbf786b5b0a26a1f404bbc0d849a4d4e93eed05e709081fd4f09dc385fda8",
+                    "Gateway": "172.17.0.1",
+                    "IPAddress": "172.17.0.6",
+                    "IPPrefixLen": 16,
+                    "IPv6Gateway": "",
+                    "GlobalIPv6Address": "",
+                    "GlobalIPv6PrefixLen": 0,
+                    "MacAddress": "02:42:ac:11:00:06",
+                    "DriverOpts": null
+                }
+            }
+        }
+    }
+]
+[root@localhost ~]# docker inspect w4
+[]
+Error: No such object: w4
+[root@localhost ~]#
+[root@localhost ~]# docker inspect w2
+[
+    {
+        "Id": "bd674f9ebe05fe5f6e58f352ee59e66a19cded30e571e6594a347a093389cd34",
+        "Created": "2021-07-24T02:16:17.687894805Z",
+        "Path": "/bin/bash",
+        "Args": [],
+        "State": {
+            "Status": "running",
+            "Running": true,
+            "Paused": false,
+            "Restarting": false,
+            "OOMKilled": false,
+            "Dead": false,
+            "Pid": 3102,
+            "ExitCode": 0,
+            "Error": "",
+            "StartedAt": "2021-07-24T02:16:18.14994847Z",
+            "FinishedAt": "0001-01-01T00:00:00Z"
+        },
+        "Image": "sha256:a99a70dc120a79d2620f80d695dece513f310356011789e97706459867505195",
+        "ResolvConfPath": "/var/lib/docker/containers/bd674f9ebe05fe5f6e58f352ee59e66a19cded30e571e6594a347a093389cd34/resolv.conf",
+        "HostnamePath": "/var/lib/docker/containers/bd674f9ebe05fe5f6e58f352ee59e66a19cded30e571e6594a347a093389cd34/hostname",
+        "HostsPath": "/var/lib/docker/containers/bd674f9ebe05fe5f6e58f352ee59e66a19cded30e571e6594a347a093389cd34/hosts",
+        "LogPath": "/var/lib/docker/containers/bd674f9ebe05fe5f6e58f352ee59e66a19cded30e571e6594a347a093389cd34/bd674f9ebe05fe5f6e58f352ee59e66a19cded30e571e6594a347a093389cd34-json.log",
+        "Name": "/w2",
+        "RestartCount": 0,
+        "Driver": "overlay2",
+        "Platform": "linux",
+        "MountLabel": "",
+        "ProcessLabel": "",
+        "AppArmorProfile": "",
+        "ExecIDs": null,
+        "HostConfig": {
+            "Binds": null,
+            "ContainerIDFile": "",
+            "LogConfig": {
+                "Type": "json-file",
+                "Config": {}
+            },
+            "NetworkMode": "default",
+            "PortBindings": {},
+            "RestartPolicy": {
+                "Name": "no",
+                "MaximumRetryCount": 0
+            },
+            "AutoRemove": false,
+            "VolumeDriver": "",
+            "VolumesFrom": null,
+            "CapAdd": null,
+            "CapDrop": null,
+            "CgroupnsMode": "host",
+            "Dns": [],
+            "DnsOptions": [],
+            "DnsSearch": [],
+            "ExtraHosts": null,
+            "GroupAdd": null,
+            "IpcMode": "private",
+            "Cgroup": "",
+            "Links": null,
+            "OomScoreAdj": 0,
+            "PidMode": "",
+            "Privileged": false,
+            "PublishAllPorts": false,
+            "ReadonlyRootfs": false,
+            "SecurityOpt": null,
+            "UTSMode": "",
+            "UsernsMode": "",
+            "ShmSize": 67108864,
+            "Runtime": "runc",
+            "ConsoleSize": [
+                0,
+                0
+            ],
+            "Isolation": "",
+            "CpuShares": 0,
+            "Memory": 0,
+            "NanoCpus": 0,
+            "CgroupParent": "",
+            "BlkioWeight": 0,
+            "BlkioWeightDevice": [],
+            "BlkioDeviceReadBps": null,
+            "BlkioDeviceWriteBps": null,
+            "BlkioDeviceReadIOps": null,
+            "BlkioDeviceWriteIOps": null,
+            "CpuPeriod": 0,
+            "CpuQuota": 0,
+            "CpuRealtimePeriod": 0,
+            "CpuRealtimeRuntime": 0,
+            "CpusetCpus": "",
+            "CpusetMems": "",
+            "Devices": [],
+            "DeviceCgroupRules": null,
+            "DeviceRequests": null,
+            "KernelMemory": 0,
+            "KernelMemoryTCP": 0,
+            "MemoryReservation": 0,
+            "MemorySwap": 0,
+            "MemorySwappiness": null,
+            "OomKillDisable": false,
+            "PidsLimit": null,
+            "Ulimits": null,
+            "CpuCount": 0,
+            "CpuPercent": 0,
+            "IOMaximumIOps": 0,
+            "IOMaximumBandwidth": 0,
+            "MaskedPaths": [
+                "/proc/asound",
+                "/proc/acpi",
+                "/proc/kcore",
+                "/proc/keys",
+                "/proc/latency_stats",
+                "/proc/timer_list",
+                "/proc/timer_stats",
+                "/proc/sched_debug",
+                "/proc/scsi",
+                "/sys/firmware"
+            ],
+            "ReadonlyPaths": [
+                "/proc/bus",
+                "/proc/fs",
+                "/proc/irq",
+                "/proc/sys",
+                "/proc/sysrq-trigger"
+            ]
+        },
+        "GraphDriver": {
+            "Data": {
+                "LowerDir": "/var/lib/docker/overlay2/b9f8914dfde9a050f53a295783837a4f8957e9377acebb2bc7fe92481f61d89d-init/diff:/var/lib/docker/overlay2/c591b2565906dc15c1487f473d1daaace4c0f735a89418f9a4c1eae240ca0928/diff:/var/lib/docker/overlay2/770c48586a4f109319c4ec6dbea4449b395e513d34ede27a8f34a19507abd414/diff",
+                "MergedDir": "/var/lib/docker/overlay2/b9f8914dfde9a050f53a295783837a4f8957e9377acebb2bc7fe92481f61d89d/merged",
+                "UpperDir": "/var/lib/docker/overlay2/b9f8914dfde9a050f53a295783837a4f8957e9377acebb2bc7fe92481f61d89d/diff",
+                "WorkDir": "/var/lib/docker/overlay2/b9f8914dfde9a050f53a295783837a4f8957e9377acebb2bc7fe92481f61d89d/work"
+            },
+            "Name": "overlay2"
+        },
+        "Mounts": [],
+        "Config": {
+            "Hostname": "bd674f9ebe05",
+            "Domainname": "",
+            "User": "",
+            "AttachStdin": false,
+            "AttachStdout": false,
+            "AttachStderr": false,
+            "Tty": true,
+            "OpenStdin": true,
+            "StdinOnce": false,
+            "Env": [
+                "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+            ],
+            "Cmd": [
+                "/bin/bash"
+            ],
+            "Image": "phpweb:v1",
+            "Volumes": null,
+            "WorkingDir": "",
+            "Entrypoint": null,
+            "OnBuild": null,
+            "Labels": {
+                "org.label-schema.build-date": "20201113",
+                "org.label-schema.license": "GPLv2",
+                "org.label-schema.name": "CentOS Base Image",
+                "org.label-schema.schema-version": "1.0",
+                "org.label-schema.vendor": "CentOS",
+                "org.opencontainers.image.created": "2020-11-13 00:00:00+00:00",
+                "org.opencontainers.image.licenses": "GPL-2.0-only",
+                "org.opencontainers.image.title": "CentOS Base Image",
+                "org.opencontainers.image.vendor": "CentOS"
+            }
+        },
+        "NetworkSettings": {
+            "Bridge": "",
+            "SandboxID": "20208f079b2fa1e0af6fb4397d1b33b2edf5d710aaf9b7c5032d109f56f3d5e4",
+            "HairpinMode": false,
+            "LinkLocalIPv6Address": "",
+            "LinkLocalIPv6PrefixLen": 0,
+            "Ports": {},
+            "SandboxKey": "/var/run/docker/netns/20208f079b2f",
+            "SecondaryIPAddresses": null,
+            "SecondaryIPv6Addresses": null,
+            "EndpointID": "91d01b414306b2c4ba6e8765af39aaf7ef53858f1bde4b5e4c4bb565bc51003e",
+            "Gateway": "172.17.0.1",
+            "GlobalIPv6Address": "",
+            "GlobalIPv6PrefixLen": 0,
+            "IPAddress": "172.17.0.5",
+            "IPPrefixLen": 16,
+            "IPv6Gateway": "",
+            "MacAddress": "02:42:ac:11:00:05",
+            "Networks": {
+                "bridge": {
+                    "IPAMConfig": null,
+                    "Links": null,
+                    "Aliases": null,
+                    "NetworkID": "c62af87fab0351a97f6c1514b7a5d04313bcd907d64f37a3c394623d149888a2",
+                    "EndpointID": "91d01b414306b2c4ba6e8765af39aaf7ef53858f1bde4b5e4c4bb565bc51003e",
+                    "Gateway": "172.17.0.1",
+                    "IPAddress": "172.17.0.5",
+                    "IPPrefixLen": 16,
+                    "IPv6Gateway": "",
+                    "GlobalIPv6Address": "",
+                    "GlobalIPv6PrefixLen": 0,
+                    "MacAddress": "02:42:ac:11:00:05",
+                    "DriverOpts": null
+                }
+            }
+        }
+    }
+]
+[root@localhost ~]#
+[root@localhost ~]# docker images
+REPOSITORY     TAG       IMAGE ID       CREATED         SIZE
+backendnginx   v1        52298ab56a08   2 minutes ago   511MB
+mynginx        v1        7666936f3691   9 minutes ago   511MB
+phpweb         v1        a99a70dc120a   19 hours ago    438MB
+httpd          latest    bd29370f84ea   2 weeks ago     138MB
+centos         7         8652b9f0cb4c   8 months ago    204MB
+[root@localhost ~]# docker ps
+CONTAINER ID   IMAGE       COMMAND       CREATED              STATUS              PORTS     NAMES
+d76824d7b564   phpweb:v1   "/bin/bash"   About a minute ago   Up About a minute             w3
+bd674f9ebe05   phpweb:v1   "/bin/bash"   About a minute ago   Up About a minute             w2
+90ad2ceaeb46   phpweb:v1   "/bin/bash"   About a minute ago   Up About a minute             w1
+06fbdc3b0e82   centos:7    "/bin/bash"   34 minutes ago       Up 6 minutes                  nginx
+[root@localhost ~]# docker run -it --name nginx backendnginx:v1
+docker: Error response from daemon: Conflict. The container name "/nginx" is already in use by container "06fbdc3b0e82d2d2fd98e904d3f598f54f15492fa7669304784b81054e90bcac". You have to remove (or rename) that container to be able to reuse that name.
+See 'docker run --help'.
+[root@localhost ~]# docker run -it --name app backendnginx:v1
+[root@9109218c2d94 /]#
+[root@9109218c2d94 /]# nginx -t
+nginx: the configuration file /etc/nginx/nginx.conf syntax is ok
+nginx: configuration file /etc/nginx/nginx.conf test is successful
+[root@9109218c2d94 /]# vi /etc/nginx/conf.d/loadbalancer.conf
+[root@9109218c2d94 /]# ifconfig
+eth0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 172.17.0.2  netmask 255.255.0.0  broadcast 172.17.255.255
+        ether 02:42:ac:11:00:02  txqueuelen 0  (Ethernet)
+        RX packets 8  bytes 648 (648.0 B)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 0  bytes 0 (0.0 B)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
+        inet 127.0.0.1  netmask 255.0.0.0
+        loop  txqueuelen 1000  (Local Loopback)
+        RX packets 0  bytes 0 (0.0 B)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 0  bytes 0 (0.0 B)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+[root@9109218c2d94 /]# vi /etc/nginx/conf.d/loadbalancer.conf
+[root@9109218c2d94 /]# nginx -t
+nginx: the configuration file /etc/nginx/nginx.conf syntax is ok
+nginx: configuration file /etc/nginx/nginx.conf test is successful
+[root@9109218c2d94 /]#
+[root@9109218c2d94 /]# nginx -s reload
+[root@9109218c2d94 /]# curl 172.17.0.2
+<pre>
+welcome to php
+eth0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 172.17.0.4  netmask 255.255.0.0  broadcast 172.17.255.255
+        ether 02:42:ac:11:00:04  txqueuelen 0  (Ethernet)
+        RX packets 12  bytes 1041 (1.0 KiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 3  bytes 182 (182.0 B)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
+        inet 127.0.0.1  netmask 255.0.0.0
+        loop  txqueuelen 1000  (Local Loopback)
+        RX packets 0  bytes 0 (0.0 B)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 0  bytes 0 (0.0 B)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+</pre>
+[root@9109218c2d94 /]# curl 172.17.0.2
+<pre>
+welcome to php
+eth0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 172.17.0.5  netmask 255.255.0.0  broadcast 172.17.255.255
+        ether 02:42:ac:11:00:05  txqueuelen 0  (Ethernet)
+        RX packets 13  bytes 1083 (1.0 KiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 3  bytes 182 (182.0 B)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
+        inet 127.0.0.1  netmask 255.0.0.0
+        loop  txqueuelen 1000  (Local Loopback)
+        RX packets 0  bytes 0 (0.0 B)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 0  bytes 0 (0.0 B)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+</pre>
+[root@9109218c2d94 /]# curl 172.17.0.2
+<pre>
+welcome to php
+eth0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 172.17.0.6  netmask 255.255.0.0  broadcast 172.17.255.255
+        ether 02:42:ac:11:00:06  txqueuelen 0  (Ethernet)
+        RX packets 14  bytes 1125 (1.0 KiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 3  bytes 182 (182.0 B)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
+        inet 127.0.0.1  netmask 255.0.0.0
+        loop  txqueuelen 1000  (Local Loopback)
+        RX packets 0  bytes 0 (0.0 B)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 0  bytes 0 (0.0 B)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+</pre>
+[root@9109218c2d94 /]# curl 172.17.0.2
+<pre>
+welcome to php
+eth0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 172.17.0.4  netmask 255.255.0.0  broadcast 172.17.255.255
+        ether 02:42:ac:11:00:04  txqueuelen 0  (Ethernet)
+        RX packets 19  bytes 1608 (1.5 KiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 8  bytes 1477 (1.4 KiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
+        inet 127.0.0.1  netmask 255.0.0.0
+        loop  txqueuelen 1000  (Local Loopback)
+        RX packets 0  bytes 0 (0.0 B)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 0  bytes 0 (0.0 B)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+</pre>
+[root@9109218c2d94 /]# curl 172.17.0.2
+<pre>
+welcome to php
+eth0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 172.17.0.5  netmask 255.255.0.0  broadcast 172.17.255.255
+        ether 02:42:ac:11:00:05  txqueuelen 0  (Ethernet)
+        RX packets 20  bytes 1674 (1.6 KiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 7  bytes 1411 (1.3 KiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
+        inet 127.0.0.1  netmask 255.0.0.0
+        loop  txqueuelen 1000  (Local Loopback)
+        RX packets 0  bytes 0 (0.0 B)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 0  bytes 0 (0.0 B)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+</pre>
+[root@9109218c2d94 /]# curl 172.17.0.2
+<pre>
+welcome to php
+eth0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 172.17.0.6  netmask 255.255.0.0  broadcast 172.17.255.255
+        ether 02:42:ac:11:00:06  txqueuelen 0  (Ethernet)
+        RX packets 20  bytes 1674 (1.6 KiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 7  bytes 1411 (1.3 KiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
+        inet 127.0.0.1  netmask 255.0.0.0
+        loop  txqueuelen 1000  (Local Loopback)
+        RX packets 0  bytes 0 (0.0 B)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 0  bytes 0 (0.0 B)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+</pre>
+[root@9109218c2d94 /]# curl 172.17.0.2
+<pre>
+welcome to php
+eth0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 172.17.0.4  netmask 255.255.0.0  broadcast 172.17.255.255
+        ether 02:42:ac:11:00:04  txqueuelen 0  (Ethernet)
+        RX packets 24  bytes 2091 (2.0 KiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 13  bytes 2773 (2.7 KiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
+        inet 127.0.0.1  netmask 255.0.0.0
+        loop  txqueuelen 1000  (Local Loopback)
+        RX packets 0  bytes 0 (0.0 B)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 0  bytes 0 (0.0 B)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+</pre>
+[root@9109218c2d94 /]# curl 172.17.0.2
+<pre>
+welcome to php
+eth0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 172.17.0.5  netmask 255.255.0.0  broadcast 172.17.255.255
+        ether 02:42:ac:11:00:05  txqueuelen 0  (Ethernet)
+        RX packets 25  bytes 2157 (2.1 KiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 12  bytes 2707 (2.6 KiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
+        inet 127.0.0.1  netmask 255.0.0.0
+        loop  txqueuelen 1000  (Local Loopback)
+        RX packets 0  bytes 0 (0.0 B)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 0  bytes 0 (0.0 B)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+</pre>
+[root@9109218c2d94 /]# curl 172.17.0.2
+<pre>
+welcome to php
+eth0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 172.17.0.6  netmask 255.255.0.0  broadcast 172.17.255.255
+        ether 02:42:ac:11:00:06  txqueuelen 0  (Ethernet)
+        RX packets 25  bytes 2157 (2.1 KiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 12  bytes 2707 (2.6 KiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
+        inet 127.0.0.1  netmask 255.0.0.0
+        loop  txqueuelen 1000  (Local Loopback)
+        RX packets 0  bytes 0 (0.0 B)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 0  bytes 0 (0.0 B)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+</pre>
+[root@9109218c2d94 /]# curl 172.17.0.2
+<pre>
+welcome to php
+eth0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 172.17.0.4  netmask 255.255.0.0  broadcast 172.17.255.255
+        ether 02:42:ac:11:00:04  txqueuelen 0  (Ethernet)
+        RX packets 29  bytes 2574 (2.5 KiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 18  bytes 4070 (3.9 KiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
+        inet 127.0.0.1  netmask 255.0.0.0
+        loop  txqueuelen 1000  (Local Loopback)
+        RX packets 0  bytes 0 (0.0 B)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 0  bytes 0 (0.0 B)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+</pre>
+[root@9109218c2d94 /]#
+[root@9109218c2d94 /]# [root@localhost ~]#
+[root@localhost ~]# docker ps
+CONTAINER ID   IMAGE             COMMAND       CREATED          STATUS          PORTS     NAMES
+9109218c2d94   backendnginx:v1   "/bin/bash"   3 minutes ago    Up 3 minutes              app
+d76824d7b564   phpweb:v1         "/bin/bash"   5 minutes ago    Up 5 minutes              w3
+bd674f9ebe05   phpweb:v1         "/bin/bash"   5 minutes ago    Up 5 minutes              w2
+90ad2ceaeb46   phpweb:v1         "/bin/bash"   5 minutes ago    Up 5 minutes              w1
+06fbdc3b0e82   centos:7          "/bin/bash"   38 minutes ago   Up 10 minutes             nginx
+[root@localhost ~]# docker exec -it app bash
+nginx: [emerg] bind() to 0.0.0.0:80 failed (98: Address already in use)
+nginx: [emerg] bind() to [::]:80 failed (98: Address already in use)
+nginx: [emerg] bind() to 0.0.0.0:80 failed (98: Address already in use)
+nginx: [emerg] bind() to [::]:80 failed (98: Address already in use)
+nginx: [emerg] bind() to 0.0.0.0:80 failed (98: Address already in use)
+nginx: [emerg] bind() to [::]:80 failed (98: Address already in use)
+nginx: [emerg] bind() to 0.0.0.0:80 failed (98: Address already in use)
+nginx: [emerg] bind() to [::]:80 failed (98: Address already in use)
+nginx: [emerg] bind() to 0.0.0.0:80 failed (98: Address already in use)
+nginx: [emerg] bind() to [::]:80 failed (98: Address already in use)
+nginx: [emerg] still could not bind()
+[root@9109218c2d94 /]# ls
+anaconda-post.log  boot  etc   lib    media  opt   root  sbin  sys  usr
+bin                dev   home  lib64  mnt    proc  run   srv   tmp  var
+[root@9109218c2d94 /]#
+[root@9109218c2d94 /]# ls
+anaconda-post.log  boot  etc   lib    media  opt   root  sbin  sys  usr
+bin                dev   home  lib64  mnt    proc  run   srv   tmp  var
+[root@9109218c2d94 /]# vi /etc/nginx/conf.d/loadbalancer.conf
+[root@9109218c2d94 /]# hostname
+9109218c2d94
+[root@9109218c2d94 /]# read escape sequence
+[root@localhost ~]# curl 172.17.0.2
+<pre>
+welcome to php
+eth0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 172.17.0.5  netmask 255.255.0.0  broadcast 172.17.255.255
+        ether 02:42:ac:11:00:05  txqueuelen 0  (Ethernet)
+        RX packets 31  bytes 2682 (2.6 KiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 17  bytes 4004 (3.9 KiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
+        inet 127.0.0.1  netmask 255.0.0.0
+        loop  txqueuelen 1000  (Local Loopback)
+        RX packets 0  bytes 0 (0.0 B)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 0  bytes 0 (0.0 B)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+</pre>
+[root@localhost ~]# curl 172.17.0.2
+<pre>
+welcome to php
+eth0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 172.17.0.6  netmask 255.255.0.0  broadcast 172.17.255.255
+        ether 02:42:ac:11:00:06  txqueuelen 0  (Ethernet)
+        RX packets 31  bytes 2682 (2.6 KiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 17  bytes 4004 (3.9 KiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
+        inet 127.0.0.1  netmask 255.0.0.0
+        loop  txqueuelen 1000  (Local Loopback)
+        RX packets 0  bytes 0 (0.0 B)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 0  bytes 0 (0.0 B)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+</pre>
+[root@localhost ~]# curl 172.17.0.2
+<pre>
+welcome to php
+eth0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 172.17.0.4  netmask 255.255.0.0  broadcast 172.17.255.255
+        ether 02:42:ac:11:00:04  txqueuelen 0  (Ethernet)
+        RX packets 35  bytes 3099 (3.0 KiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 23  bytes 5367 (5.2 KiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
+        inet 127.0.0.1  netmask 255.0.0.0
+        loop  txqueuelen 1000  (Local Loopback)
+        RX packets 0  bytes 0 (0.0 B)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 0  bytes 0 (0.0 B)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+</pre>
+[root@localhost ~]# curl 172.17.0.2
+<pre>
+welcome to php
+eth0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 172.17.0.5  netmask 255.255.0.0  broadcast 172.17.255.255
+        ether 02:42:ac:11:00:05  txqueuelen 0  (Ethernet)
+        RX packets 36  bytes 3165 (3.0 KiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 22  bytes 5301 (5.1 KiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
+        inet 127.0.0.1  netmask 255.0.0.0
+        loop  txqueuelen 1000  (Local Loopback)
+        RX packets 0  bytes 0 (0.0 B)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 0  bytes 0 (0.0 B)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+</pre>
+[root@localhost ~]# curl 172.17.0.2
+<pre>
+welcome to php
+eth0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 172.17.0.6  netmask 255.255.0.0  broadcast 172.17.255.255
+        ether 02:42:ac:11:00:06  txqueuelen 0  (Ethernet)
+        RX packets 36  bytes 3165 (3.0 KiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 22  bytes 5301 (5.1 KiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
+        inet 127.0.0.1  netmask 255.0.0.0
+        loop  txqueuelen 1000  (Local Loopback)
+        RX packets 0  bytes 0 (0.0 B)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 0  bytes 0 (0.0 B)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+</pre>
+[root@localhost ~]#
+[root@localhost ~]# curl 172.17.0.2
+<pre>
+welcome to php
+eth0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 172.17.0.4  netmask 255.255.0.0  broadcast 172.17.255.255
+        ether 02:42:ac:11:00:04  txqueuelen 0  (Ethernet)
+        RX packets 40  bytes 3582 (3.4 KiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 28  bytes 6664 (6.5 KiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
+        inet 127.0.0.1  netmask 255.0.0.0
+        loop  txqueuelen 1000  (Local Loopback)
+        RX packets 0  bytes 0 (0.0 B)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 0  bytes 0 (0.0 B)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+</pre>
+[root@localhost ~]# curl 172.17.0.2
+<pre>
+welcome to php
+eth0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 172.17.0.5  netmask 255.255.0.0  broadcast 172.17.255.255
+        ether 02:42:ac:11:00:05  txqueuelen 0  (Ethernet)
+        RX packets 41  bytes 3648 (3.5 KiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 27  bytes 6598 (6.4 KiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
+        inet 127.0.0.1  netmask 255.0.0.0
+        loop  txqueuelen 1000  (Local Loopback)
+        RX packets 0  bytes 0 (0.0 B)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 0  bytes 0 (0.0 B)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+</pre>
+[root@localhost ~]#
+[root@localhost ~]#
+[root@localhost ~]# ls
+1  123  12334  2  3  a  anaconda-ks.cfg  b  index.html  new  siva  yum-cron.conf
+[root@localhost ~]# docker ps
+CONTAINER ID   IMAGE             COMMAND       CREATED          STATUS          PORTS     NAMES
+9109218c2d94   backendnginx:v1   "/bin/bash"   5 minutes ago    Up 5 minutes              app
+d76824d7b564   phpweb:v1         "/bin/bash"   7 minutes ago    Up 7 minutes              w3
+bd674f9ebe05   phpweb:v1         "/bin/bash"   7 minutes ago    Up 7 minutes              w2
+90ad2ceaeb46   phpweb:v1         "/bin/bash"   7 minutes ago    Up 7 minutes              w1
+06fbdc3b0e82   centos:7          "/bin/bash"   40 minutes ago   Up 12 minutes             nginx
+[root@localhost ~]# docker run -it -p 9091:80 --name app1 backendnginx:v1
+[root@64710d9c5c2d /]# vi /etc/nginx/conf.d/bkd.conf
+[root@64710d9c5c2d /]# nginx -t
+nginx: the configuration file /etc/nginx/nginx.conf syntax is ok
+nginx: configuration file /etc/nginx/nginx.conf test is successful
+[root@64710d9c5c2d /]# ifconfig
+eth0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 172.17.0.7  netmask 255.255.0.0  broadcast 172.17.255.255
+        ether 02:42:ac:11:00:07  txqueuelen 0  (Ethernet)
+        RX packets 8  bytes 648 (648.0 B)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 0  bytes 0 (0.0 B)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
+        inet 127.0.0.1  netmask 255.0.0.0
+        loop  txqueuelen 1000  (Local Loopback)
+        RX packets 0  bytes 0 (0.0 B)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 0  bytes 0 (0.0 B)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+[root@64710d9c5c2d /]# curl 172.17.0.7
+<html>
+<head><title>403 Forbidden</title></head>
+<body>
+<center><h1>403 Forbidden</h1></center>
+<hr><center>nginx/1.20.1</center>
+</body>
+</html>
+[root@64710d9c5c2d /]# /usr/sbin/nginx
+nginx: [emerg] bind() to 0.0.0.0:80 failed (98: Address already in use)
+nginx: [emerg] bind() to [::]:80 failed (98: Address already in use)
+nginx: [emerg] bind() to 0.0.0.0:80 failed (98: Address already in use)
+nginx: [emerg] bind() to [::]:80 failed (98: Address already in use)
+nginx: [emerg] bind() to 0.0.0.0:80 failed (98: Address already in use)
+nginx: [emerg] bind() to [::]:80 failed (98: Address already in use)
+nginx: [emerg] bind() to 0.0.0.0:80 failed (98: Address already in use)
+nginx: [emerg] bind() to [::]:80 failed (98: Address already in use)
+nginx: [emerg] bind() to 0.0.0.0:80 failed (98: Address already in use)
+nginx: [emerg] bind() to [::]:80 failed (98: Address already in use)
+nginx: [emerg] still could not bind()
+[root@64710d9c5c2d /]# curl 172.17.0.7
+<html>
+<head><title>403 Forbidden</title></head>
+<body>
+<center><h1>403 Forbidden</h1></center>
+<hr><center>nginx/1.20.1</center>
+</body>
+</html>
+[root@64710d9c5c2d /]# vi /etc/nginx/conf.d/bkd.conf
+[root@64710d9c5c2d /]# curl 172.17.0.7:80
+<html>
+<head><title>403 Forbidden</title></head>
+<body>
+<center><h1>403 Forbidden</h1></center>
+<hr><center>nginx/1.20.1</center>
+</body>
+</html>
+[root@64710d9c5c2d /]# curl 172.17.0.7:80
+[root@64710d9c5c2d /]# [root@localhost ~]#
+[root@localhost ~]# ls
+1  123  12334  2  3  a  anaconda-ks.cfg  b  index.html  new  siva  yum-cron.conf
+[root@localhost ~]# docker ps
+CONTAINER ID   IMAGE             COMMAND       CREATED          STATUS          PORTS                                   NAMES
+64710d9c5c2d   backendnginx:v1   "/bin/bash"   2 minutes ago    Up 2 minutes    0.0.0.0:9091->80/tcp, :::9091->80/tcp   app1
+9109218c2d94   backendnginx:v1   "/bin/bash"   9 minutes ago    Up 9 minutes                                            app
+d76824d7b564   phpweb:v1         "/bin/bash"   11 minutes ago   Up 11 minutes                                           w3
+bd674f9ebe05   phpweb:v1         "/bin/bash"   11 minutes ago   Up 11 minutes                                           w2
+90ad2ceaeb46   phpweb:v1         "/bin/bash"   11 minutes ago   Up 11 minutes                                           w1
+06fbdc3b0e82   centos:7          "/bin/bash"   44 minutes ago   Up 16 minutes                                           nginx
+[root@localhost ~]# curl 172.17.0.2
+<pre>
+welcome to php
+eth0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 172.17.0.6  netmask 255.255.0.0  broadcast 172.17.255.255
+        ether 02:42:ac:11:00:06  txqueuelen 0  (Ethernet)
+        RX packets 41  bytes 3648 (3.5 KiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 27  bytes 6598 (6.4 KiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
+        inet 127.0.0.1  netmask 255.0.0.0
+        loop  txqueuelen 1000  (Local Loopback)
+        RX packets 0  bytes 0 (0.0 B)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 0  bytes 0 (0.0 B)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+</pre>
+[root@localhost ~]# docker exec -it app bash
+nginx: [emerg] bind() to 0.0.0.0:80 failed (98: Address already in use)
+nginx: [emerg] bind() to [::]:80 failed (98: Address already in use)
+nginx: [emerg] bind() to 0.0.0.0:80 failed (98: Address already in use)
+nginx: [emerg] bind() to [::]:80 failed (98: Address already in use)
+nginx: [emerg] bind() to 0.0.0.0:80 failed (98: Address already in use)
+nginx: [emerg] bind() to [::]:80 failed (98: Address already in use)
+nginx: [emerg] bind() to 0.0.0.0:80 failed (98: Address already in use)
+nginx: [emerg] bind() to [::]:80 failed (98: Address already in use)
+nginx: [emerg] bind() to 0.0.0.0:80 failed (98: Address already in use)
+nginx: [emerg] bind() to [::]:80 failed (98: Address already in use)
+nginx: [emerg] still could not bind()
+[root@9109218c2d94 /]# vi /etc/nginx/conf.d/loadbalancer.conf
+[root@9109218c2d94 /]# read escape sequence
+[root@localhost ~]# docker exec -it  app1 bash
+nginx: [emerg] bind() to 0.0.0.0:80 failed (98: Address already in use)
+nginx: [emerg] bind() to [::]:80 failed (98: Address already in use)
+nginx: [emerg] bind() to 0.0.0.0:80 failed (98: Address already in use)
+nginx: [emerg] bind() to [::]:80 failed (98: Address already in use)
+nginx: [emerg] bind() to 0.0.0.0:80 failed (98: Address already in use)
+nginx: [emerg] bind() to [::]:80 failed (98: Address already in use)
+nginx: [emerg] bind() to 0.0.0.0:80 failed (98: Address already in use)
+nginx: [emerg] bind() to [::]:80 failed (98: Address already in use)
+nginx: [emerg] bind() to 0.0.0.0:80 failed (98: Address already in use)
+nginx: [emerg] bind() to [::]:80 failed (98: Address already in use)
+nginx: [emerg] still could not bind()
+[root@64710d9c5c2d /]#
+[root@64710d9c5c2d /]# vi /etc/nginx/conf.d/bkd.conf
+[root@64710d9c5c2d /]# vi /etc/nginx/conf.d/bkd.conf
+[root@64710d9c5c2d /]# curl 172.17.0.3
+<html>
+<head><title>403 Forbidden</title></head>
+<body>
+<center><h1>403 Forbidden</h1></center>
+<hr><center>nginx/1.20.1</center>
+</body>
+</html>
+[root@64710d9c5c2d /]# curl 172.17.0.2
+<pre>
+welcome to php
+eth0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 172.17.0.4  netmask 255.255.0.0  broadcast 172.17.255.255
+        ether 02:42:ac:11:00:04  txqueuelen 0  (Ethernet)
+        RX packets 47  bytes 4149 (4.0 KiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 33  bytes 7961 (7.7 KiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
+        inet 127.0.0.1  netmask 255.0.0.0
+        loop  txqueuelen 1000  (Local Loopback)
+        RX packets 0  bytes 0 (0.0 B)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 0  bytes 0 (0.0 B)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+</pre>
+[root@64710d9c5c2d /]# curl 172.17.0.7
+<html>
+<head><title>403 Forbidden</title></head>
+<body>
+<center><h1>403 Forbidden</h1></center>
+<hr><center>nginx/1.20.1</center>
+</body>
+</html>
+[root@64710d9c5c2d /]#
+[root@64710d9c5c2d /]# vi /etc/nginx/conf.d/bkd.conf
+[root@64710d9c5c2d /]# ifconfig
+eth0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 172.17.0.7  netmask 255.255.0.0  broadcast 172.17.255.255
+        ether 02:42:ac:11:00:07  txqueuelen 0  (Ethernet)
+        RX packets 20  bytes 2644 (2.5 KiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 15  bytes 1082 (1.0 KiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
+        inet 127.0.0.1  netmask 255.0.0.0
+        loop  txqueuelen 1000  (Local Loopback)
+        RX packets 40  bytes 3672 (3.5 KiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 40  bytes 3672 (3.5 KiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+[root@64710d9c5c2d /]# vi /etc/nginx/conf.d/bkd.conf
+[root@64710d9c5c2d /]# /usr/sbin/nginx -s reload
+[root@64710d9c5c2d /]# curl 172.17.0.7
+<pre>
+welcome to php
+eth0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 172.17.0.4  netmask 255.255.0.0  broadcast 172.17.255.255
+        ether 02:42:ac:11:00:04  txqueuelen 0  (Ethernet)
+        RX packets 55  bytes 4758 (4.6 KiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 41  bytes 9384 (9.1 KiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
+        inet 127.0.0.1  netmask 255.0.0.0
+        loop  txqueuelen 1000  (Local Loopback)
+        RX packets 0  bytes 0 (0.0 B)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 0  bytes 0 (0.0 B)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+</pre>
+[root@64710d9c5c2d /]# curl 172.17.0.7
+<pre>
+welcome to php
+eth0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 172.17.0.5  netmask 255.255.0.0  broadcast 172.17.255.255
+        ether 02:42:ac:11:00:05  txqueuelen 0  (Ethernet)
+        RX packets 51  bytes 4373 (4.2 KiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 33  bytes 7937 (7.7 KiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
+        inet 127.0.0.1  netmask 255.0.0.0
+        loop  txqueuelen 1000  (Local Loopback)
+        RX packets 0  bytes 0 (0.0 B)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 0  bytes 0 (0.0 B)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+</pre>
+[root@64710d9c5c2d /]# curl 172.17.0.7
+<pre>
+welcome to php
+eth0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 172.17.0.6  netmask 255.255.0.0  broadcast 172.17.255.255
+        ether 02:42:ac:11:00:06  txqueuelen 0  (Ethernet)
+        RX packets 54  bytes 4499 (4.3 KiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 35  bytes 8021 (7.8 KiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
+        inet 127.0.0.1  netmask 255.0.0.0
+        loop  txqueuelen 1000  (Local Loopback)
+        RX packets 0  bytes 0 (0.0 B)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 0  bytes 0 (0.0 B)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+</pre>
+[root@64710d9c5c2d /]# read escape sequence
+[root@localhost ~]#
+[root@localhost ~]# docker ps
+CONTAINER ID   IMAGE             COMMAND       CREATED          STATUS          PORTS                                   NAMES
+64710d9c5c2d   backendnginx:v1   "/bin/bash"   5 minutes ago    Up 5 minutes    0.0.0.0:9091->80/tcp, :::9091->80/tcp   app1
+9109218c2d94   backendnginx:v1   "/bin/bash"   12 minutes ago   Up 12 minutes                                           app
+d76824d7b564   phpweb:v1         "/bin/bash"   14 minutes ago   Up 14 minutes                                           w3
+bd674f9ebe05   phpweb:v1         "/bin/bash"   14 minutes ago   Up 14 minutes                                           w2
+90ad2ceaeb46   phpweb:v1         "/bin/bash"   14 minutes ago   Up 14 minutes                                           w1
+06fbdc3b0e82   centos:7          "/bin/bash"   47 minutes ago   Up 19 minutes                                           nginx
+[root@localhost ~]# curl 172.17.0.7
+<pre>
+welcome to php
+eth0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 172.17.0.4  netmask 255.255.0.0  broadcast 172.17.255.255
+        ether 02:42:ac:11:00:04  txqueuelen 0  (Ethernet)
+        RX packets 63  bytes 5367 (5.2 KiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 46  bytes 10681 (10.4 KiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
+        inet 127.0.0.1  netmask 255.0.0.0
+        loop  txqueuelen 1000  (Local Loopback)
+        RX packets 0  bytes 0 (0.0 B)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 0  bytes 0 (0.0 B)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+</pre>
+[root@localhost ~]# curl 172.17.0.7
+<pre>
+welcome to php
+eth0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 172.17.0.5  netmask 255.255.0.0  broadcast 172.17.255.255
+        ether 02:42:ac:11:00:05  txqueuelen 0  (Ethernet)
+        RX packets 58  bytes 4940 (4.8 KiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 38  bytes 9234 (9.0 KiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
+        inet 127.0.0.1  netmask 255.0.0.0
+        loop  txqueuelen 1000  (Local Loopback)
+        RX packets 0  bytes 0 (0.0 B)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 0  bytes 0 (0.0 B)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+</pre>
+[root@localhost ~]# curl 172.17.0.7
+<pre>
+welcome to php
+eth0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 172.17.0.6  netmask 255.255.0.0  broadcast 172.17.255.255
+        ether 02:42:ac:11:00:06  txqueuelen 0  (Ethernet)
+        RX packets 61  bytes 5066 (4.9 KiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 41  bytes 9360 (9.1 KiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
+        inet 127.0.0.1  netmask 255.0.0.0
+        loop  txqueuelen 1000  (Local Loopback)
+        RX packets 0  bytes 0 (0.0 B)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 0  bytes 0 (0.0 B)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+</pre>
+[root@localhost ~]# docker ps
+CONTAINER ID   IMAGE             COMMAND       CREATED          STATUS          PORTS                                   NAMES
+64710d9c5c2d   backendnginx:v1   "/bin/bash"   6 minutes ago    Up 6 minutes    0.0.0.0:9091->80/tcp, :::9091->80/tcp   app1
+9109218c2d94   backendnginx:v1   "/bin/bash"   12 minutes ago   Up 12 minutes                                           app
+d76824d7b564   phpweb:v1         "/bin/bash"   14 minutes ago   Up 14 minutes                                           w3
+bd674f9ebe05   phpweb:v1         "/bin/bash"   14 minutes ago   Up 14 minutes                                           w2
+90ad2ceaeb46   phpweb:v1         "/bin/bash"   14 minutes ago   Up 14 minutes                                           w1
+06fbdc3b0e82   centos:7          "/bin/bash"   47 minutes ago   Up 19 minutes                                           nginx
+[root@localhost ~]#
+[root@localhost ~]# docker ps
+CONTAINER ID   IMAGE             COMMAND       CREATED          STATUS          PORTS                                   NAMES
+64710d9c5c2d   backendnginx:v1   "/bin/bash"   6 minutes ago    Up 6 minutes    0.0.0.0:9091->80/tcp, :::9091->80/tcp   app1
+9109218c2d94   backendnginx:v1   "/bin/bash"   12 minutes ago   Up 12 minutes                                           app
+d76824d7b564   phpweb:v1         "/bin/bash"   14 minutes ago   Up 14 minutes                                           w3
+bd674f9ebe05   phpweb:v1         "/bin/bash"   14 minutes ago   Up 14 minutes                                           w2
+90ad2ceaeb46   phpweb:v1         "/bin/bash"   14 minutes ago   Up 14 minutes                                           w1
+06fbdc3b0e82   centos:7          "/bin/bash"   47 minutes ago   Up 19 minutes                                           nginx
+[root@localhost ~]# docker exec -it  app1 bash
+nginx: [emerg] bind() to 0.0.0.0:80 failed (98: Address already in use)
+nginx: [emerg] bind() to [::]:80 failed (98: Address already in use)
+nginx: [emerg] bind() to 0.0.0.0:80 failed (98: Address already in use)
+nginx: [emerg] bind() to [::]:80 failed (98: Address already in use)
+nginx: [emerg] bind() to 0.0.0.0:80 failed (98: Address already in use)
+nginx: [emerg] bind() to [::]:80 failed (98: Address already in use)
+nginx: [emerg] bind() to 0.0.0.0:80 failed (98: Address already in use)
+nginx: [emerg] bind() to [::]:80 failed (98: Address already in use)
+nginx: [emerg] bind() to 0.0.0.0:80 failed (98: Address already in use)
+nginx: [emerg] bind() to [::]:80 failed (98: Address already in use)
+nginx: [emerg] still could not bind()
+[root@64710d9c5c2d /]# vi /etc/nginx/conf.d/bkd.conf
+[root@64710d9c5c2d /]# read escape sequence
+[root@localhost ~]#
+[root@localhost ~]# free -m
+              total        used        free      shared  buff/cache   available
+Mem:            487         228         169           2          89         244
+Swap:           819          57         762
+[root@localhost ~]# free -mh
+              total        used        free      shared  buff/cache   available
+Mem:           487M        228M        169M        2.0M         89M        244M
+Swap:          819M         57M        762M
+[root@localhost ~]# df -h
+Filesystem               Size  Used Avail Use% Mounted on
+devtmpfs                 233M     0  233M   0% /dev
+tmpfs                    244M     0  244M   0% /dev/shm
+tmpfs                    244M  5.1M  239M   3% /run
+tmpfs                    244M     0  244M   0% /sys/fs/cgroup
+/dev/mapper/centos-root  6.2G  4.5G  1.8G  72% /
+/dev/sda1               1014M  190M  825M  19% /boot
+tmpfs                     49M     0   49M   0% /run/user/0
+overlay                  6.2G  4.5G  1.8G  72% /var/lib/docker/overlay2/0816a5bae1c4ac38898a491e806c58c505a2765f46f057d45f1a5fcfff6b2247/merged
+overlay                  6.2G  4.5G  1.8G  72% /var/lib/docker/overlay2/90ea73c80ea34792c20e57212c41863de2511157821bd7ce3e84ba790a1c639e/merged
+overlay                  6.2G  4.5G  1.8G  72% /var/lib/docker/overlay2/b9f8914dfde9a050f53a295783837a4f8957e9377acebb2bc7fe92481f61d89d/merged
+overlay                  6.2G  4.5G  1.8G  72% /var/lib/docker/overlay2/07ded3c0dee36da21243b7d36a49f119eab9bfabc347427a4b2936c9d820f524/merged
+overlay                  6.2G  4.5G  1.8G  72% /var/lib/docker/overlay2/ade27c12a6557d2c591820311b92a1490449933db7051dea116b67097441d4c1/merged
+overlay                  6.2G  4.5G  1.8G  72% /var/lib/docker/overlay2/f39195dc5283a7a459d05851e95e7710e18fbe3d9b90541fcac15efbcb24dd35/merged
+[root@localhost ~]# df -h
+Filesystem               Size  Used Avail Use% Mounted on
+devtmpfs                 233M     0  233M   0% /dev
+tmpfs                    244M     0  244M   0% /dev/shm
+tmpfs                    244M  5.0M  239M   3% /run
+tmpfs                    244M     0  244M   0% /sys/fs/cgroup
+/dev/mapper/centos-root  6.2G  4.5G  1.8G  72% /
+/dev/sda1               1014M  190M  825M  19% /boot
+tmpfs                     49M     0   49M   0% /run/user/0
+overlay                  6.2G  4.5G  1.8G  72% /var/lib/docker/overlay2/0816a5bae1c4ac38898a491e806c58c505a2765f46f057d45f1a5fcfff6b2247/merged
+overlay                  6.2G  4.5G  1.8G  72% /var/lib/docker/overlay2/90ea73c80ea34792c20e57212c41863de2511157821bd7ce3e84ba790a1c639e/merged
+overlay                  6.2G  4.5G  1.8G  72% /var/lib/docker/overlay2/b9f8914dfde9a050f53a295783837a4f8957e9377acebb2bc7fe92481f61d89d/merged
+overlay                  6.2G  4.5G  1.8G  72% /var/lib/docker/overlay2/07ded3c0dee36da21243b7d36a49f119eab9bfabc347427a4b2936c9d820f524/merged
+overlay                  6.2G  4.5G  1.8G  72% /var/lib/docker/overlay2/ade27c12a6557d2c591820311b92a1490449933db7051dea116b67097441d4c1/merged
+overlay                  6.2G  4.5G  1.8G  72% /var/lib/docker/overlay2/f39195dc5283a7a459d05851e95e7710e18fbe3d9b90541fcac15efbcb24dd35/merged
+[root@localhost ~]#
+[root@localhost ~]#
+
+
+

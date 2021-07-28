@@ -1,0 +1,31 @@
+1. Write a shell script to get current date, time, user name and current working directory.
+2. Write a Shell Script that adds two numbers if provided as the command Line Argument and if the two numbers a
+re not entered it outputs an Error Message along with a one-Line of how-to use description.
+3. You needs to print a given Number say 10572, in reverse order using a Shell script such that the input is provided using command Line Argument only. If the input data is not provided as Command Line Argument, it should throw and error and should suggest, how to use the script. Write the script but before that tell me the algorithm that needs to be implemented here.
+4. You are supposed to calculate a real number calculation directly from terminal and not any shell script. What will you do (say the real numbers are 7.56 and 2.453)?
+5. You are supposed to find the value of pi upto 100 places of decimal, what is the easiest way to get the result done.
+6. Write a script to take backup of entire etc directory 
+7.Write a script to find the files within a given date range
+8. Write a script to list out all .html extension files.
+9. Write a script to change the basename of .html files ?
+10. Write a script to create 10 users and set one default password and ask the users to change his password at his first login.
+11. Write a script to find a given number is even or not ?
+12. Write a script to find a given number is odd or not ?
+13. Write a script to find a given number is prime or not ?
+14. Write a script to list all even numbers between 1 and 100?
+15. Write a script to list all odd numbers between 1 and 100?
+16. Write a script to list all prime numbers between 1 and 100?
+17. Write a script to list even, odd and prime numbers between 1 and 100?
+18. Write a script to find factorials of given number 
+19. Write a script to list fibonacci series till the given number range?
+20. Write a script to find the given number is a armstrong number ?
+
+
+
+string_1="hello"
+string_2="hilda"
+
+for (( i=0; i<${#string_1}; i++ ));
+do 
+    [ "${string_1:$i:1}" == "${string_2:$i:1}" ] && echo "true" || echo "false"
+done

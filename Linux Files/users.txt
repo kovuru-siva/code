@@ -1,0 +1,1509 @@
+# cat /etc/redhat-release
+CentOS Linux release 7.4.1708 (Core)
+
+
+# cat /etc/os-release
+NAME="CentOS Linux"
+VERSION="7 (Core)"
+ID="centos"
+ID_LIKE="rhel fedora"
+VERSION_ID="7"
+PRETTY_NAME="CentOS Linux 7 (Core)"
+ANSI_COLOR="0;31"
+CPE_NAME="cpe:/o:centos:centos:7"
+HOME_URL="https://www.centos.org/"
+BUG_REPORT_URL="https://bugs.centos.org/"
+
+CENTOS_MANTISBT_PROJECT="CentOS-7"
+CENTOS_MANTISBT_PROJECT_VERSION="7"
+REDHAT_SUPPORT_PRODUCT="centos"
+REDHAT_SUPPORT_PRODUCT_VERSION="7"
+
+# uname
+Linux
+
+# uname -a
+Linux linuxserver1.itbs.com 3.10.0-693.el7.x86_64 #1 SMP Tue Aug 22 21:09:27 UTC 2017 x86_64 x86_64 x86_64 GNU/Linux
+
+[root@linuxserver1.itbs.com ~]# uname -s
+Linux
+[root@linuxserver1.itbs.com ~]# uname -o
+GNU/Linux
+[root@linuxserver1.itbs.com ~]# uname -m
+x86_64
+[root@linuxserver1.itbs.com ~]# uname -r
+3.10.0-693.el7.x86_64
+================================================================================================
+
+Location for all runlevels : 
+
+/lib/systemd/system/
+
+[root@linuxserver1.itbs.com ~]# runlevel
+N 3
+[root@linuxserver1.itbs.com ~]# who -r
+         run-level 3  2019-07-20 18:07
+
+********************************************************************************
+
+User, Groups, Permissions Administration :
+
+[root@localhost ~]# useradd dinesh
+[root@localhost ~]# id dinesh
+uid=1000(dinesh) gid=1000(dinesh) groups=1000(dinesh)
+[root@localhost ~]# id xyz
+id: xyz: no such user
+
+
+[root@localhost ~]# grep ranga /etc/passwd
+ranga:x:1000:1000::/home/ranga:/bin/bash
+[root@localhost ~]# grep ranga /etc/shadow
+ranga:!!:18097:0:99999:7:::
+[root@localhost ~]# grep ranga /etc/group
+ranga:x:1000:
+[root@localhost ~]# grep ranga /etc/gshadow
+ranga:!::
+
+
+[root@localhost ~]# passwd ranga
+Changing password for user ranga.
+New password:
+BAD PASSWORD: The password fails the dictionary check - it is too simplistic/systematic
+Retype new password:
+passwd: all authentication tokens updated successfully.
+[root@localhost ~]# grep ranga /etc/shadow
+ranga:$6$KsMUZs8g$e1wYUvF32yxnjgTd7.XaQ.pntPf8Ewhw7YbxEzL6Dcv4lGBgTMgU378hALiDaPlhQb.3bR6hs4BQe3FZLlGmO/:18097:0:99999:7:::
+[root@localhost ~]# grep ranga /etc/gshadow
+ranga:!::
+[root@localhost ~]# gpasswd ranga
+Changing the password for group ranga
+New Password:
+Re-enter new password:
+[root@localhost ~]# grep ranga /etc/gshadow
+ranga:$6$fEe46cC.9I$yhLmXamrQGRZHh.NqRP2ZVH3yYKmk3FOhZTtX7kNo9SeLs1Li/1Zg0HtfgcTk259HLktMV99DZIkmLfmK2Gg2/::
+
+[root@localhost mail]# -------------------------------------------------------------------------------userdel -r ranga
+[root@localhost mail]# ls -ld /home/ranga
+ls: cannot access /home/ranga: No such file or directory
+[root@localhost mail]# useradd xyz
+[root@localhost mail]# userdel xyz
+[root@localhost mail]# ls -ld /home/xyz/
+drwx------. 2 1000 1000 62 Jul 20 20:04 /home/xyz/
+[root@localhost mail]# id xyz
+id: xyz: no such user
+
+
+et[root@localhost mail]# ls -ld /home/ranga
+ls: cannot access /home/ranga: No such file or directory
+
+[root@localhost mail]# ls -l /var/spool/mail/ranga
+ls: cannot access /var/spool/mail/ranga: No such file or directory
+
+[root@localhost mail]# grep ranga /etc/passwd
+[root@localhost mail]# grep ranga /etc/shadow
+[root@localhost mail]# grep ranga /etc/group
+[root@localhost mail]# grep ranga /etc/gshadow
+
+[root@localhost mail]# ls -ld /home/xyz
+drwx------. 2 1000 1000 62 Jul 20 20:04 /home/xyz
+
+
+[root@localhost mail]# ls -l /var/spool/mail/xyz
+-rw-rw----. 1 1000 mail 0 Jul 20 20:04 /var/spool/mail/xyz
+[root@localhost mail]# grep xyz /etc/passwd
+[root@localhost mail]# grep xyz /etc/shadow
+[root@localhost mail]# grep xyz /etc/group
+[root@localhost mail]# grep xyz /etc/gshadow
+
+
+
+[root@localhost ~]# grep sirisha /etc/passwd
+sirisha:x:1000:1000::/home/sirisha:/bin/bash
+
+[root@localhost ~]# usermod -l siri sirisha
+usermod: user sirisha is currently used by process 1773
+
+[root@localhost ~]# usermod -l siri sirisha ---- change the user name
+[root@localhost ~]# grep sirisha /etc/passwd
+siri:x:1000:1000::/home/sirisha:/bin/bash
+
+[root@localhost ~]# usermod -u 1201 siri
+usermod: user siri is currently used by process 1817
+
+[root@localhost ~]# usermod -u 1201 siri ------------------- user id is changed of a existing user
+
+[root@localhost ~]# grep siri /etc/passwd
+siri:x:1201:1000::/home/sirisha:/bin/bash
+
+[root@localhost ~]# id siri ------------------------------------------ it is used to see the ids of a particular user
+uid=1201(siri) gid=1000(sirisha) groups=1000(sirisha)
+
+[root@localhost ~]# usermod -g 1201 siri ----------------------------------- 
+od: group '1201' does not exist
+
+[root@localhost ~]# usermod -g 1201 sirisha
+usermod: group '1201' does not exist
+[root@localhost ~]# usermod -g 1202 sirisha
+usermod: group '1202' does not exist
+[root@localhost ~]# usermod --help
+
+Usage: usermod [options] LOGIN
+
+Options:
+  -c, --comment COMMENT         new value of the GECOS field
+  -d, --home HOME_DIR           new home directory for the user account
+  -e, --expiredate EXPIRE_DATE  set account expiration date to EXPIRE_DATE
+  -f, --inactive INACTIVE       set password inactive after expiration
+                                to INACTIVE
+  -g, --gid GROUP               force use GROUP as new primary group
+  -G, --groups GROUPS           new list of supplementary GROUPS
+  -a, --append                  append the user to the supplemental GROUPS
+                                mentioned by the -G option without removing
+                                him/her from other groups
+  -h, --help                    display this help message and exit
+  -l, --login NEW_LOGIN         new value of the login name
+  -L, --lock                    lock the user account
+  -m, --move-home               move contents of the home directory to the
+                                new location (use only with -d)
+  -o, --non-unique              allow using duplicate (non-unique) UID
+  -p, --password PASSWORD       use encrypted password for the new password
+  -R, --root CHROOT_DIR         directory to chroot into
+  -s, --shell SHELL             new login shell for the user account
+  -u, --uid UID                 new UID for the user account
+  -U, --unlock                  unlock the user account
+  -Z, --selinux-user SEUSER     new SELinux user mapping for the user account
+
+
+
+[root@localhost ~]# groupmod -g 1201 sirisha   =---------------------- chnage the gid of A user
+
+[root@localhost ~]# id siri
+uid=1201(siri) gid=1201(sirisha) groups=1201(sirisha)
+
+[root@localhost ~]# grep siri /etc/passwd
+siri:x:1201:1201::/home/sirisha:/bin/bash
+[root@localhost ~]# usermod -c^C
+
+[root@localhost ~]# usermod -c "Admin" siri --------------- used to add the comment for a user
+
+[root@localhost ~]# grep siri /etc/passwd
+siri:x:1201:1201:Admin:/home/sirisha:/bin/bash
+
+
+[root@localhost ~]# mkdir /mnt/siri    -------------------------------create a one directory
+[root@localhost ~]# usermod -d /mnt/siri siri---------------------------- change the directory of a user 
+[root@localhost ~]# grep siri /etc/passwd
+siri:x:1201:1201:Admin:/mnt/siri:/bin/bash
+
+[root@localhost ~]# usermod -s /bin/nologin siri --------------------------- change the shell of a user
+[root@localhost ~]# grep siri /etc/passwd
+siri:x:1201:1201:Admin:/mnt/siri:/bin/nologin
+
+[root@localhost ~]# finger siri ---------------------------------------- finger command is used to show the information about a user
+Login: siri                             Name: Admin
+Directory: /mnt/siri                    Shell: /bin/nologin
+Last login Sat Jul 20 20:11 (IST) on pts/1 from 192.168.2.24
+No mail.
+No Plan.
+
+
+[root@localhost ~]# usermod -s /bin/bash siri
+[root@localhost ~]# grep siri /etc/passwd
+siri:x:1201:1201:Admin:/mnt/siri:/bin/bash
+=======================================================================================
+[root@localhost ~]# cd /etc/skel/
+[root@localhost skel]# pwd
+/etc/skel
+[root@localhost skel]# ls -a
+.  ..  .bash_logout  .bash_profile  .bashrc
+[root@localhost skel]# cp .bash* /mnt/siri
+
+
+[root@localhost ~]# groupadd admin
+[root@localhost ~]# groupadd ops
+[root@localhost ~]# groupadd sys
+groupadd: group 'sys' already exists
+[root@localhost ~]# groupadd devops
+
+
+[root@localhost ~]# egrep 'admin|ops|devops' /etc/group
+admin:x:1202:
+ops:x:1203:
+devops:x:1204:
+[root@localhost ~]# egrep 'admin|ops|devops' /etc/gshadow
+admin:!::
+ops:!::
+devops:!::
+
+
+[root@localhost ~]# gpasswd devops
+Changing the password for group devops
+New Password:
+Re-enter new password:
+[root@localhost ~]# egrep 'admin|ops|devops' /etc/gshadow
+admin:!::
+ops:!::
+devops:$6$PBlHq/4HQI$NCBjE6UKd1CxZ3.moN3RNhz.V4XZpxWmc495RQwS0mhpSYJug8pFM.jpVS69xQcNVlunMfpLt8mCLjZuIsWc91::
+
+
+[root@localhost ~]# egrep 'admin|ops|devops' /etc/gshadow
+admin:!::
+ops:!::
+devops:$6$PBlHq/4HQI$NCBjE6UKd1CxZ3.moN3RNhz.V4XZpxWmc495RQwS0mhpSYJug8pFM.jpVS69xQcNVlunMfpLt8mCLjZuIsWc91::
+
+
+
+
+[root@localhost ~]# useradd user1
+[root@localhost ~]# useradd user2
+[root@localhost ~]# useradd user3
+[root@localhost ~]# id user1
+uid=1202(user1) gid=1205(user1) groups=1205(user1)
+[root@localhost ~]# id user2
+uid=1203(user2) gid=1206(user2) groups=1206(user2)
+[root@localhost ~]# id user3
+uid=1204(user3) gid=1207(user3) groups=1207(user3)
+
+
+[root@localhost ~]# usermod -a -G admin user1   -----------------it is used to add one user in to multipule groups or single group
+[root@localhost ~]# usermod -a -G ops user2
+[root@localhost ~]# usermod -a -G devops user3
+[root@localhost ~]# id user1
+uid=1202(user1) gid=1205(user1) groups=1205(user1),1202(admin)
+[root@localhost ~]# id user2
+uid=1203(user2) gid=1206(user2) groups=1206(user2),1203(ops)
+[root@localhost ~]# id user3
+uid=1204(user3) gid=1207(user3) groups=1207(user3),1204(devops)
+[root@localhost ~]# egrep 'admin|ops|devops' /etc/group
+admin:x:1202:user1
+ops:x:1203:user2
+devops:x:1204:user3
+[root@localhost ~]# egrep 'admin|ops|devops' /etc/gshadow
+admin:!::user1
+ops:!::user2
+devops:$6$PBlHq/4HQI$NCBjE6UKd1CxZ3.moN3RNhz.V4XZpxWmc495RQwS0mhpSYJug8pFM.jpVS69xQcNVlunMfpLt8mCLjZuIsWc91::user3
+
+
+[root@localhost ~]# useradd -G admin abc1
+[root@localhost ~]# id abc1
+uid=1205(abc1) gid=1208(abc1) groups=1208(abc1),1202(admin)
+[root@localhost ~]# egrep 'admin|ops|devops' /etc/group
+admin:x:1202:user1,abc1
+ops:x:1203:user2
+devops:x:1204:user3
+
+
+[root@localhost ~]# useradd abc2
+[root@localhost ~]# useradd abc3
+[root@localhost ~]# useradd abc4
+
+
+
+[root@localhost ~]# gpassws -M abc2 abc3 abc4    ops 
+
+-bash: gpassws: command not found
+
+
+[root@localhost ~]# -----------------------------------------------------------------------gpasswd -m abc2 abc3 abc4 ops
+gpasswd: invalid option -- 'm'
+Usage: gpasswd [option] GROUP
+
+Options:
+  -a, --add USER                add USER to GROUP
+  -d, --delete USER             remove USER from GROUP
+  -h, --help                    display this help message and exit
+  -Q, --root CHROOT_DIR         directory to chroot into
+  -r, --delete-password         remove the GROUP's password
+  -R, --restrict                restrict access to GROUP to its members
+  -M, --members USER,...        set the list of members of GROUP
+  -A, --administrators ADMIN,...
+                                set the list of administrators for GROUP
+Except for the -A and -M options, the options cannot be combined.
+
+[root@localhost ~]# ==================================================================================gpasswd -M abc2,abc3,abc4 ops
+[root@localhost ~]# egrep 'admin|ops|devops' /etc/group
+admin:x:1202:user1,abc1
+ops:x:1203:abc2,abc3,abc4
+devops:x:1204:user3
+
+[root@localhost ~]# gpasswd -d user3 devops
+Removing user user3 from group devops
+
+[root@localhost ~]# egrep 'admin|ops|devops' /etc/group
+admin:x:1202:user1,abc1
+ops:x:1203:abc2,abc3,abc4
+devops:x:1204:
+
+[root@localhost ~]# groupmod --help
+Usage: groupmod [options] GROUP
+
+Options:
+  -g, --gid GID                 change the group ID to GID
+  -h, --help                    display this help message and exit
+  -n, --new-name NEW_GROUP      change the name to NEW_GROUP
+  -o, --non-unique              allow to use a duplicate (non-unique) GID
+  -p, --password PASSWORD       change the password to this (encrypted)
+                                PASSWORD
+  -R, --root CHROOT_DIR         directory to chroot into
+
+[root@localhost ~]# groupmod -g 1205 devops
+groupmod: GID '1205' already exists
+[root@localhost ~]# groupmod -g 1206 devops
+groupmod: GID '1206' already exists
+
+[root@localhost ~]# grep 1206 /etc/group
+user2:x:1206:
+[root@localhost ~]# groupmod -g 1306 devops
+[root@localhost ~]# egrep 'admin|ops|devops' /etc/group
+admin:x:1202:user1,abc1
+ops:x:1203:abc2,abc3,abc4
+devops:x:1306:
+[root@localhost ~]# groupmod -n sysops devops
+[root@localhost ~]# egrep 'admin|ops|sysops' /etc/group
+admin:x:1202:user1,abc1
+ops:x:1203:abc2,abc3,abc4
+sysops:x:1306:
+
+[root@localhost ~]# egrep 'admin|ops|sysops' /etc/group
+admin:x:1202:user1,abc1
+ops:x:1203:abc2,abc3,abc4
+sysops:x:1306:
+[root@localhost ~]# groupdel admin
+[root@localhost ~]# egrep 'admin|ops|sysops' /etc/group
+ops:x:1203:abc2,abc3,abc4
+sysops:x:1306:
+[root@localhost ~]# groupdel ops sysops
+Usage: groupdel [options] GROUP
+
+Options:
+  -h, --help                    display this help message and exit
+  -R, --root CHROOT_DIR         directory to chroot into
+
+[root@localhost ~]# groupdel ops
+[root@localhost ~]# groupdel sysops
+[root@localhost ~]# egrep 'admin|ops|sysops' /etc/group
+
+======================================================================
+
+
+
+Date : 2019/07/24
+
+[root@linuxserver1.itbs.com ~]# useradd ranga
+[root@linuxserver1.itbs.com ~]# -----------------------------------------echo "ranga" | passwd --stdin ranga : this  is the new way to change the passwd
+Changing password for user ranga.
+passwd: all authentication tokens updated successfully.
+
+[root@linuxserver1.itbs.com ~]# useradd sirisha
+[root@linuxserver1.itbs.com ~]# passwd sirisha
+Changing password for user sirisha.
+New password:
+[root@linuxserver1.itbs.com ~]#----------------------------------------------- echo "sirisha" | passwd --stdin sirisha
+Changing password for user sirisha.
+passwd: all authentication tokens updated successfully.
+
+[root@linuxserver1.itbs.com ~]# useradd itbs
+[root@linuxserver1.itbs.com ~]# ---------------------------------------------------echo itbs | passwd --stdin itbs
+Changing password for user itbs.
+passwd: all authentication tokens updated successfully.
+
+
+--------------------------------------------------------------------------------------------
+[root@linuxserver1.itbs.com ~]# su - itbs
+[itbs@linuxserver1.itbs.com ~]$ su - sirisha
+Password:
+[sirisha@linuxserver1.itbs.com ~]$ su - root
+Password:
+Last login: Wed Jul 24 19:09:05 IST 2019 from 192.168.2.28 on pts/0
+[root@linuxserver1.itbs.com ~]# exit
+logout
+[sirisha@linuxserver1.itbs.com ~]$ exit
+logout
+----------------------------------------------------------------------
+
+A ROOT USER CREATED A ONE DIRECTORY BY DEFAULT IT GET A -755- permissions.
+
+
+
+[root@linuxserver1.itbs.com ~]# mkdir zyx
+[root@linuxserver1.itbs.com ~]# ls -ld zyx
+drwxr-xr-x. 2 root root 6 Jul 24 20:04 zyx
+						------By using chmod we have to change the paermissions only owner of the file have a permissions
+[root@linuxserver1.itbs.com ~]# #chmod g+w,o+w zyx
+[root@linuxserver1.itbs.com ~]# chmod 777 zyx
+
+[root@linuxserver1.itbs.com ~]# ls -ld zyx
+drwxrwxrwx. 2 root root 6 Jul 24 20:04 zyx
+
+[root@linuxserver1.itbs.com ~]# ls -ld zyx
+drwxrwxrwx. 2 root root 6 Jul 24 20:04 zyx
+=========================================================================================================================================================
+
+[root@linuxserver1.itbs.com ~]# cd zyx/  ---Switch to that directory
+[root@linuxserver1.itbs.com zyx]#
+[root@linuxserver1.itbs.com zyx]# touch rootfile ------------- file is created by using touch command. A root user create a one file it gets 										default permissions is ==644==.
+[root@linuxserver1.itbs.com zyx]# ls -l rootfile
+-rw-r--r--. 1 root root 0 Jul 24 20:06 rootfile
+[root@linuxserver1.itbs.com zyx]# cd
+
+					-after that we have to swith to normal user and create a files and directories
+[root@linuxserver1.itbs.com ~]# su - itbs
+Last login: Wed Jul 24 20:01:30 IST 2019 on pts/0
+						
+						- A normal user trying to change the directory .this directory is created by super user.we get a                                                   permission denied
+[itbs@linuxserver1.itbs.com ~]$ ls -ld /root/zyx
+ls: cannot access /root/zyx: Permission denied
+
+[itbs@linuxserver1.itbs.com ~]$ ls -ld /root
+dr-xr-x---. 7 root root 258 Jul 24 20:04 /root ==== check the permissions of that directory.by default a /root have "zero permissions" for normal users 							thats why we cant enter in to the rott user directory.
+
+
+[itbs@linuxserver1.itbs.com ~]$ exit =====exit from the normal user
+logout
+[root@linuxserver1.itbs.com ~]# chmod 557 /root ---- change the permissons of /root for normal users by using chmod command.
+[root@linuxserver1.itbs.com ~]# su - itbs
+Last login: Wed Jul 24 20:07:18 IST 2019 on pts/0
+
+
+[itbs@linuxserver1.itbs.com ~]$ cd /root/zyx/
+[itbs@linuxserver1.itbs.com zyx]$ pwd
+/root/zyx
+[itbs@linuxserver1.itbs.com zyx]$ ls -l
+total 0
+-rw-r--r--. 1 root root 0 Jul 24 20:06 rootfile
+
+[itbs@linuxserver1.itbs.com zyx]$ whoami
+itbs
+
+[itbs@linuxserver1.itbs.com zyx]$ touch itbsfile ---- the itbs user create a one file by default it gets a --664-- permissons.
+[itbs@linuxserver1.itbs.com zyx]$ ls -l
+total 0
+-rw-rw-r--. 1 itbs itbs 0 Jul 24 20:11 itbsfile
+-rw-r--r--. 1 root root 0 Jul 24 20:06 rootfile
+
+[itbs@linuxserver1.itbs.com zyx]$ su - sirisha
+Password:
+Last login: Wed Jul 24 20:02:52 IST 2019 on pts/0
+[sirisha@linuxserver1.itbs.com ~]$ cd /root/zyx/
+[sirisha@linuxserver1.itbs.com zyx]$ ls -l
+total 0
+-rw-rw-r--. 1 itbs itbs 0 Jul 24 20:11 itbsfile
+-rw-r--r--. 1 root root 0 Jul 24 20:06 rootfile
+
+[sirisha@linuxserver1.itbs.com zyx]$ touch sirifile
+[sirisha@linuxserver1.itbs.com zyx]$ ls -l
+total 0
+-rw-rw-r--. 1 itbs    itbs    0 Jul 24 20:11 itbsfile
+-rw-r--r--. 1 root    root    0 Jul 24 20:06 rootfile
+-rw-rw-r--. 1 sirisha sirisha 0 Jul 24 20:12 sirifile
+
+
+[sirisha@linuxserver1.itbs.com zyx]$ mkdir siridir ------------ siri user create a one directory by default it gets --775-- permissions.
+[sirisha@linuxserver1.itbs.com zyx]$ ls -l
+total 0
+-rw-rw-r--. 1 itbs    itbs    0 Jul 24 20:11 itbsfile
+-rw-r--r--. 1 root    root    0 Jul 24 20:06 rootfile
+drwxrwxr-x. 2 sirisha sirisha 6 Jul 24 20:13 siridir
+-rw-rw-r--. 1 sirisha sirisha 0 Jul 24 20:12 sirifile
+
+[sirisha@linuxserver1.itbs.com zyx]$ logout
+[itbs@linuxserver1.itbs.com zyx]$ pwd
+/root/zyx
+[itbs@linuxserver1.itbs.com zyx]$ mkdir itbsdir
+[itbs@linuxserver1.itbs.com zyx]$ ls -l
+total 0
+drwxrwxr-x. 2 itbs    itbs    6 Jul 24 20:13 itbsdir
+-rw-rw-r--. 1 itbs    itbs    0 Jul 24 20:11 itbsfile
+-rw-r--r--. 1 root    root    0 Jul 24 20:06 rootfile
+drwxrwxr-x. 2 sirisha sirisha 6 Jul 24 20:13 siridir
+-rw-rw-r--. 1 sirisha sirisha 0 Jul 24 20:12 sirifile
+[itbs@linuxserver1.itbs.com zyx]$ logout
+[root@linuxserver1.itbs.com ~]# cd zyx/
+[root@linuxserver1.itbs.com zyx]# ls -l
+total 0
+drwxrwxr-x. 2 itbs    itbs    6 Jul 24 20:13 itbsdir
+-rw-rw-r--. 1 itbs    itbs    0 Jul 24 20:11 itbsfile
+-rw-r--r--. 1 root    root    0 Jul 24 20:06 rootfile
+drwxrwxr-x. 2 sirisha sirisha 6 Jul 24 20:13 siridir
+-rw-rw-r--. 1 sirisha sirisha 0 Jul 24 20:12 sirifile
+
+[root@linuxserver1.itbs.com zyx]# mkdir rootdir
+[root@linuxserver1.itbs.com zyx]# ls -l
+total 0
+drwxrwxr-x. 2 itbs    itbs    6 Jul 24 20:13 itbsdir
+-rw-rw-r--. 1 itbs    itbs    0 Jul 24 20:11 itbsfile
+drwxr-xr-x. 2 root    root    6 Jul 24 20:14 rootdir
+-rw-r--r--. 1 root    root    0 Jul 24 20:06 rootfile
+drwxrwxr-x. 2 sirisha sirisha 6 Jul 24 20:13 siridir
+-rw-rw-r--. 1 sirisha sirisha 0 Jul 24 20:12 sirifile
+
+[root@linuxserver1.itbs.com zyx]# su - itbs
+Last login: Wed Jul 24 20:10:04 IST 2019 on pts/0
+[itbs@linuxserver1.itbs.com ~]$ pwd
+/home/itbs
+[itbs@linuxserver1.itbs.com ~]$ cd /root/
+.cache/  .config/ myfiles/ .ssh/    zyx/
+[itbs@linuxserver1.itbs.com ~]$ cd /root/zyx/
+[itbs@linuxserver1.itbs.com zyx]$ ls -l
+total 0
+drwxrwxr-x. 2 itbs    itbs    6 Jul 24 20:13 itbsdir
+-rw-rw-r--. 1 itbs    itbs    0 Jul 24 20:11 itbsfile
+drwxr-xr-x. 2 root    root    6 Jul 24 20:14 rootdir
+-rw-r--r--. 1 root    root    0 Jul 24 20:06 rootfile
+drwxrwxr-x. 2 sirisha sirisha 6 Jul 24 20:13 siridir
+-rw-rw-r--. 1 sirisha sirisha 0 Jul 24 20:12 sirifile
+
+[itbs@linuxserver1.itbs.com zyx]$ cat sirifile
+
+[itbs@linuxserver1.itbs.com zyx]$ cat >> sirifile ---- this user cant have permissons to acsess other normal user file.
+-bash: sirifile: Permission denied
+
+[itbs@linuxserver1.itbs.com zyx]$ su - sirisha
+[sirisha@linuxserver1.itbs.com ~]$ cd /root/zyx/
+[sirisha@linuxserver1.itbs.com zyx]$ ls -l
+total 0
+drwxrwxr-x. 2 itbs    itbs    6 Jul 24 20:13 itbsdir
+-rw-rw-r--. 1 itbs    itbs    0 Jul 24 20:11 itbsfile
+drwxr-xr-x. 2 root    root    6 Jul 24 20:14 rootdir
+-rw-r--r--. 1 root    root    0 Jul 24 20:06 rootfile
+drwxrwxr-x. 2 sirisha sirisha 6 Jul 24 20:13 siridir
+
+-rw-rw-r--. 1 sirisha sirisha 0 Jul 24 20:12 sirifile --------- in this file normal users have only "r" permisiions.if a another user want to access this 								file we have to change the permissions
+
+[sirisha@linuxserver1.itbs.com zyx]$ chmod o+w sirifile ----- permissions are changed
+[sirisha@linuxserver1.itbs.com zyx]$ ls -l sirifile
+-rw-rw-rw-. 1 sirisha sirisha 0 Jul 24 20:12 sirifile
+
+
+[sirisha@linuxserver1.itbs.com zyx]$ ls -l
+total 0
+drwxrwxr-x. 2 itbs    itbs    6 Jul 24 20:13 itbsdir
+-rw-rw-r--. 1 itbs    itbs    0 Jul 24 20:11 itbsfile
+drwxr-xr-x. 2 root    root    6 Jul 24 20:14 rootdir
+-rw-r--r--. 1 root    root    0 Jul 24 20:06 rootfile
+drwxrwxr-x. 2 sirisha sirisha 6 Jul 24 20:13 siridir
+-rw-rw-rw-. 1 sirisha sirisha 0 Jul 24 20:12 sirifile --- permissions are applied
+[sirisha@linuxserver1.itbs.com zyx]$ logout
+
+--------------------------------------------------- su to the another user and test that file is accesed are not.
+[itbs@linuxserver1.itbs.com zyx]$ whoami
+itbs
+[itbs@linuxserver1.itbs.com zyx]$ pwd
+/root/zyx
+[itbs@linuxserver1.itbs.com zyx]$ ls -l
+total 0
+drwxrwxr-x. 2 itbs    itbs    6 Jul 24 20:13 itbsdir
+-rw-rw-r--. 1 itbs    itbs    0 Jul 24 20:11 itbsfile
+drwxr-xr-x. 2 root    root    6 Jul 24 20:14 rootdir
+-rw-r--r--. 1 root    root    0 Jul 24 20:06 rootfile
+drwxrwxr-x. 2 sirisha sirisha 6 Jul 24 20:13 siridir
+-rw-rw-rw-. 1 sirisha sirisha 0 Jul 24 20:12 sirifile
+
+[itbs@linuxserver1.itbs.com zyx]$ cat sirifile
+
+[itbs@linuxserver1.itbs.com zyx]$ cat >> sirifile --- now a itbs user have a prermissions to write anything on that file. in this way we have to give prmissions to every file.
+
+
+
+
+hello, i am having access permission now.
+[itbs@linuxserver1.itbs.com zyx]$ cat sirifile
+hello, i am having access permission now.
+
+[itbs@linuxserver1.itbs.com zyx]$ ls -l
+total 4
+drwxrwxr-x. 2 itbs    itbs     6 Jul 24 20:13 itbsdir
+-rw-rw-r--. 1 itbs    itbs     0 Jul 24 20:11 itbsfile
+drwxr-xr-x. 2 root    root     6 Jul 24 20:14 rootdir
+-rw-r--r--. 1 root    root     0 Jul 24 20:06 rootfile
+drwxrwxr-x. 2 sirisha sirisha  6 Jul 24 20:13 siridir
+-rw-rw-rw-. 1 sirisha sirisha 42 Jul 24 20:20 sirifile
+
+[itbs@linuxserver1.itbs.com zyx]$ whoami
+itbs
+
+
+[itbs@linuxserver1.itbs.com zyx]$ chown itbs sirifile ---- try to change the owner of the file ... operation is not permitted for normal users. only a root 												user can do this
+chown: changing ownership of ‘sirifile’: Operation not permitted
+
+[itbs@linuxserver1.itbs.com zyx]$ su - sirisha
+Password:
+Last login: Wed Jul 24 20:17:32 IST 2019 on pts/0
+
+[sirisha@linuxserver1.itbs.com ~]$ cd /root/zyx/
+[sirisha@linuxserver1.itbs.com zyx]$ ls -l
+total 4
+drwxrwxr-x. 2 itbs    itbs     6 Jul 24 20:13 itbsdir
+-rw-rw-r--. 1 itbs    itbs     0 Jul 24 20:11 itbsfile
+drwxr-xr-x. 2 root    root     6 Jul 24 20:14 rootdir
+-rw-r--r--. 1 root    root     0 Jul 24 20:06 rootfile
+drwxrwxr-x. 2 sirisha sirisha  6 Jul 24 20:13 siridir
+-rw-rw-rw-. 1 sirisha sirisha 42 Jul 24 20:20 sirifile
+
+[sirisha@linuxserver1.itbs.com zyx]$ chown itbs sirifile ------------ even a owner of the file is also not have a permission to change that.
+chown: changing ownership of ‘sirifile’: Operation not permitted
+
+[sirisha@linuxserver1.itbs.com zyx]$
+[sirisha@linuxserver1.itbs.com zyx]$ chown itbs sirifile
+chown: changing ownership of ‘sirifile’: Operation not permitted
+[sirisha@linuxserver1.itbs.com zyx]$ ls -l
+total 4
+drwxrwxr-x. 2 itbs    itbs     6 Jul 24 20:13 itbsdir
+-rw-rw-r--. 1 itbs    itbs     0 Jul 24 20:11 itbsfile
+drwxr-xr-x. 2 root    root     6 Jul 24 20:14 rootdir
+-rw-r--r--. 1 root    root     0 Jul 24 20:06 rootfile
+drwxrwxr-x. 2 sirisha sirisha  6 Jul 24 20:13 siridir
+-rw-rw-rw-. 1 sirisha sirisha 42 Jul 24 20:20 sirifile
+
+						: switch to root user and change the owner of the file.
+[sirisha@linuxserver1.itbs.com zyx]$ su - root
+Password:
+Last login: Wed Jul 24 20:03:05 IST 2019 on pts/0
+
+[root@linuxserver1.itbs.com ~]# cd zyx/
+[root@linuxserver1.itbs.com zyx]# ls -l
+total 4
+drwxrwxr-x. 2 itbs    itbs     6 Jul 24 20:13 itbsdir
+-rw-rw-r--. 1 itbs    itbs     0 Jul 24 20:11 itbsfile
+drwxr-xr-x. 2 root    root     6 Jul 24 20:14 rootdir
+-rw-r--r--. 1 root    root     0 Jul 24 20:06 rootfile
+drwxrwxr-x. 2 sirisha sirisha  6 Jul 24 20:13 siridir
+-rw-rw-rw-. 1 sirisha sirisha 42 Jul 24 20:20 sirifile
+
+[root@linuxserver1.itbs.com zyx]# chown itbs sirifile
+[root@linuxserver1.itbs.com zyx]# ls -l
+total 4
+drwxrwxr-x. 2 itbs    itbs     6 Jul 24 20:13 itbsdir
+-rw-rw-r--. 1 itbs    itbs     0 Jul 24 20:11 itbsfile
+drwxr-xr-x. 2 root    root     6 Jul 24 20:14 rootdir
+-rw-r--r--. 1 root    root     0 Jul 24 20:06 rootfile
+drwxrwxr-x. 2 sirisha sirisha  6 Jul 24 20:13 siridir
+-rw-rw-rw-. 1 itbs    sirisha 42 Jul 24 20:20 sirifile
+
+[root@linuxserver1.itbs.com zyx]# su - itbs
+Last login: Wed Jul 24 20:16:04 IST 2019 on pts/0
+[itbs@linuxserver1.itbs.com ~]$ cd /root/zyx/
+[itbs@linuxserver1.itbs.com zyx]$ ls -l
+total 4
+drwxrwxr-x. 2 itbs    itbs     6 Jul 24 20:13 itbsdir
+-rw-rw-r--. 1 itbs    itbs     0 Jul 24 20:11 itbsfile
+drwxr-xr-x. 2 root    root     6 Jul 24 20:14 rootdir
+-rw-r--r--. 1 root    root     0 Jul 24 20:06 rootfile
+drwxrwxr-x. 2 sirisha sirisha  6 Jul 24 20:13 siridir
+-rw-rw-rw-. 1 itbs    sirisha 42 Jul 24 20:20 sirifile
+
+
+[itbs@linuxserver1.itbs.com zyx]$ chmod 776 sirifile
+[itbs@linuxserver1.itbs.com zyx]$ chmod 777 siridir
+chmod: changing permissions of ‘siridir’: Operation not permitted
+
+[itbs@linuxserver1.itbs.com zyx]$ chgrp itbs sirifile
+[itbs@linuxserver1.itbs.com zyx]$ ls -l sirifile
+-rwxrwxrw-. 1 itbs itbs 42 Jul 24 20:20 sirifile
+[itbs@linuxserver1.itbs.com zyx]$ exit
+logout
+
+[root@linuxserver1.itbs.com zyx]# chwon ranga:ranga siridir
+-bash: chwon: command not found
+[root@linuxserver1.itbs.com zyx]# chown ranga:ranga siridir
+[root@linuxserver1.itbs.com zyx]# ls -l
+total 4
+drwxrwxr-x. 2 itbs  itbs   6 Jul 24 20:13 itbsdir
+-rw-rw-r--. 1 itbs  itbs   0 Jul 24 20:11 itbsfile
+drwxr-xr-x. 2 root  root   6 Jul 24 20:14 rootdir
+-rw-r--r--. 1 root  root   0 Jul 24 20:06 rootfile
+drwxrwxr-x. 2 ranga ranga  6 Jul 24 20:13 siridir
+-rwxrwxrw-. 1 itbs  itbs  42 Jul 24 20:20 sirifile
+
+--------------------------------------------------------------------------------------------------------------------------------------------------
+
+UMASK: Based on umask value the permissions are changed ----- vi /etc/profile
+[root@linuxserver1.itbs.com zyx]# umask
+0022
+[root@linuxserver1.itbs.com zyx]# cd
+[root@linuxserver1.itbs.com ~]# vim /etc/profile
+[root@linuxserver1.itbs.com ~]# umask
+0022
+[root@linuxserver1.itbs.com ~]# su - itbs
+Last login: Wed Jul 24 20:23:49 IST 2019 on pts/0
+[itbs@linuxserver1.itbs.com ~]$ umask
+0002
+
+[itbs@linuxserver1.itbs.com ~]$ umask
+0002
+[itbs@linuxserver1.itbs.com ~]$ ls
+[itbs@linuxserver1.itbs.com ~]$ touch itbsf1
+[itbs@linuxserver1.itbs.com ~]$ ls -l itbsf1
+-rw-rw-r--. 1 itbs itbs 0 Jul 24 20:32 itbsf1
+[itbs@linuxserver1.itbs.com ~]$ umask 0222
+[itbs@linuxserver1.itbs.com ~]$ umask
+0222
+[itbs@linuxserver1.itbs.com ~]$ touch itbsf2
+[itbs@linuxserver1.itbs.com ~]$ ls -l
+total 0
+-rw-rw-r--. 1 itbs itbs 0 Jul 24 20:32 itbsf1
+-r--r--r--. 1 itbs itbs 0 Jul 24 20:33 itbsf2
+[itbs@linuxserver1.itbs.com ~]$ mkdir itbsd1
+[itbs@linuxserver1.itbs.com ~]$ ls -l
+total 0
+dr-xr-xr-x. 2 itbs itbs 6 Jul 24 20:33 itbsd1
+-rw-rw-r--. 1 itbs itbs 0 Jul 24 20:32 itbsf1
+-r--r--r--. 1 itbs itbs 0 Jul 24 20:33 itbsf2
+[itbs@linuxserver1.itbs.com ~]$ logout
+[root@linuxserver1.itbs.com ~]# su - itbs
+Last login: Wed Jul 24 20:30:32 IST 2019 on pts/0
+[itbs@linuxserver1.itbs.com ~]$ umask
+0002
+
+[itbs@linuxserver1.itbs.com ~]$
+[itbs@linuxserver1.itbs.com ~]$ exit
+logout
+[root@linuxserver1.itbs.com ~]# ls
+anaconda-ks.cfg  hello  myfiles  xyz  zyx
+[root@linuxserver1.itbs.com ~]# umask
+0022
+[root@linuxserver1.itbs.com ~]# touch rootf1
+[root@linuxserver1.itbs.com ~]# ls -l rootf1
+-rw-r--r--. 1 root root 0 Jul 24 20:35 rootf1
+[root@linuxserver1.itbs.com ~]# mkdir rootd1
+[root@linuxserver1.itbs.com ~]# ls -ld rootd1
+drwxr-xr-x. 2 root root 6 Jul 24 20:35 rootd1
+[root@linuxserver1.itbs.com ~]# umask 0123
+[root@linuxserver1.itbs.com ~]# umask
+0123
+[root@linuxserver1.itbs.com ~]# touch rootf2
+[root@linuxserver1.itbs.com ~]# mkdir rootd2
+[root@linuxserver1.itbs.com ~]# ls -l
+total 20
+-rw-------. 1 root root  1303 Jul 13 18:41 anaconda-ks.cfg
+-rw-r--r--. 1 root root     0 Jul 20 17:47 hello
+drwxr-xr-x. 2 root root 12288 Jul 17 20:39 myfiles
+drwxr-xr-x. 2 root root     6 Jul 24 20:35 rootd1
+drw-r-xr--. 2 root root     6 Jul 24 20:37 rootd2
+-rw-r--r--. 1 root root     0 Jul 24 20:35 rootf1
+-rw-r--r--. 1 root root     0 Jul 24 20:37 rootf2
+-rw-r--r--. 1 root root     0 Jul 20 17:48 xyz
+drwxrwxrwx. 5 root root    99 Jul 24 20:14 zyx
+[root@linuxserver1.itbs.com ~]# umask
+0123
+[root@linuxserver1.itbs.com ~]# touch rootf3
+[root@linuxserver1.itbs.com ~]# ls -l rootf3
+-rw-r--r--. 1 root root 0 Jul 24 20:38 rootf3
+
+
+[root@linuxserver1.itbs.com ~]# touch rootf3
+[root@linuxserver1.itbs.com ~]# ls -l rootf3
+-rw-r--r--. 1 root root 0 Jul 24 20:38 rootf3
+[root@linuxserver1.itbs.com ~]# umask 0444
+[root@linuxserver1.itbs.com ~]# umask 0444
+[root@linuxserver1.itbs.com ~]# umask
+0444
+[root@linuxserver1.itbs.com ~]# touch rootf3
+[root@linuxserver1.itbs.com ~]# ls -l rootf3
+-rw-r--r--. 1 root root 0 Jul 24 20:42 rootf3
+[root@linuxserver1.itbs.com ~]# umask
+0444
+[root@linuxserver1.itbs.com ~]# umask -S
+u=wx,g=wx,o=wx
+[root@linuxserver1.itbs.com ~]# touch rootf4
+[root@linuxserver1.itbs.com ~]# ls -l rootf4
+--w--w--w-. 1 root root 0 Jul 24 20:50 rootf4
+[root@linuxserver1.itbs.com ~]# mkdir rootd3
+[root@linuxserver1.itbs.com ~]# ls -ld rootd3/
+d-wx-wx-wx. 2 root root 6 Jul 24 20:51 rootd3/
+[root@linuxserver1.itbs.com ~]# man umask
+
+=============================================================================================================================
+suid is a specil file permission for executable files which enables other users to run this file with effective permissions of file owner.
+
+
+
+Date : 25/07/2019
+ SUID PERMISSONS : these permissions have only a particular files 
+
+	denoted by ==== S (small)
+
+[root@linuxserver1.itbs.com ~]# ---------------------------------------------------ls -l /usr/bin/passwd
+-rwsr-xr-x. 1 root root 27832 Jun 10  2014 /usr/bin/passwd
+
+[root@linuxserver1.itbs.com ~]# su - ranga
+Last login: Thu Jul 25 19:32:04 IST 2019 on pts/0
+[ranga@linuxserver1.itbs.com ~]$ passwd
+Changing password for user ranga.
+Changing password for ranga.
+(current) UNIX password:
+[ranga@linuxserver1.itbs.com ~]$
+[ranga@linuxserver1.itbs.com ~]$ passwd
+Changing password for user ranga.
+Changing password for ranga.
+(current) UNIX password:
+
+[ranga@linuxserver1.itbs.com ~]$ ls -l /usr/bin/passwd
+-rwsr-xr-x. 1 root root 27832 Jun 10  2014 /usr/bin/passwd
+[ranga@linuxserver1.itbs.com ~]$ exit
+logout
+
+[root@linuxserver1.itbs.com ~]# chmod u-s /usr/bin/passwd ---------{{ iF we have to change the  special permissions of ---passwd file--- the normal user                                                               cant change their passwds
+
+[root@linuxserver1.itbs.com ~]# ls -l /usr/bin/passwd
+-rwxr-xr-x. 1 root root 27832 Jun 10  2014 /usr/bin/passwd
+
+[root@linuxserver1.itbs.com ~]# su - ranga   --------------- now switc to ranga and try to change the passwd
+Last login: Thu Jul 25 19:36:51 IST 2019 on pts/0
+[ranga@linuxserver1.itbs.com ~]$ passwd
+Changing password for user ranga.
+Changing password for ranga.
+(current) UNIX password:
+New password:
+Retype new password:
+Sorry, passwords do not match.
+New password:
+
+[ranga@linuxserver1.itbs.com ~]$ passwd
+Changing password for user ranga.
+Changing password for ranga.
+(current) UNIX password:
+New password:
+Retype new password:
+passwd: Authentication token manipulation error   ---- we get an error why because we are delted the special permission of a passwd file.
+[ranga@linuxserver1.itbs.com ~]$ exit
+logout
+
+
+[root@linuxserver1.itbs.com ~]# chmod u+s /usr/bin/passwd
+[root@linuxserver1.itbs.com ~]# ls -l /usr/bin/passwd
+-rwsr-xr-x. 1 root root 27832 Jun 10  2014 /usr/bin/passwd
+[root@linuxserver1.itbs.com ~]# su - ranga
+Last login: Thu Jul 25 19:39:04 IST 2019 on pts/0
+[ranga@linuxserver1.itbs.com ~]$ passwd
+Changing password for user ranga.
+Changing password for ranga.
+(current) UNIX password:
+New password:
+Retype new password:
+passwd: all authentication tokens updated successfully.
+
+----------------------------------------------------------------------------------------- this is the anthor file
+
+[ranga@linuxserver1.itbs.com ~]$ fdisk -l
+fdisk: cannot open /dev/sda: Permission denied   --- while trying to open the command get a error why because these command only exicuted by super user.
+fdisk: cannot open /dev/sr0: Permission denied
+fdisk: cannot open /dev/mapper/centos-root: Permission denied
+fdisk: cannot open /dev/mapper/centos-swap: Permission denied
+
+[ranga@linuxserver1.itbs.com ~]$ which fdisk ----- it shows the path of that command
+/usr/sbin/fdisk
+[ranga@linuxserver1.itbs.com ~]$ ls -l /usr/sbin/fdisk
+-rwxr-xr-x. 1 root root 199632 Aug  4  2017 /usr/sbin/fdisk
+[ranga@linuxserver1.itbs.com ~]$ exit
+logout
+
+
+[root@linuxserver1.itbs.com ~]# chmod u+s /usr/sbin/fdisk  ---- after that we give a special permission to that file .
+[root@linuxserver1.itbs.com ~]# ls -l /usr/sbin/fdisk
+-rwsr-xr-x. 1 root root 199632 Aug  4  2017 /usr/sbin/fdisk
+[root@linuxserver1.itbs.com ~]# su - ranga
+Last login: Thu Jul 25 19:40:47 IST 2019 on pts/0
+
+
+[ranga@linuxserver1.itbs.com ~]$ fdisk -l ----- now ranga have a permission to access this coommand
+
+Disk /dev/sda: 10.7 GB, 10737418240 bytes, 20971520 sectors
+Units = sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+Disk label type: dos
+Disk identifier: 0x000cd994
+
+   Device Boot      Start         End      Blocks   Id  System
+/dev/sda1   *        2048     2099199     1048576   83  Linux
+/dev/sda2         2099200    20971519     9436160   8e  Linux LVM
+
+Disk /dev/mapper/centos-root: 8585 MB, 8585740288 bytes, 16769024 sectors
+Units = sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+
+
+Disk /dev/mapper/centos-swap: 1073 MB, 1073741824 bytes, 2097152 sectors
+Units = sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+
+[ranga@linuxserver1.itbs.com ~]$ exit
+logout
+[root@linuxserver1.itbs.com ~]# ls -l /usr/sbin/fdisk
+-rwsr-xr-x. 1 root root 199632 Aug  4  2017 /usr/sbin/fdisk
+
+[root@linuxserver1.itbs.com ~]# chmod u-s /usr/sbin/fdisk
+[root@linuxserver1.itbs.com ~]# ls -l /usr/sbin/fdisk
+-rwxr-xr-x. 1 root root 199632 Aug  4  2017 /usr/sbin/fdisk
+[root@linuxserver1.itbs.com ~]# su - ranga
+Last login: Thu Jul 25 19:44:12 IST 2019 on pts/0
+
+[ranga@linuxserver1.itbs.com ~]$ fdisk -l
+fdisk: cannot open /dev/sda: Permission denied
+fdisk: cannot open /dev/sr0: Permission denied
+fdisk: cannot open /dev/mapper/centos-root: Permission denied
+fdisk: cannot open /dev/mapper/centos-swap: Permission denied
+
+=============================================================================================================================================
+SGID : these permissions are given to group.
+
+[root@linuxserver1.itbs.com ~]# mkdir /class ------ A ROOT USER CREATED A ONE DIRECTORY.
+
+[root@linuxserver1.itbs.com ~]# ls -ld /class/
+drwxr-xr-x. 2 root root 6 Jul 25 19:55 /class/   --------- CHECK THE PERMISSIONS OF THAT DIRECTORY.
+
+[root@linuxserver1.itbs.com ~]# su - ranga -------------------- SWITCH TO THE NORMAL USER.
+Last login: Thu Jul 25 19:45:45 IST 2019 on pts/0
+
+[ranga@linuxserver1.itbs.com ~]$ cd /class/
+[ranga@linuxserver1.itbs.com class]$ ls
+
+[ranga@linuxserver1.itbs.com class]$ touch rf1 ---- ACTUALLY WRITE PERMISSIONS ARE NOT HAVE THAT DIRECTORY
+touch: cannot touch ‘rf1’: Permission denied
+[ranga@linuxserver1.itbs.com class]$ cd
+[ranga@linuxserver1.itbs.com ~]$ exit
+logout
+
+[root@linuxserver1.itbs.com ~]# groupadd class ---- CREATE A ONE GROUP
+[root@linuxserver1.itbs.com ~]# id ranga
+uid=1000(ranga) gid=1000(ranga) groups=1000(ranga)
+[root@linuxserver1.itbs.com ~]# id sirisha
+uid=1001(sirisha) gid=1001(sirisha) groups=1001(sirisha)
+
+
+[root@linuxserver1.itbs.com ~]# gpasswd -M sirisha,ranga class  ---- MULTIPLE USERS ARE ADDED IN TO A ONE GROUP.
+[root@linuxserver1.itbs.com ~]# id ranga
+uid=1000(ranga) gid=1000(ranga) groups=1000(ranga),1003(class)
+[root@linuxserver1.itbs.com ~]# id sirisha
+uid=1001(sirisha) gid=1001(sirisha) groups=1001(sirisha),1003(class)
+
+[root@linuxserver1.itbs.com ~]# ls -l
+[root@linuxserver1.itbs.com ~]# ls -ld /class/
+drwxr-xr-x. 2 root root 6 Jul 25 19:55 /class/
+
+[root@linuxserver1.itbs.com ~]# chgrp class /class ----- CHANGE THE GROUP OF THAT DIRECTORY
+
+[root@linuxserver1.itbs.com ~]# ls -ld /class/
+drwxr-xr-x. 2 root class 6 Jul 25 19:55 /class/
+
+[root@linuxserver1.itbs.com ~]# chmod g+w /class/ ------------ GIVE THE WRITE PERMISSIONS TO THAT DIRECTORY
+
+[root@linuxserver1.itbs.com ~]# ls -ld /class/
+drwxrwxr-x. 2 root class 6 Jul 25 19:55 /class/
+
+[root@linuxserver1.itbs.com ~]# su - ranga
+Last login: Thu Jul 25 19:55:28 IST 2019 on pts/0
+
+[ranga@linuxserver1.itbs.com ~]$ cd /class/
+[ranga@linuxserver1.itbs.com class]$ touch rf1
+[ranga@linuxserver1.itbs.com class]$ ls -l
+total 0
+-rw-rw-r--. 1 ranga ranga 0 Jul 25 19:59 rf1
+[ranga@linuxserver1.itbs.com class]$ exit
+logout
+
+[root@linuxserver1.itbs.com ~]# su - sirisha
+Last login: Wed Jul 24 20:22:19 IST 2019 on pts/0
+[sirisha@linuxserver1.itbs.com ~]$ cd /class/
+[sirisha@linuxserver1.itbs.com class]$ touch sf1
+[sirisha@linuxserver1.itbs.com class]$ ls -l
+total 0
+-rw-rw-r--. 1 ranga   ranga   0 Jul 25 19:59 rf1
+-rw-rw-r--. 1 sirisha sirisha 0 Jul 25 20:00 sf1
+
+[sirisha@linuxserver1.itbs.com class]$ exit
+logout
+[root@linuxserver1.itbs.com ~]# su - itbs
+Last login: Wed Jul 24 20:33:59 IST 2019 on pts/0
+[itbs@linuxserver1.itbs.com ~]$ cd /class/
+
+[itbs@linuxserver1.itbs.com class]$ touch itbf1 ------ ITBS USER IS NOT IN THAT GROUP.
+touch: cannot touch ‘itbf1’: Permission denied
+
+
+[root@linuxserver1.itbs.com ~]# cd /class/
+[root@linuxserver1.itbs.com class]# ls -l
+total 0
+-rw-rw-r--. 1 ranga   ranga   0 Jul 25 19:59 rf1
+-rw-rw-r--. 1 sirisha sirisha 0 Jul 25 20:00 sf1
+
+[root@linuxserver1.itbs.com class]# su - ranga
+Last login: Thu Jul 25 19:59:42 IST 2019 on pts/0
+
+[ranga@linuxserver1.itbs.com ~]$ cd /class/
+[ranga@linuxserver1.itbs.com class]$ cat > rf2         ----- RANGA USER CREATED A ONE FILE AND WRITTEN SOMETHING.
+hello, i am ranga. Please try to access this file
+
+
+[ranga@linuxserver1.itbs.com class]$ su - sirisha ---- SWITCH TO ANOTHER USER
+Password:   
+Last login: Thu Jul 25 20:00:03 IST 2019 on pts/0
+
+[sirisha@linuxserver1.itbs.com ~]$ cd /class/
+[sirisha@linuxserver1.itbs.com class]$ ls
+rf1  rf2  sf1
+[sirisha@linuxserver1.itbs.com class]$ cat > sf2 -----------------------
+Hello, i am siri, Please try to access my files
+
+[sirisha@linuxserver1.itbs.com class]$ ls -l
+total 8
+-rw-rw-r--. 1 ranga   ranga    0 Jul 25 19:59 rf1
+-rw-rw-r--. 1 ranga   ranga   50 Jul 25 20:02 rf2
+-rw-rw-r--. 1 sirisha sirisha  0 Jul 25 20:00 sf1
+-rw-rw-r--. 1 sirisha sirisha 48 Jul 25 20:03 sf2
+
+[sirisha@linuxserver1.itbs.com class]$ ls -l
+total 8
+-rw-rw-r--. 1 ranga   ranga    0 Jul 25 19:59 rf1
+-rw-rw-r--. 1 ranga   ranga   50 Jul 25 20:02 rf2
+-rw-rw-r--. 1 sirisha sirisha  0 Jul 25 20:00 sf1
+-rw-rw-r--. 1 sirisha sirisha 48 Jul 25 20:03 sf2
+
+[sirisha@linuxserver1.itbs.com class]$ whoami
+sirisha
+
+[sirisha@linuxserver1.itbs.com class]$ cat rf2 ------------------- THIS USER IS TRY TO ACCESS THE RANGA FILES
+hello, i am ranga. Please try to access this file
+
+[sirisha@linuxserver1.itbs.com class]$ cat >> rf2 ------------- ANOTHER USER HAVE A READ OPTION BUT TEY DONT HAVE A OVER WRITE OR APPEND
+-bash: rf2: Permission denied
+[sirisha@linuxserver1.itbs.com class]$ exit
+logout
+[ranga@linuxserver1.itbs.com class]$ exit
+
+logout
+
+#chmod g+s /class ---------------------------------------- THIS IS THE REASON WE HAVE TO GIVE THE SGID PERMISSIONS.
+
+[sirisha@linuxserver1.itbs.com ~]$ cd /class/
+[sirisha@linuxserver1.itbs.com class]$ ls -l
+total 24
+-rw-rw-r--. 1 ranga   ranga    0 Jul 25 19:59 rf1
+-rw-rw-r--. 1 ranga   ranga   50 Jul 25 20:02 rf2
+-rw-rw-r--. 1 ranga   class   83 Jul 25 20:08 rf3
+-rw-rw-r--. 1 ranga   class   34 Jul 25 20:09 rf4
+-rw-rw-r--. 1 sirisha sirisha  0 Jul 25 20:00 sf1
+-rw-rw-r--. 1 sirisha sirisha 48 Jul 25 20:03 sf2
+-rw-rw-r--. 1 sirisha class   41 Jul 25 20:07 sf3
+-rw-rw-r--. 1 sirisha class   30 Jul 25 20:09 sf4
+
+
+Stickybit : 
+
+
+-rw-rw-r--. 1 ranga   ranga    0 Jul 25 19:59 rf1
+-rw-rw-r--. 1 ranga   ranga   50 Jul 25 20:02 rf2
+-rw-rw-r--. 1 ranga   class   43 Jul 25 20:06 rf3
+-rw-rw-r--. 1 sirisha sirisha  0 Jul 25 20:00 sf1
+-rw-rw-r--. 1 sirisha sirisha 48 Jul 25 20:03 sf2
+-rw-rw-r--. 1 sirisha class   41 Jul 25 20:07 sf3
+
+
+[sirisha@linuxserver1.itbs.com class]$ cat rf3
+hello, this my rf3 file . Please access it
+[sirisha@linuxserver1.itbs.com class]$ cat >> rf3
+hello, i am trying to access your file.
+[sirisha@linuxserver1.itbs.com class]$ cat >> rf2
+-bash: rf2: Permission denied
+[sirisha@linuxserver1.itbs.com class]$ cat > sf4
+heloadjfls
+sdjfalsjfl
+sdfjlsf
+[sirisha@linuxserver1.itbs.com class]$ exit
+logout
+[root@linuxserver1.itbs.com ~]# su - ranga
+Last login: Thu Jul 25 20:06:16 IST 2019 on pts/0
+[ranga@linuxserver1.itbs.com ~]$ cd /class/
+[ranga@linuxserver1.itbs.com class]$ cat > rf4
+sldjflajs
+asdjfl;sjlf
+sfjlasjflsf
+[ranga@linuxserver1.itbs.com class]$ clear
+[ranga@linuxserver1.itbs.com class]$ exit
+logout
+[root@linuxserver1.itbs.com ~]# su - sirisha
+Last login: Thu Jul 25 20:06:46 IST 2019 on pts/0
+[sirisha@linuxserver1.itbs.com ~]$ ls
+[sirisha@linuxserver1.itbs.com ~]$ cd /class/
+[sirisha@linuxserver1.itbs.com class]$ ls -l
+total 24
+-rw-rw-r--. 1 ranga   ranga    0 Jul 25 19:59 rf1
+-rw-rw-r--. 1 ranga   ranga   50 Jul 25 20:02 rf2
+-rw-rw-r--. 1 ranga   class   83 Jul 25 20:08 rf3
+-rw-rw-r--. 1 ranga   class   34 Jul 25 20:09 rf4
+-rw-rw-r--. 1 sirisha sirisha  0 Jul 25 20:00 sf1
+-rw-rw-r--. 1 sirisha sirisha 48 Jul 25 20:03 sf2
+-rw-rw-r--. 1 sirisha class   41 Jul 25 20:07 sf3
+-rw-rw-r--. 1 sirisha class   30 Jul 25 20:09 sf4
+[sirisha@linuxserver1.itbs.com class]$
+[sirisha@linuxserver1.itbs.com class]$ ls
+rf1  rf2  rf3  rf4  sf1  sf2  sf3  sf4
+[sirisha@linuxserver1.itbs.com class]$ ls -l
+total 24
+-rw-rw-r--. 1 ranga   ranga    0 Jul 25 19:59 rf1
+-rw-rw-r--. 1 ranga   ranga   50 Jul 25 20:02 rf2
+-rw-rw-r--. 1 ranga   class   83 Jul 25 20:08 rf3
+-rw-rw-r--. 1 ranga   class   34 Jul 25 20:09 rf4
+-rw-rw-r--. 1 sirisha sirisha  0 Jul 25 20:00 sf1
+-rw-rw-r--. 1 sirisha sirisha 48 Jul 25 20:03 sf2
+-rw-rw-r--. 1 sirisha class   41 Jul 25 20:07 sf3
+-rw-rw-r--. 1 sirisha class   30 Jul 25 20:09 sf4
+[sirisha@linuxserver1.itbs.com class]$ cat >> rf4
+hi, i am sirisha
+[sirisha@linuxserver1.itbs.com class]$ cat rf4
+sldjflajs
+asdjfl;sjlf
+sfjlasjflsf
+hi, i am sirisha
+[sirisha@linuxserver1.itbs.com class]$ rm rf4
+[sirisha@linuxserver1.itbs.com class]$ ls -l
+total 20
+-rw-rw-r--. 1 ranga   ranga    0 Jul 25 19:59 rf1
+-rw-rw-r--. 1 ranga   ranga   50 Jul 25 20:02 rf2
+-rw-rw-r--. 1 ranga   class   83 Jul 25 20:08 rf3
+-rw-rw-r--. 1 sirisha sirisha  0 Jul 25 20:00 sf1
+-rw-rw-r--. 1 sirisha sirisha 48 Jul 25 20:03 sf2
+-rw-rw-r--. 1 sirisha class   41 Jul 25 20:07 sf3
+-rw-rw-r--. 1 sirisha class   30 Jul 25 20:09 sf4
+[sirisha@linuxserver1.itbs.com class]$ exit
+logout
+
+[root@linuxserver1.itbs.com ~]# whoami
+root
+[root@linuxserver1.itbs.com ~]# ls -ld /class/
+drwxrwsr-x. 2 root class 83 Jul 25 20:11 /class/
+
+[root@linuxserver1.itbs.com ~]# chmod o+t /class/
+
+[root@linuxserver1.itbs.com ~]# ls -ld /class/
+drwxrwsr-t. 2 root class 83 Jul 25 20:11 /class/
+
+[root@linuxserver1.itbs.com ~]# su - sirisha
+Last login: Thu Jul 25 20:09:51 IST 2019 on pts/0
+[sirisha@linuxserver1.itbs.com ~]$ cd /class/
+[sirisha@linuxserver1.itbs.com class]$ ls -l
+total 20
+-rw-rw-r--. 1 ranga   ranga    0 Jul 25 19:59 rf1
+-rw-rw-r--. 1 ranga   ranga   50 Jul 25 20:02 rf2
+-rw-rw-r--. 1 ranga   class   83 Jul 25 20:08 rf3
+-rw-rw-r--. 1 sirisha sirisha  0 Jul 25 20:00 sf1
+-rw-rw-r--. 1 sirisha sirisha 48 Jul 25 20:03 sf2
+-rw-rw-r--. 1 sirisha class   41 Jul 25 20:07 sf3
+-rw-rw-r--. 1 sirisha class   30 Jul 25 20:09 sf4
+[sirisha@linuxserver1.itbs.com class]$ whoami
+sirisha
+[sirisha@linuxserver1.itbs.com class]$ rm rf3
+rm: cannot remove ‘rf3’: Operation not permitted
+[sirisha@linuxserver1.itbs.com class]$ ls -ld /tmp/
+drwxrwxrwt. 10 root root 4096 Jul 25 20:16 /tmp/
+[sirisha@linuxserver1.itbs.com class]$
+
+============================================================================================================================================================
+chattr : change attributes means we have to give a special permission {+i}  to a specific file.this file is can not deleted by his owner also
+
+Options [ +i, -i]
+
+[root@linuxserver1.itbs.com ~]# ls -l
+total 28
+--w--w--w-. 1 root root    76 Jul 24 21:01 1
+-rw-------. 1 root root  1303 Jul 13 18:41 anaconda-ks.cfg
+-rw-r--r--. 1 root root     0 Jul 20 17:47 hello
+--w--w--w-. 1 root root    76 Jul 24 21:01 hello.txt
+drwxr-xr-x. 2 root root 12288 Jul 17 20:39 myfiles
+drwxr-xr-x. 2 root root     6 Jul 24 20:35 rootd1
+drw-r-xr--. 2 root root     6 Jul 24 20:37 rootd2
+d-wx-wx-wx. 2 root root     6 Jul 24 20:51 rootd3
+-rw-r--r--. 1 root root     0 Jul 24 20:35 rootf1
+-rw-r--r--. 1 root root     0 Jul 24 20:37 rootf2
+-rw-r--r--. 1 root root     0 Jul 24 20:42 rootf3
+--w--w--w-. 1 root root     0 Jul 24 20:50 rootf4
+-rw-r--r--. 1 root root     0 Jul 20 17:48 xyz
+drwxrwxrwx. 5 root root    99 Jul 24 20:14 zyx
+
+[root@linuxserver1.itbs.com ~]# rm rootf2
+[root@linuxserver1.itbs.com ~]# chattr +i rootf1
+[root@linuxserver1.itbs.com ~]# ls -l rootf1
+-rw-r--r--. 1 root root 0 Jul 24 20:35 rootf1
+[root@linuxserver1.itbs.com ~]# rm rootf1
+rm: cannot remove ‘rootf1’: Operation not permitted
+[root@linuxserver1.itbs.com ~]# chattr -i rootf1
+[root@linuxserver1.itbs.com ~]# rm rootf1
+
+
+[root@linuxserver1.itbs.com ~]# stat hello.txt ------------------------------- it is used to check the information about a particular file.
+  File: ‘hello.txt’
+  Size: 76              Blocks: 8          IO Block: 4096   regular file
+Device: fd00h/64768d    Inode: 8737494     Links: 1
+Access: (0222/--w--w--w-)  Uid: (    0/    root)   Gid: (    0/    root)
+Context: unconfined_u:object_r:admin_home_t:s0
+Access: 2019-07-24 21:01:43.331000000 +0530
+Modify: 2019-07-24 21:01:41.843000000 +0530
+Change: 2019-07-24 21:01:41.843000000 +0530
+ Birth: -
+
+[root@linuxserver1.itbs.com ~]# chattr +i hello.txt
+[root@linuxserver1.itbs.com ~]# stat hello.txt
+  File: ‘hello.txt’
+  Size: 76              Blocks: 8          IO Block: 4096   regular file
+Device: fd00h/64768d    Inode: 8737494     Links: 1
+Access: (0222/--w--w--w-)  Uid: (    0/    root)   Gid: (    0/    root)
+Context: unconfined_u:object_r:admin_home_t:s0
+Access: 2019-07-24 21:01:43.331000000 +0530
+Modify: 2019-07-24 21:01:41.843000000 +0530
+Change: 2019-07-25 20:21:24.380000000 +0530
+ Birth: -
+
+[root@linuxserver1.itbs.com ~]# file hello.txt ---------------------------- it is used to check the type of format in a file.
+hello.txt: ASCII text
+
+[root@linuxserver1.itbs.com ~]# file /usr/sbin/fdisk
+/usr/sbin/fdisk: ELF 64-bit LSB executable, x86-64, version 1 (SYSV), dynamically linked (uses shared libs), for GNU/Linux 2.6.32, BuildID[sha1]=9c87594c4559b738979d462f90898d579452e952, stripped
+[root@linuxserver1.itbs.com ~]# ls -l hello.txt
+--w--w--w-. 1 root root 76 Jul 24 21:01 hello.txt
+===========================================================================================================================================================
+
+
+Aging Policies : it is used to change the user login defs like {passwd expiry date ,minimum number of days we canot change a passwd,maximumm no of days ,etc}
+
+[root@linuxserver1.itbs.com ~]# tail -n 5 /etc/shadow
+sshd:!!:18090::::::
+tcpdump:!!:18090::::::
+ranga:$6$5yuy8a.9$kan8ba5DjMYZA6OJ23B9E9zfv0tc4PkcImjwqINRxYFX0qkIbJJwNtn.Nna6fNP4wbV6gNs.xe0Hoy.JfZaag0:18102:0:99999:7:::
+sirisha:$6$cKUAeDOY$W5o4Ofe2tEe6YMXCqV8WdO26LuAccRW8EvUhzGBkjQrcfPgHkhj0WwsRnc/4CqIolFxSysvcpxWODZ6x91puE0:18101:0:99999:7:::
+itbs:$6$elki3KDC$qT2ttHgblv6ixnNZvgCtgTLdJKCy5tUSgQjrVHe5bdt9YrxHrJ.tedjTPZNPzGvEGRKiLQSYAyl2GFupX7LeG.:18101:0:99999:7:::
+[root@linuxserver1.itbs.com ~]# chage -l ranga
+Last password change                                    : Jul 25, 2019
+Password expires                                        : never
+Password inactive                                       : never
+Account expires                                         : never
+Minimum number of days between password change          : 0
+Maximum number of days between password change          : 99999
+Number of days of warning before password expires       : 7
+
+
+
+[root@linuxserver1.itbs.com ~]# chage -m 3 ranga {mimimum no days }
+
+[root@linuxserver1.itbs.com ~]# tail -n 5 /etc/shadow
+sshd:!!:18090::::::
+tcpdump:!!:18090::::::
+ranga:$6$5yuy8a.9$kan8ba5DjMYZA6OJ23B9E9zfv0tc4PkcImjwqINRxYFX0qkIbJJwNtn.Nna6fNP4wbV6gNs.xe0Hoy.JfZaag0:18102:3:99999:7:::
+sirisha:$6$cKUAeDOY$W5o4Ofe2tEe6YMXCqV8WdO26LuAccRW8EvUhzGBkjQrcfPgHkhj0WwsRnc/4CqIolFxSysvcpxWODZ6x91puE0:18101:0:99999:7:::
+itbs:$6$elki3KDC$qT2ttHgblv6ixnNZvgCtgTLdJKCy5tUSgQjrVHe5bdt9YrxHrJ.tedjTPZNPzGvEGRKiLQSYAyl2GFupX7LeG.:18101:0:99999:7:::
+
+
+[root@linuxserver1.itbs.com ~]# chage -l ranga {it is used to check the useradd default file}
+
+Last password change                                    : Jul 25, 2019
+Password expires                                        : never
+Password inactive                                       : never
+Account expires                                         : never
+Minimum number of days between password change          : 3
+Maximum number of days between password change          : 99999
+Number of days of warning before password expires       : 7
+
+
+[root@linuxserver1.itbs.com ~]# su - ranga
+Last login: Thu Jul 25 20:09:29 IST 2019 on pts/0
+
+[ranga@linuxserver1.itbs.com ~]$ passwd
+Changing password for user ranga.
+Changing password for ranga.
+(current) UNIX password:
+You must wait longer to change your password
+passwd: Authentication token manipulation error
+
+[ranga@linuxserver1.itbs.com ~]$ date
+Thu Jul 25 20:32:05 IST 2019
+[ranga@linuxserver1.itbs.com ~]$ exit
+logout
+[root@linuxserver1.itbs.com ~]# date
+Thu Jul 25 20:32:33 IST 2019
+
+[root@linuxserver1.itbs.com ~]# timedatectl {it is used to chage the time and date}
+
+      Local time: Thu 2019-07-25 20:35:46 IST
+  Universal time: Thu 2019-07-25 15:05:46 UTC
+        RTC time: Thu 2019-07-25 15:05:46
+       Time zone: Asia/Kolkata (IST, +0530)
+     NTP enabled: no
+NTP synchronized: no
+ RTC in local TZ: no
+      DST active: n/a
+[root@linuxserver1.itbs.com ~]# timedatectl set-time '2019-07-28 21:30:33'
+[root@linuxserver1.itbs.com ~]# date
+Sun Jul 28 21:30:34 IST 2019
+
+[root@linuxserver1.itbs.com ~]# su - ranga
+Last login: Thu Jul 25 20:31:36 IST 2019 on pts/0
+[ranga@linuxserver1.itbs.com ~]$ passwd
+Changing password for user ranga.
+Changing password for ranga.
+(current) UNIX password:
+New password:
+BAD PASSWORD: The password is too similar to the old one
+New password:
+Retype new password:
+passwd: all authentication tokens updated successfully.
+
+[root@linuxserver1.itbs.com ~]# chage -l ranga
+Last password change                                    : Jul 28, 2019
+Password expires                                        : never
+Password inactive                                       : never
+Account expires                                         : never
+Minimum number of days between password change          : 3
+Maximum number of days between password change          : 99999
+Number of days of warning before password expires       : 7
+
+[root@linuxserver1.itbs.com ~]# chage -d 0 ranga
+[root@linuxserver1.itbs.com ~]# chage -l ranga
+Last password change                                    : password must be changed
+Password expires                                        : password must be changed
+Password inactive                                       : password must be changed
+Account expires                                         : never
+Minimum number of days between password change          : 3
+Maximum number of days between password change          : 99999
+Number of days of warning before password expires       : 7
+[root@linuxserver1.itbs.com ~]# chage -l ranga
+Last password change                                    : Jul 28, 2019
+Password expires                                        : never
+Password inactive                                       : never
+Account expires                                         : never
+Minimum number of days between password change          : 3
+Maximum number of days between password change          : 99999
+Number of days of warning before password expires       : 7
+
+[root@linuxserver1.itbs.com ~]# chage -l ranga
+Last password change                                    : Jul 28, 2019
+Password expires                                        : never
+Password inactive                                       : never
+Account expires                                         : never
+Minimum number of days between password change          : 3
+Maximum number of days between password change          : 99999
+Number of days of warning before password expires       : 7
+
+
+[root@linuxserver1.itbs.com ~]# chage -M 15 ranga ---------- maximum no of days
+
+[root@linuxserver1.itbs.com ~]# chage -l ranga
+Last password change                                    : Jul 28, 2019
+Password expires                                        : Aug 12, 2019
+Password inactive                                       : never
+Account expires                                         : never
+Minimum number of days between password change          : 3
+Maximum number of days between password change          : 15
+Number of days of warning before password expires       : 7
+
+[root@linuxserver1.itbs.com ~]# date
+Sun Jul 28 21:38:38 IST 2019
+[root@linuxserver1.itbs.com ~]# timedatectl set-time '2019-08-08 21:30:39'
+[root@linuxserver1.itbs.com ~]# date
+Thu Aug  8 21:30:40 IST 2019
+[root@linuxserver1.itbs.com ~]#
+
+login as: ranga
+ranga@192.168.2.215's password:
+Warning: your password will expire in 4 days
+Last login: Sun Jul 28 21:36:07 2019 from 192.168.2.16
+[ranga@linuxserver1.itbs.com ~]$ch
+
+
+============================================================================================================================================================
+configration files --- vi /etc/login.defs
+
+
+steps:
+1 - useradd,groupadd,userdel,usermod,gpasswd,passwd,locking the user,default permissions for root /dir = 755,file = 644, for normal user /dir = 775 , file = 664, add the users in to one group (or) add the users in to multiple groups.
+
+2 - change the permissions , change the owner , change the grp 
+
+3 - special permissions sgid ,suid .sticky bit
+
+4 - change attributes +i
+
+5 - file <name>, statistics 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

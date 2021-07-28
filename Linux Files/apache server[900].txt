@@ -1,0 +1,251 @@
+=> Hostname Setup
+# hostnamectl set-hostname apache.localitblabs.com
+=> Bash Prompt Setup
+# vim /etc/bashrc
+[ "$PS1" = "\\s-\\v\\\$ " ] && PS1="[\u@\H \W]\\$ "
+
+=> IP Address Set up 
+# cd /etc/sysconfig/network-scripts/
+#vim ifcfg-enp0sx
+BOOTPROTO="static"
+ONBOOT="yes"
+IPADDR=192.168.2.216
+NETMASK=255.255.255.0
+GATEWAY=192.168.2.1
+
+=> Local Resolver File (Edit)
+#vim /etc/hosts
+192.168.2.213   apache.localitblabs.com apache
+
+#systemctl restart network
+
+After the system came up
+
+#vim /etc/resolv.conf
+nameserver 192.168.2.201
+nameserver 192.168.2.1
+
+=> Try to ping google to make sure you are connected to Network.
+#ping google.com
+
+=> Disable SELinux
+    To See the SElinux Status
+    #sestatus or # getenforce
+    #vim /etc/sysconfig/selinux
+    SELINUX=disabled 
+    if you want disable the SELinux permanently, you need to reboot the         machine
+    => If you want to disable the SELinux temporarly, you need to run below commands
+    # setenforce 0
+    # getenforce
+Note : To enable the SELinux run the below command 
+    #setenforce 1
+
+=> Install EPEL REPO from Internet
+# yum install epel-release
+# yum repolist
+
+###Disable Firewalld and Enable IPTABLES####
+# systemctl stop firewalld
+# systemctl disable firewalld
+# systemctl mask firewalld
+
+# yum install iptables-services
+# systemctl start iptables
+# systemctl enable iptables
+# vim /etc/sysconfig/iptables
+-A INPUT -p tcp -m state --state NEW -m tcp --dport 80 -j ACCEPT
+
+# systemctl restart iptables
+
+#######INSTALL APACHE SERVER########
+Package : http
+Config Files : /etc/httpd/conf/httpd.conf,
+Deamon : httpd
+Port : 80
+Verification : httpd -v 
+
+
+# yum install http*
+# systemctl start httpd
+# systemctl status httpd
+# systemctl enable httpd
+
+# httpd -v 
+
+Verification : Open your web browser (FF,IE, Chrome)
+http://192.168.2.213/
+
+Launching First Website : www.localitblabs.com
+
+#vim /etc/httpd/conf/httpd.conf
+
+Listen 80
+
+
+#cd /etc/httpd/conf.d
+
+# vim www.conf
+NameVirtualHost *:80
+
+<VirtualHost *:80>
+    ServerAdmin webmaster@localitblabs.com
+    ServerName apache.localitblabs.com
+    ServerAlias www.localitblabs.com
+    DocumentRoot /var/www/html/www.localitblabs.com/
+    ErrorLog /var/log/httpd/localitblabs.com/www_error.log
+    CustomLog /var/log/httpd/localitblabs.com/www_access.log combined
+</VirtualHost>
+
+# mkdir  /var/www/html/www.localitblabs.com/
+# mkdir /var/log/httpd/localitblabs.com/
+
+# vim /var/www/html/www.localitblabs.com/index.html   (Create HTML Page)
+<html>
+<h1>WWW.LOCAL ITBLABS.COM</h1>
+</html>
+
+
+
+# httpd -t (To verify the Configuaration of Apache)
+#systemctl restart httpd
+
+Verification : Reload the URL in web browser......
+
+============
+ADD Address into DNS Server
+
+DNS Server Side :
+
+#systemctl status named
+#nslookup localitblabs.com
+
+#vim /var/named/localitblabs.fwz
+
+www    IN A    192.168.2.213
+
+
+#vim /var/named/localitblabs.rwz
+213    IN PTR    www.
+
+
+#systemctl restart named
+
+
+Verification : Reload URL with your website name : http://www.localitblabs.com/
+
+=========
+Launching Secondary Website :
+admin.localitblabs.com
+
+# cd /etc/httpd/conf.d
+#vim admin.conf
+NameVirtualHost *:80
+
+<VirtualHost *:80>
+    ServerAdmin webmaster@localitblabs.com
+    ServerName apache.localitblabs.com
+    ServerAlias admin.localitblabs.com
+    DocumentRoot /var/www/html/admin.localitblabs.com/
+    ErrorLog /var/log/httpd/localitblabs.com/admin_error.log
+    CustomLog /var/log/httpd/localitblabs.com/admin_access.log combined
+</VirtualHost>
+
+# mkdir  /var/www/html/admin.localitblabs.com/
+# cd  /var/www/html/admin.localitblabs.com/
+# vim index.html
+<html>
+<h1>WELCOME TO ADMIN.LOCALITBLABS.COM</h1>
+</html>
+
+# systemctl restart httpd
+
+=> ADD ENTRY in DNS
+
+# vim /var/named/localitblabs.fwz
+
+admin   IN A    192.168.2.213
+
+# vim /var/named/localitblabs.rwz
+
+213     IN PTR  admin.
+
+# systemctl restart named
+
+
+Verification : Load URL in Web browser : admin.localitblabs.com
+
+
+================================
+
+Launching IP:Port BASED Website
+
+Server Side : 
+
+# vim /etc/httpd/conf.d/httpd.conf
+Listen 9090
+
+=> ADD port into the iptables
+
+#vim /etc/sysconfig/iptables
+-A INPUT -p tcp -m state --state NEW -m tcp --dport 9090 -j ACCEPT
+
+# cd /etc/httpd/conf.d
+# vim ip_port.conf
+#NameVirtualHost *:80
+
+<VirtualHost 192.168.2.215:9090>
+    ServerAdmin webmaster@localitblabs.com
+    ServerName apache.localitblabs.com
+    ServerAlias apache.localitblabs.com
+    DocumentRoot /var/www/html/ip_port.localitblabs.com/
+    ErrorLog /var/log/httpd/localitblabs.com/ip_port_error.log
+    CustomLog /var/log/httpd/localitblabs.com/ip_port_access.log combined
+</VirtualHost>
+
+
+#mkdir /var/www/html/ip_port.localitblabs.com/
+# cd /var/www/html/ip_port.localitblabs.com/
+# vim index.html
+<html>
+<h1>WELCOME TO IP PORT BASED WEBSITE</h1>
+</html>
+
+# systemctl restart iptables
+#systemctl restart httpd
+
+Verification : Load URL WITH "http://192.168.2.215:9090/"
+
+
+=================
+
+Applying Authentication for Websites.
+
+Server Side : 
+
+# vim /etc/httpd/conf/httpd.conf
+
+Line 151
+
+AllowOverride None => AllowOverride AuthConfig
+
+# htpasswd -c /etc/httpd/.htpasswd admin
+New password:
+Re-type new password:
+Adding password for user admin
+
+# htpasswd /etc/httpd/.htpasswd user1
+New password:
+Re-type new password:
+Adding password for user user1
+
+# cd /var/www/html/
+# vim .htaccess
+AuthType Basic
+AuthName "Restricted Content"
+AuthUserFile /etc/httpd/.htpasswd
+Require valid-user
+
+
+
+
+#systemctl restart httpd

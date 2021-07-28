@@ -1,0 +1,389 @@
+Date : 20/08/2019
+==================================================================================================================================================
+NFS Server Setup and Configuration :
+
+Step1 : SERVER BASIC SETUP
+
+=> Static IP address
+=> Hostname Setup
+=> Bash prompt
+=> Connectivity with Internet
+
+NFS Server Prerequisites :
+
+
+Packages : nfs-utils, portmap
+Config Files : /etc/sysconfig/nfs, /etc/exports
+Deamons (services) : rpcbind, nfs-server,nfs-lock, nfs-idmapd
+ports : 2049/tcp, 111/tcp/udp, 892/tcp/udp, 32803/tcp, 662/tcp, 32769/udp, 2020/tcp
+Verification : showmount -e (server), showmount -e <server_ip> (client_side)
+
+Configuration :
+
+Server IP : 192.168.2.251
+Client IP : 192.168.2.252
+
+Server Side :
+
+[root@nfsserver.itbs.com ~]# yum repolist ---------------- IT IS USED TO CHECK THE PACKAGES AND REPO NAMES
+
+Loaded plugins: fastestmirror, langpacks
+Loading mirror speeds from cached hostfile
+ * base: centos.excellmedia.net
+ * extras: centos.excellmedia.net
+ * updates: centos.excellmedia.net
+repo id                   repo name                        status
+!base/7/x86_64            CentOS-7 - Base                  10,019
+!extras/7/x86_64          CentOS-7 - Extras                   435
+!itblabs_repo             itblabs local repository          3,894
+!updates/7/x86_64         CentOS-7 - Updates                2,500
+repolist: 16,848
+
+
+[root@nfsserver.itbs.com ~]# yum install epel-release
+							: IT IS USED DOWNDLOAD THE PACKAGES FROM THIS REPOLIST WITH DOWNLOADING FROM THE INTERNET.
+
+Loaded plugins: fastestmirror, langpacks
+base                                      | 3.6 kB     00:00
+extras                                    | 3.4 kB     00:00
+itblabs_repo                              | 2.9 kB     00:00
+updates                                   | 3.4 kB     00:00
+Loading mirror speeds from cached hostfile
+ * base: centos.excellmedia.net
+ * extras: centos.excellmedia.net
+ * updates: centos.excellmedia.net
+Resolving Dependencies
+--> Running transaction check
+---> Package epel-release.noarch 0:7-11 will be installed
+--> Finished Dependency Resolution
+
+Dependencies Resolved
+
+=================================================================
+ Package            Arch         Version      Repository    Size
+=================================================================
+Installing:
+ epel-release       noarch       7-11         extras        15 k
+
+Transaction Summary
+=================================================================
+Install  1 Package
+
+Total download size: 15 k
+Installed size: 24 k
+Is this ok [y/d/N]: y
+Downloading packages:
+epel-release-7-11.noarch.rpm                |  15 kB   00:01
+Running transaction check
+Running transaction test
+Transaction test succeeded
+Running transaction
+  Installing : epel-release-7-11.noarch                      1/1
+  Verifying  : epel-release-7-11.noarch                      1/1
+
+Installed:
+  epel-release.noarch 0:7-11
+
+Complete!
+[root@nfsserver.itbs.com ~]#
+
+[root@nfsserver.itbs.com ~]# yum repolist
+						: CHECK THE REPOLIST NOW
+Loaded plugins: fastestmirror, langpacks
+epel/x86_64/metalink                      | 7.7 kB     00:00
+epel                                      | 5.3 kB     00:00
+(1/3): epel/x86_64/group_gz                 |  88 kB   00:00
+(2/3): epel/x86_64/updateinfo               | 999 kB   00:03
+(3/3): epel/x86_64/primary_db               | 6.8 MB   00:43
+Loading mirror speeds from cached hostfile
+ * base: centos.excellmedia.net
+ * epel: repos.del.extreme-ix.org
+ * extras: centos.excellmedia.net
+ * updates: centos.excellmedia.net
+repo id          repo name                                 status
+base/7/x86_64    CentOS-7 - Base                           10,019
+epel/x86_64      Extra Packages for Enterprise Linux 7 - x 13,350
+extras/7/x86_64  CentOS-7 - Extras                            435
+itblabs_repo     itblabs local repository                   3,894
+updates/7/x86_64 CentOS-7 - Updates                         2,500
+repolist: 30,198
+
+NOTE:
+     BY DOWNLOADING THESE WE GET THE LOT OF PAKAGES.
+
+==================================================================================================================================================
+ this is the first step to install the main packages of NFS.
+
+[root@nfsserver.itbs.com ~]#
+
+# yum install nfs-utils
+
+# yum install portmap
+
+==============================================================================================================================
+
+NOTE:
+	AFTER INSTALLING WE HAVE TO STOP  THE FIREWALLD
+
+
+=> Stop Firewalld and Install IP Tables .
+
+
+[root@nfsserver.itbs.com ~]# ---------------------------------------------------------------------------- systemctl status firewalld
+
+? firewalld.service - firewalld - dynamic firewall daemon
+   Loaded: loaded (/usr/lib/systemd/system/firewalld.service; enabled; vendor preset: enabled)
+   Active: active (running) since Tue 2019-08-20 19:06:50 IST; 35min ago
+
+[root@nfsserver.itbs.com ~]# -------------------------------------------------------------------------------systemctl stop firewalld
+[root@nfsserver.itbs.com ~]# -----------------------------------------------------------------------------systemctl status firewalld
+
+? firewalld.service - firewalld - dynamic firewall daemon
+   Loaded: loaded (/usr/lib/systemd/system/firewalld.service; enabled; vendor preset: enabled)
+   Active: inactive (dead) since Tue 2019-08-20 19:42:42 IST; 3s ago
+
+[root@nfsserver.itbs.com ~]#-------------------------------------------------------------------------------  systemctl mask firewalld
+Created symlink from /etc/systemd/system/firewalld.service to /dev/null.
+
+
+===================================================================================================================================================
+NOTE:
+     AFTER STOPING THE FIREWALLD . WE HVAE INSTALL THE IP TABLES FOR SECURITY PURPOSE.
+
+[root@nfsserver.itbs.com ~]# yum install iptables-services
+
+[root@nfsserver.itbs.com ~]# systemctl start iptables
+
+[root@nfsserver.itbs.com ~]# systemctl enable iptables
+
+================================================================================================================================================
+NOTE: 
+	AFTER INSTALL, START AND ENABLE THE IP TABLES. WE HAVE TO EDIT MAIN NFS CONFIGARATION FILE.
+	
+
+
+NFS Configuration : THIS CONFIGRATION IS VERY IMPORTANT.IN THIS FILE WE HAVE TO UN COMMENT THE SOME LINES
+
+=> Edit /etc/sysconfig/nfs  (Uncomment the below lines)
+
+9 LOCKD_TCPPORT=32803
+11 LOCKD_UDPPORT=32769
+28 MOUNTD_PORT=892
+33 STATD_PORT=662
+36 STATD_OUTGOING_PORT=2020                                                              : vi /etc/sysconfig/nfs
+											 : vi /etc/sysconfig/iptables
+
+
+=> Configure IP Tables for NFS Server :
+Edit the iptables configuration file and below lines.
+========================================================================================================================================
+
+=> Add below lines in /etc/sysconfig/iptables <= IN THIS FILE WE HAVE TO ADD THE PORT NUMBERS.
+
+-A INPUT -p tcp -m state --state NEW -m tcp --dport 2049 -j ACCEPT
+-A INPUT -p tcp -m state --state NEW -m tcp --dport 111 -j ACCEPT
+-A INPUT -p udp -m state --state NEW -m udp --dport 111 -j ACCEPT
+-A INPUT -p tcp -m state --state NEW -m tcp --dport 892 -j ACCEPT
+-A INPUT -p udp -m state --state NEW -m udp --dport 892 -j ACCEPT
+-A INPUT -p tcp -m state --state NEW -m tcp --dport 662 -j ACCEPT
+-A INPUT -p tcp -m state --state NEW -m tcp --dport 32803 -j ACCEPT
+-A INPUT -p udp -m state --state NEW -m udp --dport 32769 -j ACCEPT           
+-A INPUT -p tcp -m state --state NEW -m tcp --dport 2020 -j ACCEPT
+
+
+[root@nfsserver.itbs.com ~]# systemctl restart iptables
+
+
+[root@nfsserver.itbs.com ~]# systemctl restart rpcbind
+[root@nfsserver.itbs.com ~]# systemctl restart nfs
+[root@nfsserver.itbs.com ~]# systemctl enable rpcbind
+Created symlink from /etc/systemd/system/multi-user.target.wants/rpcbind.service to /usr/lib/systemd/system/rpcbind.service.
+[root@nfsserver.itbs.com ~]# systemctl enable nfs
+Created symlink from /etc/systemd/system/multi-user.target.wants/nfs-server.service to /usr/lib/systemd/system/nfs-server.service.
+
+================================================================================================================================================
+note: THIS IS THE TIME NOW TO TRRANSFER THE FILE 
+
+How do we share nfs files to clients ?
+
+
+note: 
+      create a one directory and create the files under this directory and inform the clients to acess these files.
+
+
+[root@nfsserver.itbs.com ~]# mkdir /nfsshares
+[root@nfsserver.itbs.com ~]# cd /nfsshares/
+[root@nfsserver.itbs.com nfsshares]# cat > hello.txt
+hello this is nfs share file
+[root@nfsserver.itbs.com nfsshares]# ls
+hello.txt
+[root@nfsserver.itbs.com nfsshares]# cd
+[root@nfsserver.itbs.com ~]#
+
+============================================================================================================================================
+note: AFTER THAT WE HAVE TO ADD THIS DIRECTORY IN CONFIGRATION FILE /ETC/EXPORTS
+
+[root@nfsserver.itbs.com ~]# vim /etc/exports
+[root@nfsserver.itbs.com ~]# cat /etc/exports
+/nfsshares *(rw,no_root_squash)
+
+[root@nfsserver.itbs.com ~]# exportfs -av
+exporting *:/nfsshares
+
+[root@nfsserver.itbs.com ~]# showmount -e 192.168.2.251
+Export list for 192.168.2.251:
+/nfsshares *
+
+==================================================================================================================================================
+Client Side : 
+
+[root@linuxclient.itbs.com ~]# showmount -e 192.168.2.251
+bash: showmount: command not found
+
+NOTE: IN THE CLIENT SIDE ALSO DONT HAVE LOT OF PACKAGES TAHTS WHY WE HAVE TO INSTALL THE EPEL-REAEASE HERE ALSO.
+
+
+[root@linuxclient.itbs.com ~]# yum install epel-release
+
+[root@linuxclient.itbs.com ~]# yum repolist
+
+[root@linuxclient.itbs.com ~]# yum install nfs-utils
+
+[root@linuxclient.itbs.com ~]# showmount -e 192.168.2.251
+Export list for 192.168.2.251:
+/nfsshares *
+
+[root@linuxclient.itbs.com ~]# mkdir /shares
+[root@linuxclient.itbs.com ~]# mount -t nfs 192.168.2.251:/nfsshares /shares
+[root@linuxclient.itbs.com ~]# df -h
+Filesystem                Size  Used Avail Use% Mounted on
+/dev/mapper/centos-root    17G  1.3G   16G   8% /
+devtmpfs                  486M     0  486M   0% /dev
+tmpfs                     497M     0  497M   0% /dev/shm
+tmpfs                     497M  6.6M  490M   2% /run
+tmpfs                     497M     0  497M   0% /sys/fs/cgroup
+/dev/sda1                1014M  127M  888M  13% /boot
+tmpfs                     100M     0  100M   0% /run/user/0
+192.168.2.251:/nfsshares   17G  5.3G   12G  31% /shares
+[root@linuxclient.itbs.com ~]# vim /etc/fstab
+[root@linuxclient.itbs.com ~]# mount -a
+
+NFS Entry in /etc/fstab
+
+192.168.2.251:/nfsshares        /shares         nfs     defaults        0 0
+
+
+
+======================================================================================================================================================
+
+
+AUTOFS Configuration Steps :
+
+Server Side : Creating shares and exporting
+
+[root@nfsserver.itbs.com ~]# mkdir /autofshare
+[root@nfsserver.itbs.com ~]# cd /autofshare/
+[root@nfsserver.itbs.com autofshare]# cat > autofsfile1
+hello, this is the example for autofs shares from nfs server
+[root@nfsserver.itbs.com autofshare]# ls
+autofsfile1
+[root@nfsserver.itbs.com autofshare]# cat autofsfile1
+hello, this is the example for autofs shares from nfs server
+[root@nfsserver.itbs.com autofshare]# vim /etc/exports
+/autofshare 192.168.2.0/24(rw,async,no_root_squash)
+
+[root@nfsserver.itbs.com autofshare]# vim /etc/exports
+[root@nfsserver.itbs.com autofshare]# exportfs -av
+exporting 192.168.2.252:/nfsfiles
+exporting 192.168.2.0/24:/autofshare
+exporting *:/nfsshares
+[root@nfsserver.itbs.com autofshare]# showmount -e 192.168.2.251
+Export list for 192.168.2.251:
+/nfsshares  *
+/autofshare 192.168.2.0/24
+/nfsfiles   192.168.2.252
+
+[root@nfsserver.itbs.com autofshare]#
+======================================================================================================================================================
+
+Client Side : 
+
+[root@linuxclient.itbs.com ~]# rpm -qa |grep autofs
+[root@linuxclient.itbs.com ~]# yum list autofs
+Loaded plugins: fastestmirror, langpacks
+Loading mirror speeds from cached hostfile
+ * base: centos.excellmedia.net
+ * epel: mirror01.idc.hinet.net
+ * extras: centos.excellmedia.net
+ * updates: centos.excellmedia.net
+Available Packages
+autofs.x86_64                                  1:5.0.7-99.el7                                  base
+
+[root@linuxclient.itbs.com ~]# yum install autofs
+
+[root@linuxclient.itbs.com ~]# systemctl start autofs
+[root@linuxclient.itbs.com ~]# systemctl enable autofs
+Created symlink from /etc/systemd/system/multi-user.target.wants/autofs.service to /usr/lib/systemd/system/autofs.service.
+
+[root@linuxclient.itbs.com ~]# mkdir /myautofs
+
+[root@linuxclient.itbs.com ~]# vim /etc/auto.master
+
+/myautofs /etc/auto.misc
+
+
+[root@linuxclient.itbs.com ~]# vim /etc/auto.misc
+
+autoshares      -rw,soft,intr           192.168.2.251:/autofshare
+
+[root@linuxclient.itbs.com ~]# systemctl restart autofs
+[root@linuxclient.itbs.com ~]# systemctl status autofs
+? autofs.service - Automounts filesystems on demand
+   Loaded: loaded (/usr/lib/systemd/system/autofs.service; enabled; vendor preset: disabled)
+   Active: active (running) since Tue 2019-08-20 20:26:38 IST; 8s ago
+ Main PID: 2765 (automount)
+   CGroup: /system.slice/autofs.service
+           +-2765 /usr/sbin/automount --foreground --dont-check-daemon
+
+Aug 20 20:26:38 linuxclient.itbs.com systemd[1]: Starting Automounts filesystems on demand...
+Aug 20 20:26:38 linuxclient.itbs.com systemd[1]: Started Automounts filesystems on demand.
+
+
+autofs configuration file : /etc/autofs.conf
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

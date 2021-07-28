@@ -1,0 +1,7 @@
+fAWS-without ppk log in
+
+edit vi /etc/ssh/sshd_config
+
+uncomment the line :
+ PermitRoot Login
+ PASSWDauth

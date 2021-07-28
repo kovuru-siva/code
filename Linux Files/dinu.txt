@@ -1,0 +1,353 @@
+attribute : gunamu , lakshanamu
+
+.....................................................................................................................................
+file tranfering commands from one remote to anthor remote:
+
+	: scp -vrCp {file (or) directory } root@host ip:destination                                 { secure copy}
+		
+		v= verbose 
+		r=recursiverly
+		C=compress
+		p=preserve
+	
+	: rsync -avhz {file or directories} root@host ip:destination                                 { remote sychronisation}
+		
+		a =archive 
+		v= verbose
+		h = human readable format
+		z = compression
+
+based on permissions :
+
+	 : rsync -avhe ssh --chown=USER:GROUP /foo user@remote-host:/tmp/
+
+................................................................................................................................................
+
+usermod -a -G group1,group2,group3 exampleusername
+For example, to add the user named geek to the ftp, sudo, and example groups, you’d run:
+
+usermod -a -G ftp,sudo,example geek
+
+
+
+//KEY POINTS// 26-07-2019
+
+--C chmod u-s {exicutable file name} like /usr/sbin/fdisk or /usr/bin/passwd
+
+@--fdisk -l  { this is is letter 'l' this file dont have a special permission}
+
+
+vi /etc/fstab:
+
+
+• The fifth field
+
+specifies the option that need to be used by the dump program. If the value is set to 0, 
+then the partition is execluded from taking backup and if the option is a nonzero value, 
+the device will be backed up.
+
+
+__The sixth field:
+
+mentions the fsck option. That is if the value is set to zero, 
+the device or partition will be excluded from fsck check and if it is nonzero the fsck check will be run in 
+the order in which the value is set. The root partition will have this value set to one so that it will be checked first by fsck.f
+If you face any troubles on mounting a partition, the file /etc/fstab should be checked for any misconfiguration.
+
+
+
+dd if=/dev/zero of=file name bs=1024k count=500
+
+
+field Name:
+
+Description
+
+Device
+
+Specifies the device to be mounted. You can specify the device file or Label in this field. If mounted, you can find the related information from /etc/mtab file.
+
+Mount Point
+
+The directory under the root filesystem, where this filesystem will be mounted.
+
+Filesystem Format
+
+Specifies the filesystem type (ext2, ext3, iso9660 etc).
+
+Mount Options
+
+Refer the next link to learn about different Linux mount options
+
+Dump Value
+
+Dump is a backup utility. The possible values can be either 0 or 1. Dump use  this value to decide whether the filesystem should be backed up. If the value is "0", dump will ignore that filesystem.
+
+Filesystem Check Order
+
+"fsck" is a tool to check the file system consistency. This value determines the order that filesystems are checked by "fsck" program during the boot process. If the value is "0", fsck won't check the filesystem.
+
+
+
+
+13. What is Virtual Desktop?
+
+Virtual Desktop is a feature that allows users to use the desktop beyond the physical limits of the screen.
+ Basically, Virtual Desktop creates a virtual screen to expand the limitation of the normal screen. 
+
+
+
+
+
+16. How can you login to another system in your network from your system?
+
+SSH can be used for this. The Syntax is as follows:
+
+ssh <username>@<ip address>
+cron and at.
+zcat command
+
+
+
+
+# mkinitrd -f -v /boot/initrd-$(uname -r).img $(uname -r)
+
+
+
+
+@@@@@@@@@@@@@@@
+To check the files in a particular date:
+
+_____________find . -mtime +30 or -30
+
+
+
+=================================================
+
+LVMs---
+
+lvchange -an /dev/VG/LVo-----
+lvremove /dev/VG/LVo------
+
+
+
+
+
+
+
+
+
+
+day to day activity of system admins:
+----------------------------------------------
+
+Commissioning and decommissioning of resources as per the need.
+Disk management
+user and access management
+build and release management
+configuration management
+troubleshooting applications issues
+scanning through endless lines of log
+having project meetings
+keep an eye on server and application health
+keeping in check the various components of your infrastructure ensuring the maximum uptime.
+
+
+-------------------------------------UNIX FILE SYSTEM =
+
+//HARD DISK RECORD
+	PARTATIONS---
+= IN EVERY PARTATION 
+	- SUPER BLOCKS
+	- INODE LIST    } CYLINDER GROUP
+	- DATA
+= IN INODE LIST TABLE
+	- INODE NUMBERS
+	- DATA BLOCK REFERENCES
+	- PERMISSIONS
+	- USER NAMES
+
+
+=== INODE LIST CONTAINS INODE NUMBERS OF EACH AND EVERY FILE..EVERY FILE HAVE ONE INODE NUMBER.
+		WHEN WE CALL A FILE NAME BUT IT TAKES A INODE NUMBER OF THAT FILE 
+
+
+=========================================================
+CHECKING THE FEILDS IN  VI /ETC/FSTAB-----
+
+-DEVICE
+-MOUNTPOINT
+-FILESYSTEM
+-DEFAULT
+-DUMPVALUE
+-FSC
+---------- FSCK CHECKING THE THESE THINGS WHILE BOOTING
+
+		: Checking inodes, blocks, and sizes
+	Pass 2: Checking directory structure
+        Pass 3: Checking directory connectivity
+	Pass 4: Checking reference counts
+	Pass 5: Checking group summary information
+
+
+
+
+
+
+
+
+RAID 0:
+
+I'm trying to stop a RAID disk in order to replace it by a new one, as this one is not working properly.
+
+I'm typing mdadm --stop /dev/md1, and I'm getting an error message:
+
+mdadm: fail to stop array /dev/md1: Device or resource busy
+I'm getting this message even if I reboot the server, and I can't see a process that could cause this.
+
+The server is working under a Debian with a 2.6.18-4-amd64 kernel. Could you help?
+
+Edit: More details about what my colleague tried out.
+
+After unmounting sda1, the command mdadm --remove /dev/md0 /dev/sda1 worked. But now, we still have an error message after mdadm --remove /dev/md1 /dev/sda5:
+
+mdadm: hot remove failed for /dev/sda5: Device or resource busy
+
+========================================================================================================================
+system calls : 100s os system calls are running for a small task 
+	a process running shell to kernell  trough scalls and send to cpu.
+
+ready rubnning WATING
+
+management is done by kernel.
+
+- iam running a one process but alerady running in system three process 
+
+a process is assign a particular cpu is called ready state.
+and waiting to running is called a waiting state.
+
+========================================================================================================================
+proces management:
+
+assign 
+sche
+prior
+monitiring
+=============================================================================================
+performance and tunning:
+		how  much accuretly runnung a process
+==========================================================
+proces types:
+	interactive : it means running  aprocess with user interaction is called a interactive process
+			ex: login prompt
+
+	forground process: while you run a command it give  a some out put in your terminal is called fg process.
+			ex: ping google.com
+	
+	background : a process is running in the background is called background process.we cannot kill directly.
+			ex: system log in time
+	zombie process: when we run a process it divided in to no of process these process are child process.if a user trying to kill a one child process the child process send s signel to parent process but the parent process donot a send a signal to child.
+
+	
+65535 we have to run.\
+
+
+	deiman process: when the system log in teh process are running in th 
+	
+	those process donot a parent id those process are called arphan process.
+============================================================================================================
+status :
+	running:
+
+	stop:
+
+	interreptable: these process are in sleeping mod. if any process are killed by the another process.we get back these process also.
+
+	un interaptable: we cannot  inerpet to kill the process.
+
+	zombie:
+
+	died:
+======================================================================================================================================
+
+commands:
+ps: process
+top : all active process
+uptime : system load
+vmstat : memory statics
+iotop : based on the process
+iostat : disk reading and writing
+sar : every 10 min take a snaphoots of process
+nestat : networks statistics how many ports are in listen ( about connectio kill,connected, etc)
+nc :
+lsof: every process opens the no of files. ( ulimits.conf)to edit
+iptraffic: to know the network traffic
+tcpdump : packet analyser
+====================================================================================================================
+
+nice : to set the priority of a particular process
+renice : to change the value of a particular process
+
+=================================================================================================
+log rotation : old logs are deleted by default.we can decide weekly , daily ,monthly. (deiman logrotated)
+
+vi /etc/rotated/rotate.conf
+=================================================================================
+vi /etc/security/limits.conf 
+ulimit : change the no of process 
+=======================================================================
+
+clear cache :
+
+
+ su -c "echo 3 >'/proc/sys/vm/drop_caches' && swapoff -a && swapon -a && printf '\n%s\n' 'Ram-cache and Swap Cleared'" root
+
+
+ear PageCache only.
+
+ # sync; echo 1 > /proc/sys/vm/drop_caches.
+
+
+Clear dentries and inodes.
+
+ # sync; echo 2 > /proc/sys/vm/drop_caches.
+
+
+
+=======================================================================================================
+
+
+
+All of the above logs are generated using rsyslogd service. It is a system utility providing support for message logging. Support of both internet and unix domain sockets enables this utility to support both local and remote logging. You can view its config file by tying the following command:
+# vi /etc/rsyslog.conf
+# ls /etc/rsyslog.d/
+
+In short /var/log is the location where you should find all Linux logs file. However, some applications such as httpd have a directory within /var/log/ for their own log files. You can rotate log file using logrotate software and monitor logs files using logwatch software.
+
+
+
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

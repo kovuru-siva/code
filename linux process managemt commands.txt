@@ -1,0 +1,46 @@
+# netstat -a =========>Listing all ports (both TCP and UDP) 
+# netstat -at   tcp ports
+# netstat -au   udp ports
+# netstat -l    all active listining ports
+# netstat -lt   all active TCP listining ports
+# netstat -lu	all active UDP listining ports
+# netstat -s	shows the statistics of tcp.udp,icmp,ip 
+# netstat -st
+# netstat -su
+# netstat -tp	Displaying service name with PID
+#netstat -r	Kernel ip routing table 
+# netstat -i	Network interface packet transactions
+# netstat -g	Displying ipv4 and ipv6 information
+
+
+#ps -A	display active process
+#ps -e
+
+#ps -a	displays active process
+#ps -aux	display all process in BSD format
+#ps -ef or #ps -eF	to perform full-format listing
+#ps -x
+#ps -fU <user> 
+#ps -fG nagios	Display Group Processes
+#ps -fp 1124	Display Processes by PID and PPID
+#ps -eo pid,ppid,user,cmd
+#ps -C sshd	Displaying parent and child processes
+#ps -eo comm,etime,user | grep httpd	Check the execution time of process
+
+Troubleshooting command
+
+# ps -eo pid,cmd,%cpu,%mem --sort=-%mem | head
+	-o=formate
+
+To check the listening ports and applications on Linux:
+
+#sudo lsof -i -P -n | grep LISTEN
+#sudo netstat -tulpn | grep LISTEN
+#sudo lsof -i:22 ## see a specific port such as 22
+#sudo nmap -sTU -O IP-address-Here
+
+sync ; echo 1 >/proc/sys/vm/drop_cache
+
+	1=======>> pagecache
+	2=======>> Dentrites
+	3=======>> Inodes

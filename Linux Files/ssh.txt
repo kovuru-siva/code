@@ -1,0 +1,540 @@
+sDate : 21/08/2019
+
+SSH Server Configurations :
+
+Package : openssh-server (Server)
+	: openssh-client (Client)
+Service : sshs
+Deamon : sshd
+Port : 22
+Config : /etc/ssh/sshd_config (Server)
+Config : /etc/ssh/ssh_config (Client)
+
+
+1 . BASIC Server Setup 
+
+2. Server Setup :
+
+[root@sshserver.itbs.com ~]# rpm -qa | grep openssh
+openssh-server-7.4p1-11.el7.x86_64
+openssh-7.4p1-11.el7.x86_64
+openssh-clients-7.4p1-11.el7.x86_64
+[root@sshserver.itbs.com ~]# yum list openssh-server
+Loaded plugins: fastestmirror, langpacks
+Loading mirror speeds from cached hostfile
+ * base: centos.excellmedia.net
+ * epel: repos.del.extreme-ix.org
+ * extras: centos.excellmedia.net
+ * updates: centos.excellmedia.net
+Installed Packages
+openssh-server.x86_64               7.4p1-11.el7               @anaconda
+Available Packages
+openssh-server.x86_64               7.4p1-16.el7               base
+
+
+# yum install openssh-server
+
+[root@sshserver.itbs.com ~]# yum install openssh*
+
+[root@sshserver.itbs.com ~]# systemctl restart sshd
+[root@sshserver.itbs.com ~]# systemctl status sshd
+? sshd.service - OpenSSH server daemon
+   Loaded: loaded (/usr/lib/systemd/system/sshd.service; enabled; vendor preset: enabled)
+   Active: active (running) since Wed 2019-08-21 19:29:54 IST; 6s ago
+     Docs: man:sshd(8)
+           man:sshd_config(5)
+ Main PID: 1535 (sshd)
+   CGroup: /system.slice/sshd.service
+           +-1535 /usr/sbin/sshd -D
+
+Aug 21 19:29:54 sshserver.itbs.com systemd[1]: Starting OpenSSH serve...
+Aug 21 19:29:54 sshserver.itbs.com sshd[1535]: Server listening on 0....
+Aug 21 19:29:54 sshserver.itbs.com sshd[1535]: Server listening on ::...
+Aug 21 19:29:54 sshserver.itbs.com systemd[1]: Started OpenSSH server...
+Hint: Some lines were ellipsized, use -l to show in full.
+[root@sshserver.itbs.com ~]# systemctl enable sshd
+
+
+Client Side : 
+
+[root@linuxclient.itbs.com ~]# ssh root@192.168.2.251
+The authenticity of host '192.168.2.251 (192.168.2.251)' can't be established.
+ECDSA key fingerprint is SHA256:SRBUXej+WR4FxhFBRSRQYYFLP0mECCGAqT2kqwgr4LQ.
+ECDSA key fingerprint is MD5:46:ca:62:ff:68:94:82:48:fc:89:09:52:d7:74:9a:7f.
+Are you sure you want to continue connecting (yes/no)? yes
+Warning: Permanently added '192.168.2.251' (ECDSA) to the list of known hosts.
+root@192.168.2.251's password:
+Last login: Wed Aug 21 19:05:41 2019 from 192.168.2.4
+
+[root@sshserver.itbs.com ~]# hostname
+sshserver.itbs.com
+[root@sshserver.itbs.com ~]# hostname -I
+192.168.2.251
+[root@sshserver.itbs.com ~]#
+
+root@sshserver.itbs.com ~]# logout
+Connection to 192.168.2.251 closed.
+
+===================================================================
+[root@linuxclient.itbs.com ~]#
+
+Allowing/Denying Users :
+
+[root@linuxclient.itbs.com ~]# ssh arun@192.168.2.251
+arun@192.168.2.251's password:
+[arun@sshserver.itbs.com ~]$ whoami
+arun
+[arun@sshserver.itbs.com ~]$ exit
+logout
+Connection to 192.168.2.251 closed.
+[root@linuxclient.itbs.com ~]# ssh sirisha@192.168.2.251
+sirisha@192.168.2.251's password:
+Permission denied, please try again.
+sirisha@192.168.2.251's password:
+Permission denied, please try again.
+whoamisirisha@192.168.2.251's password:
+
+
+Allow users :
+
+vim /etc/ssh/sshd_config ( Add below line at the bottom of the file to allow the specific user)
+
+AllowUsers arun
+
+Deny Users :
+vim /etc/ssh/sshd_config ( Add below line at the bottom of the file to deny the specific user)
+
+DenyUsers kishore
+
+
+
+
+[root@linuxclient.itbs.com ~]# ssh -l ranga 192.168.2.251
+
+SELinux :
+
+[root@sshserver.itbs.com ~]# sestatus
+SELinux status:                 enabled
+SELinuxfs mount:                /sys/fs/selinux
+SELinux root directory:         /etc/selinux
+Loaded policy name:             targeted
+Current mode:                   enforcing
+Mode from config file:          enforcing
+Policy MLS status:              enabled
+Policy deny_unknown status:     allowed
+Max kernel policy version:      28
+[root@sshserver.itbs.com ~]# getenforce
+Enforcing
+[root@sshserver.itbs.com ~]# setenforce 0
+[root@sshserver.itbs.com ~]# getenforce
+Permissive
+
+
+
+[root@sshserver.itbs.com ~]# vim /etc/sysconfig/selinux
+[root@sshserver.itbs.com ~]# chcon -t /etc/ssh/sshd_config
+chcon: missing operand
+Try 'chcon --help' for more information.
+[root@sshserver.itbs.com ~]# ls -ldZ /etc/ssh/sshd_config
+-rw-------. root root system_u:object_r:etc_t:s0       /etc/ssh/sshd_config
+[root@sshserver.itbs.com ~]# getenforce
+Permissive
+[root@sshserver.itbs.com ~]# setenforce 1
+[root@sshserver.itbs.com ~]# getenforce
+Enforcing
+[root@sshserver.itbs.com ~]# setenforce 0
+[root@sshserver.itbs.com ~]# getenforce
+Permissive
+[root@sshserver.itbs.com ~]#
+
+
+cd 
+How do we execute commands in remote server ?
+
+[root@linuxclient.itbs.com ~]# ssh -p 2222 ranga@192.168.2.251 "uptime"
+ranga@192.168.2.251's password:
+ 20:16:43 up  1:14,  2 users,  load average: 0.00, 0.03, 0.05
+[root@linuxclient.itbs.com ~]# hostname
+linuxclient.itbs.com
+[root@linuxclient.itbs.com ~]#
+
+
+PasswordLess connection:
+
+[root@linuxclient.itbs.com ~]# cd .ssh/
+[root@linuxclient.itbs.com .ssh]# ls
+known_hosts
+[root@linuxclient.itbs.com .ssh]# ls
+known_hosts
+[root@linuxclient.itbs.com .ssh]# cd
+[root@linuxclient.itbs.com ~]# ssh-keygen -t rsa
+Generating public/private rsa key pair.
+Enter file in which to save the key (/root/.ssh/id_rsa):
+Enter passphrase (empty for no passphrase):
+Enter same passphrase again:
+Your identification has been saved in /root/.ssh/id_rsa.
+Your public key has been saved in /root/.ssh/id_rsa.pub.
+The key fingerprint is:
+SHA256:nw7qzDSYCrtp5j9O35XGyK3EciVvc+0y+db41cVRskw root@linuxclient.itbs.com
+The key's randomart image is:
++---[RSA 2048]----+
+|              E .|
+|             o o.|
+|              o. |
+|               ..|
+|       .S.      o|
+|     oo B....   o|
+|.  .o.o*.Xo...o o|
+| *.o.+=o=oo+.o ..|
+|Bo+o.o=o  . =o.. |
++----[SHA256]-----+
+[root@linuxclient.itbs.com ~]# ls
+anaconda-ks.cfg
+[root@linuxclient.itbs.com ~]# pwd
+/root
+[root@linuxclient.itbs.com ~]# cd .ssh/
+[root@linuxclient.itbs.com .ssh]# ls
+id_rsa  id_rsa.pub  known_hosts
+[root@linuxclient.itbs.com .ssh]#
+
+[root@linuxclient.itbs.com ~]# ssh-copy-id -i /root/.ssh/id_rsa.pub ranga@192.168.2.251
+/usr/bin/ssh-copy-id: INFO: Source of key(s) to be installed: "/root/.ssh/id_rsa.pub"
+/usr/bin/ssh-copy-id: INFO: attempting to log in with the new key(s), to filter out any that are already installed
+/usr/bin/ssh-copy-id: INFO: 1 key(s) remain to be installed -- if you are prompted now it is to install the new keys
+ranga@192.168.2.251's password:
+
+Number of key(s) added: 1
+
+Now try logging into the machine, with:   "ssh 'ranga@192.168.2.251'"
+and check to make sure that only the key(s) you wanted were added.
+
+[root@linuxclient.itbs.com ~]#
+
+[root@linuxclient.itbs.com ~]# ssh ranga@192.168.2.251
+Last login: Wed Aug 21 20:25:20 2019
+[ranga@sshserver.itbs.com ~]$
+
+
+
+
+[root@linuxclient.itbs.com ~]# ssh ranga@192.168.2.251 -v
+OpenSSH_7.4p1, OpenSSL 1.0.2k-fips  26 Jan 2017
+debug1: Reading configuration data /etc/ssh/ssh_config
+debug1: /etc/ssh/ssh_config line 58: Applying options for *
+debug1: Connecting to 192.168.2.251 [192.168.2.251] port 22.
+debug1: Connection established.
+debug1: permanently_set_uid: 0/0
+debug1: identity file /root/.ssh/id_rsa type 1
+debug1: key_load_public: No such file or directory
+debug1: identity file /root/.ssh/id_rsa-cert type -1
+debug1: key_load_public: No such file or directory
+debug1: identity file /root/.ssh/id_dsa type -1
+debug1: key_load_public: No such file or directory
+debug1: identity file /root/.ssh/id_dsa-cert type -1
+debug1: key_load_public: No such file or directory
+debug1: identity file /root/.ssh/id_ecdsa type -1
+debug1: key_load_public: No such file or directory
+debug1: identity file /root/.ssh/id_ecdsa-cert type -1
+debug1: key_load_public: No such file or directory
+debug1: identity file /root/.ssh/id_ed25519 type -1
+debug1: key_load_public: No such file or directory
+debug1: identity file /root/.ssh/id_ed25519-cert type -1
+debug1: Enabling compatibility mode for protocol 2.0
+debug1: Local version string SSH-2.0-OpenSSH_7.4
+debug1: Remote protocol version 2.0, remote software version OpenSSH_7.4
+debug1: match: OpenSSH_7.4 pat OpenSSH* compat 0x04000000
+debug1: Authenticating to 192.168.2.251:22 as 'ranga'
+debug1: SSH2_MSG_KEXINIT sent
+debug1: SSH2_MSG_KEXINIT received
+debug1: kex: algorithm: curve25519-sha256
+debug1: kex: host key algorithm: ecdsa-sha2-nistp256
+debug1: kex: server->client cipher: chacha20-poly1305@openssh.com MAC: <implicit> compression: none
+debug1: kex: client->server cipher: chacha20-poly1305@openssh.com MAC: <implicit> compression: none
+debug1: kex: curve25519-sha256 need=64 dh_need=64
+debug1: kex: curve25519-sha256 need=64 dh_need=64
+debug1: expecting SSH2_MSG_KEX_ECDH_REPLY
+debug1: Server host key: ecdsa-sha2-nistp256 SHA256:SRBUXej+WR4FxhFBRSRQYYFLP0mECCGAqT2kqwgr4LQ
+debug1: Host '192.168.2.251' is known and matches the ECDSA host key.
+debug1: Found key in /root/.ssh/known_hosts:1
+debug1: rekey after 134217728 blocks
+debug1: SSH2_MSG_NEWKEYS sent
+debug1: expecting SSH2_MSG_NEWKEYS
+debug1: SSH2_MSG_NEWKEYS received
+debug1: rekey after 134217728 blocks
+debug1: SSH2_MSG_EXT_INFO received
+debug1: kex_input_ext_info: server-sig-algs=<rsa-sha2-256,rsa-sha2-512>
+debug1: SSH2_MSG_SERVICE_ACCEPT received
+debug1: Authentications that can continue: publickey,gssapi-keyex,gssapi-with-mic,password
+debug1: Next authentication method: gssapi-keyex
+debug1: No valid Key exchange context
+debug1: Next authentication method: gssapi-with-mic
+debug1: Unspecified GSS failure.  Minor code may provide more information
+No Kerberos credentials available (default cache: KEYRING:persistent:0)
+
+debug1: Unspecified GSS failure.  Minor code may provide more information
+No Kerberos credentials available (default cache: KEYRING:persistent:0)
+
+debug1: Next authentication method: publickey
+debug1: Offering RSA public key: /root/.ssh/id_rsa
+debug1: Server accepts key: pkalg rsa-sha2-512 blen 279
+debug1: Authentication succeeded (publickey).
+Authenticated to 192.168.2.251 ([192.168.2.251]:22).
+debug1: channel 0: new [client-session]
+debug1: Requesting no-more-sessions@openssh.com
+debug1: Entering interactive session.
+debug1: pledge: network
+debug1: client_input_global_request: rtype hostkeys-00@openssh.com want_reply 0
+debug1: Sending environment.
+debug1: Sending env LANG = en_US.UTF-8
+Last login: Wed Aug 21 20:26:27 2019 from 192.168.2.252
+[ranga@sshserver.itbs.com ~]$ exitdebug1: client_input_channel_req: channel 0 rtype exit-status reply 0
+debug1: client_input_channel_req: channel 0 rtype eow@openssh.com reply 0
+
+logout
+debug1: channel 0: free: client-session, nchannels 1
+Connection to 192.168.2.251 closed.
+Transferred: sent 3272, received 3004 bytes, in 91.5 seconds
+Bytes per second: sent 35.8, received 32.8
+debug1: Exit status 0
+
+[root@linuxclient.itbs.com ~]# ssh kishore@192.168.2.251 -v
+OpenSSH_7.4p1, OpenSSL 1.0.2k-fips  26 Jan 2017
+debug1: Reading configuration data /etc/ssh/ssh_config
+debug1: /etc/ssh/ssh_config line 58: Applying options for *
+debug1: Connecting to 192.168.2.251 [192.168.2.251] port 22.
+debug1: Connection established.
+debug1: permanently_set_uid: 0/0
+debug1: identity file /root/.ssh/id_rsa type 1
+debug1: key_load_public: No such file or directory
+debug1: identity file /root/.ssh/id_rsa-cert type -1
+debug1: key_load_public: No such file or directory
+debug1: identity file /root/.ssh/id_dsa type -1
+debug1: key_load_public: No such file or directory
+debug1: identity file /root/.ssh/id_dsa-cert type -1
+debug1: key_load_public: No such file or directory
+debug1: identity file /root/.ssh/id_ecdsa type -1
+debug1: key_load_public: No such file or directory
+debug1: identity file /root/.ssh/id_ecdsa-cert type -1
+debug1: key_load_public: No such file or directory
+debug1: identity file /root/.ssh/id_ed25519 type -1
+debug1: key_load_public: No such file or directory
+debug1: identity file /root/.ssh/id_ed25519-cert type -1
+debug1: Enabling compatibility mode for protocol 2.0
+debug1: Local version string SSH-2.0-OpenSSH_7.4
+debug1: Remote protocol version 2.0, remote software version OpenSSH_7.4
+debug1: match: OpenSSH_7.4 pat OpenSSH* compat 0x04000000
+debug1: Authenticating to 192.168.2.251:22 as 'kishore'
+debug1: SSH2_MSG_KEXINIT sent
+debug1: SSH2_MSG_KEXINIT received
+debug1: kex: algorithm: curve25519-sha256
+debug1: kex: host key algorithm: ecdsa-sha2-nistp256
+debug1: kex: server->client cipher: chacha20-poly1305@openssh.com MAC: <implicit> compression: none
+debug1: kex: client->server cipher: chacha20-poly1305@openssh.com MAC: <implicit> compression: none
+debug1: kex: curve25519-sha256 need=64 dh_need=64
+debug1: kex: curve25519-sha256 need=64 dh_need=64
+debug1: expecting SSH2_MSG_KEX_ECDH_REPLY
+debug1: Server host key: ecdsa-sha2-nistp256 SHA256:SRBUXej+WR4FxhFBRSRQYYFLP0mECCGAqT2kqwgr4LQ
+debug1: Host '192.168.2.251' is known and matches the ECDSA host key.
+debug1: Found key in /root/.ssh/known_hosts:1
+debug1: rekey after 134217728 blocks
+debug1: SSH2_MSG_NEWKEYS sent
+debug1: expecting SSH2_MSG_NEWKEYS
+debug1: SSH2_MSG_NEWKEYS received
+debug1: rekey after 134217728 blocks
+debug1: SSH2_MSG_EXT_INFO received
+debug1: kex_input_ext_info: server-sig-algs=<rsa-sha2-256,rsa-sha2-512>
+debug1: SSH2_MSG_SERVICE_ACCEPT received
+debug1: Authentications that can continue: publickey,gssapi-keyex,gssapi-with-mic,password
+debug1: Next authentication method: gssapi-keyex
+debug1: No valid Key exchange context
+debug1: Next authentication method: gssapi-with-mic
+debug1: Unspecified GSS failure.  Minor code may provide more information
+No Kerberos credentials available (default cache: KEYRING:persistent:0)
+
+debug1: Unspecified GSS failure.  Minor code may provide more information
+No Kerberos credentials available (default cache: KEYRING:persistent:0)
+
+debug1: Next authentication method: publickey
+debug1: Offering RSA public key: /root/.ssh/id_rsa
+debug1: Authentications that can continue: publickey,gssapi-keyex,gssapi-with-mic,password
+debug1: Trying private key: /root/.ssh/id_dsa
+debug1: Trying private key: /root/.ssh/id_ecdsa
+debug1: Trying private key: /root/.ssh/id_ed25519
+debug1: Next authentication method: password
+kishore@192.168.2.251's password:
+debug1: Authentication succeeded (password).
+Authenticated to 192.168.2.251 ([192.168.2.251]:22).
+debug1: channel 0: new [client-session]
+debug1: Requesting no-more-sessions@openssh.com
+debug1: Entering interactive session.
+debug1: pledge: network
+debug1: client_input_global_request: rtype hostkeys-00@openssh.com want_reply 0
+debug1: Sending environment.
+debug1: Sending env LANG = en_US.UTF-8
+Last login: Wed Aug 21 20:18:27 2019 from 192.168.2.252
+[kishore@sshserver.itbs.com ~]$ password
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Secure ssh server with different port:
+
+vim /etc/ssh/sshd_config
+
+Port 2222
+
+
+===============================================================================
+
+SudoUsers : 
+
+config : /etc/sudoers 
+cmd : visudo
+
+[root@sshserver.itbs.com ~]# vim /etc/sudoers
+[root@sshserver.itbs.com ~]# visudo
+visudo: /etc/sudoers.tmp unchanged
+[root@sshserver.itbs.com ~]#
+
+#visudo
+
+## Allow root to run any commands anywhere
+root    ALL=(ALL)       ALL
+ranga   ALL=(ALL)       ALL
+
+[root@sshserver.itbs.com ~]# su - ranga
+Last login: Wed Aug 21 20:33:29 IST 2019 on pts/0
+[ranga@sshserver.itbs.com ~]$ fdisk -l
+fdisk: cannot open /dev/sda: Permission denied
+fdisk: cannot open /dev/sr0: Permission denied
+fdisk: cannot open /dev/mapper/centos-root: Permission denied
+fdisk: cannot open /dev/mapper/centos-swap: Permission denied
+[ranga@sshserver.itbs.com ~]$ sudo fdisk -l
+
+We trust you have received the usual lecture from the local System
+Administrator. It usually boils down to these three things:
+
+    #1) Respect the privacy of others.
+    #2) Think before you type.
+    #3) With great power comes great responsibility.
+
+[sudo] password for ranga:
+
+Disk /dev/sda: 21.5 GB, 21474836480 bytes, 41943040 sectors
+Units = sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+Disk label type: dos
+Disk identifier: 0x000c501a
+
+   Device Boot      Start         End      Blocks   Id  System
+/dev/sda1   *        2048     2099199     1048576   83  Linux
+/dev/sda2         2099200    41943039    19921920   8e  Linux LVM
+
+Disk /dev/mapper/centos-root: 18.2 GB, 18249416704 bytes, 35643392 sectors
+Units = sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+
+
+Disk /dev/mapper/centos-swap: 2147 MB, 2147483648 bytes, 4194304 sectors
+Units = sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+
+[ranga@sshserver.itbs.com ~]$ fdisk -l
+fdisk: cannot open /dev/sda: Permission denied
+fdisk: cannot open /dev/sr0: Permission denied
+fdisk: cannot open /dev/mapper/centos-root: Permission denied
+fdisk: cannot open /dev/mapper/centos-swap: Permission denied
+[ranga@sshserver.itbs.com ~]$ sudo fdisk -l
+
+Disk /dev/sda: 21.5 GB, 21474836480 bytes, 41943040 sectors
+Units = sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+Disk label type: dos
+Disk identifier: 0x000c501a
+
+   Device Boot      Start         End      Blocks   Id  System
+/dev/sda1   *        2048     2099199     1048576   83  Linux
+/dev/sda2         2099200    41943039    19921920   8e  Linux LVM
+
+Disk /dev/mapper/centos-root: 18.2 GB, 18249416704 bytes, 35643392 sectors
+Units = sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+
+
+Disk /dev/mapper/centos-swap: 2147 MB, 2147483648 bytes, 4194304 sectors
+Units = sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+
+[ranga@sshserver.itbs.com ~]$ su - krishna
+su: user krishna does not exist
+[ranga@sshserver.itbs.com ~]$ su - kishore
+Password:
+[ranga@sshserver.itbs.com ~]$ sudo su - kishore
+Last login: Wed Aug 21 20:29:30 IST 2019 from 192.168.2.252 on pts/1
+[kishore@sshserver.itbs.com ~]$ fdisk -l
+fdisk: cannot open /dev/sda: Permission denied
+fdisk: cannot open /dev/sr0: Permission denied
+fdisk: cannot open /dev/mapper/centos-root: Permission denied
+fdisk: cannot open /dev/mapper/centos-swap: Permission denied
+[kishore@sshserver.itbs.com ~]$ sudo fdisk -l
+
+We trust you have received the usual lecture from the local System
+Administrator. It usually boils down to these three things:
+
+    #1) Respect the privacy of others.
+    #2) Think before you type.
+    #3) With great power comes great responsibility.
+
+[sudo] password for kishore:
+kishore is not in the sudoers file.  This incident will be reported.
+
+
+If you want make the system not asking the passwd while sudo.. please configure as below
+
+## Allow root to run any commands anywhere
+root    ALL=(ALL)       ALL
+ranga   ALL=(ALL)       NOPASSWD: ALL
+kishore ALL=(ALL)       ALL
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

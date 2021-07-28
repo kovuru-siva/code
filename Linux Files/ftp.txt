@@ -1,0 +1,503 @@
+Date : 23/08/2019
+FTP Server :
+
+File Transfer Protocol (TCP)
+
+1. BASIC SERVER SETUP
+=> Static IP
+=> Hostname
+=> Bash Prompt
+=> Network Connectivity
+=> Makesure IPTABLES ARE WORKING
+
+
+Server : 192.168.2.251
+Client : 192.168.2.252
+
+Package : vsftp
+Service : ftp
+Deamon : vsftpd 
+Port : 20(data transfer), 21(Connectivity)
+Config : /etc/vsftpd/vsftpd.conf
+
+[root@ftpserver.itbs.com ~]# yum install vsftp*
+Loaded plugins: fastestmirror, langpacks
+Loading mirror speeds from cached hostfile
+ * base: mirror.xeonbd.com
+ * epel: mirror01.idc.hinet.net
+ * extras: mirror.xeonbd.com
+ * updates: mirror.horizon.vn
+Resolving Dependencies
+--> Running transaction check
+---> Package vsftpd.x86_64 0:3.0.2-25.el7 will be installed
+---> Package vsftpd-sysvinit.x86_64 0:3.0.2-25.el7 will be installed
+--> Finished Dependency Resolution
+
+Dependencies Resolved
+
+========================================================================
+ Package               Arch         Version            Repository  Size
+========================================================================
+Installing:
+ vsftpd                x86_64       3.0.2-25.el7       base       171 k
+ vsftpd-sysvinit       x86_64       3.0.2-25.el7       base        23 k
+
+Transaction Summary
+========================================================================
+Install  2 Packages
+
+Total download size: 195 k
+Installed size: 356 k
+Is this ok [y/d/N]: y
+Downloading packages:
+(1/2): vsftpd-3.0.2-25.el7.x86_64.rpm              | 171 kB   00:00
+(2/2): vsftpd-sysvinit-3.0.2-25.el7.x86_64.rpm     |  23 kB   00:15
+------------------------------------------------------------------------
+Total                                       12 kB/s | 195 kB  00:15
+Running transaction check
+Running transaction test
+Transaction test succeeded
+Running transaction
+  Installing : vsftpd-3.0.2-25.el7.x86_64                           1/2
+  Installing : vsftpd-sysvinit-3.0.2-25.el7.x86_64                  2/2
+  Verifying  : vsftpd-3.0.2-25.el7.x86_64                           1/2
+  Verifying  : vsftpd-sysvinit-3.0.2-25.el7.x86_64                  2/2
+
+Installed:
+  vsftpd.x86_64 0:3.0.2-25.el7   vsftpd-sysvinit.x86_64 0:3.0.2-25.el7
+
+Complete!
+
+===========================================================================================================================================
+
+[root@ftpserver.itbs.com ~]# systemctl start vsftpd
+[root@ftpserver.itbs.com ~]# systemctl status vsftpd
+? vsftpd.service - Vsftpd ftp daemon
+   Loaded: loaded (/usr/lib/systemd/system/vsftpd.service; disabled; vendor preset: disabled)
+   Active: active (running) since Fri 2019-08-23 19:21:40 IST; 5s ago
+  Process: 1709 ExecStart=/usr/sbin/vsftpd /etc/vsftpd/vsftpd.conf (code=exited, status=0/SUCCESS)
+ Main PID: 1710 (vsftpd)
+   CGroup: /system.slice/vsftpd.service
+           +-1710 /usr/sbin/vsftpd /etc/vsftpd/vsftpd.conf
+
+Aug 23 19:21:40 ftpserver.itbs.com systemd[1]: Starting Vsftpd ftp da...
+Aug 23 19:21:40 ftpserver.itbs.com systemd[1]: Started Vsftpd ftp dae...
+Hint: Some lines were ellipsized, use -l to show in full.
+[root@ftpserver.itbs.com ~]# systemctl enable vsftpd
+Created symlink from /etc/systemd/system/multi-user.target.wants/vsftpd.service to /usr/lib/systemd/system/vsftpd.service.
+[root@ftpserver.itbs.com ~]#
+
+-------------------------------------------------------------------
+
+[root@ftpserver.itbs.com ~]# vim /etc/sysconfig/iptables ( <= Add below line)
+-A INPUT -p tcp -m state --state NEW -m tcp --dport 21 -j ACCEPT
+-A INPUT -p tcp -m state --state NEW -m tcp --dport 20 -j ACCEPT
+
+[root@ftpserver.itbs.com ~]# systemctl restart iptables
+
+vim /etc/sysconfig/iptables-config
+
+
+IPTABLES_MODULES="ip_conntrack_ftp"
+
+===================================================================
+
+[root@ftpserver.itbs.com ~]# systemctl restart iptables
+
+=> Disabling Ananymous Users to connect FTP
+
+vim /etc/vsftpd/vsftpd.conf
+
+anonymous_enable=NO
+
+#systemctl restart vsftpd
+
+=> How do you upload the files with anonusers
+
+vim /etc/vsftpd/vsftpd.conf
+
+anon_upload_enable=YES
+
+#systemctl restart vsftpd
+
+
+How do you enable specific user and disable specific users to connect ftp ?
+
+[root@ftpserver.itbs.com vsftpd]# pwd
+/etc/vsftpd
+[root@ftpserver.itbs.com vsftpd]# ls
+ftpusers  user_list  vsftpd.conf  vsftpd_conf_migrate.sh
+[root@ftpserver.itbs.com vsftpd]# ls -ltr
+total 20
+-rwxr--r-- 1 root root  338 Oct 31  2018 vsftpd_conf_migrate.sh
+-rw------- 1 root root  361 Oct 31  2018 user_list => 
+-rw------- 1 root root  125 Oct 31  2018 ftpusers => By default disabling users
+-rw------- 1 root root 5115 Aug 23 19:49 vsftpd.conf
+
+[root@ftpserver.itbs.com vsftpd]#
+
+
+
+
+
+
+
+
+
+
+Client Side :
+
+[root@linuxclient.itbs.com ~]# yum install ftp
+
+[root@linuxclient.itbs.com ~]# ftp 192.168.2.251
+ftp: connect: No route to host
+ftp> quit
+[root@linuxclient.itbs.com ~]# nc -vz 192.168.2.251 21
+Ncat: Version 7.50 ( https://nmap.org/ncat )
+Ncat: No route to host.
+[root@linuxclient.itbs.com ~]# nc -vz 192.168.2.251 22
+Ncat: Version 7.50 ( https://nmap.org/ncat )
+Ncat: Connected to 192.168.2.251:22.
+Ncat: 0 bytes sent, 0 bytes received in 0.02 seconds.
+
+
+
+
+
+
+
+[root@linuxclient.itbs.com ~]# ftp 192.168.2.251
+Connected to 192.168.2.251 (192.168.2.251).
+220 (vsFTPd 3.0.2)
+Name (192.168.2.251:root): ftp
+331 Please specify the password.
+Password:
+230 Login successful.
+Remote system type is UNIX.
+Using binary mode to transfer files.
+ftp> ls
+227 Entering Passive Mode (192,168,2,251,78,66).
+ftp: connect: No route to host
+ftp> bye
+421 Timeout.
+==============================================================
+
+[root@linuxclient.itbs.com ~]# ftp 192.168.2.251
+Connected to 192.168.2.251 (192.168.2.251).
+220 (vsFTPd 3.0.2)
+Name (192.168.2.251:root): ftp
+331 Please specify the password.
+Password:
+230 Login successful.
+Remote system type is UNIX.
+Using binary mode to transfer files.
+ftp> ls
+227 Entering Passive Mode (192,168,2,251,255,68).
+150 Here comes the directory listing.
+drwxr-xr-x    2 0        0               6 Oct 30  2018 pub
+226 Directory send OK.
+ftp>
+------------------------------------------------------------------
+=> After Disabling ananymous users
+
+[root@linuxclient.itbs.com ~]# ftp 192.168.2.251
+Connected to 192.168.2.251 (192.168.2.251).
+220 (vsFTPd 3.0.2)
+Name (192.168.2.251:root): ftp
+331 Please specify the password.
+Password:
+530 Login incorrect.
+Login failed.
+ftp>
+
+[root@linuxclient.itbs.com ~]# ftp 192.168.2.251
+Connected to 192.168.2.251 (192.168.2.251).
+220 (vsFTPd 3.0.2)
+Name (192.168.2.251:root): ftp
+331 Please specify the password.
+Password:
+230 Login successful.
+Remote system type is UNIX.
+Using binary mode to transfer files.
+ftp> ls
+227 Entering Passive Mode (192,168,2,251,105,98).
+150 Here comes the directory listing.
+drwxr-xr-x    2 0        0               6 Aug 23 14:09 hello
+drwxrwxrwx    2 0        0               6 Oct 30  2018 pub
+226 Directory send OK.
+ftp> cd pub
+250 Directory successfully changed.
+ftp> !ls
+anaconda-ks.cfg  myfile1
+ftp> put myfile1
+local: myfile1 remote: myfile1
+227 Entering Passive Mode (192,168,2,251,170,218).
+550 Permission denied.
+ftp>
+ftp> quit
+
+
+After Enabling anon upload
+
+
+[root@linuxclient.itbs.com ~]# ftp 192.168.2.251
+Connected to 192.168.2.251 (192.168.2.251).
+220 (vsFTPd 3.0.2)
+Name (192.168.2.251:root): ftp
+331 Please specify the password.
+Password:
+230 Login successful.
+Remote system type is UNIX.
+Using binary mode to transfer files.
+ftp> cd pub
+250 Directory successfully changed.
+ftp> ls
+227 Entering Passive Mode (192,168,2,251,45,70).
+150 Here comes the directory listing.
+226 Directory send OK.
+ftp> !ls
+anaconda-ks.cfg  myfile1
+ftp> put myfile1
+local: myfile1 remote: myfile1
+227 Entering Passive Mode (192,168,2,251,90,214).
+150 Ok to send data.
+226 Transfer complete.
+66 bytes sent in 9.8e-05 secs (673.47 Kbytes/sec)
+ftp>
+
+=> How do we connect ftp with normal users 
+
+[root@linuxclient.itbs.com ~]# ftp 192.168.2.251
+Connected to 192.168.2.251 (192.168.2.251).
+220 (vsFTPd 3.0.2)
+Name (192.168.2.251:root): arun
+331 Please specify the password.
+Password:
+230 Login successful.
+Remote system type is UNIX.
+Using binary mode to transfer files.
+ftp> pwd
+257 "/home/arun"
+ftp> !ls
+anaconda-ks.cfg  myfile1
+ftp> cd /var/ftp/pub
+250 Directory successfully changed.
+ftp> pwd
+257 "/var/ftp/pub"
+ftp> ls
+227 Entering Passive Mode (192,168,2,251,224,188).
+150 Here comes the directory listing.
+-rw-------    1 14       50             66 Aug 23 14:19 myfile1
+226 Directory send OK.
+ftp> put anaconda-ks.cfg
+local: anaconda-ks.cfg remote: anaconda-ks.cfg
+227 Entering Passive Mode (192,168,2,251,51,11).
+150 Ok to send data.
+226 Transfer complete.
+1303 bytes sent in 0.0101 secs (128.70 Kbytes/sec)
+ftp> ls
+227 Entering Passive Mode (192,168,2,251,194,142).
+150 Here comes the directory listing.
+-rw-r--r--    1 1001     1001         1303 Aug 23 14:25 anaconda-ks.cfg
+-rw-------    1 14       50             66 Aug 23 14:19 myfile1
+226 Directory send OK.
+ftp>
+
+----------------------------------------before Apply the permissions to all files connect ftp and try to download them if you get permissions denied
+
+ftp> get myfile2
+local: myfile2 remote: myfile2
+227 Entering Passive Mode (192,168,2,251,210,26).
+550 Failed to open file.
+ftp> quit
+221 Goodbye.
+[root@linuxclient.itbs.com ~]#
+[root@linuxclient.itbs.com ~]# ftp 192.168.2.251
+Connected to 192.168.2.251 (192.168.2.251).
+220 (vsFTPd 3.0.2)
+Name (192.168.2.251:root): ftp
+331 Please specify the password.
+Password:
+230 Login successful.
+Remote system type is UNIX.
+Using binary mode to transfer files.
+ftp> ls
+227 Entering Passive Mode (192,168,2,251,119,25).
+150 Here comes the directory listing.
+drwxr-xr-x    2 0        0               6 Aug 23 14:09 hello
+drwxrwxrwx    2 0        0             165 Aug 23 14:27 pub
+226 Directory send OK.
+ftp> cd pub
+250 Directory successfully changed.
+ftp> ls
+227 Entering Passive Mode (192,168,2,251,55,177).
+150 Here comes the directory listing.
+-rw-r--r--    1 1001     1001         1303 Aug 23 14:25 anaconda-ks.cfg
+-rwxrwxrwx    1 14       50             66 Aug 23 14:19 myfile1
+-rwxrwxrwx    1 0        0              66 Aug 23 14:27 myfile10
+-rwxrwxrwx    1 0        0              66 Aug 23 14:26 myfile2
+-rwxrwxrwx    1 0        0              66 Aug 23 14:26 myfile3
+-rwxrwxrwx    1 0        0              66 Aug 23 14:26 myfile4
+-rwxrwxrwx    1 0        0              66 Aug 23 14:26 myfile5
+-rwxrwxrwx    1 0        0              66 Aug 23 14:26 myfile6
+-rwxrwxrwx    1 0        0              66 Aug 23 14:27 myfile8
+-rwxrwxrwx    1 0        0              66 Aug 23 14:27 myfile9
+226 Directory send OK.
+ftp> get myfile2
+local: myfile2 remote: myfile2
+227 Entering Passive Mode (192,168,2,251,80,147).
+150 Opening BINARY mode data connection for myfile2 (66 bytes).
+226 Transfer complete.
+66 bytes received in 4.3e-05 secs (1534.88 Kbytes/sec)
+ftp> quit
+221 Goodbye.
+
+
+[root@linuxclient.itbs.com ~]# ftp 192.168.2.251
+Connected to 192.168.2.251 (192.168.2.251).
+220 (vsFTPd 3.0.2)
+Name (192.168.2.251:root): arun
+331 Please specify the password.
+Password:
+230 Login successful.
+Remote system type is UNIX.
+Using binary mode to transfer files.
+ftp> pwd
+257 "/home/arun"
+ftp> cd /var/ftp/pub
+250 Directory successfully changed.
+ftp> ls
+227 Entering Passive Mode (192,168,2,251,221,173).
+150 Here comes the directory listing.
+-rw-r--r--    1 1001     1001         1303 Aug 23 14:25 anaconda-ks.cfg
+-rwxrwxrwx    1 14       50             66 Aug 23 14:19 myfile1
+-rwxrwxrwx    1 0        0              66 Aug 23 14:27 myfile10
+-rwxrwxrwx    1 0        0              66 Aug 23 14:26 myfile2
+-rwxrwxrwx    1 0        0              66 Aug 23 14:26 myfile3
+-rwxrwxrwx    1 0        0              66 Aug 23 14:26 myfile4
+-rwxrwxrwx    1 0        0              66 Aug 23 14:26 myfile5
+-rwxrwxrwx    1 0        0              66 Aug 23 14:26 myfile6
+-rwxrwxrwx    1 0        0              66 Aug 23 14:27 myfile8
+-rwxrwxrwx    1 0        0              66 Aug 23 14:27 myfile9
+226 Directory send OK.
+ftp> get myfil10
+local: myfil10 remote: myfil10
+227 Entering Passive Mode (192,168,2,251,42,171).
+550 Failed to open file.
+ftp> get myfile10
+local: myfile10 remote: myfile10
+227 Entering Passive Mode (192,168,2,251,114,55).
+150 Opening BINARY mode data connection for myfile10 (66 bytes).
+226 Transfer complete.
+66 bytes received in 2.7e-05 secs (2444.44 Kbytes/sec)
+ftp> !ls
+anaconda-ks.cfg  myfile1  myfile10  myfile2
+ftp> quit
+221 Goodbye.
+[root@linuxclient.itbs.com ~]# ls -ltr
+total 16
+-rw-------. 1 root root 1303 Aug 20 18:41 anaconda-ks.cfg
+-rw-r--r--. 1 root root   66 Aug 23 19:44 myfile1
+-rw-r--r--. 1 root root   66 Aug 23 20:00 myfile2
+-rw-r--r--. 1 root root   66 Aug 23 20:00 myfile10
+[root@linuxclient.itbs.com ~]# ftp 192.168.2.251
+Connected to 192.168.2.251 (192.168.2.251).
+220 (vsFTPd 3.0.2)
+Name (192.168.2.251:root): ftp
+331 Please specify the password.
+Password:
+230 Login successful.
+Remote system type is UNIX.
+Using binary mode to transfer files.
+ftp>
+ftp> ls
+227 Entering Passive Mode (192,168,2,251,153,87).
+150 Here comes the directory listing.
+drwxr-xr-x    2 0        0               6 Aug 23 14:09 hello
+drwxrwxrwx    2 0        0             165 Aug 23 14:27 pub
+226 Directory send OK.
+ftp> cd pub
+250 Directory successfully changed.
+ftp> ls
+227 Entering Passive Mode (192,168,2,251,228,254).
+150 Here comes the directory listing.
+-rw-r--r--    1 1001     1001         1303 Aug 23 14:25 anaconda-ks.cfg
+-rwxrwxrwx    1 14       50             66 Aug 23 14:19 myfile1
+-rwxrwxrwx    1 0        0              66 Aug 23 14:27 myfile10
+-rwxrwxrwx    1 0        0              66 Aug 23 14:26 myfile2
+-rwxrwxrwx    1 0        0              66 Aug 23 14:26 myfile3
+-rwxrwxrwx    1 0        0              66 Aug 23 14:26 myfile4
+-rwxrwxrwx    1 0        0              66 Aug 23 14:26 myfile5
+-rwxrwxrwx    1 0        0              66 Aug 23 14:26 myfile6
+-rwxrwxrwx    1 0        0              66 Aug 23 14:27 myfile8
+-rwxrwxrwx    1 0        0              66 Aug 23 14:27 myfile9
+226 Directory send OK.
+ftp> mget myfile3 myfile4 myfile5
+mget myfile3? y
+227 Entering Passive Mode (192,168,2,251,59,233).
+150 Opening BINARY mode data connection for myfile3 (66 bytes).
+226 Transfer complete.
+66 bytes received in 2.8e-05 secs (2357.14 Kbytes/sec)
+mget myfile4? y
+227 Entering Passive Mode (192,168,2,251,171,11).
+150 Opening BINARY mode data connection for myfile4 (66 bytes).
+226 Transfer complete.
+66 bytes received in 3.7e-05 secs (1783.78 Kbytes/sec)
+mget myfile5? y
+227 Entering Passive Mode (192,168,2,251,139,133).
+150 Opening BINARY mode data connection for myfile5 (66 bytes).
+226 Transfer complete.
+66 bytes received in 2.3e-05 secs (2869.57 Kbytes/sec)
+ftp> quit
+221 Goodbye.
+[root@linuxclient.itbs.com ~]# ls -ltr
+total 28
+-rw-------. 1 root root 1303 Aug 20 18:41 anaconda-ks.cfg
+-rw-r--r--. 1 root root   66 Aug 23 19:44 myfile1
+-rw-r--r--. 1 root root   66 Aug 23 20:00 myfile2
+-rw-r--r--. 1 root root   66 Aug 23 20:00 myfile10
+-rw-r--r--. 1 root root   66 Aug 23 20:01 myfile3
+-rw-r--r--. 1 root root   66 Aug 23 20:01 myfile4
+-rw-r--r--. 1 root root   66 Aug 23 20:01 myfile5
+
+
+
+Through browser :
+
+ftp://192.168.2.251
+
+
+
+======
+
+By default all users are allowed, if you want deny users , you can user into /etc/vsftpd/ftpusers
+
+If you want make your FTP Server is deneying all users by default, you can edit your config file ( /etc/vsftpd/vsftpd.conf) with below line at bottom of the file
+
+userlist_deny=NO
+
+restart vsftpd service
+
+add user into the file /etc/vsftpd/user_list
+
+
+
+======================================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

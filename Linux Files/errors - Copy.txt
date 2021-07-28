@@ -1,0 +1,83 @@
+
+Issue
+Restarting any service report error Error getting authority: Error initializing authority: Could not connect: Connection refused (g-io-error-quark, 39).
+Resolution
+These steps should be done using Rescue mode after chroot.
+Create the symbolic link as /var is on separate partition.
+Raw
+
+# mv -f /var/run /var/run.runmove~
+# ln -sfn /run /var/run
+# mv -f /var/lock /var/lock.lockmove~
+# ln -sfn /run/lock /var/lock
+
+Reboot the system.
+Root Cause
+The system has separate /var file system on a separate partition.
+Diagnostic Steps
+Raw
+# systemctl stop rsyslog
+=======================================================================================================
+Error getting authority: Error initializing authority: Could not connect: Connection refused (g-io-error-quark, 39)
+Failed to stop rsyslog.service: Unit rsyslog.service not loaded.
+
+# systemctl enable syslog-ng
+Error getting authority: Error initializing authority: Could not connect: Connection refused (g-io-error-quark, 39)
+
+
+
+Product(s)  Red Hat Enterprise Linux Component  polkit
+
+
+
+============================================================================================
+/etc/rc.d/rc.sysinit
+The /etc/system/sysinit script runs /etc/rc.d/rc.sysinit to do local initialization of your system.
+
+
+Figure 1. Initialization done by /etc/rc.d/rc.sysinit.
+The rc.sysinit script does the following:
+
+It starts a secure random-number generator, random, to provide random numbers for use in encryption and so on.
+If the /var/dumps directory exists, rc.sysinit starts the dumper utility to capture (in /var/dumps) dumps of processes that terminate abnormally.
+If /etc/host_cfg/$HOSTNAME/rc.d/rc.local exists and is executable, rc.sysinit runs it. Otherwise, if /etc/rc.d/rc.local exists and is executable, rc.sysinit runs it. There isn't a default version of this file; you must create it if you want to use it. For more information, see "rc.local," below.
+Finally, rc.sysinit runs tinit. By default, rc.sysinit tells tinit to use text mode. For more information, see "tinit."
+
+
+=======================================================================================================
+ERROR OCCURING WHILE DELETING A DISK :
+
+ANSWER:
+
+[root@srv6 ~]# mdadm  --stop /dev/md0 
+mdadm: stopped /dev/md0
+
+[root@srv6 ~]# cat /proc/mdstat 
+Personalities : [raid6] [raid5] [raid4] 
+unused devices: 
+
+[root@srv6 ~]# ls -l /dev/md0
+ls: cannot access /dev/md0: No such file or directory
+
+[root@srv6 ~]# mdadm  --remove /dev/md0 
+mdadm: error opening /dev/md0: No such file or directory
+Now we can Finally remove superblocks from all associated disks, like
+
+[root@srv6 ~]#  mdadm --zero-superblock /dev/sda1 /dev/sdb1 /dev/sdc1 /dev/sdd1
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
