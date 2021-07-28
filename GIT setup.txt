@@ -182,6 +182,5 @@ Your branch is up to date with 'origin/master'.
 
 nothing to commit, working tree clean
 
-shilpa@LAPTOP-P8V1978C MINGW64 ~/Desktop/siva (master)
-$
+
 
