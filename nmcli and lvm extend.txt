@@ -356,5 +356,1778 @@ nmcli ipv4> quit
 [root@localhost ~]#
 
 
+jxbYS(d(UrDyRFZlR$
+
+
+=============================================================================docker=============================
+
+(4/5): epel/x86_64/primary_db                              | 6.9 MB   00:01
+(5/5): epel/x86_64/updateinfo                              | 1.0 MB   00:05
+Resolving Dependencies
+--> Running transaction check
+---> Package containerd.io.x86_64 0:1.4.8-3.1.el7 will be installed
+--> Processing Dependency: container-selinux >= 2:2.74 for package: containerd.i                     o-1.4.8-3.1.el7.x86_64
+---> Package docker-ce.x86_64 3:20.10.7-3.el7 will be installed
+--> Processing Dependency: docker-ce-rootless-extras for package: 3:docker-ce-20                     .10.7-3.el7.x86_64
+--> Processing Dependency: libcgroup for package: 3:docker-ce-20.10.7-3.el7.x86_                     64
+---> Package docker-ce-cli.x86_64 1:20.10.7-3.el7 will be installed
+--> Processing Dependency: docker-scan-plugin(x86-64) for package: 1:docker-ce-c                     li-20.10.7-3.el7.x86_64
+--> Running transaction check
+---> Package container-selinux.noarch 2:2.119.2-1.911c772.el7_8 will be installe                     d
+--> Processing Dependency: selinux-policy-targeted >= 3.13.1-216.el7 for package                     : 2:container-selinux-2.119.2-1.911c772.el7_8.noarch
+--> Processing Dependency: selinux-policy-base >= 3.13.1-216.el7 for package: 2:                     container-selinux-2.119.2-1.911c772.el7_8.noarch
+--> Processing Dependency: selinux-policy >= 3.13.1-216.el7 for package: 2:conta                     iner-selinux-2.119.2-1.911c772.el7_8.noarch
+--> Processing Dependency: policycoreutils-python for package: 2:container-selin                     ux-2.119.2-1.911c772.el7_8.noarch
+---> Package docker-ce-rootless-extras.x86_64 0:20.10.7-3.el7 will be installed
+--> Processing Dependency: fuse-overlayfs >= 0.7 for package: docker-ce-rootless                     -extras-20.10.7-3.el7.x86_64
+--> Processing Dependency: slirp4netns >= 0.4 for package: docker-ce-rootless-ex                     tras-20.10.7-3.el7.x86_64
+---> Package docker-scan-plugin.x86_64 0:0.8.0-3.el7 will be installed
+---> Package libcgroup.x86_64 0:0.41-21.el7 will be installed
+--> Running transaction check
+---> Package fuse-overlayfs.x86_64 0:0.7.2-6.el7_8 will be installed
+--> Processing Dependency: libfuse3.so.3(FUSE_3.2)(64bit) for package: fuse-over                     layfs-0.7.2-6.el7_8.x86_64
+--> Processing Dependency: libfuse3.so.3(FUSE_3.0)(64bit) for package: fuse-over                     layfs-0.7.2-6.el7_8.x86_64
+--> Processing Dependency: libfuse3.so.3()(64bit) for package: fuse-overlayfs-0.                     7.2-6.el7_8.x86_64
+---> Package policycoreutils-python.x86_64 0:2.5-34.el7 will be installed
+--> Processing Dependency: policycoreutils = 2.5-34.el7 for package: policycoreu                     tils-python-2.5-34.el7.x86_64
+--> Processing Dependency: setools-libs >= 3.3.8-4 for package: policycoreutils-                     python-2.5-34.el7.x86_64
+--> Processing Dependency: libsemanage-python >= 2.5-14 for package: policycoreu                     tils-python-2.5-34.el7.x86_64
+--> Processing Dependency: audit-libs-python >= 2.1.3-4 for package: policycoreu                     tils-python-2.5-34.el7.x86_64
+--> Processing Dependency: python-IPy for package: policycoreutils-python-2.5-34                     .el7.x86_64
+--> Processing Dependency: libqpol.so.1(VERS_1.4)(64bit) for package: policycore                     utils-python-2.5-34.el7.x86_64
+--> Processing Dependency: libqpol.so.1(VERS_1.2)(64bit) for package: policycore                     utils-python-2.5-34.el7.x86_64
+--> Processing Dependency: libapol.so.4(VERS_4.0)(64bit) for package: policycore                     utils-python-2.5-34.el7.x86_64
+--> Processing Dependency: checkpolicy for package: policycoreutils-python-2.5-3                     4.el7.x86_64
+--> Processing Dependency: libqpol.so.1()(64bit) for package: policycoreutils-py                     thon-2.5-34.el7.x86_64
+--> Processing Dependency: libapol.so.4()(64bit) for package: policycoreutils-py                     thon-2.5-34.el7.x86_64
+---> Package selinux-policy.noarch 0:3.13.1-192.el7 will be updated
+---> Package selinux-policy.noarch 0:3.13.1-268.el7_9.2 will be an update
+--> Processing Dependency: libsemanage >= 2.5-13 for package: selinux-policy-3.1                     3.1-268.el7_9.2.noarch
+---> Package selinux-policy-targeted.noarch 0:3.13.1-192.el7 will be updated
+---> Package selinux-policy-targeted.noarch 0:3.13.1-268.el7_9.2 will be an upda                     te
+---> Package slirp4netns.x86_64 0:0.4.3-4.el7_8 will be installed
+--> Running transaction check
+---> Package audit-libs-python.x86_64 0:2.8.5-4.el7 will be installed
+--> Processing Dependency: audit-libs(x86-64) = 2.8.5-4.el7 for package: audit-l                     ibs-python-2.8.5-4.el7.x86_64
+---> Package checkpolicy.x86_64 0:2.5-8.el7 will be installed
+---> Package fuse3-libs.x86_64 0:3.6.1-4.el7 will be installed
+---> Package libsemanage.x86_64 0:2.5-11.el7 will be updated
+---> Package libsemanage.x86_64 0:2.5-14.el7 will be an update
+--> Processing Dependency: libsepol >= 2.5-10 for package: libsemanage-2.5-14.el                     7.x86_64
+--> Processing Dependency: libselinux >= 2.5-14 for package: libsemanage-2.5-14.                     el7.x86_64
+---> Package libsemanage-python.x86_64 0:2.5-14.el7 will be installed
+---> Package policycoreutils.x86_64 0:2.5-22.el7 will be updated
+---> Package policycoreutils.x86_64 0:2.5-34.el7 will be an update
+--> Processing Dependency: libselinux-utils >= 2.5-14 for package: policycoreuti                     ls-2.5-34.el7.x86_64
+---> Package python-IPy.noarch 0:0.75-6.el7 will be installed
+---> Package setools-libs.x86_64 0:3.3.8-4.el7 will be installed
+--> Running transaction check
+---> Package audit-libs.x86_64 0:2.8.1-3.el7 will be updated
+--> Processing Dependency: audit-libs(x86-64) = 2.8.1-3.el7 for package: audit-2                     .8.1-3.el7.x86_64
+---> Package audit-libs.x86_64 0:2.8.5-4.el7 will be an update
+---> Package libselinux.x86_64 0:2.5-12.el7 will be updated
+--> Processing Dependency: libselinux(x86-64) = 2.5-12.el7 for package: libselin                     ux-python-2.5-12.el7.x86_64
+---> Package libselinux.x86_64 0:2.5-15.el7 will be an update
+---> Package libselinux-utils.x86_64 0:2.5-12.el7 will be updated
+---> Package libselinux-utils.x86_64 0:2.5-15.el7 will be an update
+---> Package libsepol.x86_64 0:2.5-8.1.el7 will be updated
+---> Package libsepol.x86_64 0:2.5-10.el7 will be an update
+--> Running transaction check
+---> Package audit.x86_64 0:2.8.1-3.el7 will be updated
+---> Package audit.x86_64 0:2.8.5-4.el7 will be an update
+---> Package libselinux-python.x86_64 0:2.5-12.el7 will be updated
+---> Package libselinux-python.x86_64 0:2.5-15.el7 will be an update
+--> Finished Dependency Resolution
+
+Dependencies Resolved
+
+================================================================================
+ Package                   Arch   Version                Repository        Size
+================================================================================
+Installing:
+ containerd.io             x86_64 1.4.8-3.1.el7          docker-ce-stable  30 M
+ docker-ce                 x86_64 3:20.10.7-3.el7        docker-ce-stable  27 M
+ docker-ce-cli             x86_64 1:20.10.7-3.el7        docker-ce-stable  33 M
+Installing for dependencies:
+ audit-libs-python         x86_64 2.8.5-4.el7            base              76 k
+ checkpolicy               x86_64 2.5-8.el7              base             295 k
+ container-selinux         noarch 2:2.119.2-1.911c772.el7_8
+                                                         extras            40 k
+ docker-ce-rootless-extras x86_64 20.10.7-3.el7          docker-ce-stable 9.2 M
+ docker-scan-plugin        x86_64 0.8.0-3.el7            docker-ce-stable 4.2 M
+ fuse-overlayfs            x86_64 0.7.2-6.el7_8          extras            54 k
+ fuse3-libs                x86_64 3.6.1-4.el7            extras            82 k
+ libcgroup                 x86_64 0.41-21.el7            base              66 k
+ libsemanage-python        x86_64 2.5-14.el7             base             113 k
+ policycoreutils-python    x86_64 2.5-34.el7             base             457 k
+ python-IPy                noarch 0.75-6.el7             base              32 k
+ setools-libs              x86_64 3.3.8-4.el7            base             620 k
+ slirp4netns               x86_64 0.4.3-4.el7_8          extras            81 k
+Updating for dependencies:
+ audit                     x86_64 2.8.5-4.el7            base             256 k
+ audit-libs                x86_64 2.8.5-4.el7            base             102 k
+ libselinux                x86_64 2.5-15.el7             base             162 k
+ libselinux-python         x86_64 2.5-15.el7             base             236 k
+ libselinux-utils          x86_64 2.5-15.el7             base             151 k
+ libsemanage               x86_64 2.5-14.el7             base             151 k
+ libsepol                  x86_64 2.5-10.el7             base             297 k
+ policycoreutils           x86_64 2.5-34.el7             base             917 k
+ selinux-policy            noarch 3.13.1-268.el7_9.2     updates          498 k
+ selinux-policy-targeted   noarch 3.13.1-268.el7_9.2     updates          7.0 M
+
+Transaction Summary
+================================================================================
+Install  3 Packages (+13 Dependent packages)
+Upgrade             ( 10 Dependent packages)
+
+Total download size: 115 M
+Is this ok [y/d/N]: y
+Downloading packages:
+Delta RPMs disabled because /usr/bin/applydeltarpm not installed.
+(1/26): audit-libs-2.8.5-4.el7.x86_64.rpm                  | 102 kB   00:00
+(2/26): audit-2.8.5-4.el7.x86_64.rpm                       | 256 kB   00:00
+(3/26): checkpolicy-2.5-8.el7.x86_64.rpm                   | 295 kB   00:00
+(4/26): audit-libs-python-2.8.5-4.el7.x86_64.rpm           |  76 kB   00:00
+container-selinux-2.119.2-1.91 FAILED
+http://mirrors.piconets.webwerks.in/centos-mirror/7.9.2009/extras/x86_64/Package                     s/container-selinux-2.119.2-1.911c772.el7_8.noarch.rpm: [Errno 14] HTTP Error 50                     0 - Internal Server Error
+Trying other mirror.
+warning: /var/cache/yum/x86_64/7/docker-ce-stable/packages/docker-ce-20.10.7-3.e                     l7.x86_64.rpm: Header V4 RSA/SHA512 Signature, key ID 621e9f35: NOKEY
+Public key for docker-ce-20.10.7-3.el7.x86_64.rpm is not installed
+(5/26): docker-ce-20.10.7-3.el7.x86_64.rpm                 |  27 MB   00:08
+(6/26): containerd.io-1.4.8-3.1.el7.x86_64.rpm             |  30 MB   00:09
+(7/26): docker-ce-rootless-extras-20.10.7-3.el7.x86_64.rpm | 9.2 MB   00:02
+(8/26): fuse-overlayfs-0.7.2-6.el7_8.x86_64.rpm            |  54 kB   00:00
+libcgroup-0.41-21.el7.x86_64.r FAILED
+http://mirrors.piconets.webwerks.in/centos-mirror/7.9.2009/os/x86_64/Packages/li                     bcgroup-0.41-21.el7.x86_64.rpm: [Errno 14] HTTP Error 500 - Internal Server Erro                     r
+Trying other mirror.
+libselinux-2.5-15.el7.x86_64.r FAILED
+http://mirrors.piconets.webwerks.in/centos-mirror/7.9.2009/os/x86_64/Packages/li                     bselinux-2.5-15.el7.x86_64.rpm: [Errno 14] HTTP Error 500 - Internal Server Erro                     r
+Trying other mirror.
+(9/26): fuse3-libs-3.6.1-4.el7.x86_64.rpm                  |  82 kB   00:00
+(10/26): libselinux-python-2.5-15.el7.x86_64.rpm           | 236 kB   00:00
+(11/26): docker-scan-plugin-0.8.0-3.el7.x86_64.rpm         | 4.2 MB   00:01
+(12/26): libselinux-utils-2.5-15.el7.x86_64.rpm            | 151 kB   00:00
+(13/26): libsemanage-2.5-14.el7.x86_64.rpm                 | 151 kB   00:00
+(14/26): libsemanage-python-2.5-14.el7.x86_64.rpm          | 113 kB   00:00
+(15/26): libsepol-2.5-10.el7.x86_64.rpm                    | 297 kB   00:01
+(16/26): docker-ce-cli-20.10.7-3.el7.x86_64.rpm            |  33 MB   00:07
+(17/26): policycoreutils-2.5-34.el7.x86_64.rpm             | 917 kB   00:02
+(18/26): policycoreutils-python-2.5-34.el7.x86_64.rpm      | 457 kB   00:00
+(19/26): python-IPy-0.75-6.el7.noarch.rpm                  |  32 kB   00:00
+selinux-policy-targeted-3.13.1 FAILED
+http://mirrors.piconets.webwerks.in/centos-mirror/7.9.2009/updates/x86_64/Packag                     es/selinux-policy-targeted-3.13.1-268.el7_9.2.noarch.rpm: [Errno 14] HTTP Error                      500 - Internal Server Error
+Trying other mirror.
+(20/26): selinux-policy-3.13.1-268.el7_9.2.noarch.rpm      | 498 kB   00:00
+(21/26): slirp4netns-0.4.3-4.el7_8.x86_64.rpm              |  81 kB   00:00
+(22/26): container-selinux-2.119.2-1.911c772.el7_8.noarch. |  40 kB   00:00
+(23/26): libcgroup-0.41-21.el7.x86_64.rpm                  |  66 kB   00:00
+(24/26): setools-libs-3.3.8-4.el7.x86_64.rpm               | 620 kB   00:01
+(25/26): libselinux-2.5-15.el7.x86_64.rpm                  | 162 kB   00:01
+(26/26): selinux-policy-targeted-3.13.1-268.el7_9.2.noarch | 7.0 MB   00:05
+--------------------------------------------------------------------------------
+Total                                              4.7 MB/s | 115 MB  00:24
+Retrieving key from https://download.docker.com/linux/centos/gpg
+Importing GPG key 0x621E9F35:
+ Userid     : "Docker Release (CE rpm) <docker@docker.com>"
+ Fingerprint: 060a 61c5 1b55 8a7f 742b 77aa c52f eb6b 621e 9f35
+ From       : https://download.docker.com/linux/centos/gpg
+Is this ok [y/N]: y
+Running transaction check
+Running transaction test
+Transaction test succeeded
+Running transaction
+  Updating   : libsepol-2.5-10.el7.x86_64                                  1/36
+  Updating   : libselinux-2.5-15.el7.x86_64                                2/36
+  Updating   : audit-libs-2.8.5-4.el7.x86_64                               3/36
+  Updating   : libsemanage-2.5-14.el7.x86_64                               4/36
+  Updating   : libselinux-utils-2.5-15.el7.x86_64                          5/36
+  Updating   : policycoreutils-2.5-34.el7.x86_64                           6/36
+  Updating   : selinux-policy-3.13.1-268.el7_9.2.noarch                    7/36
+  Installing : libcgroup-0.41-21.el7.x86_64                                8/36
+  Updating   : selinux-policy-targeted-3.13.1-268.el7_9.2.noarch           9/36
+  Installing : libsemanage-python-2.5-14.el7.x86_64                       10/36
+  Installing : audit-libs-python-2.8.5-4.el7.x86_64                       11/36
+  Installing : setools-libs-3.3.8-4.el7.x86_64                            12/36
+  Updating   : libselinux-python-2.5-15.el7.x86_64                        13/36
+  Installing : 1:docker-ce-cli-20.10.7-3.el7.x86_64                       14/36
+  Installing : docker-scan-plugin-0.8.0-3.el7.x86_64                      15/36
+  Installing : slirp4netns-0.4.3-4.el7_8.x86_64                           16/36
+  Installing : fuse3-libs-3.6.1-4.el7.x86_64                              17/36
+  Installing : fuse-overlayfs-0.7.2-6.el7_8.x86_64                        18/36
+  Installing : python-IPy-0.75-6.el7.noarch                               19/36
+  Installing : checkpolicy-2.5-8.el7.x86_64                               20/36
+  Installing : policycoreutils-python-2.5-34.el7.x86_64                   21/36
+  Installing : 2:container-selinux-2.119.2-1.911c772.el7_8.noarch         22/36
+  Installing : containerd.io-1.4.8-3.1.el7.x86_64                         23/36
+  Installing : 3:docker-ce-20.10.7-3.el7.x86_64                           24/36
+  Installing : docker-ce-rootless-extras-20.10.7-3.el7.x86_64             25/36
+  Updating   : audit-2.8.5-4.el7.x86_64                                   26/36
+  Cleanup    : selinux-policy-targeted-3.13.1-192.el7.noarch              27/36
+  Cleanup    : selinux-policy-3.13.1-192.el7.noarch                       28/36
+  Cleanup    : policycoreutils-2.5-22.el7.x86_64                          29/36
+  Cleanup    : libsemanage-2.5-11.el7.x86_64                              30/36
+  Cleanup    : libselinux-utils-2.5-12.el7.x86_64                         31/36
+  Cleanup    : libselinux-python-2.5-12.el7.x86_64                        32/36
+  Cleanup    : libselinux-2.5-12.el7.x86_64                               33/36
+  Cleanup    : audit-2.8.1-3.el7.x86_64                                   34/36
+  Cleanup    : audit-libs-2.8.1-3.el7.x86_64                              35/36
+  Cleanup    : libsepol-2.5-8.1.el7.x86_64                                36/36
+  Verifying  : fuse-overlayfs-0.7.2-6.el7_8.x86_64                         1/36
+  Verifying  : libselinux-2.5-15.el7.x86_64                                2/36
+  Verifying  : 2:container-selinux-2.119.2-1.911c772.el7_8.noarch          3/36
+  Verifying  : 3:docker-ce-20.10.7-3.el7.x86_64                            4/36
+  Verifying  : selinux-policy-targeted-3.13.1-268.el7_9.2.noarch           5/36
+  Verifying  : docker-ce-rootless-extras-20.10.7-3.el7.x86_64              6/36
+  Verifying  : audit-libs-python-2.8.5-4.el7.x86_64                        7/36
+  Verifying  : audit-libs-2.8.5-4.el7.x86_64                               8/36
+  Verifying  : checkpolicy-2.5-8.el7.x86_64                                9/36
+  Verifying  : policycoreutils-2.5-34.el7.x86_64                          10/36
+  Verifying  : python-IPy-0.75-6.el7.noarch                               11/36
+  Verifying  : libselinux-utils-2.5-15.el7.x86_64                         12/36
+  Verifying  : policycoreutils-python-2.5-34.el7.x86_64                   13/36
+  Verifying  : setools-libs-3.3.8-4.el7.x86_64                            14/36
+  Verifying  : fuse3-libs-3.6.1-4.el7.x86_64                              15/36
+  Verifying  : audit-2.8.5-4.el7.x86_64                                   16/36
+  Verifying  : docker-scan-plugin-0.8.0-3.el7.x86_64                      17/36
+  Verifying  : libsemanage-python-2.5-14.el7.x86_64                       18/36
+  Verifying  : libsemanage-2.5-14.el7.x86_64                              19/36
+  Verifying  : slirp4netns-0.4.3-4.el7_8.x86_64                           20/36
+  Verifying  : libsepol-2.5-10.el7.x86_64                                 21/36
+  Verifying  : libselinux-python-2.5-15.el7.x86_64                        22/36
+  Verifying  : selinux-policy-3.13.1-268.el7_9.2.noarch                   23/36
+  Verifying  : 1:docker-ce-cli-20.10.7-3.el7.x86_64                       24/36
+  Verifying  : containerd.io-1.4.8-3.1.el7.x86_64                         25/36
+  Verifying  : libcgroup-0.41-21.el7.x86_64                               26/36
+  Verifying  : libsemanage-2.5-11.el7.x86_64                              27/36
+  Verifying  : libselinux-python-2.5-12.el7.x86_64                        28/36
+  Verifying  : audit-libs-2.8.1-3.el7.x86_64                              29/36
+  Verifying  : policycoreutils-2.5-22.el7.x86_64                          30/36
+  Verifying  : libsepol-2.5-8.1.el7.x86_64                                31/36
+  Verifying  : audit-2.8.1-3.el7.x86_64                                   32/36
+  Verifying  : selinux-policy-3.13.1-192.el7.noarch                       33/36
+  Verifying  : libselinux-2.5-12.el7.x86_64                               34/36
+  Verifying  : libselinux-utils-2.5-12.el7.x86_64                         35/36
+  Verifying  : selinux-policy-targeted-3.13.1-192.el7.noarch              36/36
+
+Installed:
+  containerd.io.x86_64 0:1.4.8-3.1.el7     docker-ce.x86_64 3:20.10.7-3.el7
+  docker-ce-cli.x86_64 1:20.10.7-3.el7
+
+Dependency Installed:
+  audit-libs-python.x86_64 0:2.8.5-4.el7
+  checkpolicy.x86_64 0:2.5-8.el7
+  container-selinux.noarch 2:2.119.2-1.911c772.el7_8
+  docker-ce-rootless-extras.x86_64 0:20.10.7-3.el7
+  docker-scan-plugin.x86_64 0:0.8.0-3.el7
+  fuse-overlayfs.x86_64 0:0.7.2-6.el7_8
+  fuse3-libs.x86_64 0:3.6.1-4.el7
+  libcgroup.x86_64 0:0.41-21.el7
+  libsemanage-python.x86_64 0:2.5-14.el7
+  policycoreutils-python.x86_64 0:2.5-34.el7
+  python-IPy.noarch 0:0.75-6.el7
+  setools-libs.x86_64 0:3.3.8-4.el7
+  slirp4netns.x86_64 0:0.4.3-4.el7_8
+
+Dependency Updated:
+  audit.x86_64 0:2.8.5-4.el7
+  audit-libs.x86_64 0:2.8.5-4.el7
+  libselinux.x86_64 0:2.5-15.el7
+  libselinux-python.x86_64 0:2.5-15.el7
+  libselinux-utils.x86_64 0:2.5-15.el7
+  libsemanage.x86_64 0:2.5-14.el7
+  libsepol.x86_64 0:2.5-10.el7
+  policycoreutils.x86_64 0:2.5-34.el7
+  selinux-policy.noarch 0:3.13.1-268.el7_9.2
+  selinux-policy-targeted.noarch 0:3.13.1-268.el7_9.2
+
+Complete!
+[root@localhost ~]# systemctl start docker
+[root@localhost ~]# systemctl enable docker
+Created symlink from /etc/systemd/system/multi-user.target.wants/docker.service                      to /usr/lib/systemd/system/docker.service.
+[root@localhost ~]#
+[root@localhost ~]# docker ps
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+[root@localhost ~]#
+[root@localhost ~]# docker pull mysql:5.7
+5.7: Pulling from library/mysql
+33847f680f63: Pull complete
+5cb67864e624: Pull complete
+1a2b594783f5: Pull complete
+b30e406dd925: Pull complete
+48901e306e4c: Pull complete
+603d2b7147fd: Pull complete
+802aa684c1c4: Pull complete
+5b5a19178915: Pull complete
+f9ce7411c6e4: Pull complete
+f51f6977d9b2: Pull complete
+aeb6b16ce012: Pull complete
+Digest: sha256:be70d18aedc37927293e7947c8de41ae6490ecd4c79df1db40d1b5b5af7d9596
+Status: Downloaded newer image for mysql:5.7
+docker.io/library/mysql:5.7
+[root@localhost ~]# docker images
+REPOSITORY   TAG       IMAGE ID       CREATED      SIZE
+mysql        5.7       8cf625070931   7 days ago   448MB
+[root@localhost ~]#
+[root@localhost ~]# docker run -it -e MYSQL_ROOT_PASSWORD=redhat -e MYSQL_USER=v                     imal
+"docker run" requires at least 1 argument.
+See 'docker run --help'.
+
+Usage:  docker run [OPTIONS] IMAGE [COMMAND] [ARG...]
+
+Run a command in a new container
+[root@localhost ~]#
+[root@localhost ~]# docker run -it -e MYSQL_ROOT_PASSWORD=redhat                                       -e MYSQL_USER=vimal -e MYSQL_PASSWORD=redhat -e MYSQL_DATABASE=mydb                                     ^C
+[root@localhost ~]# docker history mysql:5.7
+IMAGE          CREATED      CREATED BY                                      SIZE                           COMMENT
+8cf625070931   7 days ago   /bin/sh -c #(nop)  CMD ["mysqld"]               0B                       
+<missing>      7 days ago   /bin/sh -c #(nop)  EXPOSE 3306 33060            0B                       
+<missing>      7 days ago   /bin/sh -c #(nop)  ENTRYPOINT ["docker-entry…   0B                       
+<missing>      7 days ago   /bin/sh -c ln -s usr/local/bin/docker-entryp…   34B                      
+<missing>      7 days ago   /bin/sh -c #(nop) COPY file:345a22fe55d3e678…   14.5                     kB
+<missing>      7 days ago   /bin/sh -c #(nop)  VOLUME [/var/lib/mysql]      0B                       
+<missing>      7 days ago   /bin/sh -c {   echo mysql-community-server m…   313M                     B
+<missing>      7 days ago   /bin/sh -c echo 'deb http://repo.mysql.com/a…   55B                      
+<missing>      7 days ago   /bin/sh -c #(nop)  ENV MYSQL_VERSION=5.7.35-…   0B                       
+<missing>      7 days ago   /bin/sh -c #(nop)  ENV MYSQL_MAJOR=5.7          0B                       
+<missing>      7 days ago   /bin/sh -c set -ex;  key='A4A9406876FCBD3C45…   1.84                     kB
+<missing>      7 days ago   /bin/sh -c apt-get update && apt-get install…   52.2                     MB
+<missing>      7 days ago   /bin/sh -c mkdir /docker-entrypoint-initdb.d    0B                       
+<missing>      7 days ago   /bin/sh -c set -eux;  savedAptMark="$(apt-ma…   4.17                     MB
+<missing>      7 days ago   /bin/sh -c #(nop)  ENV GOSU_VERSION=1.12        0B                       
+<missing>      7 days ago   /bin/sh -c apt-get update && apt-get install…   9.34                     MB
+<missing>      7 days ago   /bin/sh -c groupadd -r mysql && useradd -r -…   329k                     B
+<missing>      7 days ago   /bin/sh -c #(nop)  CMD ["bash"]                 0B                       
+<missing>      7 days ago   /bin/sh -c #(nop) ADD file:45f5dfa135c848a34…   69.3                     MB
+[root@localhost ~]#
+[root@localhost ~]#
+[root@localhost ~]# docker run -it -e MYSQL_ROOT_PASSWORD=redhat                                       -e MYSQL_USER=vimal -e MYSQL_PASSWORD=redhat -e MYSQL_DATABASE=mydb                                
+"docker run" requires at least 1 argument.
+See 'docker run --help'.
+
+Usage:  docker run [OPTIONS] IMAGE [COMMAND] [ARG...]
+
+Run a command in a new container
+[root@localhost ~]#
+[root@localhost ~]# docker run -itd -e MYSQL_ROOT_PASSWORD=redhat                                       -e MYSQL_USER=vimal -e MYSQL_PASSWORD=redhat -e MYSQL_DATABASE=mydb                               
+"docker run" requires at least 1 argument.
+See 'docker run --help'.
+
+Usage:  docker run [OPTIONS] IMAGE [COMMAND] [ARG...]
+
+Run a command in a new container
+[root@localhost ~]# docker run -itd -e MYSQL_ROOT_PASSWORD=redhat                                       -e MYSQL_USER=vimal -e MYSQL_PASSWORD=redhat -e MYSQL_DATABASE=mydb mysql:5.7
+05da92045f8e22cbb357c5c39948f0a8f96161f32092a90f81f5d9c9ba3af352
+[root@localhost ~]# docker ps
+CONTAINER ID   IMAGE       COMMAND                  CREATED         STATUS                              PORTS                 NAMES
+05da92045f8e   mysql:5.7   "docker-entrypoint.s…"   5 seconds ago   Up 3 seconds                        3306/tcp, 33060/tcp   charming_easley
+[root@localhost ~]# docker ps -a
+CONTAINER ID   IMAGE       COMMAND                  CREATED         STATUS                              PORTS                 NAMES
+05da92045f8e   mysql:5.7   "docker-entrypoint.s…"   9 seconds ago   Up 8 seconds                        3306/tcp, 33060/tcp   charming_easley
+[root@localhost ~]#
+[root@localhost ~]# docker ps
+CONTAINER ID   IMAGE       COMMAND                  CREATED          STATUS                               PORTS                 NAMES
+05da92045f8e   mysql:5.7   "docker-entrypoint.s…"   22 seconds ago   Up 21 secon                     ds   3306/tcp, 33060/tcp   charming_easley
+[root@localhost ~]# docker inspect 05da
+[
+    {
+        "Id": "05da92045f8e22cbb357c5c39948f0a8f96161f32092a90f81f5d9c9ba3af352",
+        "Created": "2021-07-29T14:53:19.841251094Z",
+        "Path": "docker-entrypoint.sh",
+        "Args": [
+            "mysqld"
+        ],
+        "State": {
+            "Status": "running",
+            "Running": true,
+            "Paused": false,
+            "Restarting": false,
+            "OOMKilled": false,
+            "Dead": false,
+            "Pid": 3226,
+            "ExitCode": 0,
+            "Error": "",
+            "StartedAt": "2021-07-29T14:53:20.395646523Z",
+            "FinishedAt": "0001-01-01T00:00:00Z"
+        },
+        "Image": "sha256:8cf6250709314f2fcd2669e8643f5d3bdebfe715bddb63990c8c96e5d261d6fc",
+        "ResolvConfPath": "/var/lib/docker/containers/05da92045f8e22cbb357c5c39948f0a8f96161f32092a90
+        "HostnamePath": "/var/lib/docker/containers/05da92045f8e22cbb357c5c39948f0a8f96161f32092a90f8
+        "HostsPath": "/var/lib/docker/containers/05da92045f8e22cbb357c5c39948f0a8f96161f32092a90f81f5
+        "LogPath": "/var/lib/docker/containers/05da92045f8e22cbb357c5c39948f0a8f96161f32092a90f81f5d990f81f5d9c9ba3af352-json.log",
+        "Name": "/charming_easley",
+        "RestartCount": 0,
+        "Driver": "overlay2",
+        "Platform": "linux",
+        "MountLabel": "",
+        "ProcessLabel": "",
+        "AppArmorProfile": "",
+        "ExecIDs": null,
+        "HostConfig": {
+            "Binds": null,
+            "ContainerIDFile": "",
+            "LogConfig": {
+                "Type": "json-file",
+                "Config": {}
+            },
+            "NetworkMode": "default",
+            "PortBindings": {},
+            "RestartPolicy": {
+                "Name": "no",
+                "MaximumRetryCount": 0
+            },
+            "AutoRemove": false,
+            "VolumeDriver": "",
+            "VolumesFrom": null,
+            "CapAdd": null,
+            "CapDrop": null,
+            "CgroupnsMode": "host",
+            "Dns": [],
+            "DnsOptions": [],
+            "DnsSearch": [],
+            "ExtraHosts": null,
+            "GroupAdd": null,
+            "IpcMode": "private",
+            "Cgroup": "",
+            "Links": null,
+            "OomScoreAdj": 0,
+            "PidMode": "",
+            "Privileged": false,
+            "PublishAllPorts": false,
+            "ReadonlyRootfs": false,
+            "SecurityOpt": null,
+            "UTSMode": "",
+            "UsernsMode": "",
+            "ShmSize": 67108864,
+            "Runtime": "runc",
+            "ConsoleSize": [
+                0,
+                0
+            ],
+            "Isolation": "",
+            "CpuShares": 0,
+            "Memory": 0,
+            "NanoCpus": 0,
+            "CgroupParent": "",
+            "BlkioWeight": 0,
+            "BlkioWeightDevice": [],
+            "BlkioDeviceReadBps": null,
+            "BlkioDeviceWriteBps": null,
+            "BlkioDeviceReadIOps": null,
+            "BlkioDeviceWriteIOps": null,
+            "CpuPeriod": 0,
+            "CpuQuota": 0,
+            "CpuRealtimePeriod": 0,
+            "CpuRealtimeRuntime": 0,
+            "CpusetCpus": "",
+            "CpusetMems": "",
+            "Devices": [],
+            "DeviceCgroupRules": null,
+            "DeviceRequests": null,
+            "KernelMemory": 0,
+            "KernelMemoryTCP": 0,
+            "MemoryReservation": 0,
+            "MemorySwap": 0,
+            "MemorySwappiness": null,
+            "OomKillDisable": false,
+            "PidsLimit": null,
+            "Ulimits": null,
+            "CpuCount": 0,
+            "CpuPercent": 0,
+            "IOMaximumIOps": 0,
+            "IOMaximumBandwidth": 0,
+            "MaskedPaths": [
+                "/proc/asound",
+                "/proc/acpi",
+                "/proc/kcore",
+                "/proc/keys",
+                "/proc/latency_stats",
+                "/proc/timer_list",
+                "/proc/timer_stats",
+                "/proc/sched_debug",
+                "/proc/scsi",
+                "/sys/firmware"
+            ],
+            "ReadonlyPaths": [
+                "/proc/bus",
+                "/proc/fs",
+                "/proc/irq",
+                "/proc/sys",
+                "/proc/sysrq-trigger"
+            ]
+        },
+        "GraphDriver": {
+            "Data": {
+                "LowerDir": "/var/lib/docker/overlay2/e3e5d69083028573c9f3d39e847df0195606881654d73c905cccaf4af80a8fe3677241d80ad3452e88d32de80d39b731a0c9c920e90e/diff:/var/lib/docker/overlay2/ecb03a11adiff:/var/lib/docker/overlay2/0143c47a18f6d8386ad1276846aa5d536eec54e295d7025bb24e052c7f848ffe/diff:/466af34f1f3ccff11caf3fb4e9213464/diff:/var/lib/docker/overlay2/1c32591b0ed1d004e75659a5921c98d8926fee/2109c9b8088c331231feb8b215d99dbb082958e051441c61f6aafb1bd0a7ad85/diff:/var/lib/docker/overlay2/bfa07b10/diff:/var/lib/docker/overlay2/31778c63c11f77bedf8d02e4f2f6f903baa31fecdc6248ff73a381bf19ee4a4d/di5ca44f074a45562911a68018b4ee88f5f9b4/diff:/var/lib/docker/overlay2/3f5c1a527bafef38af8bd9e5d68cb7c818lay2/c1480a726af81ad6de4981abf8127f81df0526865b5faa6cd78b138b2deeeb6e/diff",
+                "MergedDir": "/var/lib/docker/overlay2/e3e5d69083028573c9f3d39e847df0195606881654d73c
+                "UpperDir": "/var/lib/docker/overlay2/e3e5d69083028573c9f3d39e847df0195606881654d73c9
+                "WorkDir": "/var/lib/docker/overlay2/e3e5d69083028573c9f3d39e847df0195606881654d73c99
+            },
+            "Name": "overlay2"
+        },
+        "Mounts": [
+            {
+                "Type": "volume",
+                "Name": "61ce00ae8443d4d4d6f1dabd87966df3964bd80b7ed53b04261b8ea2a71d44d8",
+                "Source": "/var/lib/docker/volumes/61ce00ae8443d4d4d6f1dabd87966df3964bd80b7ed53b0426
+                "Destination": "/var/lib/mysql",
+                "Driver": "local",
+                "Mode": "",
+                "RW": true,
+                "Propagation": ""
+            }
+        ],
+        "Config": {
+            "Hostname": "05da92045f8e",
+            "Domainname": "",
+            "User": "",
+            "AttachStdin": false,
+            "AttachStdout": false,
+            "AttachStderr": false,
+            "ExposedPorts": {
+                "3306/tcp": {},
+                "33060/tcp": {}
+            },
+            "Tty": true,
+            "OpenStdin": true,
+            "StdinOnce": false,
+            "Env": [
+                "MYSQL_ROOT_PASSWORD=redhat",
+                "MYSQL_USER=vimal",
+                "MYSQL_PASSWORD=redhat",
+                "MYSQL_DATABASE=mydb",
+                "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+                "GOSU_VERSION=1.12",
+                "MYSQL_MAJOR=5.7",
+                "MYSQL_VERSION=5.7.35-1debian10"
+            ],
+            "Cmd": [
+                "mysqld"
+            ],
+            "Image": "mysql:5.7",
+            "Volumes": {
+                "/var/lib/mysql": {}
+            },
+            "WorkingDir": "",
+            "Entrypoint": [
+                "docker-entrypoint.sh"
+            ],
+            "OnBuild": null,
+            "Labels": {}
+        },
+        "NetworkSettings": {
+            "Bridge": "",
+            "SandboxID": "08bb88bfd0d6a7ad11d8478211a44051a2dd2e76938bdcf5bcccf98e045083ab",
+            "HairpinMode": false,
+            "LinkLocalIPv6Address": "",
+            "LinkLocalIPv6PrefixLen": 0,
+            "Ports": {
+                "3306/tcp": null,
+                "33060/tcp": null
+            },
+            "SandboxKey": "/var/run/docker/netns/08bb88bfd0d6",
+            "SecondaryIPAddresses": null,
+            "SecondaryIPv6Addresses": null,
+            "EndpointID": "e28cd2e7f03acb7b75a05cafa27bd378c50fb4e80c8dc8db8306dc9f15bf7e99",
+            "Gateway": "172.17.0.1",
+            "GlobalIPv6Address": "",
+            "GlobalIPv6PrefixLen": 0,
+            "IPAddress": "172.17.0.2",
+            "IPPrefixLen": 16,
+            "IPv6Gateway": "",
+            "MacAddress": "02:42:ac:11:00:02",
+            "Networks": {
+                "bridge": {
+                    "IPAMConfig": null,
+                    "Links": null,
+                    "Aliases": null,
+                    "NetworkID": "e9f8432624184962a10532e964be078300e6ec05e95bccd352cb5b2c31972903",
+                    "EndpointID": "e28cd2e7f03acb7b75a05cafa27bd378c50fb4e80c8dc8db8306dc9f15bf7e99",
+                    "Gateway": "172.17.0.1",
+                    "IPAddress": "172.17.0.2",
+                    "IPPrefixLen": 16,
+                    "IPv6Gateway": "",
+                    "GlobalIPv6Address": "",
+                    "GlobalIPv6PrefixLen": 0,
+                    "MacAddress": "02:42:ac:11:00:02",
+                    "DriverOpts": null
+                }
+            }
+        }
+    }
+]
+[root@localhost ~]# yum install mysqlclient
+Loaded plugins: fastestmirror
+Loading mirror speeds from cached hostfile
+ * base: centos.mirrors.estointernet.in
+ * epel: fedora.ipserverone.com
+ * extras: centos.mirrors.estointernet.in
+ * updates: centos.mirrors.estointernet.in
+No package mysqlclient available.
+Error: Nothing to do
+[root@localhost ~]# yum install mariadb
+Loaded plugins: fastestmirror
+Loading mirror speeds from cached hostfile
+ * base: centos.mirrors.estointernet.in
+ * epel: repos.del.extreme-ix.org
+ * extras: centos.mirrors.estointernet.in
+ * updates: centos.mirrors.estointernet.in
+Resolving Dependencies
+--> Running transaction check
+---> Package mariadb.x86_64 1:5.5.68-1.el7 will be installed
+--> Processing Dependency: mariadb-libs(x86-64) = 1:5.5.68-1.el7 for package: 1:mariadb-5.5.68-1.el7.
+--> Processing Dependency: perl(Sys::Hostname) for package: 1:mariadb-5.5.68-1.el7.x86_64
+--> Processing Dependency: perl(IPC::Open3) for package: 1:mariadb-5.5.68-1.el7.x86_64
+--> Processing Dependency: perl(Getopt::Long) for package: 1:mariadb-5.5.68-1.el7.x86_64
+--> Processing Dependency: perl(File::Temp) for package: 1:mariadb-5.5.68-1.el7.x86_64
+--> Processing Dependency: perl(Fcntl) for package: 1:mariadb-5.5.68-1.el7.x86_64
+--> Processing Dependency: perl(Exporter) for package: 1:mariadb-5.5.68-1.el7.x86_64
+--> Processing Dependency: /usr/bin/perl for package: 1:mariadb-5.5.68-1.el7.x86_64
+--> Running transaction check
+---> Package mariadb-libs.x86_64 1:5.5.56-2.el7 will be updated
+---> Package mariadb-libs.x86_64 1:5.5.68-1.el7 will be an update
+---> Package perl.x86_64 4:5.16.3-299.el7_9 will be installed
+--> Processing Dependency: perl-libs = 4:5.16.3-299.el7_9 for package: 4:perl-5.16.3-299.el7_9.x86_64
+--> Processing Dependency: perl(Socket) >= 1.3 for package: 4:perl-5.16.3-299.el7_9.x86_64
+--> Processing Dependency: perl(Scalar::Util) >= 1.10 for package: 4:perl-5.16.3-299.el7_9.x86_64
+--> Processing Dependency: perl-macros for package: 4:perl-5.16.3-299.el7_9.x86_64
+--> Processing Dependency: perl-libs for package: 4:perl-5.16.3-299.el7_9.x86_64
+--> Processing Dependency: perl(threads::shared) for package: 4:perl-5.16.3-299.el7_9.x86_64
+--> Processing Dependency: perl(threads) for package: 4:perl-5.16.3-299.el7_9.x86_64
+--> Processing Dependency: perl(constant) for package: 4:perl-5.16.3-299.el7_9.x86_64
+--> Processing Dependency: perl(Time::Local) for package: 4:perl-5.16.3-299.el7_9.x86_64
+--> Processing Dependency: perl(Time::HiRes) for package: 4:perl-5.16.3-299.el7_9.x86_64
+--> Processing Dependency: perl(Storable) for package: 4:perl-5.16.3-299.el7_9.x86_64
+--> Processing Dependency: perl(Socket) for package: 4:perl-5.16.3-299.el7_9.x86_64
+--> Processing Dependency: perl(Scalar::Util) for package: 4:perl-5.16.3-299.el7_9.x86_64
+--> Processing Dependency: perl(Pod::Simple::XHTML) for package: 4:perl-5.16.3-299.el7_9.x86_64
+--> Processing Dependency: perl(Pod::Simple::Search) for package: 4:perl-5.16.3-299.el7_9.x86_64
+--> Processing Dependency: perl(Filter::Util::Call) for package: 4:perl-5.16.3-299.el7_9.x86_64
+--> Processing Dependency: perl(File::Spec::Unix) for package: 4:perl-5.16.3-299.el7_9.x86_64
+--> Processing Dependency: perl(File::Spec::Functions) for package: 4:perl-5.16.3-299.el7_9.x86_64
+--> Processing Dependency: perl(File::Spec) for package: 4:perl-5.16.3-299.el7_9.x86_64
+--> Processing Dependency: perl(File::Path) for package: 4:perl-5.16.3-299.el7_9.x86_64
+--> Processing Dependency: perl(Cwd) for package: 4:perl-5.16.3-299.el7_9.x86_64
+--> Processing Dependency: perl(Carp) for package: 4:perl-5.16.3-299.el7_9.x86_64
+--> Processing Dependency: libperl.so()(64bit) for package: 4:perl-5.16.3-299.el7_9.x86_64
+---> Package perl-Exporter.noarch 0:5.68-3.el7 will be installed
+---> Package perl-File-Temp.noarch 0:0.23.01-3.el7 will be installed
+---> Package perl-Getopt-Long.noarch 0:2.40-3.el7 will be installed
+--> Processing Dependency: perl(Pod::Usage) >= 1.14 for package: perl-Getopt-Long-2.40-3.el7.noarch
+--> Processing Dependency: perl(Text::ParseWords) for package: perl-Getopt-Long-2.40-3.el7.noarch
+--> Running transaction check
+---> Package perl-Carp.noarch 0:1.26-244.el7 will be installed
+---> Package perl-File-Path.noarch 0:2.09-2.el7 will be installed
+---> Package perl-Filter.x86_64 0:1.49-3.el7 will be installed
+---> Package perl-PathTools.x86_64 0:3.40-5.el7 will be installed
+---> Package perl-Pod-Simple.noarch 1:3.28-4.el7 will be installed
+--> Processing Dependency: perl(Pod::Escapes) >= 1.04 for package: 1:perl-Pod-Simple-3.28-4.el7.noarc
+--> Processing Dependency: perl(Encode) for package: 1:perl-Pod-Simple-3.28-4.el7.noarch
+---> Package perl-Pod-Usage.noarch 0:1.63-3.el7 will be installed
+--> Processing Dependency: perl(Pod::Text) >= 3.15 for package: perl-Pod-Usage-1.63-3.el7.noarch
+--> Processing Dependency: perl-Pod-Perldoc for package: perl-Pod-Usage-1.63-3.el7.noarch
+---> Package perl-Scalar-List-Utils.x86_64 0:1.27-248.el7 will be installed
+---> Package perl-Socket.x86_64 0:2.010-5.el7 will be installed
+---> Package perl-Storable.x86_64 0:2.45-3.el7 will be installed
+---> Package perl-Text-ParseWords.noarch 0:3.29-4.el7 will be installed
+---> Package perl-Time-HiRes.x86_64 4:1.9725-3.el7 will be installed
+---> Package perl-Time-Local.noarch 0:1.2300-2.el7 will be installed
+---> Package perl-constant.noarch 0:1.27-2.el7 will be installed
+---> Package perl-libs.x86_64 4:5.16.3-299.el7_9 will be installed
+---> Package perl-macros.x86_64 4:5.16.3-299.el7_9 will be installed
+---> Package perl-threads.x86_64 0:1.87-4.el7 will be installed
+---> Package perl-threads-shared.x86_64 0:1.43-6.el7 will be installed
+--> Running transaction check
+---> Package perl-Encode.x86_64 0:2.51-7.el7 will be installed
+---> Package perl-Pod-Escapes.noarch 1:1.04-299.el7_9 will be installed
+---> Package perl-Pod-Perldoc.noarch 0:3.20-4.el7 will be installed
+--> Processing Dependency: perl(parent) for package: perl-Pod-Perldoc-3.20-4.el7.noarch
+--> Processing Dependency: perl(HTTP::Tiny) for package: perl-Pod-Perldoc-3.20-4.el7.noarch
+---> Package perl-podlators.noarch 0:2.5.1-3.el7 will be installed
+--> Running transaction check
+---> Package perl-HTTP-Tiny.noarch 0:0.033-3.el7 will be installed
+---> Package perl-parent.noarch 1:0.225-244.el7 will be installed
+--> Finished Dependency Resolution
+
+Dependencies Resolved
+
+=====================================================================================================
+ Package                                       Arch                          Version
+=====================================================================================================
+Installing:
+ mariadb                                       x86_64                        1:5.5.68-1.el7
+Installing for dependencies:
+ perl                                          x86_64                        4:5.16.3-299.el7_9
+ perl-Carp                                     noarch                        1.26-244.el7
+ perl-Encode                                   x86_64                        2.51-7.el7
+ perl-Exporter                                 noarch                        5.68-3.el7
+ perl-File-Path                                noarch                        2.09-2.el7
+ perl-File-Temp                                noarch                        0.23.01-3.el7
+ perl-Filter                                   x86_64                        1.49-3.el7
+ perl-Getopt-Long                              noarch                        2.40-3.el7
+ perl-HTTP-Tiny                                noarch                        0.033-3.el7
+ perl-PathTools                                x86_64                        3.40-5.el7
+ perl-Pod-Escapes                              noarch                        1:1.04-299.el7_9
+ perl-Pod-Perldoc                              noarch                        3.20-4.el7
+ perl-Pod-Simple                               noarch                        1:3.28-4.el7
+ perl-Pod-Usage                                noarch                        1.63-3.el7
+ perl-Scalar-List-Utils                        x86_64                        1.27-248.el7
+ perl-Socket                                   x86_64                        2.010-5.el7
+ perl-Storable                                 x86_64                        2.45-3.el7
+ perl-Text-ParseWords                          noarch                        3.29-4.el7
+ perl-Time-HiRes                               x86_64                        4:1.9725-3.el7
+ perl-Time-Local                               noarch                        1.2300-2.el7
+ perl-constant                                 noarch                        1.27-2.el7
+ perl-libs                                     x86_64                        4:5.16.3-299.el7_9
+ perl-macros                                   x86_64                        4:5.16.3-299.el7_9
+ perl-parent                                   noarch                        1:0.225-244.el7
+ perl-podlators                                noarch                        2.5.1-3.el7
+ perl-threads                                  x86_64                        1.87-4.el7
+ perl-threads-shared                           x86_64                        1.43-6.el7
+Updating for dependencies:
+ mariadb-libs                                  x86_64                        1:5.5.68-1.el7
+
+Transaction Summary
+=====================================================================================================
+Install  1 Package  (+27 Dependent packages)
+Upgrade             (  1 Dependent package)
+
+Total download size: 21 M
+Is this ok [y/d/N]: y
+Downloading packages:
+Delta RPMs disabled because /usr/bin/applydeltarpm not installed.
+(1/29): mariadb-libs-5.5.68-1.el7.x86_64.rpm
+(2/29): perl-Carp-1.26-244.el7.noarch.rpm
+(3/29): perl-Encode-2.51-7.el7.x86_64.rpm
+(4/29): perl-Exporter-5.68-3.el7.noarch.rpm
+(5/29): perl-File-Path-2.09-2.el7.noarch.rpm
+(6/29): perl-File-Temp-0.23.01-3.el7.noarch.rpm
+(7/29): mariadb-5.5.68-1.el7.x86_64.rpm
+(8/29): perl-Filter-1.49-3.el7.x86_64.rpm
+(9/29): perl-HTTP-Tiny-0.033-3.el7.noarch.rpm
+(10/29): perl-Getopt-Long-2.40-3.el7.noarch.rpm
+(11/29): perl-PathTools-3.40-5.el7.x86_64.rpm
+(12/29): perl-Pod-Perldoc-3.20-4.el7.noarch.rpm
+(13/29): perl-Pod-Simple-3.28-4.el7.noarch.rpm
+(14/29): perl-Pod-Usage-1.63-3.el7.noarch.rpm
+(15/29): perl-Pod-Escapes-1.04-299.el7_9.noarch.rpm
+(16/29): perl-Scalar-List-Utils-1.27-248.el7.x86_64.rpm
+(17/29): perl-Socket-2.010-5.el7.x86_64.rpm
+(18/29): perl-Storable-2.45-3.el7.x86_64.rpm
+(19/29): perl-Text-ParseWords-3.29-4.el7.noarch.rpm
+(20/29): perl-Time-HiRes-1.9725-3.el7.x86_64.rpm
+(21/29): perl-constant-1.27-2.el7.noarch.rpm
+(22/29): perl-Time-Local-1.2300-2.el7.noarch.rpm
+(23/29): perl-libs-5.16.3-299.el7_9.x86_64.rpm
+(24/29): perl-5.16.3-299.el7_9.x86_64.rpm
+(25/29): perl-parent-0.225-244.el7.noarch.rpm
+(26/29): perl-podlators-2.5.1-3.el7.noarch.rpm
+(27/29): perl-threads-1.87-4.el7.x86_64.rpm
+(28/29): perl-threads-shared-1.43-6.el7.x86_64.rpm
+(29/29): perl-macros-5.16.3-299.el7_9.x86_64.rpm
+-----------------------------------------------------------------------------------------------------
+Total
+Running transaction check
+Running transaction test
+Transaction test succeeded
+Running transaction
+  Installing : 1:perl-parent-0.225-244.el7.noarch
+  Installing : perl-HTTP-Tiny-0.033-3.el7.noarch
+  Installing : perl-podlators-2.5.1-3.el7.noarch
+  Installing : perl-Pod-Perldoc-3.20-4.el7.noarch
+  Installing : 1:perl-Pod-Escapes-1.04-299.el7_9.noarch
+  Installing : perl-Encode-2.51-7.el7.x86_64
+  Installing : perl-Text-ParseWords-3.29-4.el7.noarch
+  Installing : perl-Pod-Usage-1.63-3.el7.noarch
+  Installing : 4:perl-macros-5.16.3-299.el7_9.x86_64
+  Installing : perl-Storable-2.45-3.el7.x86_64
+  Installing : perl-Exporter-5.68-3.el7.noarch
+  Installing : perl-constant-1.27-2.el7.noarch
+  Installing : perl-Socket-2.010-5.el7.x86_64
+  Installing : perl-Time-Local-1.2300-2.el7.noarch
+  Installing : perl-Carp-1.26-244.el7.noarch
+  Installing : 4:perl-Time-HiRes-1.9725-3.el7.x86_64
+  Installing : perl-PathTools-3.40-5.el7.x86_64
+  Installing : perl-Scalar-List-Utils-1.27-248.el7.x86_64
+  Installing : 1:perl-Pod-Simple-3.28-4.el7.noarch
+  Installing : perl-File-Temp-0.23.01-3.el7.noarch
+  Installing : perl-File-Path-2.09-2.el7.noarch
+  Installing : perl-threads-shared-1.43-6.el7.x86_64
+  Installing : perl-threads-1.87-4.el7.x86_64
+  Installing : perl-Filter-1.49-3.el7.x86_64
+  Installing : 4:perl-libs-5.16.3-299.el7_9.x86_64
+  Installing : perl-Getopt-Long-2.40-3.el7.noarch
+  Installing : 4:perl-5.16.3-299.el7_9.x86_64
+  Updating   : 1:mariadb-libs-5.5.68-1.el7.x86_64
+  Installing : 1:mariadb-5.5.68-1.el7.x86_64
+  Cleanup    : 1:mariadb-libs-5.5.56-2.el7.x86_64
+  Verifying  : perl-HTTP-Tiny-0.033-3.el7.noarch
+  Verifying  : perl-threads-shared-1.43-6.el7.x86_64
+  Verifying  : perl-Storable-2.45-3.el7.x86_64
+  Verifying  : perl-Exporter-5.68-3.el7.noarch
+  Verifying  : perl-constant-1.27-2.el7.noarch
+  Verifying  : perl-PathTools-3.40-5.el7.x86_64
+  Verifying  : perl-Socket-2.010-5.el7.x86_64
+  Verifying  : 1:perl-parent-0.225-244.el7.noarch
+  Verifying  : 4:perl-macros-5.16.3-299.el7_9.x86_64
+  Verifying  : perl-File-Temp-0.23.01-3.el7.noarch
+  Verifying  : 1:perl-Pod-Simple-3.28-4.el7.noarch
+  Verifying  : perl-Time-Local-1.2300-2.el7.noarch
+  Verifying  : 1:perl-Pod-Escapes-1.04-299.el7_9.noarch
+  Verifying  : perl-Carp-1.26-244.el7.noarch
+  Verifying  : 1:mariadb-libs-5.5.68-1.el7.x86_64
+  Verifying  : 4:perl-Time-HiRes-1.9725-3.el7.x86_64
+  Verifying  : perl-Scalar-List-Utils-1.27-248.el7.x86_64
+  Verifying  : perl-Pod-Usage-1.63-3.el7.noarch
+  Verifying  : perl-Encode-2.51-7.el7.x86_64
+  Verifying  : perl-Pod-Perldoc-3.20-4.el7.noarch
+  Verifying  : perl-podlators-2.5.1-3.el7.noarch
+  Verifying  : 4:perl-5.16.3-299.el7_9.x86_64
+  Verifying  : perl-File-Path-2.09-2.el7.noarch
+  Verifying  : perl-threads-1.87-4.el7.x86_64
+  Verifying  : 1:mariadb-5.5.68-1.el7.x86_64
+  Verifying  : perl-Filter-1.49-3.el7.x86_64
+  Verifying  : perl-Getopt-Long-2.40-3.el7.noarch
+  Verifying  : perl-Text-ParseWords-3.29-4.el7.noarch
+  Verifying  : 4:perl-libs-5.16.3-299.el7_9.x86_64
+  Verifying  : 1:mariadb-libs-5.5.56-2.el7.x86_64
+
+Installed:
+  mariadb.x86_64 1:5.5.68-1.el7
+
+Dependency Installed:
+  perl.x86_64 4:5.16.3-299.el7_9                  perl-Carp.noarch 0:1.26-244.el7
+  perl-Exporter.noarch 0:5.68-3.el7               perl-File-Path.noarch 0:2.09-2.el7
+  perl-Filter.x86_64 0:1.49-3.el7                 perl-Getopt-Long.noarch 0:2.40-3.el7
+  perl-PathTools.x86_64 0:3.40-5.el7              perl-Pod-Escapes.noarch 1:1.04-299.el7_9
+  perl-Pod-Simple.noarch 1:3.28-4.el7             perl-Pod-Usage.noarch 0:1.63-3.el7
+  perl-Socket.x86_64 0:2.010-5.el7                perl-Storable.x86_64 0:2.45-3.el7
+  perl-Time-HiRes.x86_64 4:1.9725-3.el7           perl-Time-Local.noarch 0:1.2300-2.el7
+  perl-libs.x86_64 4:5.16.3-299.el7_9             perl-macros.x86_64 4:5.16.3-299.el7_9
+  perl-podlators.noarch 0:2.5.1-3.el7             perl-threads.x86_64 0:1.87-4.el7
+
+Dependency Updated:
+  mariadb-libs.x86_64 1:5.5.68-1.el7
+
+Complete!
+[root@localhost ~]#
+[root@localhost ~]# systemctl start mariadb
+Failed to start mariadb.service: Unit not found.
+[root@localhost ~]# systemctl start
+Display all 142 possibilities? (y or n)
+[root@localhost ~]# systemctl start
+[root@localhost ~]# systemctl start mysql
+Failed to start mysql.service: Unit not found.
+[root@localhost ~]# systemctl start mariadb
+Failed to start mariadb.service: Unit not found.
+[root@localhost ~]# systemctl start mariadb.server
+Failed to start mariadb.server.service: Unit not found.
+[root@localhost ~]# yum install mariadb.server
+Loaded plugins: fastestmirror
+Loading mirror speeds from cached hostfile
+ * base: centos.mirrors.estointernet.in
+ * epel: repos.del.extreme-ix.org
+ * extras: centos.mirrors.estointernet.in
+ * updates: centos.mirrors.estointernet.in
+No package mariadb.server available.
+Error: Nothing to do
+[root@localhost ~]# yum install mariadb-server
+Loaded plugins: fastestmirror
+Loading mirror speeds from cached hostfile
+         * base: centos.mirrors.estointernet.in
+ * epel: repos.del.extreme-ix.org
+ * extras: centos.mirrors.estointernet.in
+ * updates: centos.mirrors.estointernet.in
+Resolving Dependencies
+--> Running transaction check
+---> Package mariadb-server.x86_64 1:5.5.68-1.el7 will be installed
+--> Processing Dependency: perl-DBI for package: 1:mariadb-server-5.5.68-1.el7.x86_64
+--> Processing Dependency: perl-DBD-MySQL for package: 1:mariadb-server-5.5.68-1.el7.x86_64
+--> Processing Dependency: perl(Data::Dumper) for package: 1:mariadb-server-5.5.68-1.el7.x86_64
+--> Processing Dependency: perl(DBI) for package: 1:mariadb-server-5.5.68-1.el7.x86_64
+--> Running transaction check
+---> Package perl-DBD-MySQL.x86_64 0:4.023-6.el7 will be installed
+---> Package perl-DBI.x86_64 0:1.627-4.el7 will be installed
+--> Processing Dependency: perl(RPC::PlServer) >= 0.2001 for package: perl-DBI-1.627-4.el7.x86_64
+--> Processing Dependency: perl(RPC::PlClient) >= 0.2000 for package: perl-DBI-1.627-4.el7.x86_64
+---> Package perl-Data-Dumper.x86_64 0:2.145-3.el7 will be installed
+--> Running transaction check
+---> Package perl-PlRPC.noarch 0:0.2020-14.el7 will be installed
+--> Processing Dependency: perl(Net::Daemon) >= 0.13 for package: perl-PlRPC-0.2020-14.el7.noarch
+--> Processing Dependency: perl(Net::Daemon::Test) for package: perl-PlRPC-0.2020-14.el7.noarch
+--> Processing Dependency: perl(Net::Daemon::Log) for package: perl-PlRPC-0.2020-14.el7.noarch
+--> Processing Dependency: perl(Compress::Zlib) for package: perl-PlRPC-0.2020-14.el7.noarch
+--> Running transaction check
+---> Package perl-IO-Compress.noarch 0:2.061-2.el7 will be installed
+--> Processing Dependency: perl(Compress::Raw::Zlib) >= 2.061 for package: perl-IO-Compress-2.061-2.e
+--> Processing Dependency: perl(Compress::Raw::Bzip2) >= 2.061 for package: perl-IO-Compress-2.061-2.
+---> Package perl-Net-Daemon.noarch 0:0.48-5.el7 will be installed
+--> Running transaction check
+---> Package perl-Compress-Raw-Bzip2.x86_64 0:2.061-3.el7 will be installed
+---> Package perl-Compress-Raw-Zlib.x86_64 1:2.061-4.el7 will be installed
+--> Finished Dependency Resolution
+
+Dependencies Resolved
+
+=====================================================================================================
+ Package                                         Arch                           Version
+=====================================================================================================
+Installing:
+ mariadb-server                                  x86_64                         1:5.5.68-1.el7
+Installing for dependencies:
+ perl-Compress-Raw-Bzip2                         x86_64                         2.061-3.el7
+ perl-Compress-Raw-Zlib                          x86_64                         1:2.061-4.el7
+ perl-DBD-MySQL                                  x86_64                         4.023-6.el7
+ perl-DBI                                        x86_64                         1.627-4.el7
+ perl-Data-Dumper                                x86_64                         2.145-3.el7
+ perl-IO-Compress                                noarch                         2.061-2.el7
+ perl-Net-Daemon                                 noarch                         0.48-5.el7
+ perl-PlRPC                                      noarch                         0.2020-14.el7
+
+Transaction Summary
+=====================================================================================================
+Install  1 Package (+8 Dependent packages)
+
+Total download size: 13 M
+Installed size: 62 M
+Is this ok [y/d/N]: y
+Is this ok [y/d/N]: y
+Downloading packages:
+(1/9): perl-Compress-Raw-Bzip2-2.061-3.el7.x86_64.rpm
+(2/9): perl-Compress-Raw-Zlib-2.061-4.el7.x86_64.rpm
+(3/9): perl-DBD-MySQL-4.023-6.el7.x86_64.rpm
+(4/9): mariadb-server-5.5.68-1.el7.x86_64.rpm
+(5/9): perl-Data-Dumper-2.145-3.el7.x86_64.rpm
+(6/9): perl-IO-Compress-2.061-2.el7.noarch.rpm
+(7/9): perl-Net-Daemon-0.48-5.el7.noarch.rpm
+(8/9): perl-PlRPC-0.2020-14.el7.noarch.rpm
+(9/9): perl-DBI-1.627-4.el7.x86_64.rpm
+-----------------------------------------------------------------------------------------------------
+Total
+Running transaction check
+Running transaction test
+Transaction test succeeded
+Running transaction
+  Installing : perl-Data-Dumper-2.145-3.el7.x86_64
+  Installing : perl-Compress-Raw-Bzip2-2.061-3.el7.x86_64
+  Installing : 1:perl-Compress-Raw-Zlib-2.061-4.el7.x86_64
+  Installing : perl-IO-Compress-2.061-2.el7.noarch
+  Installing : perl-Net-Daemon-0.48-5.el7.noarch
+  Installing : perl-PlRPC-0.2020-14.el7.noarch
+  Installing : perl-DBI-1.627-4.el7.x86_64
+  Installing : perl-DBD-MySQL-4.023-6.el7.x86_64
+  Installing : 1:mariadb-server-5.5.68-1.el7.x86_64
+  Verifying  : perl-Net-Daemon-0.48-5.el7.noarch
+  Verifying  : perl-Data-Dumper-2.145-3.el7.x86_64
+  Verifying  : 1:mariadb-server-5.5.68-1.el7.x86_64
+  Verifying  : perl-DBD-MySQL-4.023-6.el7.x86_64
+  Verifying  : perl-IO-Compress-2.061-2.el7.noarch
+  Verifying  : 1:perl-Compress-Raw-Zlib-2.061-4.el7.x86_64
+  Verifying  : perl-DBI-1.627-4.el7.x86_64
+  Verifying  : perl-Compress-Raw-Bzip2-2.061-3.el7.x86_64
+  Verifying  : perl-PlRPC-0.2020-14.el7.noarch
+
+Installed:
+  mariadb-server.x86_64 1:5.5.68-1.el7
+
+Dependency Installed:
+  perl-Compress-Raw-Bzip2.x86_64 0:2.061-3.el7          perl-Compress-Raw-Zlib.x86_64 1:2.061-4.el7
+  perl-DBI.x86_64 0:1.627-4.el7                         perl-Data-Dumper.x86_64 0:2.145-3.el7
+  perl-Net-Daemon.noarch 0:0.48-5.el7                   perl-PlRPC.noarch 0:0.2020-14.el7
+
+Complete!
+[root@localhost ~]# systemctl start mariadb.service
+[root@localhost ~]# mysql -h 172.17.0.2 -u root -predhat
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MySQL connection id is 2
+Server version: 5.7.35 MySQL Community Server (GPL)
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MySQL [(none)]> shsow databases;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your Msow databases' at line 1
+MySQL [(none)]> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mydb               |
+| mysql              |
+| performance_schema |
+| sys                |
++--------------------+
+5 rows in set (0.01 sec)
+
+MySQL [(none)]> quit
+Bye
+[root@localhost ~]#
+[root@localhost ~]# docker volume create mysql_storage
+mysql_storage
+[root@localhost ~]# docker volume ls
+DRIVER    VOLUME NAME
+local     61ce00ae8443d4d4d6f1dabd87966df3964bd80b7ed53b04261b8ea2a71d44d8
+local     mysql_storage
+[root@localhost ~]# docker run -itd -e MYSQL_ROOT_PASSWORD=redhat                                       -e MYSQL_USER=vimal -e MYSQL_PASSWORD=redhat -e MYSQL_DATABASE=mydb                                     --name dbos -v mysql_storage:/var/lib/mysql   mysql:5.7
+f97c7bb6a1af661b82f71de7a3d0187467aa0a09f6eac68c8e674dd6b99ca086
+[root@localhost ~]#
+[root@localhost ~]# docker ps
+CONTAINER ID   IMAGE       COMMAND                  CREATED         STATUS                              PORTS                 NAMES
+f97c7bb6a1af   mysql:5.7   "docker-entrypoint.s…"   5 seconds ago   Up 4 seconds                        3306/tcp, 33060/tcp   dbos
+05da92045f8e   mysql:5.7   "docker-entrypoint.s…"   9 minutes ago   Up 9 minutes                        3306/tcp, 33060/tcp   charming_easley
+[root@localhost ~]# docker rm -f 05da
+05da
+[root@localhost ~]#
+[root@localhost ~]# docker ps
+CONTAINER ID   IMAGE       COMMAND                  CREATED          STATUS                               PORTS                 NAMES
+f97c7bb6a1af   mysql:5.7   "docker-entrypoint.s…"   27 seconds ago   Up 25 secon                     ds   3306/tcp, 33060/tcp   dbos
+[root@localhost ~]# docker run -itd                                                                      -e WORDPRESS_DB_HOST=dbos  -e WORDPRESS_DB_USER=vimal                                                          -e WORDPRESS_DB_PASSWORD=redhat  -e WORDPRESS_DB_NAME=mydb                                              -v wp_storage:/var/www/html  --name wpos  --link dbos                                                    -p 8080:80  wordpress:5.1.1-php7.3-apache
+Unable to find image 'wordpress:5.1.1-php7.3-apache' locally
+5.1.1-php7.3-apache: Pulling from library/wordpress
+743f2d6c1f65: Pull complete
+6307e89982cc: Pull complete
+807218e72ce2: Pull complete
+5108df1d03f8: Pull complete
+901e0b6a7fe5: Pull complete
+5ffe11e7ab2c: Pull complete
+da5f7a507956: Pull complete
+d1c77e0395e3: Pull complete
+178dc4dca86f: Pull complete
+0abb62fba325: Pull complete
+3d298b1f0f75: Pull complete
+693315514366: Pull complete
+91950b08acf3: Pull complete
+7a46fec837ad: Pull complete
+7b8c71ad18a8: Pull complete
+14b182bb2126: Pull complete
+df8f30809251: Pull complete
+23a5a261d81d: Pull complete
+3ef00a8cca94: Pull complete
+Digest: sha256:e52dab89ab4c24e21ec490f606d6d415fb15fb96008a5dc4b1d9956e2e5fcfc3
+Status: Downloaded newer image for wordpress:5.1.1-php7.3-apache
+87e8e127086d1b2e2c4f7c8e0cd7bfc132782c971a8b8ab8a6cb9bacac80c699
+[root@localhost ~]# docker logs wpos
+WordPress not found in /var/www/html - copying now...
+Complete! WordPress has been successfully copied to /var/www/html
+AH00558: apache2: Could not reliably determine the server's fully qualified domain name, using 172.17.0.2. Set the 'ServerName' directive globally to suppress this message
+AH00558: apache2: Could not reliably determine the server's fully qualified domain name, using 172.17.0.2. Set the 'ServerName' directive globally to suppress this message
+[Thu Jul 29 15:14:19.254995 2021] [mpm_prefork:notice] [pid 1] AH00163: Apache/2.4.25 (Debian) PHP/7.3.5 configured -- resuming normal operations
+[Thu Jul 29 15:14:19.255067 2021] [core:notice] [pid 1] AH00094: Command line: 'apache2 -D FOREGROUND'
+[root@localhost ~]#
+[root@localhost ~]# mysql -h 172.17.0.2 -u root -predhat
+ERROR 2003 (HY000): Can't connect to MySQL server on '172.17.0.2' (111)
+[root@localhost ~]#
+[root@localhost ~]# docker inspect dbos
+[
+    {
+        "Id": "f97c7bb6a1af661b82f71de7a3d0187467aa0a09f6eac68c8e674dd6b99ca086",
+        "Created": "2021-07-29T15:03:12.278842127Z",
+        "Path": "docker-entrypoint.sh",
+        "Args": [
+            "mysqld"
+        ],
+        "State": {
+            "Status": "running",
+            "Running": true,
+            "Paused": false,
+            "Restarting": false,
+            "OOMKilled": false,
+            "Dead": false,
+            "Pid": 4038,
+            "ExitCode": 0,
+            "Error": "",
+            "StartedAt": "2021-07-29T15:03:13.678850067Z",
+            "FinishedAt": "0001-01-01T00:00:00Z"
+        },
+        "Image": "sha256:8cf6250709314f2fcd2669e8643f5d3bdebfe715bddb63990c8c96e5d261d6fc",
+        "ResolvConfPath": "/var/lib/docker/containers/f97c7bb6a1af661b82f71de7a3d0187467aa0a09f6eac68c8e674dd6b99ca086/resolv.conf",
+        "HostnamePath": "/var/lib/docker/containers/f97c7bb6a1af661b82f71de7a3d0187467aa0a09f6eac68c8e674dd6b99ca086/hostname",
+        "HostsPath": "/var/lib/docker/containers/f97c7bb6a1af661b82f71de7a3d0187467aa0a09f6eac68c8e674dd6b99ca086/hosts",
+        "LogPath": "/var/lib/docker/containers/f97c7bb6a1af661b82f71de7a3d0187467aa0a09f6eac68c8e674dd6b99ca086/f97c7bb6a1af661b82f71de7a3d0187467aa0a09f6eac68c8e674dd6b99ca086-json.log",
+        "Name": "/dbos",
+        "RestartCount": 0,
+        "Driver": "overlay2",
+        "Platform": "linux",
+        "MountLabel": "",
+        "ProcessLabel": "",
+        "AppArmorProfile": "",
+        "ExecIDs": null,
+        "HostConfig": {
+            "Binds": [
+                "mysql_storage:/var/lib/mysql"
+            ],
+            "ContainerIDFile": "",
+            "LogConfig": {
+                "Type": "json-file",
+                "Config": {}
+            },
+            "NetworkMode": "default",
+            "PortBindings": {},
+            "RestartPolicy": {
+                "Name": "no",
+                "MaximumRetryCount": 0
+            },
+            "AutoRemove": false,
+            "VolumeDriver": "",
+            "VolumesFrom": null,
+            "CapAdd": null,
+            "CapDrop": null,
+            "CgroupnsMode": "host",
+            "Dns": [],
+            "DnsOptions": [],
+            "DnsSearch": [],
+            "ExtraHosts": null,
+            "GroupAdd": null,
+            "IpcMode": "private",
+            "Cgroup": "",
+            "Links": null,
+            "OomScoreAdj": 0,
+            "PidMode": "",
+            "Privileged": false,
+            "PublishAllPorts": false,
+            "ReadonlyRootfs": false,
+            "SecurityOpt": null,
+            "UTSMode": "",
+            "UsernsMode": "",
+            "ShmSize": 67108864,
+            "Runtime": "runc",
+            "ConsoleSize": [
+                0,
+                0
+            ],
+            "Isolation": "",
+            "CpuShares": 0,
+            "Memory": 0,
+            "NanoCpus": 0,
+            "CgroupParent": "",
+            "BlkioWeight": 0,
+            "BlkioWeightDevice": [],
+            "BlkioDeviceReadBps": null,
+            "BlkioDeviceWriteBps": null,
+            "BlkioDeviceReadIOps": null,
+            "BlkioDeviceWriteIOps": null,
+            "CpuPeriod": 0,
+            "CpuQuota": 0,
+            "CpuRealtimePeriod": 0,
+            "CpuRealtimeRuntime": 0,
+            "CpusetCpus": "",
+            "CpusetMems": "",
+            "Devices": [],
+            "DeviceCgroupRules": null,
+            "DeviceRequests": null,
+            "KernelMemory": 0,
+            "KernelMemoryTCP": 0,
+            "MemoryReservation": 0,
+            "MemorySwap": 0,
+            "MemorySwappiness": null,
+            "OomKillDisable": false,
+            "PidsLimit": null,
+            "Ulimits": null,
+            "CpuCount": 0,
+            "CpuPercent": 0,
+            "IOMaximumIOps": 0,
+            "IOMaximumBandwidth": 0,
+            "MaskedPaths": [
+                "/proc/asound",
+                "/proc/acpi",
+                "/proc/kcore",
+                "/proc/keys",
+                "/proc/latency_stats",
+                "/proc/timer_list",
+                "/proc/timer_stats",
+                "/proc/sched_debug",
+                "/proc/scsi",
+                "/sys/firmware"
+            ],
+            "ReadonlyPaths": [
+                "/proc/bus",
+                "/proc/fs",
+                "/proc/irq",
+                "/proc/sys",
+                "/proc/sysrq-trigger"
+            ]
+        },
+        "GraphDriver": {
+            "Data": {
+                "LowerDir": "/var/lib/docker/overlay2/ca1fb5420c0c93aa60af4cd97af72a59eba51c3d6e5784e2c486efcb97bfbb05-init/diff:/var/lib/docker/overlay2/9c305cccaf4af80a8fe3677241d80ad3452e88d32de80d39b731a0c9c920e90e/diff:/var/lib/docker/overlay2/ecb03a11af95f6ea67e2ab0442a36e01e7ebe84f8fa4f285d9cf72cea4e72b46/diff:/var/lib/docker/overlay2/0143c47a18f6d8386ad1276846aa5d536eec54e295d7025bb24e052c7f848ffe/diff:/var/lib/docker/overlay2/fc98196597e1eb5020df7a3c956c171e466af34f1f3ccff11caf3fb4e9213464/diff:/var/lib/docker/overlay2/1c32591b0ed1d004e75659a5921c98d8926fee1d15120d7f41c9d110af5ed619/diff:/var/lib/docker/overlay2/2109c9b8088c331231feb8b215d99dbb082958e051441c61f6aafb1bd0a7ad85/diff:/var/lib/docker/overlay2/bfa07291029c3cc0175af2ee489cdf837d559951330f3e105c85cc6bdcdfeb10/diff:/var/lib/docker/overlay2/31778c63c11f77bedf8d02e4f2f6f903baa31fecdc6248ff73a381bf19ee4a4d/diff:/var/lib/docker/overlay2/1d2063f36c8043f069da94f6ac6c5ca44f074a45562911a68018b4ee88f5f9b4/diff:/var/lib/docker/overlay2/3f5c1a527bafef38af8bd9e5d68cb7c81893ab69608ec7539b982dbe0c7a9303/diff:/var/lib/docker/overlay2/c1480a726af81ad6de4981abf8127f81df0526865b5faa6cd78b138b2deeeb6e/diff",
+                "MergedDir": "/var/lib/docker/overlay2/ca1fb5420c0c93aa60af4cd97af72a59eba51c3d6e5784e2c486efcb97bfbb05/merged",
+                "UpperDir": "/var/lib/docker/overlay2/ca1fb5420c0c93aa60af4cd97af72a59eba51c3d6e5784e2c486efcb97bfbb05/diff",
+                "WorkDir": "/var/lib/docker/overlay2/ca1fb5420c0c93aa60af4cd97af72a59eba51c3d6e5784e2c486efcb97bfbb05/work"
+            },
+            "Name": "overlay2"
+        },
+        "Mounts": [
+            {
+                "Type": "volume",
+                "Name": "mysql_storage",
+                "Source": "/var/lib/docker/volumes/mysql_storage/_data",
+                "Destination": "/var/lib/mysql",
+                "Driver": "local",
+                "Mode": "z",
+                "RW": true,
+                "Propagation": ""
+            }
+        ],
+        "Config": {
+            "Hostname": "f97c7bb6a1af",
+            "Domainname": "",
+            "User": "",
+            "AttachStdin": false,
+            "AttachStdout": false,
+            "AttachStderr": false,
+            "ExposedPorts": {
+                "3306/tcp": {},
+                "33060/tcp": {}
+            },
+            "Tty": true,
+            "OpenStdin": true,
+            "StdinOnce": false,
+            "Env": [
+                "MYSQL_DATABASE=mydb",
+                "MYSQL_ROOT_PASSWORD=redhat",
+                "MYSQL_USER=vimal",
+                "MYSQL_PASSWORD=redhat",
+                "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+                "GOSU_VERSION=1.12",
+                "MYSQL_MAJOR=5.7",
+                "MYSQL_VERSION=5.7.35-1debian10"
+            ],
+            "Cmd": [
+                "mysqld"
+            ],
+            "Image": "mysql:5.7",
+            "Volumes": {
+                "/var/lib/mysql": {}
+            },
+            "WorkingDir": "",
+            "Entrypoint": [
+                "docker-entrypoint.sh"
+            ],
+            "OnBuild": null,
+            "Labels": {}
+        },
+        "NetworkSettings": {
+            "Bridge": "",
+            "SandboxID": "1d8ff8712aacaf7bd0ca8fff9a4bea095b69bb336f19e6bd5a9b24fcdaa87206",
+            "HairpinMode": false,
+            "LinkLocalIPv6Address": "",
+            "LinkLocalIPv6PrefixLen": 0,
+            "Ports": {
+                "3306/tcp": null,
+                "33060/tcp": null
+            },
+            "SandboxKey": "/var/run/docker/netns/1d8ff8712aac",
+            "SecondaryIPAddresses": null,
+            "SecondaryIPv6Addresses": null,
+            "EndpointID": "73e37cf0edb3ddad5e306cc43175ee884ecab7520b3d1a386ae94a8ff7140b7f",
+            "Gateway": "172.17.0.1",
+            "GlobalIPv6Address": "",
+            "GlobalIPv6PrefixLen": 0,
+            "IPAddress": "172.17.0.3",
+            "IPPrefixLen": 16,
+            "IPv6Gateway": "",
+            "MacAddress": "02:42:ac:11:00:03",
+            "Networks": {
+                "bridge": {
+                    "IPAMConfig": null,
+                    "Links": null,
+                    "Aliases": null,
+                    "NetworkID": "e9f8432624184962a10532e964be078300e6ec05e95bccd352cb5b2c31972903",
+                    "EndpointID": "73e37cf0edb3ddad5e306cc43175ee884ecab7520b3d1a386ae94a8ff7140b7f",
+                    "Gateway": "172.17.0.1",
+                    "IPAddress": "172.17.0.3",
+                    "IPPrefixLen": 16,
+                    "IPv6Gateway": "",
+                    "GlobalIPv6Address": "",
+                    "GlobalIPv6PrefixLen": 0,
+                    "MacAddress": "02:42:ac:11:00:03",
+                    "DriverOpts": null
+                }
+            }
+        }
+    }
+]
+[root@localhost ~]# mysql -h 172.17.0.3 -u root -predhat
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MySQL connection id is 31
+Server version: 5.7.35 MySQL Community Server (GPL)
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MySQL [(none)]>
+MySQL [(none)]> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mydb               |
+| mysql              |
+| performance_schema |
+| sys                |
++--------------------+
+5 rows in set (0.01 sec)
+
+MySQL [(none)]> use mydb
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+MySQL [mydb]> show tables
+    -> Ctrl-C -- exit!
+Aborted
+[root@localhost ~]# mysql -h 172.17.0.3 -u root -predhat
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MySQL connection id is 32
+Server version: 5.7.35 MySQL Community Server (GPL)
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MySQL [(none)]> use mydb;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+MySQL [mydb]> show tables;
++-----------------------+
+| Tables_in_mydb        |
++-----------------------+
+| wp_commentmeta        |
+| wp_comments           |
+| wp_links              |
+| wp_options            |
+| wp_postmeta           |
+| wp_posts              |
+| wp_term_relationships |
+| wp_term_taxonomy      |
+| wp_termmeta           |
+| wp_terms              |
+| wp_usermeta           |
+| wp_users              |
++-----------------------+
+12 rows in set (0.00 sec)
+
+MySQL [mydb]> exit;
+Bye
+[root@localhost ~]#
+[root@localhost ~]# history
+    1  ifcfg
+    2  init 0
+    3  df -h
+    4  yum install bash-completion
+    5  nmcli general status
+    6  nmcli connection show
+    7   nmcli  conection add type ethernet ifname siva
+    8   nmcli  connection add type ethernet ifname siva
+    9  nmcli con show
+   10   nmcli con up siva
+   11   nmcli con up ethernet-siva
+   12  nmcli connection up ethernet-siva
+   13  nmcli con show
+   14  nmcli  con add type ethernet ifname enp0s8
+   15  nmcli con show
+   16  nmcli connection up ethernet-enp0s8
+   17  nmcli connection del ethernet-enp0s8
+   18  nmcli connection del ethernet-siva
+   19  nmcli con show
+   20  nmcli con modify enp0s3 ipv4.address 192.168.1.14/24
+   21  nmcli con modify enp0s3 ipv4.method manual
+   22  nmcli device status
+   23  nmcli device show enp0s3
+   24  nmcli device show enp0s3| grep -i ipv4.address
+   25  nmcli device show enp0s3| grep -i "ipv4.address"
+   26  nmcli device show enp0s3 | grep -i "IP4.ADDRESS[1]"
+   27  nmcli device show enp0s3 | grep -i "IP4.ADDRESS"
+   28  nmcli device show enp0s3| grep -i "ip4.address"
+   29  nmcli device show enp0s3| grep -i "ip4.address" | cut -f1
+   30  nmcli device show enp0s3| grep -i "ip4.address" | cut -fv1
+   31  nmcli device show enp0s3| grep -i "ip4.address" | cut -f 1
+   32  nmcli device show enp0s3| grep -i "ip4.address" | awk -F '{print $2}'
+   33  nmcli device show enp0s3| grep -i "ip4.address" | awk '{print $2}'
+   34  nmcli device show enp0s3| grep -i "ip4.address" | awk '{print $2}' | cut -d "/"
+   35  nmcli device show enp0s3| grep -i "ip4.address" | awk '{print $2}' | cut -d "/" f1
+   36  nmcli device show enp0s3| grep -i "ip4.address" | awk '{print $2}' | cut -d "/" -f 1
+   37  nmcli device show enp0s3
+   38  netstat -r
+   39  nmcli connection edit enp0s3
+   40  netstat -a
+   41  netstat -ta
+   42  netstat -lt
+   43  netstat -s
+   44  netstat st
+   45  netstat -st
+   46  netstat -tp
+   47  netstat -tup
+   48  netstat -tupl
+   49  netstat -r
+   50  yum install net-tools -y
+   51  ifconfig
+   52  enc
+   53  nmcli connection down enp0s3
+   54  nmcli connection up enp0s3
+   55  ip addr show
+   56   cat /etc/sysconfig/network-scripts/ifcfg-enp0s3
+   57  nmcli device connection show
+   58  nmcli device enpos3 show
+   59  nmcli device  show
+   60  init 0
+   61  nmcli device show enp0s3
+   62  nmcli connection edit enp0s3
+   63  docker ps
+   64  sudo yum install -y yum-utils
+   65  sudo yum-config-manager     --add-repo     https://download.docker.com/linux/centos/docker-ce.repo
+   66  yum install yum-utils
+   67  ping google.com
+   68  nmcli connection show
+   69  nmcli connection enp0s3 up
+   70  nmcli connection up enp0s3
+   71  ping google.com
+   72  dhclient
+   73*
+   74  ping google.com
+   75  sudo yum install -y yum-utils
+   76  yum install epel-release -y
+   77  sudo yum-config-manager     --add-repo     https://download.docker.com/linux/centos/docker-ce.repo
+   78  sudo yum install docker-ce docker-ce-cli containerd.io
+   79  systemctl start docker
+   80  systemctl enable docker
+   81  docker ps
+   82  docker pull mysql:5.7
+   83  docker images
+   84  docker run -it -e MYSQL_ROOT_PASSWORD=redhat -e MYSQL_USER=vimal
+   85  docker history mysql:5.7
+   86  docker run -it -e MYSQL_ROOT_PASSWORD=redhat                  -e MYSQL_USER=vimal -e MYSQL_PASSWORD=redhat -e MYSQL_DATABASE=mydb
+   87  docker run -itd -e MYSQL_ROOT_PASSWORD=redhat                  -e MYSQL_USER=vimal -e MYSQL_PASSWORD=redhat -e MYSQL_DATABASE=mydb
+   88  docker run -itd -e MYSQL_ROOT_PASSWORD=redhat                  -e MYSQL_USER=vimal -e MYSQL_PASSWORD=redhat -e MYSQL_DATABASE=mydb mysql:5.7
+   89  docker ps
+   90  docker ps -a
+   91  docker ps
+   92  docker inspect 05da
+   93  yum install mysqlclient
+   94  yum install mariadb
+   95  systemctl start mariadb
+   96  systemctl start mysql
+   97  systemctl start mariadb
+   98  systemctl start mariadb.server
+   99  yum install mariadb.server
+  100  yum install mariadb-server
+  101  systemctl start mariadb.service
+  102  mysql -h 172.17.0.2 -u root -predhat
+  103  docker volume create mysql_storage
+  104  docker volume ls
+  105  docker run -itd -e MYSQL_ROOT_PASSWORD=redhat                  -e MYSQL_USER=vimal -e MYSQL_PASSWORD=redhat -e MYSQL_DATABASE=mydb                --name dbos -v mysql_storage:/var/lib/mysql   mysql:5.7
+  106  docker ps
+  107  docker rm -f 05da
+  108  docker ps
+  109  docker run -itd                                                                      -e WORDPRESS_DB_HOST=dbos  -e WORDPRESS_DB_USER=vimal                                                          -e WORDPRESS_DB_PASSWORD=redhat  -e WORDPRESS_DB_NAME=mydb                                              -v wp_storage:/var/www/html  --name wpos  --link dbos                                                    -p 8080:80  wordpress:5.1.1-php7.3-apache
+  110  docker logs wpos
+  111  mysql -h 172.17.0.2 -u root -predhat
+  112  docker inspect dbos
+  113  mysql -h 172.17.0.3 -u root -predhat
+  114  history
+[root@localhost ~]#
+[root@localhost ~]# sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100   633  100   633    0     0   1366      0 --:--:-- --:--:-- --:--:--  1367
+100 12.1M  100 12.1M    0     0  4102k      0  0:00:03  0:00:03 --:--:-- 5824k
+[root@localhost ~]# chmod +x /usr/local/bin/docker-compose
+[root@localhost ~]# ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
+[root@localhost ~]# docker-compose --version
+docker-compose version 1.29.2, build 5becea4c
+[root@localhost ~]#
+[root@localhost ~]# mkdir /mycomp
+[root@localhost ~]# cd /mycomp/
+[root@localhost mycomp]#
+[root@localhost mycomp]# vi docker-compose.yml
+[root@localhost mycomp]# docker-compose up
+ERROR: yaml.scanner.ScannerError: while scanning for the next token
+found character '\t' that cannot start any token
+  in "./docker-compose.yml", line 3, column 1
+[root@localhost mycomp]# vi docker-compose.yml
+[root@localhost mycomp]# docker-compose up
+ERROR: yaml.scanner.ScannerError: while scanning for the next token
+found character '\t' that cannot start any token
+  in "./docker-compose.yml", line 3, column 1
+[root@localhost mycomp]# vi docker-compose.yml
+[root@localhost mycomp]# docker-compose up
+ERROR: yaml.scanner.ScannerError: while scanning for the next token
+found character '\t' that cannot start any token
+  in "./docker-compose.yml", line 3, column 1
+[root@localhost mycomp]# vi docker-compose.yml
+[root@localhost mycomp]# docker-compose up
+ERROR: The Compose file './docker-compose.yml' is invalid because:
+Unsupported config option for services.wordpressos: 'port' (did you mean 'ports'?)
+[root@localhost mycomp]#
+[root@localhost mycomp]# vi docker-compose.yml
+[root@localhost mycomp]# docker-compose up
+ERROR: Service 'wordpressos' depends on service 'dbos' which is undefined.
+[root@localhost mycomp]# vi docker-compose.yml
+[root@localhost mycomp]# docker-compose up
+ERROR: Named volume "mysql_storage_new:/var/lib/mysql:rw" is used in service "dbos1" but no declarati
+[root@localhost mycomp]#
+[root@localhost mycomp]# vi docker-compose.yml
+[root@localhost mycomp]# docker-compose up
+Creating network "mycomp_default" with the default driver
+Creating volume "mycomp_mysql_storage_new" with default driver
+Creating volume "mycomp_wp_storage_new" with default driver
+Creating mycomp_dbos1_1 ... done
+Creating mycomp_wordpressos_1 ... done
+Attaching to mycomp_dbos1_1, mycomp_wordpressos_1
+wordpressos_1  | WordPress not found in /var/www/html - copying now...
+dbos1_1        | 2021-07-29 16:03:23+00:00 [Note] [Entrypoint]: Entrypoint script for MySQL Server 5.7.35-1debian10 started.
+dbos1_1        | 2021-07-29 16:03:23+00:00 [Note] [Entrypoint]: Switching to dedicated user 'mysql'
+dbos1_1        | 2021-07-29 16:03:23+00:00 [Note] [Entrypoint]: Entrypoint script for MySQL Server 5.7.35-1debian10 started.
+dbos1_1        | 2021-07-29 16:03:23+00:00 [Note] [Entrypoint]: Initializing database files
+dbos1_1        | 2021-07-29T16:03:23.554610Z 0 [Warning] TIMESTAMP with implicit DEFAULT value is deprecated. Please use --explicit_defaults_for_timestamp server option (see documentation for more details).
+dbos1_1        | 2021-07-29T16:03:24.852405Z 0 [Warning] InnoDB: New log files created, LSN=45790
+dbos1_1        | 2021-07-29T16:03:25.084132Z 0 [Warning] InnoDB: Creating foreign key constraint system tables.
+dbos1_1        | 2021-07-29T16:03:25.159448Z 0 [Warning] No existing UUID has been found, so we assume that this is the first time that this server has been started. Generating a new UUID: 815d5786-f086-11eb-9003-0242ac120002.
+dbos1_1        | 2021-07-29T16:03:25.176149Z 0 [Warning] Gtid table is not ready to be used. Table 'mysql.gtid_executed' cannot be opened.
+dbos1_1        | 2021-07-29T16:03:26.477863Z 0 [Warning] A deprecated TLS version TLSv1 is enabled. Please use TLSv1.2 or higher.
+dbos1_1        | 2021-07-29T16:03:26.498502Z 0 [Warning] A deprecated TLS version TLSv1.1 is enabled. Please use TLSv1.2 or higher.
+dbos1_1        | 2021-07-29T16:03:26.639928Z 0 [Warning] CA certificate ca.pem is self signed.
+dbos1_1        | 2021-07-29T16:03:27.693423Z 1 [Warning] root@localhost is created with an empty password ! Please consider switching off the --initialize-insecure option.
+wordpressos_1  | Complete! WordPress has been successfully copied to /var/www/html
+dbos1_1        | 2021-07-29 16:03:34+00:00 [Note] [Entrypoint]: Database files initialized
+dbos1_1        | 2021-07-29 16:03:34+00:00 [Note] [Entrypoint]: Starting temporary server
+dbos1_1        | 2021-07-29 16:03:34+00:00 [Note] [Entrypoint]: Waiting for server startup
+dbos1_1        | 2021-07-29T16:03:36.605534Z 0 [Warning] TIMESTAMP with implicit DEFAULT value is deprecated. Please use --explicit_defaults_for_timestamp server option (see documentation for more details).
+dbos1_1        | 2021-07-29T16:03:36.628156Z 0 [Note] mysqld (mysqld 5.7.35) starting as process 75 ...
+dbos1_1        | 2021-07-29T16:03:36.800731Z 0 [Note] InnoDB: PUNCH HOLE support available
+dbos1_1        | 2021-07-29T16:03:36.801793Z 0 [Note] InnoDB: Mutexes and rw_locks use GCC atomic builtins
+dbos1_1        | 2021-07-29T16:03:36.801830Z 0 [Note] InnoDB: Uses event mutexes
+dbos1_1        | 2021-07-29T16:03:36.801840Z 0 [Note] InnoDB: GCC builtin __atomic_thread_fence() is used for memory barrier
+dbos1_1        | 2021-07-29T16:03:36.801846Z 0 [Note] InnoDB: Compressed tables use zlib 1.2.11
+dbos1_1        | 2021-07-29T16:03:36.801874Z 0 [Note] InnoDB: Using Linux native AIO
+dbos1_1        | 2021-07-29T16:03:36.809012Z 0 [Note] InnoDB: Number of pools: 1
+dbos1_1        | 2021-07-29T16:03:36.809122Z 0 [Note] InnoDB: Using CPU crc32 instructions
+dbos1_1        | 2021-07-29T16:03:36.815551Z 0 [Note] InnoDB: Initializing buffer pool, total size = 128M, instances = 1, chunk size = 128M
+dbos1_1        | 2021-07-29T16:03:36.840184Z 0 [Note] InnoDB: Completed initialization of buffer pool
+dbos1_1        | 2021-07-29T16:03:36.864169Z 0 [Note] InnoDB: If the mysqld execution user is authorized, page cleaner thread priority can be changed. See the man page of setpriority().
+dbos1_1        | 2021-07-29T16:03:36.904091Z 0 [Note] InnoDB: Highest supported file format is Barracuda.
+dbos1_1        | 2021-07-29T16:03:36.997563Z 0 [Note] InnoDB: Creating shared tablespace for temporary tables
+dbos1_1        | 2021-07-29T16:03:36.997886Z 0 [Note] InnoDB: Setting file './ibtmp1' size to 12 MB. Physically writing the file full; Please wait ...
+dbos1_1        | 2021-07-29T16:03:37.343580Z 0 [Note] InnoDB: File './ibtmp1' size is now 12 MB.
+dbos1_1        | 2021-07-29T16:03:37.390347Z 0 [Note] InnoDB: 96 redo rollback segment(s) found. 96 redo rollback segment(s) are active.
+dbos1_1        | 2021-07-29T16:03:37.390468Z 0 [Note] InnoDB: 32 non-redo rollback segment(s) are active.
+dbos1_1        | 2021-07-29T16:03:37.397615Z 0 [Note] InnoDB: Waiting for purge to start
+dbos1_1        | 2021-07-29T16:03:37.452758Z 0 [Note] InnoDB: 5.7.35 started; log sequence number 2748678
+dbos1_1        | 2021-07-29T16:03:37.460598Z 0 [Note] InnoDB: Loading buffer pool(s) from /var/lib/mysql/ib_buffer_pool
+dbos1_1        | 2021-07-29T16:03:37.460858Z 0 [Note] Plugin 'FEDERATED' is disabled.
+dbos1_1        | 2021-07-29T16:03:37.541025Z 0 [Note] InnoDB: Buffer pool(s) load completed at 210729 16:03:37
+dbos1_1        | 2021-07-29T16:03:37.643945Z 0 [Note] Found ca.pem, server-cert.pem and server-key.pem in data directory. Trying to enable SSL support using them.
+dbos1_1        | 2021-07-29T16:03:37.643967Z 0 [Note] Skipping generation of SSL certificates as certificate files are present in data directory.
+dbos1_1        | 2021-07-29T16:03:37.643974Z 0 [Warning] A deprecated TLS version TLSv1 is enabled. Please use TLSv1.2 or higher.
+dbos1_1        | 2021-07-29T16:03:37.643977Z 0 [Warning] A deprecated TLS version TLSv1.1 is enabled. Please use TLSv1.2 or higher.
+dbos1_1        | 2021-07-29T16:03:37.647068Z 0 [Warning] CA certificate ca.pem is self signed.
+dbos1_1        | 2021-07-29T16:03:37.647118Z 0 [Note] Skipping generation of RSA key pair as key files are present in data directory.
+dbos1_1        | 2021-07-29T16:03:37.688908Z 0 [Warning] Insecure configuration for --pid-file: Location '/var/run/mysqld' in the path is accessible to all OS users. Consider choosing a different directory.
+dbos1_1        | 2021-07-29T16:03:38.032400Z 0 [Note] Event Scheduler: Loaded 0 events
+dbos1_1        | 2021-07-29T16:03:38.032695Z 0 [Note] mysqld: ready for connections.
+dbos1_1        | Version: '5.7.35'  socket: '/var/run/mysqld/mysqld.sock'  port: 0  MySQL Community Server (GPL)
+wordpressos_1  | [29-Jul-2021 16:03:38 UTC] PHP Warning:  mysqli::__construct(): (HY000/2002): Connection refused in Standard input code on line 22
+wordpressos_1  |
+wordpressos_1  | MySQL Connection Error: (2002) Connection refused
+dbos1_1        | 2021-07-29 16:03:38+00:00 [Note] [Entrypoint]: Temporary server started.
+dbos1_1        | Warning: Unable to load '/usr/share/zoneinfo/iso3166.tab' as time zone. Skipping it.
+dbos1_1        | Warning: Unable to load '/usr/share/zoneinfo/leap-seconds.list' as time zone. Skipping it.
+dbos1_1        | Warning: Unable to load '/usr/share/zoneinfo/zone.tab' as time zone. Skipping it.
+dbos1_1        | Warning: Unable to load '/usr/share/zoneinfo/zone1970.tab' as time zone. Skipping it.
+dbos1_1        | 2021-07-29 16:03:41+00:00 [Note] [Entrypoint]: Creating database mydb
+dbos1_1        | 2021-07-29 16:03:41+00:00 [Note] [Entrypoint]: Creating user vimal
+dbos1_1        | 2021-07-29 16:03:41+00:00 [Note] [Entrypoint]: Giving user vimal access to schema mydb
+dbos1_1        |
+dbos1_1        | 2021-07-29 16:03:41+00:00 [Note] [Entrypoint]: Stopping temporary server
+dbos1_1        | 2021-07-29T16:03:41.233102Z 0 [Note] Giving 0 client threads a chance to die gracefully
+dbos1_1        | 2021-07-29T16:03:41.233150Z 0 [Note] Shutting down slave threads
+dbos1_1        | 2021-07-29T16:03:41.233183Z 0 [Note] Forcefully disconnecting 0 remaining clients
+dbos1_1        | 2021-07-29T16:03:41.233198Z 0 [Note] Event Scheduler: Purging the queue. 0 events
+dbos1_1        | 2021-07-29T16:03:41.237079Z 0 [Note] Binlog end
+dbos1_1        | 2021-07-29T16:03:41.245024Z 0 [Note] Shutting down plugin 'ngram'
+dbos1_1        | 2021-07-29T16:03:41.245041Z 0 [Note] Shutting down plugin 'partition'
+dbos1_1        | 2021-07-29T16:03:41.245044Z 0 [Note] Shutting down plugin 'BLACKHOLE'
+dbos1_1        | 2021-07-29T16:03:41.245048Z 0 [Note] Shutting down plugin 'ARCHIVE'
+dbos1_1        | 2021-07-29T16:03:41.245050Z 0 [Note] Shutting down plugin 'PERFORMANCE_SCHEMA'
+dbos1_1        | 2021-07-29T16:03:41.245074Z 0 [Note] Shutting down plugin 'MRG_MYISAM'
+dbos1_1        | 2021-07-29T16:03:41.245078Z 0 [Note] Shutting down plugin 'MyISAM'
+dbos1_1        | 2021-07-29T16:03:41.245088Z 0 [Note] Shutting down plugin 'INNODB_SYS_VIRTUAL'
+dbos1_1        | 2021-07-29T16:03:41.245093Z 0 [Note] Shutting down plugin 'INNODB_SYS_DATAFILES'
+dbos1_1        | 2021-07-29T16:03:41.245095Z 0 [Note] Shutting down plugin 'INNODB_SYS_TABLESPACES'
+dbos1_1        | 2021-07-29T16:03:41.245097Z 0 [Note] Shutting down plugin 'INNODB_SYS_FOREIGN_COLS'
+dbos1_1        | 2021-07-29T16:03:41.245099Z 0 [Note] Shutting down plugin 'INNODB_SYS_FOREIGN'
+dbos1_1        | 2021-07-29T16:03:41.245101Z 0 [Note] Shutting down plugin 'INNODB_SYS_FIELDS'
+dbos1_1        | 2021-07-29T16:03:41.245103Z 0 [Note] Shutting down plugin 'INNODB_SYS_COLUMNS'
+dbos1_1        | 2021-07-29T16:03:41.245105Z 0 [Note] Shutting down plugin 'INNODB_SYS_INDEXES'
+dbos1_1        | 2021-07-29T16:03:41.245106Z 0 [Note] Shutting down plugin 'INNODB_SYS_TABLESTATS'
+dbos1_1        | 2021-07-29T16:03:41.245109Z 0 [Note] Shutting down plugin 'INNODB_SYS_TABLES'
+dbos1_1        | 2021-07-29T16:03:41.245110Z 0 [Note] Shutting down plugin 'INNODB_FT_INDEX_TABLE'
+dbos1_1        | 2021-07-29T16:03:41.245112Z 0 [Note] Shutting down plugin 'INNODB_FT_INDEX_CACHE'
+dbos1_1        | 2021-07-29T16:03:41.245114Z 0 [Note] Shutting down plugin 'INNODB_FT_CONFIG'
+dbos1_1        | 2021-07-29T16:03:41.245116Z 0 [Note] Shutting down plugin 'INNODB_FT_BEING_DELETED'
+dbos1_1        | 2021-07-29T16:03:41.245118Z 0 [Note] Shutting down plugin 'INNODB_FT_DELETED'
+dbos1_1        | 2021-07-29T16:03:41.245120Z 0 [Note] Shutting down plugin 'INNODB_FT_DEFAULT_STOPWORD'
+dbos1_1        | 2021-07-29T16:03:41.245122Z 0 [Note] Shutting down plugin 'INNODB_METRICS'
+dbos1_1        | 2021-07-29T16:03:41.245124Z 0 [Note] Shutting down plugin 'INNODB_TEMP_TABLE_INFO'
+dbos1_1        | 2021-07-29T16:03:41.245126Z 0 [Note] Shutting down plugin 'INNODB_BUFFER_POOL_STATS'
+dbos1_1        | 2021-07-29T16:03:41.245128Z 0 [Note] Shutting down plugin 'INNODB_BUFFER_PAGE_LRU'
+dbos1_1        | 2021-07-29T16:03:41.245130Z 0 [Note] Shutting down plugin 'INNODB_BUFFER_PAGE'
+dbos1_1        | 2021-07-29T16:03:41.245132Z 0 [Note] Shutting down plugin 'INNODB_CMP_PER_INDEX_RESET'
+dbos1_1        | 2021-07-29T16:03:41.245134Z 0 [Note] Shutting down plugin 'INNODB_CMP_PER_INDEX'
+dbos1_1        | 2021-07-29T16:03:41.245136Z 0 [Note] Shutting down plugin 'INNODB_CMPMEM_RESET'
+dbos1_1        | 2021-07-29T16:03:41.245138Z 0 [Note] Shutting down plugin 'INNODB_CMPMEM'
+dbos1_1        | 2021-07-29T16:03:41.245140Z 0 [Note] Shutting down plugin 'INNODB_CMP_RESET'
+dbos1_1        | 2021-07-29T16:03:41.245142Z 0 [Note] Shutting down plugin 'INNODB_CMP'
+dbos1_1        | 2021-07-29T16:03:41.245144Z 0 [Note] Shutting down plugin 'INNODB_LOCK_WAITS'
+dbos1_1        | 2021-07-29T16:03:41.245146Z 0 [Note] Shutting down plugin 'INNODB_LOCKS'
+dbos1_1        | 2021-07-29T16:03:41.245147Z 0 [Note] Shutting down plugin 'INNODB_TRX'
+dbos1_1        | 2021-07-29T16:03:41.245149Z 0 [Note] Shutting down plugin 'InnoDB'
+dbos1_1        | 2021-07-29T16:03:41.245245Z 0 [Note] InnoDB: FTS optimize thread exiting.
+dbos1_1        | 2021-07-29T16:03:41.270205Z 0 [Note] InnoDB: Starting shutdown...
+wordpressos_1  |
+wordpressos_1  | MySQL Connection Error: (2002) Connection refused
+dbos1_1        | 2021-07-29T16:03:41.370730Z 0 [Note] InnoDB: Dumping buffer pool(s) to /var/lib/mysql/ib_buffer_pool
+dbos1_1        | 2021-07-29T16:03:41.371000Z 0 [Note] InnoDB: Buffer pool(s) dump completed at 210729 16:03:41
+dbos1_1        | 2021-07-29T16:03:42.697952Z 0 [Note] InnoDB: Shutdown completed; log sequence number 12665976
+dbos1_1        | 2021-07-29T16:03:42.698392Z 0 [Note] InnoDB: Removed temporary tablespace data file: "ibtmp1"
+dbos1_1        | 2021-07-29T16:03:42.698425Z 0 [Note] Shutting down plugin 'MEMORY'
+dbos1_1        | 2021-07-29T16:03:42.698434Z 0 [Note] Shutting down plugin 'CSV'
+dbos1_1        | 2021-07-29T16:03:42.698440Z 0 [Note] Shutting down plugin 'sha256_password'
+dbos1_1        | 2021-07-29T16:03:42.698442Z 0 [Note] Shutting down plugin 'mysql_native_password'
+dbos1_1        | 2021-07-29T16:03:42.700920Z 0 [Note] Shutting down plugin 'binlog'
+dbos1_1        | 2021-07-29T16:03:42.711616Z 0 [Note] mysqld: Shutdown complete
+dbos1_1        |
+dbos1_1        | 2021-07-29 16:03:43+00:00 [Note] [Entrypoint]: Temporary server stopped
+dbos1_1        |
+dbos1_1        | 2021-07-29 16:03:43+00:00 [Note] [Entrypoint]: MySQL init process done. Ready for start up.
+dbos1_1        |
+dbos1_1        | 2021-07-29T16:03:43.450936Z 0 [Warning] TIMESTAMP with implicit DEFAULT value is deprecated. Please use --explicit_defaults_for_timestamp server option (see documentation for more details).
+dbos1_1        | 2021-07-29T16:03:43.453034Z 0 [Note] mysqld (mysqld 5.7.35) starting as process 1 ...
+dbos1_1        | 2021-07-29T16:03:43.455671Z 0 [Note] InnoDB: PUNCH HOLE support available
+dbos1_1        | 2021-07-29T16:03:43.455686Z 0 [Note] InnoDB: Mutexes and rw_locks use GCC atomic builtins
+dbos1_1        | 2021-07-29T16:03:43.455689Z 0 [Note] InnoDB: Uses event mutexes
+dbos1_1        | 2021-07-29T16:03:43.455691Z 0 [Note] InnoDB: GCC builtin __atomic_thread_fence() is used for memory barrier
+dbos1_1        | 2021-07-29T16:03:43.455694Z 0 [Note] InnoDB: Compressed tables use zlib 1.2.11
+dbos1_1        | 2021-07-29T16:03:43.455698Z 0 [Note] InnoDB: Using Linux native AIO
+dbos1_1        | 2021-07-29T16:03:43.457665Z 0 [Note] InnoDB: Number of pools: 1
+dbos1_1        | 2021-07-29T16:03:43.457801Z 0 [Note] InnoDB: Using CPU crc32 instructions
+dbos1_1        | 2021-07-29T16:03:43.459004Z 0 [Note] InnoDB: Initializing buffer pool, total size = 128M, instances = 1, chunk size = 128M
+dbos1_1        | 2021-07-29T16:03:43.469351Z 0 [Note] InnoDB: Completed initialization of buffer pool
+dbos1_1        | 2021-07-29T16:03:43.471172Z 0 [Note] InnoDB: If the mysqld execution user is authorized, page cleaner thread priority can be changed. See the man page of setpriority().
+dbos1_1        | 2021-07-29T16:03:43.488143Z 0 [Note] InnoDB: Highest supported file format is Barracuda.
+dbos1_1        | 2021-07-29T16:03:43.503240Z 0 [Note] InnoDB: Creating shared tablespace for temporary tables
+dbos1_1        | 2021-07-29T16:03:43.503329Z 0 [Note] InnoDB: Setting file './ibtmp1' size to 12 MB. Physically writing the file full; Please wait ...
+dbos1_1        | 2021-07-29T16:03:43.616272Z 0 [Note] InnoDB: File './ibtmp1' size is now 12 MB.
+dbos1_1        | 2021-07-29T16:03:43.617220Z 0 [Note] InnoDB: 96 redo rollback segment(s) found. 96 redo rollback segment(s) are active.
+dbos1_1        | 2021-07-29T16:03:43.617233Z 0 [Note] InnoDB: 32 non-redo rollback segment(s) are active.
+dbos1_1        | 2021-07-29T16:03:43.639591Z 0 [Note] InnoDB: Waiting for purge to start
+dbos1_1        | 2021-07-29T16:03:43.689851Z 0 [Note] InnoDB: 5.7.35 started; log sequence number 12665976
+dbos1_1        | 2021-07-29T16:03:43.690492Z 0 [Note] Plugin 'FEDERATED' is disabled.
+dbos1_1        | 2021-07-29T16:03:43.690929Z 0 [Note] InnoDB: Loading buffer pool(s) from /var/lib/mysql/ib_buffer_pool
+dbos1_1        | 2021-07-29T16:03:43.726323Z 0 [Note] Found ca.pem, server-cert.pem and server-key.pem in data directory. Trying to enable SSL support using them.
+dbos1_1        | 2021-07-29T16:03:43.726343Z 0 [Note] Skipping generation of SSL certificates as certificate files are present in data directory.
+dbos1_1        | 2021-07-29T16:03:43.726349Z 0 [Warning] A deprecated TLS version TLSv1 is enabled. Please use TLSv1.2 or higher.
+dbos1_1        | 2021-07-29T16:03:43.726352Z 0 [Warning] A deprecated TLS version TLSv1.1 is enabled. Please use TLSv1.2 or higher.
+dbos1_1        | 2021-07-29T16:03:43.729316Z 0 [Warning] CA certificate ca.pem is self signed.
+dbos1_1        | 2021-07-29T16:03:43.729618Z 0 [Note] Skipping generation of RSA key pair as key files are present in data directory.
+dbos1_1        | 2021-07-29T16:03:43.752098Z 0 [Note] Server hostname (bind-address): '*'; port: 3306
+dbos1_1        | 2021-07-29T16:03:43.752181Z 0 [Note] IPv6 is available.
+dbos1_1        | 2021-07-29T16:03:43.752192Z 0 [Note]   - '::' resolves to '::';
+dbos1_1        | 2021-07-29T16:03:43.752216Z 0 [Note] Server socket created on IP: '::'.
+dbos1_1        | 2021-07-29T16:03:43.755636Z 0 [Warning] Insecure configuration for --pid-file: Location '/var/run/mysqld' in the path is accessible to all OS users. Consider choosing a different directory.
+dbos1_1        | 2021-07-29T16:03:43.756451Z 0 [Note] InnoDB: Buffer pool(s) load completed at 210729 16:03:43
+dbos1_1        | 2021-07-29T16:03:43.800201Z 0 [Note] Event Scheduler: Loaded 0 events
+dbos1_1        | 2021-07-29T16:03:43.803985Z 0 [Note] mysqld: ready for connections.
+dbos1_1        | Version: '5.7.35'  socket: '/var/run/mysqld/mysqld.sock'  port: 3306  MySQL Community Server (GPL)
+wordpressos_1  | AH00558: apache2: Could not reliably determine the server's fully qualified domain name, using 172.18.0.3. Set the 'ServerName' directive globally to suppress this message
+wordpressos_1  | AH00558: apache2: Could not reliably determine the server's fully qualified domain name, using 172.18.0.3. Set the 'ServerName' directive globally to suppress this message
+wordpressos_1  | [Thu Jul 29 16:03:44.655546 2021] [mpm_prefork:notice] [pid 1] AH00163: Apache/2.4.25 (Debian) PHP/7.3.5 configured -- resuming normal operations
+wordpressos_1  | [Thu Jul 29 16:03:44.655616 2021] [core:notice] [pid 1] AH00094: Command line: 'apache2 -D FOREGROUND'
+wordpressos_1  | 192.168.1.21 - - [29/Jul/2021:16:04:12 +0000] "GET / HTTP/1.1" 302 407 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.164 Safari/537.36"
+wordpressos_1  | 192.168.1.21 - - [29/Jul/2021:16:04:13 +0000] "GET /wp-admin/install.php HTTP/1.1" 200 4426 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.164 Safari/537.36"
+wordpressos_1  | 192.168.1.21 - - [29/Jul/2021:16:04:15 +0000] "GET /wp-includes/css/buttons.min.css?ver=5.1.1 HTTP/1.1" 200 1851 "http://192.168.1.14:8081/wp-admin/install.php" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.164 Safari/537.36"
+wordpressos_1  | 192.168.1.21 - - [29/Jul/2021:16:04:15 +0000] "GET /wp-includes/css/dashicons.min.css?ver=5.1.1 HTTP/1.1" 200 28982 "http://192.168.1.14:8081/wp-admin/install.php" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.164 Safari/537.36"
+wordpressos_1  | 192.168.1.21 - - [29/Jul/2021:16:04:15 +0000] "GET /wp-admin/css/install.min.css?ver=5.1.1 HTTP/1.1" 200 2346 "http://192.168.1.14:8081/wp-admin/install.php" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.164 Safari/537.36"
+wordpressos_1  | 192.168.1.21 - - [29/Jul/2021:16:04:15 +0000] "GET /wp-admin/js/language-chooser.min.js?ver=5.1.1 HTTP/1.1" 200 590 "http://192.168.1.14:8081/wp-admin/install.php" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.164 Safari/537.36"
+wordpressos_1  | 192.168.1.21 - - [29/Jul/2021:16:04:15 +0000] "GET /wp-includes/js/jquery/jquery-migrate.min.js?ver=1.4.1 HTTP/1.1" 200 4366 "http://192.168.1.14:8081/wp-admin/install.php" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.164 Safari/537.36"
+wordpressos_1  | 192.168.1.21 - - [29/Jul/2021:16:04:15 +0000] "GET /wp-includes/js/jquery/jquery.js?ver=1.12.4 HTTP/1.1" 200 34120 "http://192.168.1.14:8081/wp-admin/install.php" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.164 Safari/537.36"
+wordpressos_1  | 192.168.1.21 - - [29/Jul/2021:16:04:15 +0000] "GET /wp-admin/images/wordpress-logo.svg?ver=20131107 HTTP/1.1" 200 1810 "http://192.168.1.14:8081/wp-admin/css/install.min.css?ver=5.1.1" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.164 Safari/537.36"
+wordpressos_1  | 192.168.1.21 - - [29/Jul/2021:16:04:15 +0000] "GET /wp-admin/images/spinner-2x.gif HTTP/1.1" 200 7822 "http://192.168.1.14:8081/wp-admin/css/install.min.css?ver=5.1.1" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.164 Safari/537.36"
+wordpressos_1  | 192.168.1.21 - - [29/Jul/2021:16:04:15 +0000] "GET /favicon.ico HTTP/1.1" 200 227 "http://192.168.1.14:8081/wp-admin/install.php" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.164 Safari/537.36"
+wordpressos_1  | 192.168.1.21 - - [29/Jul/2021:16:04:18 +0000] "POST /wp-admin/install.php?step=1 HTTP/1.1" 200 2512 "http://192.168.1.14:8081/wp-admin/install.php" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.164 Safari/537.36"
+wordpressos_1  | 192.168.1.21 - - [29/Jul/2021:16:04:18 +0000] "GET /wp-admin/js/password-strength-meter.min.js?ver=5.1.1 HTTP/1.1" 200 822 "http://192.168.1.14:8081/wp-admin/install.php?step=1" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.164 Safari/537.36"
+wordpressos_1  | 192.168.1.21 - - [29/Jul/2021:16:04:18 +0000] "GET /wp-admin/js/user-profile.min.js?ver=5.1.1 HTTP/1.1" 200 2623 "http://192.168.1.14:8081/wp-admin/install.php?step=1" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.164 Safari/537.36"
+wordpressos_1  | 192.168.1.21 - - [29/Jul/2021:16:04:18 +0000] "GET /wp-includes/js/wp-util.min.js?ver=5.1.1 HTTP/1.1" 200 924 "http://192.168.1.14:8081/wp-admin/install.php?step=1" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.164 Safari/537.36"
+wordpressos_1  | 192.168.1.21 - - [29/Jul/2021:16:04:18 +0000] "GET /wp-includes/js/underscore.min.js?ver=1.8.3 HTTP/1.1" 200 6062 "http://192.168.1.14:8081/wp-admin/install.php?step=1" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.164 Safari/537.36"
+wordpressos_1  | 192.168.1.21 - - [29/Jul/2021:16:04:18 +0000] "GET /wp-includes/js/zxcvbn-async.min.js?ver=1.0 HTTP/1.1" 200 581 "http://192.168.1.14:8081/wp-admin/install.php?step=1" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.164 Safari/537.36"
+wordpressos_1  | 192.168.1.21 - - [29/Jul/2021:16:04:18 +0000] "GET /favicon.ico HTTP/1.1" 200 227 "http://192.168.1.14:8081/wp-admin/install.php?step=1" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.164 Safari/537.36"
+wordpressos_1  | 192.168.1.21 - - [29/Jul/2021:16:04:18 +0000] "GET /wp-includes/js/zxcvbn.min.js HTTP/1.1" 200 400374 "http://192.168.1.14:8081/wp-admin/install.php?step=1" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.164 Safari/537.36"
+wordpressos_1  | 127.0.0.1 - - [29/Jul/2021:16:04:26 +0000] "OPTIONS * HTTP/1.0" 200 126 "-" "Apache/2.4.25 (Debian) PHP/7.3.5 (internal dummy connection)"
+wordpressos_1  | 127.0.0.1 - - [29/Jul/2021:16:04:27 +0000] "OPTIONS * HTTP/1.0" 200 126 "-" "Apache/2.4.25 (Debian) PHP/7.3.5 (internal dummy connection)"
+wordpressos_1  | 127.0.0.1 - - [29/Jul/2021:16:04:28 +0000] "OPTIONS * HTTP/1.0" 200 126 "-" "Apache/2.4.25 (Debian) PHP/7.3.5 (internal dummy connection)"
+wordpressos_1  | [Thu Jul 29 16:06:10.179874 2021] [mpm_prefork:notice] [pid 1] AH00169: caught SIGTERM, shutting down
+mycomp_wordpressos_1 exited with code 0
+dbos1_1        | 2021-07-29T16:06:11.494786Z 0 [Note] Giving 0 client threads a chance to die gracefully
+dbos1_1        | 2021-07-29T16:06:11.504495Z 0 [Note] Shutting down slave threads
+dbos1_1        | 2021-07-29T16:06:11.508958Z 0 [Note] Forcefully disconnecting 0 remaining clients
+dbos1_1        | 2021-07-29T16:06:11.509166Z 0 [Note] Event Scheduler: Purging the queue. 0 events
+dbos1_1        | 2021-07-29T16:06:11.509618Z 0 [Note] Binlog end
+dbos1_1        | 2021-07-29T16:06:11.526108Z 0 [Note] Shutting down plugin 'ngram'
+dbos1_1        | 2021-07-29T16:06:11.526142Z 0 [Note] Shutting down plugin 'partition'
+dbos1_1        | 2021-07-29T16:06:11.526146Z 0 [Note] Shutting down plugin 'BLACKHOLE'
+dbos1_1        | 2021-07-29T16:06:11.526151Z 0 [Note] Shutting down plugin 'ARCHIVE'
+dbos1_1        | 2021-07-29T16:06:11.526153Z 0 [Note] Shutting down plugin 'PERFORMANCE_SCHEMA'
+dbos1_1        | 2021-07-29T16:06:11.526180Z 0 [Note] Shutting down plugin 'MRG_MYISAM'
+dbos1_1        | 2021-07-29T16:06:11.526186Z 0 [Note] Shutting down plugin 'MyISAM'
+dbos1_1        | 2021-07-29T16:06:11.529897Z 0 [Note] Shutting down plugin 'INNODB_SYS_VIRTUAL'
+dbos1_1        | 2021-07-29T16:06:11.529917Z 0 [Note] Shutting down plugin 'INNODB_SYS_DATAFILES'
+dbos1_1        | 2021-07-29T16:06:11.529920Z 0 [Note] Shutting down plugin 'INNODB_SYS_TABLESPACES'
+dbos1_1        | 2021-07-29T16:06:11.529922Z 0 [Note] Shutting down plugin 'INNODB_SYS_FOREIGN_COLS'
+dbos1_1        | 2021-07-29T16:06:11.529925Z 0 [Note] Shutting down plugin 'INNODB_SYS_FOREIGN'
+dbos1_1        | 2021-07-29T16:06:11.529927Z 0 [Note] Shutting down plugin 'INNODB_SYS_FIELDS'
+dbos1_1        | 2021-07-29T16:06:11.529929Z 0 [Note] Shutting down plugin 'INNODB_SYS_COLUMNS'
+dbos1_1        | 2021-07-29T16:06:11.529931Z 0 [Note] Shutting down plugin 'INNODB_SYS_INDEXES'
+dbos1_1        | 2021-07-29T16:06:11.529933Z 0 [Note] Shutting down plugin 'INNODB_SYS_TABLESTATS'
+dbos1_1        | 2021-07-29T16:06:11.529935Z 0 [Note] Shutting down plugin 'INNODB_SYS_TABLES'
+dbos1_1        | 2021-07-29T16:06:11.529937Z 0 [Note] Shutting down plugin 'INNODB_FT_INDEX_TABLE'
+dbos1_1        | 2021-07-29T16:06:11.529939Z 0 [Note] Shutting down plugin 'INNODB_FT_INDEX_CACHE'
+dbos1_1        | 2021-07-29T16:06:11.529942Z 0 [Note] Shutting down plugin 'INNODB_FT_CONFIG'
+dbos1_1        | 2021-07-29T16:06:11.529944Z 0 [Note] Shutting down plugin 'INNODB_FT_BEING_DELETED'
+dbos1_1        | 2021-07-29T16:06:11.530056Z 0 [Note] Shutting down plugin 'INNODB_FT_DELETED'
+dbos1_1        | 2021-07-29T16:06:11.530062Z 0 [Note] Shutting down plugin 'INNODB_FT_DEFAULT_STOPWORD'
+dbos1_1        | 2021-07-29T16:06:11.530063Z 0 [Note] Shutting down plugin 'INNODB_METRICS'
+dbos1_1        | 2021-07-29T16:06:11.530065Z 0 [Note] Shutting down plugin 'INNODB_TEMP_TABLE_INFO'
+dbos1_1        | 2021-07-29T16:06:11.530067Z 0 [Note] Shutting down plugin 'INNODB_BUFFER_POOL_STATS'
+dbos1_1        | 2021-07-29T16:06:11.530069Z 0 [Note] Shutting down plugin 'INNODB_BUFFER_PAGE_LRU'
+dbos1_1        | 2021-07-29T16:06:11.530071Z 0 [Note] Shutting down plugin 'INNODB_BUFFER_PAGE'
+dbos1_1        | 2021-07-29T16:06:11.530072Z 0 [Note] Shutting down plugin 'INNODB_CMP_PER_INDEX_RESET'
+dbos1_1        | 2021-07-29T16:06:11.530074Z 0 [Note] Shutting down plugin 'INNODB_CMP_PER_INDEX'
+dbos1_1        | 2021-07-29T16:06:11.530076Z 0 [Note] Shutting down plugin 'INNODB_CMPMEM_RESET'
+dbos1_1        | 2021-07-29T16:06:11.530078Z 0 [Note] Shutting down plugin 'INNODB_CMPMEM'
+dbos1_1        | 2021-07-29T16:06:11.530080Z 0 [Note] Shutting down plugin 'INNODB_CMP_RESET'
+dbos1_1        | 2021-07-29T16:06:11.530082Z 0 [Note] Shutting down plugin 'INNODB_CMP'
+dbos1_1        | 2021-07-29T16:06:11.530084Z 0 [Note] Shutting down plugin 'INNODB_LOCK_WAITS'
+dbos1_1        | 2021-07-29T16:06:11.530086Z 0 [Note] Shutting down plugin 'INNODB_LOCKS'
+dbos1_1        | 2021-07-29T16:06:11.530087Z 0 [Note] Shutting down plugin 'INNODB_TRX'
+dbos1_1        | 2021-07-29T16:06:11.530089Z 0 [Note] Shutting down plugin 'InnoDB'
+dbos1_1        | 2021-07-29T16:06:11.559325Z 0 [Note] InnoDB: FTS optimize thread exiting.
+dbos1_1        | 2021-07-29T16:06:11.566073Z 0 [Note] InnoDB: Starting shutdown...
+dbos1_1        | 2021-07-29T16:06:11.666648Z 0 [Note] InnoDB: Dumping buffer pool(s) to /var/lib/mysql/ib_buffer_pool
+dbos1_1        | 2021-07-29T16:06:11.667793Z 0 [Note] InnoDB: Buffer pool(s) dump completed at 210729 16:06:11
+dbos1_1        | 2021-07-29T16:06:13.292593Z 0 [Note] InnoDB: Shutdown completed; log sequence number 12666004
+dbos1_1        | 2021-07-29T16:06:13.292843Z 0 [Note] InnoDB: Removed temporary tablespace data file: "ibtmp1"
+dbos1_1        | 2021-07-29T16:06:13.292860Z 0 [Note] Shutting down plugin 'MEMORY'
+dbos1_1        | 2021-07-29T16:06:13.292867Z 0 [Note] Shutting down plugin 'CSV'
+dbos1_1        | 2021-07-29T16:06:13.292872Z 0 [Note] Shutting down plugin 'sha256_password'
+dbos1_1        | 2021-07-29T16:06:13.292874Z 0 [Note] Shutting down plugin 'mysql_native_password'
+dbos1_1        | 2021-07-29T16:06:13.294573Z 0 [Note] Shutting down plugin 'binlog'
+dbos1_1        | 2021-07-29T16:06:13.296921Z 0 [Note] mysqld: Shutdown complete
+dbos1_1        |
+mycomp_dbos1_1 exited with code 0
+[root@localhost mycomp]#
+
 
 
